@@ -38,8 +38,8 @@ def plot_weather_data(turnstile_weather):
     turnstile_df = pandas.read_csv(turnstile_weather)  
 
 
-    plot = ggplot(turnstile_df, aes('meantempi', 'ENTRIESn_hourly', color='UNIT')) \
-            + geom_point() 
+    plot = ggplot(turnstile_df, aes('UNIT', 'ENTRIESn_hourly')) \
+            + geom_histogram() 
     return plot
 
 print plot_weather_data('../p3/turnstile_data_master_with_weather.csv')
