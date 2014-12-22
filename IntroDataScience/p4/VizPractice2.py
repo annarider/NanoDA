@@ -1,5 +1,6 @@
 from pandas import *
 from ggplot import *
+import numpy 
 
 def plot_weather_data(turnstile_weather):
     ''' 
@@ -37,9 +38,11 @@ def plot_weather_data(turnstile_weather):
 
     turnstile_df = pandas.read_csv(turnstile_weather)  
 
+    
 
-    plot = ggplot(turnstile_df, aes('UNIT', 'ENTRIESn_hourly')) \
-            + geom_histogram() 
+    plot = ggplot(turnstile_df, aes('meantempi', \
+            numpy.mean(turnstile_df['meantempi'][turnstile_df['ENTRIESn_hourly']]))) \
+            + geom_histogram(binwidth=1) + ggtitle('Entries by Avg. Temp.')
     return plot
 
 print plot_weather_data('../p3/turnstile_data_master_with_weather.csv')
