@@ -29,7 +29,7 @@ def plot_weather_data(turnstile_weather_csv):
     subset, about 1/3 of the actual data in the turnstile_weather dataframe.
     '''
     turnstile_df = pandas.read_csv(turnstile_weather_csv)     
-    plot = ggplot(turnstile_df, aes('Hour', 'ENTRIESn_hourly')) + geom_bar()
+    plot = ggplot(turnstile_df, aes('Hour', 'ENTRIESn_hourly')) + geom_bar(stat = 'bar', color='steelblue', fill='white')
     return plot
 
 print plot_weather_data('../p3/turnstile_data_master_with_weather.csv')
