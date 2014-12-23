@@ -50,10 +50,14 @@ def plot_weather_data(turnstile_weather):
 
     temp_entries_df = pandas.DataFrame({'temp': Series(temps), 'entries': (avgEntries)})
 
-    print temp_entries_df
+    # print temp_entries_df
     # plot = ""
     plot = ggplot(temp_entries_df, aes('temp', 'entries')) \
             + geom_point(color= 'red') + geom_line() + ggtitle('Entries by Avg. Temp.')
+    # plot = ggplot(temp_entries_df, aes('temp', 'entries')) \
+    #         + geom_bar(stat= 'identity') + ggtitle('Entries by Avg. Temp.')
+ 
+
     return plot
 
 print plot_weather_data('../p3/turnstile_data_master_with_weather.csv')
