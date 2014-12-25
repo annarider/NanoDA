@@ -48,13 +48,15 @@ def word_count():
 
     for line in sys.stdin:
         data = line.strip().split(" ")
+
+        data = data.translate(None, string.punctuation)
         
-        for word in data:
+        for word in data.lower():
             if word in word_counts:
                 word_counts[word] += 1
             else: 
                 word_counts[word] = 1
-                
+
     print word_counts
 
 word_count()
