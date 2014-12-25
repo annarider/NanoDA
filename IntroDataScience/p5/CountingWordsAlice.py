@@ -47,9 +47,8 @@ def word_count():
     word_counts = {}
 
     for line in sys.stdin:
-        data = line.strip().split(" ")
 
-        data = data.translate(None, string.punctuation)
+        data = data.translate(None, string.punctuation).strip().split(' ')
         
         for word in data.lower():
             if word in word_counts:
