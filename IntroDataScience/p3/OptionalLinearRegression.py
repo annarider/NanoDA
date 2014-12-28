@@ -42,8 +42,16 @@ runs faster.
 """
 
 def predictions(weather_turnstile):
-    #
-    # Your implementation goes here. Feel free to write additional
-    # helper functions
-    # 
+
+
+    prediction = weather_turnstile
+    print prediction
+    # features = DataFrame(turnstile_df['']
     return prediction
+
+def imp():
+    turnstile_df = pandas.read_csv('turnstile_data_master_with_weather.csv')
+    return predictions(turnstile_df)
+
+if __name__ == '__main__':
+    imp()
