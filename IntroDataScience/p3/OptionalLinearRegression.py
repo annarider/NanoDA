@@ -44,9 +44,20 @@ runs faster.
 def predictions(weather_turnstile):
 
 
-    prediction = weather_turnstile
-    print prediction
-    # features = DataFrame(turnstile_df['']
+    turnstile_df = weather_turnstile
+    # print prediction
+
+    # print prediction['Hour']
+    features_df = pandas.DataFrame({'Hour': turnstile_df['Hour'], 
+                                    'DATEn': turnstile_df['DATEn'],
+                                    'meantempi': turnstile_df['meantempi']})
+
+    model = sm.OLS(turnstile_df['ENTRIESn_hourly'],features_df)
+    print model
+    results = model.fit()
+    print results
+    print results.params
+    prediction = ""
     return prediction
 
 def imp():
