@@ -49,15 +49,15 @@ def predictions(weather_turnstile):
 
     # print prediction['Hour']
     features_df = pandas.DataFrame({'Hour': turnstile_df['Hour'], 
-                                    'DATEn': turnstile_df['DATEn'],
+                                    'rain': turnstile_df['rain'],
                                     'meantempi': turnstile_df['meantempi']})
 
     model = sm.OLS(turnstile_df['ENTRIESn_hourly'],features_df)
-    print model
+    # print model
     results = model.fit()
-    print results
-    print results.params
-    prediction = ""
+    # print results
+    # print results.params
+    prediction = results.predict(results.params)
     return prediction
 
 def imp():
