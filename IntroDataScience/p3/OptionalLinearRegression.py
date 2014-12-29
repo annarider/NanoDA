@@ -50,19 +50,39 @@ def predictions(weather_turnstile):
     # print prediction['Hour']
     features_df = pandas.DataFrame({'Hour': turnstile_df['Hour'], 
                                     'rain': turnstile_df['rain'],
-                                    'meantempi': turnstile_df['meantempi']})
+                                    'meantempi': turnstile_df['meantempi'],
+                                    'meanwindspdi': turnstile_df['meanwindspdi']})
 
     model = sm.OLS(turnstile_df['ENTRIESn_hourly'],features_df)
     # print model
     results = model.fit()
     # print results
     # print results.params
-    prediction = results.predict(results.params)
+    prediction = results.predict(features_df)
     return prediction
+
+def compute_r_squared(label, predictions):
+    # Write a function that, given two input numpy arrays, 'data', and 'predictions,'
+    # returns the coefficient of determination, R^2, for the model that produced 
+    # predictions.
+    # 
+    # Numpy has a couple of functions -- np.mean() and np.sum() --
+    # that you might find useful, but you don't have to use them.
+
+    sum_of_data_minus_predictions = np.sum(np.square(label - predictions))
+    sum_of_predictions_minus_mean = np.sum(np.square(label - np.mean(label)))
+    r_squared = 1 - (sum_of_data_minus_predictions / sum_of_predictions_minus_mean)
+
+    return r_squared
 
 def imp():
     turnstile_df = pandas.read_csv('turnstile_data_master_with_weather.csv')
-    return predictions(turnstile_df)
+    return turnstile_df
 
 if __name__ == '__main__':
-    imp()
+    data = imp()
+    prediction = predictions(data)
+    # print "data: \n",data
+    # print "pred: \n",prediction
+    label = data['ENTRIESn_hourly']
+    print compute_r_squared(label,prediction)
