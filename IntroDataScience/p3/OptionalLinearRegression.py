@@ -51,14 +51,23 @@ def predictions(weather_turnstile):
     features_df = pandas.DataFrame({'Hour': turnstile_df['Hour'], 
                                     'rain': turnstile_df['rain'],
                                     'meantempi': turnstile_df['meantempi'],
-                                    'meanwindspdi': turnstile_df['meanwindspdi']})
-
-    model = sm.OLS(turnstile_df['ENTRIESn_hourly'],features_df)
+                                    'meanwindspdi': turnstile_df['meanwindspdi'],
+                                    'precipi': turnstile_df['precipi'],
+                                    'HourSquared': np.square(turnstile_df['Hour']),
+                                    'meantempiSquared': np.square(turnstile_df['meantempi']),
+                                    'precipiSquared': np.square(turnstile_df['precipi'])})
+    label = turnstile_df['ENTRIESn_hourly']
+    features_df = sm.add_constant(features_df)
+    # add dummy variables of turnstile units to features
+    dummy_units = pandas.get_dummies(turnstile_df['UNIT'], prefix='unit')
+    features_df = features_df.join(dummy_units)
+    model = sm.OLS(label,features_df)
     # print model
     results = model.fit()
     # print results
     # print results.params
-    prediction = results.predict(features_df)
+    #prediction = sm.OLS.predict(model,features_df)
+    prediction = model.predict(features_df)
     return prediction
 
 def compute_r_squared(label, predictions):
@@ -82,7 +91,9 @@ def imp():
 if __name__ == '__main__':
     data = imp()
     prediction = predictions(data)
-    # print "data: \n",data
-    # print "pred: \n",prediction
     label = data['ENTRIESn_hourly']
+    # print "data: \n",data
+    print "pred: \n",prediction
+    print "lbl: \n",label
+    
     print compute_r_squared(label,prediction)
