@@ -44,61 +44,27 @@ runs faster.
 def predictions(weather_turnstile):
 
 
-    turnstile_df = weather_turnstile
-    # print prediction
-
-    # print prediction['Hour']
-    features_df = pandas.DataFrame({'Hour': turnstile_df['Hour'], 
-                                    'rain': turnstile_df['rain'],
-                                    'meantempi': turnstile_df['meantempi'],
-                                    'meanwindspdi': turnstile_df['meanwindspdi'],
-                                    'precipi': turnstile_df['precipi'],
-                                    'HourSquared': np.square(turnstile_df['Hour']),
-                                    'meantempiSquared': np.square(turnstile_df['meantempi']),
-                                    'meantempiSquared': np.square(turnstile_df['meantempi'])})
-    label = turnstile_df['ENTRIESn_hourly']
+    features_df = pandas.DataFrame({'Hour': weather_turnstile['Hour'], 
+                                    'rain': weather_turnstile['rain'],
+                                    'meantempi': weather_turnstile['meantempi'],
+                                    'meanwindspdi': weather_turnstile['meanwindspdi'],
+                                    'precipi': weather_turnstile['precipi'],
+                                    'HourSquared': np.square(weather_turnstile['Hour']),
+                                    'meantempiSquared': np.square(weather_turnstile['meantempi']),
+                                    'meantempiSquared': np.square(weather_turnstile['meantempi'])})
+    label = weather_turnstile['ENTRIESn_hourly']
 
     # Adds y-intercept to model
     features_df = sm.add_constant(features_df)
 
     # add dummy variables of turnstile units to features
-    dummy_units = pandas.get_dummies(turnstile_df['UNIT'], prefix='unit')
+    dummy_units = pandas.get_dummies(weather_turnstile['UNIT'], prefix='unit')
     features_df = features_df.join(dummy_units)
     model = sm.OLS(label,features_df)
-    # print model
+
     results = model.fit()
-    # print results
-    # print results.params
-    # prediction = sm.OLS.predict(model,features_df)
-    # print features_df
-    # print results.predict(features_df)
+
     prediction = results.predict(features_df)
     return prediction
 
-def compute_r_squared(label, predictions):
-    # Write a function that, given two input numpy arrays, 'data', and 'predictions,'
-    # returns the coefficient of determination, R^2, for the model that produced 
-    # predictions.
-    # 
-    # Numpy has a couple of functions -- np.mean() and np.sum() --
-    # that you might find useful, but you don't have to use them.
 
-    sum_of_data_minus_predictions = np.sum(np.square(label - predictions))
-    sum_of_predictions_minus_mean = np.sum(np.square(label - np.mean(label)))
-    r_squared = 1 - (sum_of_data_minus_predictions / sum_of_predictions_minus_mean)
-
-    return r_squared
-
-def imp():
-    turnstile_df = pandas.read_csv('turnstile_data_master_with_weather.csv')
-    return turnstile_df
-
-if __name__ == '__main__':
-    data = imp()
-    prediction = predictions(data)
-    label = data['ENTRIESn_hourly']
-    # print "data: \n",data
-    # print "pred: \n",prediction
-    # print "lbl: \n",label
-    
-    print compute_r_squared(label,prediction)
