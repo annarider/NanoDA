@@ -59,6 +59,9 @@ def word_count():
                 word_counts[word] = 1
                 # logging.info("Word doesn't exist, add 1")
 
-    print word_counts
+    return word_counts
 
-word_count()
+
+if __name__ == '__main__':
+    word_count()
+    print word_count()
