@@ -51,13 +51,16 @@ def predictions(weather_turnstile):
     features_df = pandas.DataFrame({'Hour': turnstile_df['Hour'], 
                                     'rain': turnstile_df['rain'],
                                     'meantempi': turnstile_df['meantempi'],
-                                    'meanwindspdi': turnstile_df['meanwindspdi'],
+                                    # 'meanwindspdi': turnstile_df['meanwindspdi'],
                                     'precipi': turnstile_df['precipi'],
-                                    'HourSquared': np.square(turnstile_df['Hour']),
-                                    'meantempiSquared': np.square(turnstile_df['meantempi']),
-                                    'precipiSquared': np.square(turnstile_df['precipi'])})
+                                    # 'HourSquared': np.square(turnstile_df['Hour']),
+                                    # 'meantempiSquared': np.square(turnstile_df['meantempi']),
+                                    'meantempiSquared': np.square(turnstile_df['meantempi'])})
     label = turnstile_df['ENTRIESn_hourly']
-    features_df = sm.add_constant(features_df)
+
+    # Adds y-intercept to model
+    # features_df = sm.add_constant(features_df)
+
     # add dummy variables of turnstile units to features
     dummy_units = pandas.get_dummies(turnstile_df['UNIT'], prefix='unit')
     features_df = features_df.join(dummy_units)
@@ -67,7 +70,9 @@ def predictions(weather_turnstile):
     # print results
     # print results.params
     #prediction = sm.OLS.predict(model,features_df)
-    prediction = model.predict(features_df)
+    # print features_df
+    # print results.predict(features_df)
+    prediction = results.predict(features_df)
     return prediction
 
 def compute_r_squared(label, predictions):
@@ -93,7 +98,7 @@ if __name__ == '__main__':
     prediction = predictions(data)
     label = data['ENTRIESn_hourly']
     # print "data: \n",data
-    print "pred: \n",prediction
-    print "lbl: \n",label
+    # print "pred: \n",prediction
+    # print "lbl: \n",label
     
     print compute_r_squared(label,prediction)
