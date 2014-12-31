@@ -5,8 +5,8 @@ import re
 
 from util import logfile
 
-# logging.basicConfig(filename=logfile, format='%(message)s',
-                   # level=logging.INFO, filemode='w')
+logging.basicConfig(figlename=logfile, format='%(message)s',
+                   level=logging.INFO, filemode='w')
 
 
 def word_count():
@@ -50,20 +50,21 @@ def word_count():
     for line in sys.stdin:
 
         # Tokenize the words from one line & stripped all punctuation
-        data = line.split()
+        data = line.strip().split(" ")
         
         for word in data:
             word = word.lower()
-            word = re.sub('\W', "", word)
+            word = re.sub('[\W_]', "", word)
+
             if word in word_counts:
                 word_counts[word] += 1
-                # logging.info("Word already exists, increment by 1")
+                #logging.info("Word already exists, increment by 1")
             else: 
                 word_counts[word] = 1
-                # logging.info("Word doesn't exist, add 1")
+                #logging.info("Word doesn't exist, add 1")
 
     print word_counts
 
+word_count()
 
-if __name__ == '__main__':
-    word_count()
+
