@@ -1,11 +1,12 @@
-# import logging
+import logging
 import sys
 import string
+import re
 
-# from util import logfile
+from util import logfile
 
 # logging.basicConfig(filename=logfile, format='%(message)s',
-#                    level=logging.INFO, filemode='w')
+                   # level=logging.INFO, filemode='w')
 
 
 def word_count():
@@ -49,9 +50,11 @@ def word_count():
     for line in sys.stdin:
 
         # Tokenize the words from one line & stripped all punctuation
-        data = data.translate(None, string.punctuation).strip().split(' ')
+        data = line.split()
         
-        for word in data.lower():
+        for word in data:
+            word = word.lower()
+            word = re.sub('\W', "", word)
             if word in word_counts:
                 word_counts[word] += 1
                 # logging.info("Word already exists, increment by 1")
@@ -59,9 +62,8 @@ def word_count():
                 word_counts[word] = 1
                 # logging.info("Word doesn't exist, add 1")
 
-    return word_counts
+    print word_counts
 
 
 if __name__ == '__main__':
     word_count()
-    print word_count()
