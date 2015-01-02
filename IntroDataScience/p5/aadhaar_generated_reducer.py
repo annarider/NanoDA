@@ -20,11 +20,28 @@ def reducer():
     #when you click "Test Run". For example:
     #logging.info("My debugging message")
         
-    aadhaar_generated = 0
-    old_key = None
+    aadhaar_generated = {}
 
     for line in sys.stdin:
-        data = line.strip.split("\t")
+        data = line.strip().split("\t")
+
+        key, aadhaar_count = data
+        aadhaar_count = int(aadhaar_count)
+
+        if key in aadhaar_generated: 
+            aadhaar_generated[key] += aadhaar_count
+        else: 
+            aadhaar_generated[key] = aadhaar_count
+
+    for key in aadhaar_generated:
+        print "{0}\t{1}".format(key, aadhaar_generated[key])
+    
+
+    old_key = None
+    key_history = []
+
+    for line in sys.stdin:
+        # data = line.strip.split("\t")
 
         if len(data) == 2:
             this_key, aadhaar_count = data
