@@ -34,11 +34,19 @@ def mapper():
         
         count_row = 0 
 
+        # district is the fourth column in the csv file, hard coded here
+        district = 3
+        # aadhaar generated is 9th column in csv file
+        aadhaar_generated = 8
+
         for row in reader:
             if count_row != 0:
+
                 # tokenize each row by the commas
                 # data = row.strip.split(",")
-                print row
+                if len(row) == 12:
+
+                    print "{0}\t{1}".format(row[district], row[aadhaar_generated])
 
             count_row += 1 
     # for line in sys.stdin:
