@@ -42,18 +42,11 @@ def mapper():
         for line in reader:
             if count_row != 0:
 
-                # tokenize each line by the commas
-                # data = line.strip.split(",")
                 if len(line) == 12:
 
                     print "{0}\t{1}".format(line[district], line[aadhaar_generated])
 
-            count_row += 1 
-    # for line in sys.stdin:
-        
-            
+            count_row += 1  
 
-        
-            # print data 
 
 mapper()
