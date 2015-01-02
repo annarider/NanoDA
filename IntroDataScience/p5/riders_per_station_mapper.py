@@ -33,8 +33,27 @@ def mapper():
     https://docs.python.org/2/library/logging.html for more information.
     """
 
+    count_row = 0 
+    
     for line in sys.stdin:
-        # your code here
+
+        # tokenize each line by the commas
+
+        data = line.strip().split(",")  
+        
+        # UNIT is the 1st column in the csv file, hard coded here
+        UNIT = 1
+        # ENTRIESn_HOURLY is 6th column in csv file
+        ENTRIESn_HOURLY = 6
+
+        if count_row != 0:
+   
+            if len(data) == 22:
+
+                print "{0}\t{1}".format(data[UNIT], data[ENTRIESn_HOURLY])
+                
+        count_row += 1 
+        
 
 
 mapper()
