@@ -32,12 +32,18 @@ def mapper():
     with open('aadhaar_data.csv', 'rb') as file:
         reader = csv.reader(file)
         
+        count_row = 0 
+
         for row in reader:
-            print row
+            if count_row != 0:
+                # tokenize each row by the commas
+                # data = row.strip.split(",")
+                print row
+
+            count_row += 1 
     # for line in sys.stdin:
         
-        # tokenize each row by the commas
-            # data = line.strip.split(",")
+            
 
         
             # print data 
