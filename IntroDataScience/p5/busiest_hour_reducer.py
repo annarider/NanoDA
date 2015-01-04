@@ -39,10 +39,28 @@ def reducer():
     '''
 
     max_entries = 0
-    old_key = None
     datetime = ''
 
-    for line in sys.stdin:
-        # your code here
+    busiest_units = {}
 
+    for line in sys.stdin:
+        data = line.strip().split("\t")
+
+        unit, entries, date, time = data
+        entries = float(entries)
+
+        if unit in busiest_units:
+            max_entries = busiest_units[unit][0]
+            if entries > max_entries or entries == max_entries:
+                busiest_units[unit] = [entries, date, time]
+                
+        else: 
+            busiest_units[unit] = [entries, date, time]
+
+    for unit in busiest_units:
+        datetime += busiest_units[unit][1] + ' ' + busiest_units[unit][2]
+        entries = busiest_units[unit][0]
+        print "{0}\t{1}\t{2}".format(unit, datetime, entries)
+
+        
 reducer()

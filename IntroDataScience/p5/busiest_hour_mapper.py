@@ -26,7 +26,32 @@ def mapper():
     logging.info("My debugging message")
     """
 
+    count_row = 0
+
     for line in sys.stdin:
-        # your code here
+        # 4 types of weather: fog-rain, nofog-rain, fog-norain, nofog-norain
+
+        data = line.strip().split(",")
+        
+        # Constant for column which stores UNIT
+        UNIT = 1
+
+        # ENTRIESn_HOURLY is 6th column in csv file
+        ENTRIES = 6
+
+        # Constant for column which stores date
+        DATE = 2
+
+        # Constant for column which stores time
+        TIME = 3
+
+        if count_row != 0:
+
+            if len(data) == 22:
+                
+                print "{0}\t{1}\t{2}\t{3}".format(data[UNIT], data[ENTRIES], data[DATE], data[TIME])
+           
+
+        count_row += 1 
 
 mapper()
