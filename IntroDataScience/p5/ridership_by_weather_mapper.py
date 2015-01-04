@@ -50,7 +50,7 @@ def mapper():
         # 4 types of weather: fog-rain, nofog-rain, fog-norain, nofog-norain
 
         data = line.strip().split(",")
-
+        
         # Constant for column which stores fog
         FOG = 14
 
@@ -63,13 +63,14 @@ def mapper():
 
         if count_row != 0:
 
-            if len(line) == 22:
-
-                fog_boolean = float(data[FOG])
-                rain_boolean = float (data[RAIN])
-
-                weather = format_key(fog_boolean, rain_boolean)
-                print "{0}\t{1}".format(format_key(data), line[ENTRIES])
+            if len(data) == 22:
+                
+                fog = float(data[FOG])
+                rain = float (data[RAIN]) 
+                
+                weather = format_key(fog, rain)
+                print "{0}\t{1}".format(weather, data[ENTRIES])
+           
 
         count_row += 1 
         

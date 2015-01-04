@@ -28,18 +28,32 @@ def reducer():
     when you click "Test Run". For example:
     logging.info("My debugging message")
     '''
+
     ridership = {}
-
-
-    riders = 0      # The number of total riders for this key
     num_hours = 0   # The number of hours with this key
 
 
     for line in sys.stdin:
         
         data = line.strip().split("\t")
-         key, aadhaar_count = data
-        aadhaar_count = int(aadhaar_count)
+        
+        weather, entries = data
+        entries = float(entries)
+
+        if weather in ridership:
+            entries = ridership[weather][0] + entries
+            num_hours = ridership[weather][1] + 1
+            ridership[weather] = [entries, num_hours]
+        else:
+            # start counting num hours, therefore start with 1
+            ridership[weather] = [entries, 1]
+
+    for weather in ridership:
+        
+        total_entries_per_weather = ridership[weather][0]
+        total_hours_per_weather = ridership[weather][1]
+        avg_entries_hourly = total_entries_per_weather / total_hours_per_weather
+        print "{0}\t{1}".format(weather, avg_entries_hourly)
 
 
 reducer()
