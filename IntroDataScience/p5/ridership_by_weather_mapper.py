@@ -61,6 +61,16 @@ def mapper():
 
         ENTRIES = 6
 
+        if count_row != 0:
+
+            if len(line) == 22:
+
+                fog_boolean = float(data[FOG])
+                rain_boolean = float (data[RAIN])
+
+                weather = format_key(fog_boolean, rain_boolean)
+                print "{0}\t{1}".format(format_key(data), line[ENTRIES])
+
         count_row += 1 
         
 
