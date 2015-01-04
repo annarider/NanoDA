@@ -28,12 +28,18 @@ def reducer():
     when you click "Test Run". For example:
     logging.info("My debugging message")
     '''
+    ridership = {}
+
 
     riders = 0      # The number of total riders for this key
     num_hours = 0   # The number of hours with this key
-    old_key = None
+
 
     for line in sys.stdin:
-        # your code here
+        
+        data = line.strip().split("\t")
+         key, aadhaar_count = data
+        aadhaar_count = int(aadhaar_count)
+
 
 reducer()
