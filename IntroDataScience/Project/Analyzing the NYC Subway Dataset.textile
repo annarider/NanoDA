@@ -10,8 +10,8 @@ This document addresses part 2 of the project. Please use this document as a tem
 h2.Section 1. Statistical Test
 
 h3.1.1 Which statistical test did you use to analyse the NYC subway data? Did you use a one-tail or a two-tail P value? What is the null hypothesis?
-I started with 
 
+The first question in Problem Set 3 asks me to plot two histogram charts 
 Mann-Whitney U test - null hypothesis = two samples came from the same population
 
 h3.1.2 Why is this statistical test applicable to the dataset? In particular, consider the assumptions that the test is making about the distribution of ridership in the two samples.
