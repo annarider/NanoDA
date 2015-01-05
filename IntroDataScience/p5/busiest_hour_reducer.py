@@ -59,7 +59,7 @@ def reducer():
         logging.info(busiest_units[unit])
 
     for unit in busiest_units:
-        datetime += busiest_units[unit][1] + ' ' + busiest_units[unit][2]
+        datetime = busiest_units[unit][1] + ' ' + busiest_units[unit][2]
         entries = busiest_units[unit][0]
         print "{0}\t{1}\t{2}".format(unit, datetime, entries)
 
