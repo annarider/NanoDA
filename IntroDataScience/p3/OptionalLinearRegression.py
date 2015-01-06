@@ -55,7 +55,7 @@ def predictions(weather_turnstile):
                                     'precipi': turnstile_df['precipi'],
                                     'HourSquared': np.square(turnstile_df['Hour']),
                                     'meantempiSquared': np.square(turnstile_df['meantempi']),
-                                    'meantempiSquared': np.square(turnstile_df['meantempi'])})
+                                    'precipiSquared': np.square(turnstile_df['precipi'])})
     label = turnstile_df['ENTRIESn_hourly']
 
     # Adds y-intercept to model

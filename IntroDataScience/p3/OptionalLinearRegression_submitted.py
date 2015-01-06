@@ -51,7 +51,7 @@ def predictions(weather_turnstile):
                                     'precipi': weather_turnstile['precipi'],
                                     'HourSquared': np.square(weather_turnstile['Hour']),
                                     'meantempiSquared': np.square(weather_turnstile['meantempi']),
-                                    'meantempiSquared': np.square(weather_turnstile['meantempi'])})
+                                    'precipiSquared': np.square(weather_turnstile['precipi'])})
     label = weather_turnstile['ENTRIESn_hourly']
 
     # Adds y-intercept to model

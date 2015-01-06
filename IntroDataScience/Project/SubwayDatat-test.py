@@ -9,7 +9,14 @@ def calc_ttest_subway(subway_df):
 
     ttest = scipy.stats.ttest_ind(with_rain, without_rain, equal_var=False)
 
-    if ttest[1] < .05:
+    # print the mean of each sample dataset 
+    print numpy.mean(with_rain)
+    print numpy.mean(without_rain)
+
+    print len(with_rain)
+    print len(without_rain)
+
+    if ttest[1] <= .05:
         return False, ttest
     else:
         return True, ttest

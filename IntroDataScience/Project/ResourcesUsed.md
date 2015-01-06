@@ -11,6 +11,12 @@ h2.Websites
 ** Need lots of help with the library
 * Matplotlib: matplotlib.org
 ** Need lots of help with the library
+* UCLA Digital Resarch & Education Institute
+http://www.ats.ucla.edu/stat/mult_pkg/faq/general/tail_tests.htm
+* Help me understand testing for normality: Minitab Blog
+http://blog.minitab.com/blog/fun-with-statistics/testing-for-normality-a-tale-of-two-samples-by-anderson-darling
+* Understanding normality tests: Graphpad
+http://www.graphpad.com/support/faqid/959/
 
 
 
