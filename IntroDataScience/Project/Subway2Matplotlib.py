@@ -32,18 +32,20 @@ def entries_histogram(subway_data_df):
     '''
     plt.figure()
 
-    rain_df = subway_data_df['ENTRIESn_hourly'][subway_data_df['rain'] == 1]
-    no_rain_df = subway_data_df['ENTRIESn_hourly'][subway_data_df['rain'] == 0]
+    rain_df = subway_data_df['ENTRIESn_hourly'][subway_data_df['rain'] == 0]
+    no_rain_df = subway_data_df['ENTRIESn_hourly'][subway_data_df['rain'] == 1]
 
-    binwidth = 250
+
+    binsize = 50
     
-    rain_df.hist(bins = np.arange(min(rain_df), max(rain_df) + binwidth, binwidth))
-    no_rain_df.hist(bins = np.arange(min(no_rain_df), max(no_rain_df) + binwidth, binwidth))
+    rain_df.hist(bins = binsize)
+    no_rain_df.hist(bins = binsize)
 
+    # subway_data_df.hist([subway_data_df['ENTRIESn_hourly'], subway_data_df['rain']], bins = 50)
 
     plt.show()
 
-    # return no_rain_df
+    return no_rain_df
 
 # sample code
 # P.figure()
