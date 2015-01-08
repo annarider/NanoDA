@@ -30,16 +30,20 @@ def entries_histogram(subway_data_df):
     http://pandas.pydata.org/pandas-docs/stable/visualization.html#histograms
 
     '''
-    
-    no_rain_df = subway_data_df['ENTRIESn_hourly'][subway_data_df['rain'] == 1]
-    
     plt.figure()
 
-    print no_rain_df
-    no_rain_df.hist(no_rain_df, bins = 250)
-    no_rain_df.show()
+    rain_df = subway_data_df['ENTRIESn_hourly'][subway_data_df['rain'] == 1]
+    no_rain_df = subway_data_df['ENTRIESn_hourly'][subway_data_df['rain'] == 0]
 
-    return no_rain_df
+    binwidth = 250
+    
+    rain_df.hist(bins = np.arange(min(rain_df), max(rain_df) + binwidth, binwidth))
+    no_rain_df.hist(bins = np.arange(min(no_rain_df), max(no_rain_df) + binwidth, binwidth))
+
+
+    plt.show()
+
+    # return no_rain_df
 
 # sample code
 # P.figure()
