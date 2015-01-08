@@ -6,6 +6,8 @@ def describe(subway_df):
     with_rain = pandas.Series(subway_df['rain'])
     print with_rain.value_counts()
 
+    # print subway_df.describe()
+
     return subway_df['ENTRIESn_hourly'].describe()
 
 if __name__ == '__main__':
