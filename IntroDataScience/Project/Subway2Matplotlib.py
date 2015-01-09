@@ -57,8 +57,8 @@ def entries_histogram(subway_data_df):
                     vTart I love gummi bears cupcake                     
                     '''
 
-    # add description to histogram
-    plt.figtext(0, -3000, description)
+    # add description to histogram - doesn't work!!!
+    # plt.figtext(0, -3000, description)
 
 
     plt.legend()
@@ -66,7 +66,7 @@ def entries_histogram(subway_data_df):
 
     return no_rain_df
 
-# sample code
+# sample code from matplotlib's website -- use as guidelines
 # P.figure()
 
 # create a new data-set

@@ -36,22 +36,33 @@ def plot_weather_data(turnstile_weather):
     subset, about 1/3 of the actual data in the turnstile_weather dataframe.
     '''
 
+    # read csv into pandas dataframe 
     turnstile_df = pandas.read_csv(turnstile_weather)  
+
+    # initalize the min & max temp variables from turnstile data, mean temperature
     minTemp = int(numpy.amin(turnstile_df['meantempi']))
     maxTemp = int(numpy.amax(turnstile_df['meantempi']))
 
+    # init list to store all temperatures processed
     temps = []
+    # init list to store avg temps
     avgEntries = []
 
     for i in range(minTemp, maxTemp + 1):
+        # filter dataframe for hourly entries, based on temperature
         avgEntry = numpy.mean(turnstile_df['ENTRIESn_hourly'][turnstile_df['meantempi'] == i])
+        # keep track of all temperatures processed & for x axis
         temps.append(i)
+        # add avg temps to avgEntries list & for y axis
         avgEntries.append(avgEntry)
 
+    # create a new dataframe strictly with values to plot in ggplot
     temp_entries_df = pandas.DataFrame({'temp': Series(temps), 'entries': (avgEntries)})
 
     # print temp_entries_df
     # plot = ""
+
+    # code to plot a scatterplot connected with lines
     plot = ggplot(temp_entries_df, aes('temp', 'entries')) \
             + geom_point(color= 'red') + geom_line() + ggtitle('Entries by Avg. Temp.')
     # plot = ggplot(temp_entries_df, aes('temp', 'entries')) \

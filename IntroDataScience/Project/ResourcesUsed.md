@@ -3,6 +3,9 @@ Resources used for Intro to Data Science problem sets & final project
 Programming Help
 * Stack Overflow
 
+** General Python programming constructs
+http://stackoverflow.com/questions/20079681/initializing-a-dictionary-in-python-with-a-key-value-and-no-corresponding-values
+
 ** For matplotlib labeling, captions, x & y axes labels:
 http://stackoverflow.com/questions/5777576/is-there-a-way-of-drawing-a-caption-box-in-matplotlib
 http://stackoverflow.com/questions/7033386/using-matplotlib-to-add-text-along-with-a-plot-in-a-pdf-file
@@ -66,6 +69,8 @@ http://stackoverflow.com/questions/10982089/how-to-shift-a-column-in-pandas-data
 http://stackoverflow.com/questions/15123591/selecting-different-columns-in-a-pandas-dataframe?rq=1
 http://stackoverflow.com/questions/12065885/how-to-filter-the-dataframe-rows-of-pandas-by-within-in
 http://stackoverflow.com/questions/11346283/renaming-columns-in-pandas
+*** When using scalar values (one unit of data), must pass in an index
+http://stackoverflow.com/questions/17839973/construct-pandas-dataframe-from-values-in-variables
 
 Statistic Help
 * Wikipedia
