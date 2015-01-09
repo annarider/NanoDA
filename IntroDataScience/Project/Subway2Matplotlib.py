@@ -53,9 +53,9 @@ def entries_histogram(subway_data_df):
     plt.title("Distribution of hourly entries")
 
     # description to explain the histogram
-    description =   '''
-                    vTart I love gummi bears cupcake                     
-                    '''
+    # description =   '''
+    #                 vTart I love gummi bears cupcake                     
+    #                 '''
 
     # add description to histogram - doesn't work!!!
     # plt.figtext(0, -3000, description)
