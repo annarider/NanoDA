@@ -40,20 +40,25 @@ def entries_histogram(subway_data_df):
     binsize = 50
     
     # creating histogram with visual cues, incl. colors & legends
-    rain_df.hist(bins = binsize, label = "Rain", color = "red", alpha = 0.5)
-    no_rain_df.hist(bins = binsize, label = "No Rain", color='k', alpha = 0.5)
+    rain_df.hist(bins = binsize, label = "Rain", color = "red", alpha = 0.5, grid = False)
+    no_rain_df.hist(bins = binsize, label = "No Rain", color='k', alpha = 0.5, grid = False)
 
     # subway_data_df.hist([subway_data_df['ENTRIESn_hourly'], subway_data_df['rain']], bins = 50)
 
     # add axes labels
-    plt.xlabel("ENTRIESn_hourly")
-    plt.ylabel("Frequency")
+    plt.xlabel("Hourly Entries")
+    plt.ylabel("Records")
 
     # add title to histogram
-    plt.title("Number of hourly entries with and without rain")
+    plt.title("Distribution of hourly entries")
+
+    # description to explain the histogram
+    description =   '''
+                    vTart I love gummi bears cupcake                     
+                    '''
 
     # add description to histogram
-    # plt.text(0, -3000, "This plot is about XYZ")
+    plt.figtext(0, -3000, description)
 
 
     plt.legend()
