@@ -71,6 +71,9 @@ http://stackoverflow.com/questions/12065885/how-to-filter-the-dataframe-rows-of-
 http://stackoverflow.com/questions/11346283/renaming-columns-in-pandas
 *** When using scalar values (one unit of data), must pass in an index
 http://stackoverflow.com/questions/17839973/construct-pandas-dataframe-from-values-in-variables
+*** Remove legend from plot
+http://stackoverflow.com/questions/5735208/remove-the-legend-on-a-matplotlib-figure
+(how to set legends) http://matplotlib.org/1.3.1/users/legend_guide.html
 
 Statistic Help
 * Wikipedia

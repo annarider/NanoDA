@@ -4,23 +4,25 @@ import matplotlib.pyplot as plt
 
 def entriesBar(subway_data_df):
     ''' this method takes in a turnstile_weather dataframe and calls a process entries
-    method to create a dict to store all the days of the week as keys in a dict
-    and stores the average hourly entries per day as the values of the dict. the method
+    method to create a List to store all the days of the week as keys in a List
+    and stores the average hourly entries per day as the values of the List. the method
     then draws the bar plot representing the average hourly entries per day for subway
     ridership data'''     
         
-    daysOfTheWeekEntries = processEntriesDict(subway_data_df)
-
-    print daysOfTheWeekEntries
+    daysOfTheWeekEntries = processEntriesList(subway_data_df)
 
     # inti the pyplot
     plt.figure()
 
-    # creating a pandas dataframe from the dict to use for a matplotlib bar chart
+    # creating a pandas dataframe from the List to use for a matplotlib bar chart
 
-    # avgDailyEntries = pandas.DataFrame(daysOfTheWeekEntries), index=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])
+    avgDailyEntries = pandas.DataFrame({'Average Hourly Entries': daysOfTheWeekEntries}, \
+        index = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])
 
-    # avgDailyEntries.plot(kind = "bar")
+    # create list of colors for bar faces
+    colors = ['b','g','r','c','y','m','k']
+    # set the plot type to bar chart
+    avgDailyEntries.plot(kind = "bar", color = colors)
 
     # add title to histogram
     plt.title("Average hourly entries per day of week")
@@ -29,42 +31,29 @@ def entriesBar(subway_data_df):
     plt.xlabel("Day of the week")
     plt.ylabel("Average Hourly Entries")
 
+    # remove legend from plot
+    legend = plt.legend()
+    legend.remove()
+
     plt.show()
 
-    print avgDailyEntries
-        # setting the number of bins
-    # binsize = 50
-    
-    # creating histogram with visual cues, incl. colors & legends
-
-    # subway_data_df.hist([subway_data_df['ENTRIESn_hourly'], subway_data_df['rain']], bins = 50)
+    return plt
 
 
-
-
-
-
-    # plt.legend()
-    # plt.show()
-
-    # return no_rain_df
-
-
-def processEntriesDict(subway_data_df):
-    ''' this method creates a dict of 7 days in a week and calls the method that 
+def processEntriesList(subway_data_df):
+    ''' this method creates a List of 7 days in a week and calls the method that 
     calculates the average number of entries per day, then stores the average entries
-    in the dict to pass to the method to create the matplotlib bar chart '''  
+    in the List to pass to the method to create the matplotlib bar chart '''  
 
-    # init a dict to store days of the week, which will be x-axis values in plot
+    # init a List to store days of the week, which will be x-axis values in plot
     # 0 - 4 = Monday - Friday; 5, 6 = Saturday, Sunday
-    daysOfTheWeek = dict.fromkeys([0,1,2,3,4,5,6])
+    avgEntriesDaily = []
 
-    # calculate average entries per day of week & add to dict
+    # calculate average entries per day of week & add to List
     for i in range(0,7):
-        daysOfTheWeek[i] = calculateAvgEntries(subway_data_df, i)
+        avgEntriesDaily.append(calculateAvgEntries(subway_data_df, i))
 
-
-    return daysOfTheWeek
+    return avgEntriesDaily
 
 
 
