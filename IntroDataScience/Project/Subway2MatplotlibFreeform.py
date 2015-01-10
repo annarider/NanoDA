@@ -10,9 +10,10 @@ def entriesBar(subway_data_df):
     ridership data'''     
         
     daysOfTheWeekEntries = processEntriesList(subway_data_df)
+    print daysOfTheWeekEntries
 
-    # inti the pyplot
-    plt.figure()
+    # init the pyplot -- turns out this is unnecessary & only create an empty plot
+    # plt.figure()
 
     # creating a pandas dataframe from the List to use for a matplotlib bar chart
 
