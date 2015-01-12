@@ -21,6 +21,9 @@ def entriesBar(subway_data_df):
     one_unit = subway_data_df[subway_data_df['UNIT'] == 'R003']       
     one_unit_data_df = one_unit.groupby('DATEn', as_index=False)['rain'].sum()
 
+    # multiply by 4 to reflect time the samples were taken (6 times a day) 
+    one_unit_data_df = one_unit_data_df * 4
+
     # set the plot type to bar chart
     one_unit_data_df.plot(kind = "bar")
 
@@ -29,11 +32,11 @@ def entriesBar(subway_data_df):
     plt.xticks(rotation=90)
 
     # add title to histogram
-    plt.title("Distribution of rain for unit R003")
+    plt.title("Distribution of rain for unit R003 in May 2011")
 
     # add axes labels
-    plt.xlabel("Date")
-    plt.ylabel("Rain or No Rain")
+    plt.xlabel("Day of Month")
+    plt.ylabel("Number of hours of rain a day")
 
 
     plt.show()
