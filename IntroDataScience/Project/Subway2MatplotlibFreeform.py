@@ -24,6 +24,7 @@ def entriesBar(subway_data_df):
     colors = ['b','g','r','c','y','m','k']
     # set the plot type to bar chart
     avgDailyEntries.plot(kind = "bar", color = colors)
+    print avgDailyEntries
 
     # add title to histogram
     plt.title("Average hourly entries per day of week")
