@@ -14,11 +14,40 @@ DATAFILE = "beatles-diskography.csv"
 
 
 def parse_file(datafile):
+    # init list variable to store all the dicts
     data = []
+    # count number of rows to ensure only process 10 rows
+    row_count = 0
+    # dict to store the data in one line
+    data_1line = {}
+    # list to store header row
+    header = []
+
     with open(datafile, "r") as f:
         for line in f:
-            print line
 
+            # processes line to remove whitespaces & stores values as rows in list
+            row = line.strip().split(',')
+            
+            if row_count == 0:
+                header = row
+
+            # doesn't process row 1 which is the header and stops after first 10 data lines 
+            if row_count != 0 and row_count <= 10:
+            
+            # init variable i to index through rows in data list 
+                i = 0              
+                for element in row:
+                    data_1line[header[i]] = element
+                    # increment index by 1
+                    i += 1
+                print 'row= ', data_1line
+                print 'databefore= ', data
+                data.append(data_1line)
+                print 'data= ', data
+            row_count += 1
+
+    # return 10 dicts in list, each dict representing one row
     return data
 
 
@@ -26,6 +55,8 @@ def test():
     # a simple test of your implemetation
     datafile = os.path.join(DATADIR, DATAFILE)
     d = parse_file(datafile)
+    # print "d =" 
+    # print d
     firstline = {'Title': 'Please Please Me', 'UK Chart Position': '1', 'Label': 'Parlophone(UK)', 'Released': '22 March 1963', 'US Chart Position': '-', 'RIAA Certification': 'Platinum', 'BPI Certification': 'Gold'}
     tenthline = {'Title': '', 'UK Chart Position': '1', 'Label': 'Parlophone(UK)', 'Released': '10 July 1964', 'US Chart Position': '-', 'RIAA Certification': '', 'BPI Certification': 'Gold'}
 

@@ -1,1 +1,5 @@
 Resources Used
+
+Python Constructs (How to code in python)
+http://www.tutorialspoint.com/python/dictionary_fromkeys.htm
+http://stackoverflow.com/questions/16567308/string-to-unicode-code-point-escpe-sequences-in-python
