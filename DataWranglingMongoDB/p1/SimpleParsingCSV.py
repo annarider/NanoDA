@@ -28,6 +28,7 @@ def parse_file(datafile):
             # processes line to remove whitespaces & stores values as rows in list
             row = line.strip().split(',')
             
+            # save the header to call as keys for dict later
             if row_count == 0:
                 header = row
 
@@ -40,11 +41,17 @@ def parse_file(datafile):
                 data_1line = {}             
                 for element in row:
 
+                    # create key & set value to be element (i.e. value) for current row
                     data_1line[header[i]] = element
                     # increment index by 1
                     i += 1
 
+                # add dict to data list
                 data.append(data_1line)
+
+            # break out of for loop after saving first 10 lines
+            if row_count > 10:
+                break
             row_count += 1
 
     # return 10 dicts in list, each dict representing one row
