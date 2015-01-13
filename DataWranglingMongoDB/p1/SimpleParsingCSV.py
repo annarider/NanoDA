@@ -18,8 +18,7 @@ def parse_file(datafile):
     data = []
     # count number of rows to ensure only process 10 rows
     row_count = 0
-    # dict to store the data in one line
-    data_1line = {}
+    
     # list to store header row
     header = []
 
@@ -36,15 +35,16 @@ def parse_file(datafile):
             if row_count != 0 and row_count <= 10:
             
             # init variable i to index through rows in data list 
-                i = 0              
+                i = 0 
+                # dict to store the data in one line
+                data_1line = {}             
                 for element in row:
+
                     data_1line[header[i]] = element
                     # increment index by 1
                     i += 1
-                print 'row= ', data_1line
-                print 'databefore= ', data
+
                 data.append(data_1line)
-                print 'data= ', data
             row_count += 1
 
     # return 10 dicts in list, each dict representing one row
