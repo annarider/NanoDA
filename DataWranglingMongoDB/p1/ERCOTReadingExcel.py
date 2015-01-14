@@ -23,9 +23,6 @@ def parse_file(datafile):
     workbook = xlrd.open_workbook(datafile)
     sheet = workbook.sheet_by_index(0)
 
-    ### example on how you can get the data
-    #sheet_data = [[sheet.cell_value(r, col) for col in range(sheet.ncols)] for r in range(sheet.nrows)]
-
     # get a slice of all values from column 1 - Coast - data
     # Need to slice the data with knowing the number of rows
     number_rows = sheet.nrows
@@ -33,29 +30,7 @@ def parse_file(datafile):
     coast_index = 1
 
     coast_data = sheet.col_values(coast_index, start_rowx=1, end_rowx=number_rows)
-    # print coast_data
-    ### other useful methods:
-    # print "\nROWS, COLUMNS, and CELLS:"
-    # print "Number of rows in the sheet:", 
-    # print sheet.nrows
-    # print "Type of data in cell (row 3, col 2):", 
-    # print sheet.cell_type(3, 2)
-    # print "Value in cell (row 3, col 2):", 
-    # print sheet.cell_value(3, 2)
-    # print "Get a slice of values in column 3, from rows 1-3:"
-    # print sheet.col_values(3, start_rowx=1, end_rowx=4)
-
-    # print "\nDATES:"
-    # print "Type of data in cell (row 1, col 0):", 
-    # print sheet.cell_type(1, 0)
-    # exceltime = sheet.cell_value(1, 0)
-    # print "Time in Excel format:",
-    # print exceltime
-    # print "Convert time to a Python datetime tuple, from the Excel float:",
-    # print xlrd.xldate_as_tuple(exceltime, 0)
-    
-    
-
+    # print coast_data    
 
     # calculate the max value based on coast_data column of values
     maxvalue = max(coast_data)
@@ -63,7 +38,9 @@ def parse_file(datafile):
     # calculate min value in coast column
     minvalue = min(coast_data)
 
-    avgcoast = sum(coast_data)/number_rows
+    # calculate the average of list values in coast
+    # note: use float(len(coast_data)) - can't always guaranatee numerator will be a float
+    avgcoast = sum(coast_data)/float(len(coast_data))
 
     # find the row & col for the time values for min & max entries
     time_index = 0
@@ -76,13 +53,16 @@ def parse_file(datafile):
         # tests whether the value is a xldate (the type is value 3)
         if sheet.cell_type(r, time_index) == 3:
             if value == maxvalue:
-                maxtime = sheet.cell_value(r, time_index)
+                # must add 1 to the row index to account for headers
+                # in the sheet whereas coast_data list doesn't include headers 
+                maxtime = sheet.cell_value(r + 1, time_index)
                 maxtime = xlrd.xldate_as_tuple(maxtime, datemode)
-                print maxtime
+                # print maxtime
 
 
             if value == minvalue:
-                mintime = sheet.cell_value(r, time_index)
+                # account for headers, fix the off by one error
+                mintime = sheet.cell_value(r + 1, time_index)
                 mintime = xlrd.xldate_as_tuple(mintime, datemode)
 
     data = {
