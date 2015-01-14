@@ -6,3 +6,5 @@ http://stackoverflow.com/questions/16567308/string-to-unicode-code-point-escpe-s
 
 XLRD
 https://secure.simplistix.co.uk/svn/xlrd/trunk/xlrd/doc/xlrd.html?p=4966
+* Way dates are stored in Excel
+http://stackoverflow.com/questions/3727916/how-to-use-xlrd-xldate-as-tuple

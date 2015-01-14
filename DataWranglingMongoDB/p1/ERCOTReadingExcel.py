@@ -25,11 +25,6 @@ def parse_file(datafile):
 
     ### example on how you can get the data
     #sheet_data = [[sheet.cell_value(r, col) for col in range(sheet.ncols)] for r in range(sheet.nrows)]
-    
-    # get the data from xls, put it in rows & cols for retrieval
-    sheet_data = [[sheet.cell_value(r, col) 
-                        for col in range(sheet.ncols)] 
-                            for r in range(sheet.nrows)]
 
     # get a slice of all values from column 1 - Coast - data
     # Need to slice the data with knowing the number of rows
@@ -60,39 +55,43 @@ def parse_file(datafile):
     # print xlrd.xldate_as_tuple(exceltime, 0)
     
     
-    data = {
-            'maxtime': (0, 0, 0, 0, 0, 0),
-            'maxvalue': 0,
-            'mintime': (0, 0, 0, 0, 0, 0),
-            'minvalue': 0,
-            'avgcoast': 0
-    }
+
 
     # calculate the max value based on coast_data column of values
     maxvalue = max(coast_data)
-    data['maxvalue'] = maxvalue
-    # calculate 
 
     # calculate min value in coast column
     minvalue = min(coast_data)
-    data['minvalue'] = minvalue
 
     avgcoast = sum(coast_data)/number_rows
-    data['avgcoast'] = avgcoast
 
     # find the row & col for the time values for min & max entries
     time_index = 0
+
+    # retrieve the format in which the xldate is saved (1900 vs. 1904)
+    datemode = workbook.datemode
+
     # find row number for max value
     for r, value in enumerate(coast_data):
-        if value == maxvalue:
-            maxtime = sheet_data[r][time_index]
-            maxtime = xlrd.xldate_as_tuple(maxtime, 0)
-            print maxtime
-            data['maxtime'] = maxtime
-            break
+        # tests whether the value is a xldate (the type is value 3)
+        if sheet.cell_type(r, time_index) == 3:
+            if value == maxvalue:
+                maxtime = sheet.cell_value(r, time_index)
+                maxtime = xlrd.xldate_as_tuple(maxtime, datemode)
+                print maxtime
 
 
+            if value == minvalue:
+                mintime = sheet.cell_value(r, time_index)
+                mintime = xlrd.xldate_as_tuple(mintime, datemode)
 
+    data = {
+            'maxtime': maxtime,
+            'maxvalue': maxvalue,
+            'mintime': mintime,
+            'minvalue': minvalue,
+            'avgcoast': avgcoast
+    }
 
     return data
 
