@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+!/usr/bin/env python
 """
 Your task is as follows:
 - read the provided Excel file

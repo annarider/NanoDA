@@ -21,47 +21,29 @@ outfile = "2013_Max_Loads.csv"
 def parse_file(datafile):
     workbook = xlrd.open_workbook(datafile)
     sheet = workbook.sheet_by_index(0)
-    data = []
+    data = {}
+    # process all rows that contain station data
+    for n in range (1, 9):
+        station = sheet.cell_value(0, n)
+        cv = sheet.col_values(n, start_rowx=1, end_rowx=None)
 
-    # iterate through each column and compute the requested values
-    # must skip first & last columns which contains hour & load to only get stations
-    for i in range(1,sheet.ncols - 1):
+        maxval = max(cv)
+        maxpos = cv.index(maxval) + 1
+        maxtime = sheet.cell_value(maxpos, 0)
+        realtime = xlrd.xldate_as_tuple(maxtime, 0)
+        data[station] = {"maxval": maxval,
+                         "maxtime": realtime}
 
-        # retrieve the name of the station - always row 0 because it's the header 
-        station = sheet.cell_value(0, i)
-        # take one column (region) from xls in each iteration
-        col = sheet.col_values(i, start_rowx=1, end_rowx=None)
-        # find the max load in the region
-        maxload = max(col)
-        # index to find time for corresponding max + 1 to account for headers
-        index_time = col.index(maxload) + 1 
-
-        # retrieve the time value from the sheet; time column is first i.e. index=-0.1
-        time = sheet.cell_value(index_time, 0)
-
-        # convert the time from xls format to year, month, day, hour
-
-        year, month, day, hour, minute, second = xlrd.xldate_as_tuple(time, workbook.datemode)
-
-        data.append({'Station': station,'Year': year,'Month': month, \
-            'Day': day,'Hour': hour,'Max Load': maxload})
-
+    print data
     return data
 
 def save_file(data, filename):
-
-    with open(filename, 'wb') as f:
-        # set fieldnames
-        fn = ['Station','Year','Month','Day','Hour','Max Load']
-        # pass in params to writer, incl. header row fieldnames & pipe as delimiter
-        writer = csv.DictWriter(f, fieldnames= fn, delimiter="|")
-        # write header row
-        writer.writeheader()
-
-        # write each row to csv file
-        for row in data:
-            # must use writerrow for dict, otherwise iterates through keys
-            writer.writerow(row)
+    with open(filename, "w") as f:
+        w = csv.writer(f, delimiter='|')
+        w.writerow(["Station", "Year", "Month", "Day", "Hour", "Max Load"])
+        for s in data:
+            year, month, day, hour, _ , _= data[s]["maxtime"]
+            w.writerow([s, year, month, day, hour, data[s]["maxval"]])
 
     
 def test():
