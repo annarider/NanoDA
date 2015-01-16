@@ -3,8 +3,15 @@ Resources Used
 Python Constructs (How to code in python)
 http://www.tutorialspoint.com/python/dictionary_fromkeys.htm
 http://stackoverflow.com/questions/16567308/string-to-unicode-code-point-escpe-sequences-in-python
+http://stackoverflow.com/questions/1602934/check-if-a-given-key-already-exists-in-a-dictionary
+* pass does nothing in python
+https://docs.python.org/2/tutorial/controlflow.html
 
 XLRD
 https://secure.simplistix.co.uk/svn/xlrd/trunk/xlrd/doc/xlrd.html?p=4966
 * Way dates are stored in Excel
 http://stackoverflow.com/questions/3727916/how-to-use-xlrd-xldate-as-tuple
+
+Python documentation (separate from my own googling for debugging help)
+https://docs.python.org/2/library/csv.html
+https://docs.python.org/2/library/string.html
