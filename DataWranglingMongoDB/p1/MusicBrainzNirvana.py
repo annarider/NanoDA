@@ -38,28 +38,28 @@ def pretty_print(data, indent=4):
 
 
 def main():
-    results = query_by_name(ARTIST_URL, query_type["simple"], "One Direction")
+    results = query_by_name(ARTIST_URL, query_type["simple"], "Nirvana")
     # pretty_print(results)
 
     # artist_id = results["artists"][1]["id"]
-    # # print "\nARTIST:"
-    # # pretty_print(results["artists"][1])
+    # print "\nARTIST:"
+    # pretty_print(results["artists"][1])
 
     # artist_data = query_site(ARTIST_URL, query_type["releases"], artist_id)
     # releases = artist_data["releases"]
-    # # print "\nONE RELEASE:"
-    # # pretty_print(releases[0], indent=2)
+    # print "\nONE RELEASE:"
+    # pretty_print(releases[0], indent=2)
     # release_titles = [r["title"] for r in releases]
 
     # print "\nALL TITLES:"
     # for t in release_titles:
     #     print t
 
-    print "answer to when One direction was formed: (2010)"
-    # dict artists, index 0 - means first artist returned?, key life-span, key begin
-    for artist in results['artists']:
-        if artist['name'] == 'One Direction':
-            print artist["life-span"]["begin"]
+    print "answer to disambiguation for Nirvana: (90s US grunge band)"
+    # key artists, index 0, key disambiguation 
+    for artist in results["artists"]:
+        if artist['name'] == 'Nirvana' and artist['country'] == 'US':
+            print artist['disambiguation']
 
 
 if __name__ == '__main__':

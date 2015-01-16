@@ -38,27 +38,29 @@ def pretty_print(data, indent=4):
 
 
 def main():
-    results = query_by_name(ARTIST_URL, query_type["simple"], "Nirvana")
-    pretty_print(results)
+    results = query_by_name(ARTIST_URL, query_type["simple"], "Queen")
+    # pretty_print(results)
 
-    artist_id = results["artists"][1]["id"]
-    print "\nARTIST:"
-    pretty_print(results["artists"][1])
+    # artist_id = results["artists"][1]["id"]
+    # print "\nARTIST:"
+    # pretty_print(results["artists"][1])
 
-    artist_data = query_site(ARTIST_URL, query_type["releases"], artist_id)
-    releases = artist_data["releases"]
-    print "\nONE RELEASE:"
-    pretty_print(releases[0], indent=2)
-    release_titles = [r["title"] for r in releases]
+    # artist_data = query_site(ARTIST_URL, query_type["releases"], artist_id)
+    # releases = artist_data["releases"]
+    # print "\nONE RELEASE:"
+    # pretty_print(releases[0], indent=2)
+    # release_titles = [r["title"] for r in releases]
 
-    print "\nALL TITLES:"
-    for t in release_titles:
-        print t
+    # print "\nALL TITLES:"
+    # for t in release_titles:
+    #     print t
 
-    print "answer to disambiguation for Nirvana: (90s US grunge band)"
-    # key artists, index 0, key disambiguation 
-    print results["artists"][0]['disambiguation']
+    print "answer to begin-area name for queen: (London)"
 
+    for artist in results['artists']:
+        if 'begin-area' in artist:
+            if artist['name'] == 'Queen':
+                print artist['begin-area']['name']
 
 if __name__ == '__main__':
     main()

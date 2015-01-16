@@ -39,25 +39,32 @@ def pretty_print(data, indent=4):
 
 def main():
     results = query_by_name(ARTIST_URL, query_type["simple"], "Beatles")
-    pretty_print(results)
+    # pretty_print(results)
 
-    artist_id = results["artists"][1]["id"]
-    print "\nARTIST:"
-    pretty_print(results["artists"][1])
+    # artist_id = results["artists"][1]["id"]
+    # print "\nARTIST:"
+    # pretty_print(results["artists"][1])
 
-    artist_data = query_site(ARTIST_URL, query_type["releases"], artist_id)
-    releases = artist_data["releases"]
-    print "\nONE RELEASE:"
-    pretty_print(releases, indent=2)
-    release_titles = [r["title"] for r in releases]
+    # artist_data = query_site(ARTIST_URL, query_type["releases"], artist_id)
+    # releases = artist_data["releases"]
+    # print "\nONE RELEASE:"
+    # pretty_print(releases, indent=2)
+    # release_titles = [r["title"] for r in releases]
 
-    print "\nALL TITLES:"
-    for t in release_titles:
-        print t
-
+    # print "\nALL TITLES:"
+    # for t in release_titles:
+    #     print t
+# 
     print "answer to Spanish alias to Beatles: (Los Beatles)"
     # dict key artists, index 0, key aliases, index 8 for Spain, key name
-    print results['artists'][0]['aliases'][8]["name"]
+    # print results['artists'][0]['aliases'][8]["name"]
+    for artist in results['artists']:
+        if 'aliases' in artist:
+            for alias in artist['aliases']: 
+                # print alias
+                if alias['locale'] == 'es':
+                    print alias['name']
+
 
 if __name__ == '__main__':
     main()

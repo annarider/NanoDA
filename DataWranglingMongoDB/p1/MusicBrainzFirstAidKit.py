@@ -39,26 +39,31 @@ def pretty_print(data, indent=4):
 
 def main():
     results = query_by_name(ARTIST_URL, query_type["simple"], "First Aid Kit")
-    pretty_print(results)
+    # pretty_print(results)
 
-    artist_id = results["artist"][1]["id"]
-    print "\nARTIST:"
-    pretty_print(results["artist"][1])
+    # artist_id = results["artist"][1]["id"]
+    # print "\nARTIST:"
+    # pretty_print(results["artist"][1])
 
-    artist_data = query_site(ARTIST_URL, query_type["releases"], artist_id)
-    releases = artist_data["releases"]
-    print "\nONE RELEASE:"
-    pretty_print(releases[0], indent=2)
-    release_titles = [r["title"] for r in releases]
+    # artist_data = query_site(ARTIST_URL, query_type["releases"], artist_id)
+    # releases = artist_data["releases"]
+    # print "\nONE RELEASE:"
+    # pretty_print(releases[0], indent=2)
+    # release_titles = [r["title"] for r in releases]
 
-    print "\nALL TITLES:"
-    for t in release_titles:
-        print t
+    # print "\nALL TITLES:"
+    # for t in release_titles:
+    #     print t
 
 
     print "answer to number of bands called First Aid Kit: (2)"
-    # key artists
-    for 
+    count = 0
+    for artist in results['artists']:
+        if artist['name'] == 'First Aid Kit':
+            count += 1
+            print artist['name'],  count
+            print "num of bands called 'First Aid Kit'", count
+
 
 if __name__ == '__main__':
     main()
