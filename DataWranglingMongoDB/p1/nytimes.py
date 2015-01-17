@@ -38,7 +38,18 @@ def article_overview(kind, period):
     data = get_from_file(kind, period)
     titles = []
     urls =[]
-    # YOUR CODE HERE
+    # grab the sections & titles in dict format and append them to list 
+    for article in data:
+        titles.append({article['section']: article['title']})
+    # check for format: standard thumbnail, & grab the url & save to list
+    # first iterate through data
+    for article in data:
+        # iterate through every media block in the article
+        for media in article['media']:
+            for metadata in media['media-metadata']:
+                # check to only grab the url if format is Standard Thumbnail
+                if metadata['format'] == 'Standard Thumbnail':
+                    urls.append(metadata['url']) 
 
     return (titles, urls)
 
