@@ -15,3 +15,6 @@ http://stackoverflow.com/questions/3727916/how-to-use-xlrd-xldate-as-tuple
 Python documentation (separate from my own googling for debugging help)
 https://docs.python.org/2/library/csv.html
 https://docs.python.org/2/library/string.html
+
+CSV Reader & Writer
+http://stackoverflow.com/questions/13367732/csv-python-using-dictwriter-correctly-valueerror-dict-contains-fields-not-in
