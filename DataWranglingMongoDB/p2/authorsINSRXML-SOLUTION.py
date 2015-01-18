@@ -18,24 +18,18 @@ def get_root(fname):
 def get_authors(root):
     authors = []
     for author in root.findall('./fm/bibl/aug/au'):
-
-        # get author data - firname, surname, email
-        firstname = author.find('fnm')
-        surname = author.find('snm')
-        email = author.find('email')
-
-        # iterate through author data to retrieve all insr iid
-        insr_iid = [] # placeholder list to store the iid data
-        for iid in author.iter('insr'):
-            insr_iid.append(iid.get('iid'))
-
         data = {
-                "fnm": firstname.text,
-                "snm": surname.text,
-                "email": email.text,
-                "insr": insr_iid
+                "fnm": None,
+                "snm": None,
+                "email": None,
+                "insr": []
         }
-
+        data["fnm"] = author.find('./fnm').text
+        data["snm"] = author.find('./snm').text
+        data["email"] = author.find('./email').text
+        insr = author.findall('./insr')
+        for i in insr:
+            data["insr"].append(i.attrib["iid"])
         authors.append(data)
 
     return authors
