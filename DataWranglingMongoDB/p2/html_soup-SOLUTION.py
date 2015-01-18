@@ -17,17 +17,13 @@ def extract_data(page):
     data = {"eventvalidation": "",
             "viewstate": ""}
     with open(page, "r") as html:
+        soup = BeautifulSoup(html)
+        ev = soup.find(id="__EVENTVALIDATION")
+        data["eventvalidation"] = ev["value"]
 
-        # store whole html page as a beautiful soup object - nested data structure
-        soup = BeautifulSoup(html.read())
+        vs = soup.find(id="__VIEWSTATE")
+        data["viewstate"] = vs["value"]
 
-        # find all input tags
-        for input_tag in soup.find_all('input'):
-            # text for the field values I'm looking for. If found, add to dict
-            if input_tag.get('id') == '__VIEWSTATE':
-                data['viewstate'] = input_tag.get('value')
-            if input_tag.get('id') == '__EVENTVALIDATION':
-                data['eventvalidation'] = input_tag.get('value')
     return data
 
 
