@@ -17,8 +17,22 @@ def extract_data(page):
     data = {"eventvalidation": "",
             "viewstate": ""}
     with open(page, "r") as html:
-        # do something here to find the necessary values
-        pass
+
+        # store whole html page as a beautiful soup object - nested data structure
+        soup = BeautifulSoup(html.read())
+
+        print soup.find_all('input')
+        # for div in soup.find_all('div'):
+        #   print div.input
+          # for inp in div.input:
+          #   print inp['id']
+            # if inp['id'] and inp['name'] == '__VIEWSTATE':
+              # print inpt['id']
+
+            # print inp.find_all(name='__VIEWSTATE')
+            # for name in inp.find_all(id='name'):
+            #   print name
+        
 
     return data
 
@@ -46,5 +60,5 @@ def test():
     assert data["eventvalidation"].startswith("/wEWjAkCoIj1ng0")
     assert data["viewstate"].startswith("/wEPDwUKLTI")
 
-    
+   
 test()
