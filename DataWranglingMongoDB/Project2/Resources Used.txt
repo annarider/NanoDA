@@ -6,6 +6,15 @@ http://stackoverflow.com/questions/16567308/string-to-unicode-code-point-escpe-s
 http://stackoverflow.com/questions/1602934/check-if-a-given-key-already-exists-in-a-dictionary
 * pass does nothing in python
 https://docs.python.org/2/tutorial/controlflow.html
+http://stackoverflow.com/questions/7361253/python-how-to-find-a-substring-in-another-string
+http://stackoverflow.com/questions/6797984/how-to-convert-string-to-lowercase-in-python
+* Read a specific line in a doc
+http://stackoverflow.com/questions/2081836/reading-specific-lines-only-python
+http://stackoverflow.com/questions/620367/python-how-to-jump-to-a-particular-line-in-a-huge-text-file
+* Find all occurances of element in a list
+http://stackoverflow.com/questions/13478974/how-to-find-all-occurrences-of-an-element-in-a-list
+* Write items in a list to a file
+http://stackoverflow.com/questions/899103/python-write-a-list-to-a-file
 
 XLRD
 https://secure.simplistix.co.uk/svn/xlrd/trunk/xlrd/doc/xlrd.html?p=4966
@@ -25,3 +34,5 @@ http://stackoverflow.com/questions/13367732/csv-python-using-dictwriter-correctl
 
 Beautiful Soup
 http://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup
+http://stackoverflow.com/questions/19969056/python-beautifulsoup-findall-w-class
+http://stackoverflow.com/questions/4416013/beautiful-soup-python-and-the-extracting-of-text-in-a-table
