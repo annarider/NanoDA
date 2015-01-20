@@ -29,18 +29,18 @@ def process_file(input_file, output_good, output_bad):
         reader = csv.DictReader(f)
         header = reader.fieldnames
 
-        #COMPLETE THIS FUNCTION
-
-
-
+        for i, row in enumerate(reader): 
+            if row['productionStartYear'] == 'NULL':
+                print 'i= ', i, ' ', row
+ 
     # This is just an example on how you can use csv.DictWriter
     # Remember that you have to output 2 files
     with open(output_good, "w") as g:
         writer = csv.DictWriter(g, delimiter=",", fieldnames= header)
         writer.writeheader()
-        for row in YOURDATA:
-            writer.writerow(row)
-
+        # for row in reader:
+        #     pass
+            # writer.writerow(row)
 
 def test():
 
