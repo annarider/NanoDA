@@ -23,15 +23,52 @@ INPUT_FILE = 'autos.csv'
 OUTPUT_GOOD = 'autos-valid.csv'
 OUTPUT_BAD = 'FIXME-autos.csv'
 
+
+'''
+Pseudo-code
+All tests that need to be done to check for validity: 
+1. Check if productionStartYear is not NULL
+2. If not null, remove the first 4 characters 
+(all datetime format is year, month, day sequence)
+3. Check if the year is between 1886-2014
+4. Check the URI starts contains substring 'http://dbpedia.org'
+If it passes all these tests: then save in index of line in a valid_years
+If it doesn't pass the test, then save indx of line in invalid_years
+Write all valid lines to output_good and all invalid lines to output_bad
+'''
+
+# This function performs the tests outlined about, calling helper functions
+# when needed
+def check_valid_year(reader):
+    valid_years = []
+    invalid_years = []
+    check_dbpedia_string = 'http://dbpedia.org'
+
+    for i, row in enumerate(reader): 
+        # test if year equals string 'NULL'
+        if row['productionStartYear'] != 'NULL':
+            datetime = row['productionStartYear']
+            # test if first 4 digits are a valid 
+            # requires testing for length = 4 & if year falls between 1886-2014 
+            year = datetime[0:4]
+            if year != None and len(year) == 4 and year >= 1886 and year <= 2014:
+                # check if URI contains DBpedia domain
+                uri = row['URI']
+                if 'http://dbpedia.org' in uri:
+                    return i,2
+            
+
+
 def process_file(input_file, output_good, output_bad):
 
     with open(input_file, "r") as f:
         reader = csv.DictReader(f)
         header = reader.fieldnames
 
-        for i, row in enumerate(reader): 
-            if row['productionStartYear'] == 'NULL':
-                print 'i= ', i, ' ', row
+        valid_years, invalid_years = check_valid_year(reader)
+        print 'valid_years= ', valid_years
+        print 'invalid_years= ', invalid_years
+
  
     # This is just an example on how you can use csv.DictWriter
     # Remember that you have to output 2 files
