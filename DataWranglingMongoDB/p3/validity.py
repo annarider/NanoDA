@@ -48,15 +48,34 @@ def check_valid_year(reader):
         # test if year equals string 'NULL'
         if row['productionStartYear'] != 'NULL':
             datetime = row['productionStartYear']
+
             # test if first 4 digits are a valid 
-            # requires testing for length = 4 & if year falls between 1886-2014 
             year = datetime[0:4]
-            if year != None and len(year) == 4 and year >= 1886 and year <= 2014:
+
+            ''' check if the 4 characters in string format can be 
+            represented as a number '''
+            def is_number(s):
+                try: 
+                    int(s)
+                    return True
+                except ValueError:
+                    return False
+
+            if year != None:
+                check_year_is_number = is_number(year)
+                # proceed with tests if year is a number, otherwise line is invalid
+                if check_year_is_number == True:
+                    # requires testing for length = 4 & if year falls between 1886-2014 
+                    if len(year) == 4 and int(year) >= 1886 and int(year) <= 2014:
                 # check if URI contains DBpedia domain
-                uri = row['URI']
-                if 'http://dbpedia.org' in uri:
-                    return i,2
-            
+                        uri = row['URI']
+                        if 'http://dbpedia.org' in uri:
+                            valid_years.append(i)
+        else:
+            invalid_years.append(i)
+
+    return valid_years, invalid_years    
+
 
 
 def process_file(input_file, output_good, output_bad):

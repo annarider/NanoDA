@@ -15,6 +15,8 @@ http://stackoverflow.com/questions/620367/python-how-to-jump-to-a-particular-lin
 http://stackoverflow.com/questions/13478974/how-to-find-all-occurrences-of-an-element-in-a-list
 * Write items in a list to a file
 http://stackoverflow.com/questions/899103/python-write-a-list-to-a-file
+* how to check if a string is a number
+http://stackoverflow.com/questions/354038/how-do-i-check-if-a-string-is-a-number-in-python
 
 XLRD
 https://secure.simplistix.co.uk/svn/xlrd/trunk/xlrd/doc/xlrd.html?p=4966
