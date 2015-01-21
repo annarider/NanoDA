@@ -39,38 +39,34 @@ Write all valid lines to output_good and all invalid lines to output_bad
 
 # This function performs the tests outlined about, calling helper functions
 # when needed
-def check_valid_year(reader):
-    valid_years = []
-    invalid_years = []
+def check_valid_year(row):
     check_dbpedia_string = 'http://dbpedia.org'
+    # begin checks
+    if row['productionStartYear'] != 'NULL':
+        datetime = row['productionStartYear']
 
-    for i, row in enumerate(reader): 
-        # test if year equals string 'NULL'
-        if row['productionStartYear'] != 'NULL':
-            datetime = row['productionStartYear']
+        # test if first 4 digits are a valid 
+        year = extract_year(datetime)
 
-            # test if first 4 digits are a valid 
-            year = datetime[0:4]
+        # once year is extracted, continue with tests to check if year is
+        # an int and fall within the approved range
+        if year != None:
+            check_year_is_number = is_number(year)
+            # proceed with tests if year is a number, otherwise line is invalid
+            if check_year_is_number == True:
+                # requires testing for length = 4 & if year falls between 1886-2014 
+                if len(year) == 4 and int(year) >= 1886 and int(year) <= 2014:
+                    # check if URI contains DBpedia domain
+                    uri = row['URI']
+                    if 'http://dbpedia.org' in uri:
+                        return True
+    else:
+        return False
 
-            ''' check if the 4 characters in string format can be 
-            represented as a number '''
-
-            if year != None:
-                check_year_is_number = is_number(year)
-                # proceed with tests if year is a number, otherwise line is invalid
-                if check_year_is_number == True:
-                    # requires testing for length = 4 & if year falls between 1886-2014 
-                    if len(year) == 4 and int(year) >= 1886 and int(year) <= 2014:
-                # check if URI contains DBpedia domain
-                        uri = row['URI']
-                        if 'http://dbpedia.org' in uri:
-                            valid_years.append(i)
-        else:
-            invalid_years.append(i)
-
-    return valid_years, invalid_years  
-
-
+''' 
+check if the 4 characters in string format can be 
+represented as a number 
+'''
 def is_number(s):
     try: 
         int(s)
@@ -78,51 +74,49 @@ def is_number(s):
     except ValueError:
         return False
 
-        
+''' 
+Extract the first four characters from datetime but does not check if
+it is a valid number - so it could be a string of http
+'''
+def extract_year(datetime):
+    year = datetime[0:4]
+    return year
+
 '''
 Takes the valid_years list and writes out all the lines with valid years
 '''
 
-def write_output_good(output_good, reader, header, valid_years):
-
-    # This is just an example on how you can use csv.DictWriter
-    # Remember that you have to output 2 files
-    with open(output_good, "w") as g:
-        writer = csv.DictWriter(g, delimiter=",", fieldnames= header)
-        writer.writeheader()
-        print 'reference at= ', reader
-        for i, row in enumerate(reader):
-            print row
-            if i in valid_years:
-                writer.writerow(row)
-                print 'yes'
-
-
 def process_file(input_file, output_good, output_bad):
 
-    with open(input_file, "r") as f:
+    with open(input_file, "r") as f,\
+         open(output_good, "w") as g, open(output_bad, "w") as h:
         reader = csv.DictReader(f)
         header = reader.fieldnames
 
-        print 'reference at= ', reader
-        # why does this row print? ...
-        # comment out this for loop and see the two valid & invalid year lists 
-        # print with values inside lists
-        for row in reader:
-            print row
-
-        valid_years, invalid_years = check_valid_year(reader)
-        print 'valid_years= ', valid_years
-        print 'invalid_years= ', invalid_years
-        # ... but this row will not print after i have passed around the reader object?
-        for row in reader:
-            print row
-
-        write_output_good(output_good, reader, header, valid_years)
-
-        # again, reader object exists but why can't I print out any rows?
-        print 'reference at= ', reader
-
+        # create writer for output good file
+        # and set the header row in output_good file
+        writer_output_good = csv.DictWriter(g, delimiter=",", fieldnames= header)
+        writer_output_good.writeheader()
+        
+        # create writer for output good file
+        # set the header row in output_good file
+        writer_output_bad = csv.DictWriter(h, delimiter=",", fieldnames= header)
+        writer_output_bad.writeheader()
+        
+        for i, row in enumerate(reader):
+            print i
+            print check_valid_year(row)
+            if check_valid_year(row):
+                # print check_valid_year(row)
+                # productionStartYear transform from datetime to year 
+                row['productionStartYear'] = extract_year(row['productionStartYear'])
+                writer_output_good.writerow(row)
+                # print 'yes'
+            else:
+                writer_output_bad.writerow(row)
+                # print 'no'
+            
+        
 def test():
 
     process_file(INPUT_FILE, OUTPUT_GOOD, OUTPUT_BAD)

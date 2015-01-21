@@ -13,10 +13,10 @@ http://stackoverflow.com/questions/2081836/reading-specific-lines-only-python
 http://stackoverflow.com/questions/620367/python-how-to-jump-to-a-particular-line-in-a-huge-text-file
 * Find all occurances of element in a list
 http://stackoverflow.com/questions/13478974/how-to-find-all-occurrences-of-an-element-in-a-list
-* Write items in a list to a file
-http://stackoverflow.com/questions/899103/python-write-a-list-to-a-file
 * how to check if a string is a number
 http://stackoverflow.com/questions/354038/how-do-i-check-if-a-string-is-a-number-in-python
+* how to introduce line continuation
+http://stackoverflow.com/questions/53162/how-can-i-do-a-line-break-line-continuation-in-python
 
 XLRD
 https://secure.simplistix.co.uk/svn/xlrd/trunk/xlrd/doc/xlrd.html?p=4966
@@ -33,6 +33,10 @@ https://docs.python.org/2/tutorial/inputoutput.html#reading-and-writing-files
 
 CSV Reader & Writer
 http://stackoverflow.com/questions/13367732/csv-python-using-dictwriter-correctly-valueerror-dict-contains-fields-not-in
+* open multiple files to perform some action
+http://stackoverflow.com/questions/4617034/how-can-i-open-multiple-files-using-with-open-in-python?rq=1
+* Write items in a list to a file
+http://stackoverflow.com/questions/899103/python-write-a-list-to-a-file
 
 Beautiful Soup
 http://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup
