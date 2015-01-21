@@ -54,12 +54,6 @@ def check_valid_year(reader):
 
             ''' check if the 4 characters in string format can be 
             represented as a number '''
-            def is_number(s):
-                try: 
-                    int(s)
-                    return True
-                except ValueError:
-                    return False
 
             if year != None:
                 check_year_is_number = is_number(year)
@@ -74,8 +68,17 @@ def check_valid_year(reader):
         else:
             invalid_years.append(i)
 
-    return valid_years, invalid_years    
+    return valid_years, invalid_years  
 
+
+def is_number(s):
+    try: 
+        int(s)
+        return True
+    except ValueError:
+        return False
+
+        
 '''
 Takes the valid_years list and writes out all the lines with valid years
 '''
