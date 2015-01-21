@@ -76,6 +76,23 @@ def check_valid_year(reader):
 
     return valid_years, invalid_years    
 
+'''
+Takes the valid_years list and writes out all the lines with valid years
+'''
+
+def write_output_good(output_good, reader, header, valid_years):
+
+    # This is just an example on how you can use csv.DictWriter
+    # Remember that you have to output 2 files
+    with open(output_good, "w") as g:
+        writer = csv.DictWriter(g, delimiter=",", fieldnames= header)
+        writer.writeheader()
+        print 'reference at= ', reader
+        for i, row in enumerate(reader):
+            print row
+            if i in valid_years:
+                writer.writerow(row)
+                print 'yes'
 
 
 def process_file(input_file, output_good, output_bad):
@@ -84,19 +101,24 @@ def process_file(input_file, output_good, output_bad):
         reader = csv.DictReader(f)
         header = reader.fieldnames
 
+        print 'reference at= ', reader
+        # why does this row print? ...
+        # comment out this for loop and see the two valid & invalid year lists 
+        # print with values inside lists
+        for row in reader:
+            print row
+
         valid_years, invalid_years = check_valid_year(reader)
         print 'valid_years= ', valid_years
         print 'invalid_years= ', invalid_years
+        # ... but this row will not print after i have passed around the reader object?
+        for row in reader:
+            print row
 
- 
-    # This is just an example on how you can use csv.DictWriter
-    # Remember that you have to output 2 files
-    with open(output_good, "w") as g:
-        writer = csv.DictWriter(g, delimiter=",", fieldnames= header)
-        writer.writeheader()
-        # for row in reader:
-        #     pass
-            # writer.writerow(row)
+        write_output_good(output_good, reader, header, valid_years)
+
+        # again, reader object exists but why can't I print out any rows?
+        print 'reference at= ', reader
 
 def test():
 
