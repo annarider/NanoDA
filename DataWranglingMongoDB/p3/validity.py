@@ -19,7 +19,7 @@ You can write helper functions for checking the data and writing the files, but 
 import csv
 import pprint
 
-INPUT_FILE = 'autos.csv'
+INPUT_FILE = 'autos-shortened.csv'
 OUTPUT_GOOD = 'autos-valid.csv'
 OUTPUT_BAD = 'FIXME-autos.csv'
 
@@ -56,15 +56,23 @@ def check_valid_year(row):
             if check_year_is_number == True:
                 # requires testing for length = 4 & if year falls between 1886-2014 
                 if len(year) == 4 and int(year) >= 1886 and int(year) <= 2014:
-                    # check if URI contains DBpedia domain
-                    uri = row['URI']
-                    if 'http://dbpedia.org' in uri:
-                        return True
+                    return True
     else:
         return False
 
+'''
+Check if URI contains DBpedia domain                    
+If URI is from dbpedia, return True, else False
+'''
+def check_valid_domain(row):
+    uri = row['URI']
+    if 'http://dbpedia.org' in uri:
+        return True
+    else: 
+        return False
+
 ''' 
-check if the 4 characters in string format can be 
+Check if the 4 characters in string format can be 
 represented as a number 
 '''
 def is_number(s):
@@ -104,17 +112,15 @@ def process_file(input_file, output_good, output_bad):
         writer_output_bad.writeheader()
         
         for i, row in enumerate(reader):
-            print i
-            print check_valid_year(row)
-            if check_valid_year(row):
-                # print check_valid_year(row)
-                # productionStartYear transform from datetime to year 
-                row['productionStartYear'] = extract_year(row['productionStartYear'])
-                writer_output_good.writerow(row)
-                # print 'yes'
-            else:
-                writer_output_bad.writerow(row)
-                # print 'no'
+            if check_valid_domain(row): 
+                if check_valid_year(row):
+ 
+                    # productionStartYear transform from datetime to year 
+                    row['productionStartYear'] = extract_year(row['productionStartYear'])
+                    writer_output_good.writerow(row)
+                else:
+                    writer_output_bad.writerow(row)
+ 
             
         
 def test():
