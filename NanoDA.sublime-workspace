@@ -4,20 +4,248 @@
 		"selected_items":
 		[
 			[
+				"check",
+				"check_valid_domain"
+			],
+			[
+				"ex",
+				"extract_year"
+			],
+			[
+				"write",
+				"writerow"
+			],
+			[
+				"writer_outpu",
+				"writer_output_bad"
+			],
+			[
+				"writer_out",
+				"writer_output_bad"
+			],
+			[
+				"wr",
+				"writer_output_good"
+			],
+			[
+				"output",
+				"output_bad"
+			],
+			[
+				"output_",
+				"output_good"
+			],
+			[
+				"inval",
+				"invalid_years"
+			],
+			[
+				"pro",
+				"productionStartYear"
+			],
+			[
+				"inv",
+				"invalid_years"
+			],
+			[
+				"valid",
+				"valid_years"
+			],
+			[
+				"vali",
+				"valid_years"
+			],
+			[
+				"va",
+				"valid_years"
+			],
+			[
+				"input",
+				"input_file"
+			],
+			[
+				"start",
+				"start_pos"
+			],
+			[
+				"line",
+				"line_index"
+			],
+			[
+				"be",
+				"begin"
+			],
+			[
+				"lin",
+				"line_index"
+			],
+			[
+				"star",
+				"start_pos"
+			],
+			[
+				"line_",
+				"line_end"
+			],
+			[
+				"extract",
+				"extract_data"
+			],
+			[
+				"cou",
+				"courier"
+			],
+			[
+				"in",
+				"input_tag"
+			],
+			[
+				"e",
+				"eventvalidation"
+			],
+			[
+				"insr",
+				"insr_iid"
+			],
+			[
+				"ins",
+				"insr_iid"
+			],
+			[
+				"s",
+				"surname"
+			],
+			[
+				"fi",
+				"firstname"
+			],
+			[
+				"da",
+				"data"
+			],
+			[
+				"ind",
+				"index_time"
+			],
+			[
+				"des",
+				"description"
+			],
+			[
+				"data",
+				"data_source_description"
+			],
+			[
+				"ar",
+				"artist"
+			],
+			[
+				"pri",
+				"pretty_print"
+			],
+			[
+				"alias",
+				"aliases"
+			],
+			[
+				"art",
+				"artist"
+			],
+			[
+				"ali",
+				"aliases"
+			],
+			[
+				"artis",
+				"artists"
+			],
+			[
+				"max",
+				"maxvalue"
+			],
+			[
+				"ma",
+				"maxvalue"
+			],
+			[
+				"dat",
+				"datemode"
+			],
+			[
+				"xl",
+				"xlrd"
+			],
+			[
+				"time",
+				"time_index"
+			],
+			[
+				"cell",
+				"cell_value"
+			],
+			[
+				"tim",
+				"time_index"
+			],
+			[
+				"coa",
+				"coast_data"
+			],
+			[
+				"n",
+				"nrows"
+			],
+			[
+				"min",
+				"minvalue"
+			],
+			[
+				"cost",
+				"coast_data"
+			],
+			[
+				"coast",
+				"coast_data"
+			],
+			[
+				"num",
+				"number_rows"
+			],
+			[
+				"coas",
+				"coast_index"
+			],
+			[
+				"col",
+				"col_values"
+			],
+			[
+				"nro",
+				"nrows"
+			],
+			[
+				"dta",
+				"data_1line"
+			],
+			[
+				"d",
+				"data"
+			],
+			[
+				"row",
+				"row_count"
+			],
+			[
+				"ro",
+				"row_count"
+			],
+			[
 				"on",
 				"one_unit_data_df"
 			],
 			[
-				"dat",
-				"datetime_series"
-			],
-			[
 				"x",
 				"xticks  (function)"
-			],
-			[
-				"da",
-				"datetime_series"
 			],
 			[
 				"subw",
@@ -32,10 +260,6 @@
 				"subway_df"
 			],
 			[
-				"col",
-				"colors"
-			],
-			[
 				"day",
 				"daysOfTheWeekEntries"
 			],
@@ -46,10 +270,6 @@
 			[
 				"avg",
 				"avgDailyEntries"
-			],
-			[
-				"pro",
-				"processEntriesDict"
 			],
 			[
 				"days",
@@ -84,10 +304,6 @@
 				"shapwilk_test"
 			],
 			[
-				"ma",
-				"max_entries"
-			],
-			[
 				"bu",
 				"busiest_units"
 			],
@@ -102,10 +318,6 @@
 			[
 				"to",
 				"total"
-			],
-			[
-				"num",
-				"num_hours"
 			],
 			[
 				"rider",
@@ -196,10 +408,6 @@
 				"turnstile_df"
 			],
 			[
-				"n",
-				"numpy"
-			],
-			[
 				"plot",
 				"plot_weather_data"
 			],
@@ -242,10 +450,6 @@
 			[
 				"if",
 				"ifmain	if __name__ == '__main__'"
-			],
-			[
-				"cost",
-				"cost_history"
 			],
 			[
 				"withou",
@@ -310,229 +514,24 @@
 			[
 				"left",
 				"lefthanded_df"
-			],
-			[
-				"ri",
-				"righthanded_df"
-			],
-			[
-				"lef",
-				"lefthanded_df"
-			],
-			[
-				"date",
-				"datetime"
-			],
-			[
-				"re",
-				"reformat_subway_dates"
-			],
-			[
-				"tie",
-				"time_to_hour"
-			],
-			[
-				"time",
-				"time_to_hour"
-			],
-			[
-				"fill",
-				"fillna"
-			],
-			[
-				"EX",
-				"EXITSn_hourly"
-			],
-			[
-				"E",
-				"EXITSn"
-			],
-			[
-				"en",
-				"ENTRIESn"
-			],
-			[
-				"tu",
-				"turnstile_df"
-			],
-			[
-				"fil",
-				"filter_by_regular"
-			],
-			[
-				"file",
-				"filename"
-			],
-			[
-				"wr",
-				"write_csv"
-			],
-			[
-				"s",
-				"scp"
-			],
-			[
-				"read",
-				"read_csv"
-			],
-			[
-				"upda",
-				"updated_file"
-			],
-			[
-				"update",
-				"updated_"
-			],
-			[
-				"in",
-				"integer"
-			],
-			[
-				"weather",
-				"weather_data"
-			],
-			[
-				"data",
-				"dataframe"
-			],
-			[
-				"top",
-				"topartists"
-			],
-			[
-				"art",
-				"artist"
-			],
-			[
-				"loa",
-				"loads  (function)"
-			],
-			[
-				"aad",
-				"aadhaar_generated"
-			],
-			[
-				"enrol",
-				"enrolment_agency"
-			],
-			[
-				"pat",
-				"path_to_new_csv"
-			],
-			[
-				"na",
-				"nameLast"
-			],
-			[
-				"nam",
-				"nameFirst"
-			],
-			[
-				"basebal",
-				"baseball_data"
-			],
-			[
-				"p",
-				"path_to_csv"
-			],
-			[
-				"pas",
-				"passenger_id"
-			],
-			[
-				"Pc",
-				"Pclass"
-			],
-			[
-				"A",
-				"Age"
-			],
-			[
-				"pa",
-				"passengers"
-			],
-			[
-				"pass",
-				"passenger_id"
-			],
-			[
-				"Pa",
-				"PassengerId"
-			],
-			[
-				"med",
-				"medal_points"
-			],
-			[
-				"coun",
-				"countries"
-			],
-			[
-				"country",
-				"country_name"
-			],
-			[
-				"oly",
-				"olympic_points_df"
-			],
-			[
-				"count",
-				"countries"
-			],
-			[
-				"cou",
-				"countries_at_least_one_medal"
-			],
-			[
-				"curren",
-				"currentString"
-			],
-			[
-				"curre",
-				"currentString"
-			],
-			[
-				"cu",
-				"currentString"
-			],
-			[
-				"cell",
-				"cellular_automaton"
-			],
-			[
-				"pt",
-				"patternDict"
-			],
-			[
-				"see",
-				"seedString"
-			],
-			[
-				"patter",
-				"patternRule"
-			],
-			[
-				"patt",
-				"patternDict"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "DataWranglingMongoDB/p1/SimpleParsingCSV.py",
+			"file": "DataWranglingMongoDB/p3/audit-cities.py",
 			"settings":
 			{
-				"buffer_size": 1505,
-				"line_ending": "Unix",
-				"name": "# Your task is to read the input DATAFILE line by"
+				"buffer_size": 1542,
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "DataWranglingMongoDB/Project2/Resources Used.txt",
 			"settings":
 			{
-				"buffer_size": 14,
+				"buffer_size": 2345,
 				"line_ending": "Unix",
 				"name": "Resources Used"
 			}
@@ -574,14 +573,60 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p1",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p3",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p5",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB"
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3"
 	],
 	"file_history":
 	[
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/patent.data",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3/FIXME-autos.csv",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3/autos-valid.csv",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3/validity.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3/autos-shortened.csv",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3/audit.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3/autos.csv",
+		"/Users/horsepower/Dropbox/Udacity/Tools/chown - change file owner group",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/auditing-streetmap-example.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/split-data.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/data:FL-ATL.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/patent.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/airports.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/process.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/process-submitted.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/page_source.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/options.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2/airports.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/carriers.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/exampleResearchArticle.xml",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/html_soup.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/html_soup-SOLUTION.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/authorsINSRXML.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/authorsINSRXML-SOLUTION.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/exampleResearchArtcile.xml",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/authorsXML.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/authorsXML-SOLUTION.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/nytimes-SOLUTION.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/nytimes.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/example.csv",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/2013_Max_Loads.csv",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/popular-viewed-1.json",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/excel_csv.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/excel_csvSOLUTION.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/ERCOTReadingExcel.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/ERCOTReadingExcelSAMPLE.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/745090.csv",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/parsecsv.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/parsecsv_SOLUTION.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/release.json",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/artist.json",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/MusicBrainzOneDirection.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/musicbrainz.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/MusicBrainzQueen.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/MusicBrainzNirvana.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/MusicBrainzBeatles.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/MusicBrainzFirstAidKit.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/SimpleParsingCSV.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/beatles-diskography.csv",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/turnstile_weather_v2.csv",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/ResourcesUsed.md",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/SubwayDataDescribe.py",
@@ -660,56 +705,7 @@
 		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/MeanTempWeekends.py",
 		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/MasterTurnstileFile.py",
 		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/MeanTempRainy.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/baseballCSVpractice.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/FixTurnstile.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/turnstile_110507.txt",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/NumRainyDays.py",
-		"/Users/horsepower/Sites/lukeallen/parsehtml.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/baseballCSVimputation.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/LastfmGeoSpain.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/aadhaarBeginnerSQL.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/aadhaarComplexSQL.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p1/TitanicSurvivorDataCustom.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p1/TitanicSurvivorDataComplex.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p1/TitanicSurvivorDataSimple.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p1/OlympicMedalsMatrix.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/Week1/OlympicMedalsCalculation.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/Week1/OlympicMedals.py",
-		"/Users/horsepower/Sites/lukeallen/_site/about/index.html",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L7Q10.py",
-		"/Users/horsepower/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/Users/horsepower/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L7Q9.py",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L7Q8.py",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L7Q7.py",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L7Q6.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/Titanic.csv",
-		"/Users/horsepower/Library/Application Support/Sublime Text 3/Packages/User/Python.sublime-settings",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L7Q3.py",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L7Q3AlternativeRemoveTags.py",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L7Q5.py",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L7Q4.py",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L7Q2.py",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L7Q1.py",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L6Q13.py",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L6Q12.py",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L6Q7.py",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L6Q8.py",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L6Q9.py",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L6Q11.py",
-		"/Users/horsepower/Dropbox/Udacity101/L6Q1.py",
-		"/Users/horsepower/Dropbox/Udacity/CS101/L6Q10.py",
-		"/Users/horsepower/Dropbox/Udacity101/L6Q2.py",
-		"/Users/horsepower/Dropbox/Udacity101/L6Q3.py",
-		"/Users/horsepower/Dropbox/Udacity101/L6Q4.py",
-		"/Users/horsepower/Dropbox/Udacity101/L6Q5.py",
-		"/Users/horsepower/Dropbox/Udacity101/L6Q6.py",
-		"/Users/horsepower/Dropbox/Udacity101/L5Q15.py",
-		"/Users/horsepower/Dropbox/Udacity101/L5Q14.py",
-		"/Users/horsepower/Dropbox/Udacity101/L5Q16.py",
-		"/Users/horsepower/Dropbox/Udacity101/L5Q6.py",
-		"/Users/horsepower/Dropbox/Udacity101/L5Q7.py",
-		"/Users/horsepower/Dropbox/Udacity101/L5Q8.py"
+		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/baseballCSVpractice.py"
 	],
 	"find":
 	{
@@ -728,6 +724,21 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"False",
+			"predecessor",
+			"class",
+			"dataTDRight",
+			"virgin",
+			"__EVENTVALIDATION",
+			"/wEPDwUKLTI",
+			"/wEWjAkCoIj1ng0",
+			"__EVENTVALIDATION",
+			"input",
+			"__EVENTVALIDATION",
+			"__VIEWSTATE",
+			"assert",
+			"sheet_data",
+			"item",
 			"dict",
 			"Dict",
 			"dict",
@@ -777,134 +788,30 @@
 			[
 				{
 					"buffer": 0,
-					"file": "DataWranglingMongoDB/p1/SimpleParsingCSV.py",
+					"file": "DataWranglingMongoDB/p3/audit-cities.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1505,
+						"buffer_size": 1542,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								754,
-								754
+								1038,
+								1038
 							]
 						],
 						"settings":
 						{
-							"auto_name": "# Your task is to read the input DATAFILE line by",
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"sublime_auto_complete": true,
+							"auto_complete": false,
 							"syntax": "Packages/Python/Python.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 403.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -916,15 +823,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 14,
+						"buffer_size": 2345,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								14,
-								14
+								1187,
+								1187
 							]
 						],
 						"settings":
@@ -956,13 +863,10 @@
 									}
 								}
 							},
+							"codeintel_database_dir": "~/.codeintel",
 							"codeintel_enabled_languages":
 							[
 								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
 								"SCSS",
 								"Python",
 								"HTML",
@@ -970,19 +874,66 @@
 								"Python3",
 								"XML",
 								"Sass",
-								"XSLT",
-								"Django",
 								"HTML5",
 								"Perl",
 								"CSS",
 								"Twig",
 								"Less",
-								"Smarty",
 								"Node.js",
-								"Tcl",
 								"TemplateToolkit",
 								"PHP"
 							],
+							"codeintel_exclude_scopes_from_complete_triggers":
+							[
+								"comment"
+							],
+							"codeintel_language_settings":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_exclude_dir":
+									[
+										"/build/",
+										"/min/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": false,
+									"codeintel_selected_catalogs":
+									[
+										"jQuery"
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 15,
+									"codeintel_scan_exclude_dir":
+									[
+										"/Applications/MAMP/bin/php/php5.5.3/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": true,
+									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
+								},
+								"Python3":
+								{
+									"codeintel_scan_extra_dir":
+									[
+										"/Applications/Sublime Text.app/Contents/MacOS",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
+									],
+									"codeintel_scan_files_in_project": true,
+									"codeintel_selected_catalogs":
+									[
+									],
+									"python3": "/usr/local/bin/python3.3"
+								}
+							},
 							"codeintel_live": true,
 							"codeintel_live_enabled_languages":
 							[
@@ -1013,31 +964,24 @@
 							],
 							"codeintel_max_recursive_dir_depth": 10,
 							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
+							[
+							],
 							"codeintel_scan_files_in_project": true,
 							"codeintel_selected_catalogs":
 							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
 							],
-							"codeintel_snippets": true,
+							"codeintel_snippets": false,
 							"codeintel_syntax_map":
 							{
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"codeintel_word_completions": "buffer",
 							"sublime_auto_complete": true,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 213.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
