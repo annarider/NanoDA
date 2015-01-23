@@ -14,7 +14,7 @@ The possible types of values can be:
 The audit_file function should return a dictionary containing fieldnames and a set of the datatypes
 that can be found in the field.
 All the data initially is a string, so you have to do some checks on the values first.
-ou 
+ 
 """
 import codecs
 import csv
@@ -36,7 +36,7 @@ def audit_file(filename, fields):
         # iterate through every row
         for row in reader:
             # select specific columns to test the data type
-            for field in FIELDS:
+            for field in fields:
                 # start testing the data types
                 # if field has value 'NULL' or empty string, add to NoneType
                 if row[field] == 'NULL' or row[field] == '':
