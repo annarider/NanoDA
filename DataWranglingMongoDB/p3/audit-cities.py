@@ -28,31 +28,49 @@ FIELDS = ["name", "timeZone_label", "utcOffset", "homepage", "governmentType_lab
           "areaLand", "areaMetro", "areaUrban"]
 
 def audit_file(filename, fields):
-    fieldtypes = { 'NoneType': 0, 'list': 0, 'int': 0, 'float': 0, 'str':0 }
+    # init dictionary fieldtypes with keys from the fields list
+    # and values are empty sets to be filed with data types later
+    fieldtypes = dict([ (field,set()) for field in fields])
 
     with open(filename, "r") as f:
         reader = csv.DictReader(f)
+
+        # skip first 3 lines because header & 2 metadata lines
+        for i in range(3):
+            reader.next()
 
         # iterate through every row
         for row in reader:
             # select specific columns to test the data type
             for field in fields:
-                # start testing the data types
-                # if field has value 'NULL' or empty string, add to NoneType
-                if row[field] == 'NULL' or row[field] == '':
-                    fieldtypes['NoneType'] += 1
-                # if field has value that starts with '{', add to list
-                if '{' in row[field]:
-                    fieldtypes['list'] += 1
-                if check_valid_int(row[field]):
-                    fieldtypes['int']
-                if not check_valid_int and check_valid_float:
-                    fieldtypes['float']
-                else:
-                    fieldtypes['str'] += 1
+                val = row[field]
+                # GREAT debugging tip!! datatype = return_datatype(val, field=='areaLand')
+                datatype = return_datatype(val, field=='areaLand')
+                # add datatype to set for the particular fieldname
+                fieldtypes[field].add(datatype)
+
 
     return fieldtypes
 
+'''
+Test the data types and return the type of data
+'''
+def return_datatype(val, verbose):
+                
+    # if field has value 'NULL' or empty string, add to NoneType
+    if val == 'NULL' or val == '':
+        return type(None)
+    # if field has value that starts with '{', add to list
+    if '{' in val:
+        return type([])
+    if check_valid_int(val):
+        return type(1)
+    if check_valid_float(val):
+        return type(1.1)
+    else:
+        if verbose:
+            print val
+        return type('this problem sucks')
 '''
 Check if the number is a valid int
 '''
@@ -68,11 +86,10 @@ Check if the number is a valid float
 '''
 def check_valid_float(s):
     try: 
-        float(s)
+        float(s.strip())
         return True
     except ValueError:
         return False
-
 
 def test():
     fieldtypes = audit_file(CITIES, FIELDS)

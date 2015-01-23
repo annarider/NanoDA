@@ -17,6 +17,13 @@ http://stackoverflow.com/questions/13478974/how-to-find-all-occurrences-of-an-el
 http://stackoverflow.com/questions/354038/how-do-i-check-if-a-string-is-a-number-in-python
 * how to introduce line continuation
 http://stackoverflow.com/questions/53162/how-can-i-do-a-line-break-line-continuation-in-python
+* Initialize dict from keys
+http://stackoverflow.com/questions/2241891/how-to-initialize-a-dict-with-keys-from-a-list-and-empty-value-in-python
+* Updating values in a set
+http://stackoverflow.com/questions/3392354/python-append-values-to-a-set
+* Add number to set
+http://stackoverflow.com/questions/9299919/add-number-to-set
+
 
 XLRD
 https://secure.simplistix.co.uk/svn/xlrd/trunk/xlrd/doc/xlrd.html?p=4966
@@ -30,6 +37,8 @@ https://docs.python.org/2/library/csv.html
 https://docs.python.org/2/library/string.html
 * In & Outputs methods
 https://docs.python.org/2/tutorial/inputoutput.html#reading-and-writing-files
+* Set
+https://docs.python.org/2/library/stdtypes.html#set
 
 CSV Reader & Writer
 http://stackoverflow.com/questions/13367732/csv-python-using-dictwriter-correctly-valueerror-dict-contains-fields-not-in
