@@ -25,7 +25,7 @@ def fix_area(area):
     # placeholder to be converted to a float later
     area_to_convert = area
     # check if the area string has a '{' and is therefore an array
-    if '{' in area:
+    if '{' in area or '}' in area:
         # remove the {} and check which value has more significant digits
         stripped_area = re.sub('[{}]', '', area)
         area_list = stripped_area.split('|')
