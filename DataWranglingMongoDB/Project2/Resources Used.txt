@@ -51,3 +51,8 @@ Beautiful Soup
 http://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup
 http://stackoverflow.com/questions/19969056/python-beautifulsoup-findall-w-class
 http://stackoverflow.com/questions/4416013/beautiful-soup-python-and-the-extracting-of-text-in-a-table
+
+MongoDB
+* '$and' operator for multiple query expressions
+http://docs.mongodb.org/manual/reference/operator/query/and/
+
