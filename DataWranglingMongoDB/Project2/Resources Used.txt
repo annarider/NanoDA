@@ -23,6 +23,8 @@ http://stackoverflow.com/questions/2241891/how-to-initialize-a-dict-with-keys-fr
 http://stackoverflow.com/questions/3392354/python-append-values-to-a-set
 * Add number to set
 http://stackoverflow.com/questions/9299919/add-number-to-set
+* How to delete keys in dict
+http://stackoverflow.com/questions/4406501/change-the-key-value-in-python-dictionary
 
 
 XLRD
@@ -55,4 +57,7 @@ http://stackoverflow.com/questions/4416013/beautiful-soup-python-and-the-extract
 MongoDB
 * '$and' operator for multiple query expressions
 http://docs.mongodb.org/manual/reference/operator/query/and/
+
+Regex
+http://stackoverflow.com/questions/10944438/how-do-i-check-if-a-string-only-contains-alphanumeric-characters-and-dashes
 
