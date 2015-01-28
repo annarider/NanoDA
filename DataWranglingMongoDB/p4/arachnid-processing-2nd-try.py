@@ -113,17 +113,19 @@ def clean_line(input_line, field_mapping, fields):
       elif new_field == 'synonym':
         val = convert_to_list(val)
 
-      # 5. Clean all the fields that go under classification
-      # ['family', 'class', 'phylum', 'order','kingdom','genus']
-      elif new_field in ['family', 'class', 'phylum', 'order','kingdom','genus']:
-        classification[new_field] = val
-        clean_data['classification'] = classification
-      
       if new_field not in ['family', 'class', 'phylum', 'order','kingdom','genus']:  
       # stores this value as the value in the clean_data dict with the newly mapped field
         clean_data[new_field] = val
-      # EXCEPT stores all classification data as one dict (with a nested dict) in clean_data dict
+
+      # 5. Clean all the fields that go under classification
+      # ['family', 'class', 'phylum', 'order','kingdom','genus']
+      if new_field in ['family', 'class', 'phylum', 'order','kingdom','genus']:
+        classification[new_field] = val
       
+
+      # # EXCEPT stores all classification data as one dict (with a nested dict) in clean_data dict
+      # else:
+        clean_data['classification'] = classification
       # print 'field= ', new_field, 'value= ', clean_data[new_field]
 
   return clean_data
@@ -137,9 +139,9 @@ description, if not, then it returns the original value.
 def trim_label(value):
   if '(' in value or ')' in value: 
     pos = value.find('(')
-    return value[:pos]
+    return value[:pos].strip()
   else: 
-    return value
+    return value.strip()
 
 '''
 Clean up the name value. If 'NULL' or non-alphanumeric, make same
