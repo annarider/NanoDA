@@ -5,7 +5,7 @@ In this problem set you work with another type of infobox data, audit it, clean 
 come up with a data model, insert it into a MongoDB and then run some queries against your database.
 The set contains data about Arachnid class.
 Your task in this exercise is to parse the file, process only the fields that are listed in the
-FIELDS dictionary as keys, and return a dictionary of cleaned values. 
+FIELDS dictionary as fields, and return a dictionary of cleaned values. 
 
 The following things should be done:
 - keys of the dictionary changed according to the mapping in FIELDS dictionary
@@ -60,61 +60,76 @@ def process_file(filename, fields):
     data = []
     with open(filename, "r") as f:
         reader = csv.DictReader(f)
+        # skip the first 3 lines of metadata
         for i in range(3):
             l = reader.next()
 
         for line in reader:
-            cleaned = clean_line(line, fields)
+            cleaned = clean_line(line, fields, process_fields)
             # print cleaned
             data.append(cleaned)
     return data
 
-def clean_line(line, fields):
+'''
+This method does most of the cleaning work, such as the tests and comparisons,
+and calls to helper methods to return the cleaned values to be added to the
+dict clean_data
+Inputs: Takes in the current line of dictReader, field_mapping which is the new field names
+and fields which is a list of all the old fields to check whether 
+'''
+
+def clean_line(input_line, field_mapping, fields):
   # store all the new keys from the mapping of FIELDS
   clean_data = {}
+  classification = {}
+  for field in input_line:
+    
+    # checks that the current field is one we care about to process
+    if field in fields:
 
-  for key in line:
-    if key in fields:
       # strips all whitespace from the values
-      # maps the current key to the new key and saves in variable to comparisons 
-      new_key = fields[key].strip()
-      # strips all whitespaces from the 
-      clean_data[new_key] = line[key].strip()
-      # print 'key= ', new_key, 'value= ', clean_data[new_key]
+      # maps the current field to the new field and saves in new_field variable for tests later 
+      new_field = field_mapping[field].strip()
+
+      # saves & strips all whitespaces from the value for this field in this record  
+      val = input_line[field].strip()
 
       ### Begin systematic cleaning based on criteria listed above
 
       # 1. Trim redundant descriptions from label 
-      if new_key == 'label':
-        clean_data[new_key] = trim_label(line[key])
-        # print 'key= ', new_key, 'value= ', clean_data[new_key]
+      if new_field == 'label':
+        val = trim_label(val)
+        # print 'field= ', new_field, 'value= ', clean_data[new_field]
 
       # 2. Check if name is null or non-ASCII, convert to label
-      if new_key == 'name':
-
-        clean_data[new_key] = line[key]
-        clean_data[new_key] = clean_name(line[key], trim_label(line['rdf-schema#label']))
-        # print trim_label(line['rdf-schema#label'])
-        # print 'key= ', new_key, 'value= ', clean_data[new_key]
-        # print clean_data
-
+      elif new_field == 'name':
+        val = clean_name(val, trim_label(input_line['rdf-schema#label']))
+        
       # 3. If a value field is 'NULL', make the value equal to None
+      elif val == 'NULL':
+         val = None
 
-      if line[key] == 'NULL':
-        # print clean_data[new_key]
-
-        clean_data[new_key] = None
-      # print clean_data
-
-      print clean_data
       # 4. Converting values in synonyms to lists
-      if clean_data[new_key] is not None:
-        clean_data[new_key] = convert_to_list(line[key])
+      elif new_field == 'synonym':
+        val = convert_to_list(val)
 
-  # print clean_data
+      # 5. Clean all the fields that go under classification
+      # ['family', 'class', 'phylum', 'order','kingdom','genus']
+      elif new_field in ['family', 'class', 'phylum', 'order','kingdom','genus']:
+        classification[new_field] = val
+        clean_data['classification'] = classification
+      
+      if new_field not in ['family', 'class', 'phylum', 'order','kingdom','genus']:  
+      # stores this value as the value in the clean_data dict with the newly mapped field
+        clean_data[new_field] = val
+      # EXCEPT stores all classification data as one dict (with a nested dict) in clean_data dict
+      
+      # print 'field= ', new_field, 'value= ', clean_data[new_field]
+
+  return clean_data
 
 '''
-When the key is a label, this method checks if there is a
+When the field is a label, this method checks if there is a
 redundant description in parentheses. If yes, then it removes the 
 description, if not, then it returns the original value.
 '''
@@ -170,21 +185,21 @@ def test():
     data = process_file(DATAFILE, FIELDS)
 
     pprint.pprint(data[0])
-    # assert data[0] == {
-    #                     "synonym": None, 
-    #                     "name": "Argiope", 
-    #                     "classification": {
-    #                         "kingdom": "Animal", 
-    #                         "family": "Orb-weaver spider", 
-    #                         "order": "Spider", 
-    #                         "phylum": "Arthropod", 
-    #                         "genus": None, 
-    #                         "class": "Arachnid"
-    #                     }, 
-    #                     "uri": "http://dbpedia.org/resource/Argiope_(spider)", 
-    #                     "label": "Argiope", 
-    #                     "description": "The genus Argiope includes rather large and spectacular spiders that often have a strikingly coloured abdomen. These spiders are distributed throughout the world. Most countries in tropical or temperate climates host one or more species that are similar in appearance. The etymology of the name is from a Greek name meaning silver-faced."
-    #                 }
+    assert data[0] == {
+                        "synonym": None, 
+                        "name": "Argiope", 
+                        "classification": {
+                            "kingdom": "Animal", 
+                            "family": "Orb-weaver spider", 
+                            "order": "Spider", 
+                            "phylum": "Arthropod", 
+                            "genus": None, 
+                            "class": "Arachnid"
+                        }, 
+                        "uri": "http://dbpedia.org/resource/Argiope_(spider)", 
+                        "label": "Argiope", 
+                        "description": "The genus Argiope includes rather large and spectacular spiders that often have a strikingly coloured abdomen. These spiders are distributed throughout the world. Most countries in tropical or temperate climates host one or more species that are similar in appearance. The etymology of the name is from a Greek name meaning silver-faced."
+                    }
 
 
 if __name__ == "__main__":
