@@ -5,7 +5,7 @@ In this problem set you work with another type of infobox data, audit it, clean 
 come up with a data model, insert it into a MongoDB and then run some queries against your database.
 The set contains data about Arachnid class.
 Your task in this exercise is to parse the file, process only the fields that are listed in the
-FIELDS dictionary as fields, and return a dictionary of cleaned values. 
+FIELDS dictionary as keys, and return a dictionary of cleaned values. 
 
 The following things should be done:
 - keys of the dictionary changed according to the mapping in FIELDS dictionary
@@ -111,7 +111,7 @@ def clean_line(input_line, field_mapping, fields):
 
       # 4. Converting values in synonyms to lists
       elif new_field == 'synonym':
-        val = convert_to_list(val)
+        val = parse_array(val)
 
       if new_field not in ['family', 'class', 'phylum', 'order','kingdom','genus']:  
       # stores this value as the value in the clean_data dict with the newly mapped field
@@ -135,6 +135,7 @@ When the field is a label, this method checks if there is a
 redundant description in parentheses. If yes, then it removes the 
 description, if not, then it returns the original value.
 '''
+
 
 def trim_label(value):
   if '(' in value or ')' in value: 
@@ -171,6 +172,7 @@ def convert_to_list(value):
   # if not array but just one synonym, then return the original value
   else:
     value
+
 
 
 def parse_array(v):
