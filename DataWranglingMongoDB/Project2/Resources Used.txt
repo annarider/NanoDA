@@ -25,6 +25,8 @@ http://stackoverflow.com/questions/3392354/python-append-values-to-a-set
 http://stackoverflow.com/questions/9299919/add-number-to-set
 * How to delete keys in dict
 http://stackoverflow.com/questions/4406501/change-the-key-value-in-python-dictionary
+* How to print out keys from dict
+http://stackoverflow.com/questions/5904969/python-how-to-print-a-dictionarys-key 
 
 
 XLRD
