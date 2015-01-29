@@ -2,8 +2,10 @@ import json
 
 def insert_data(data, db):
 
+    # Loop through the list and for every dict, insert into MongoDB 
+    # collections arachnid
     for e in data:
-        db.data.insert(a)
+        db.arachnid.insert(e)
 
 
 if __name__ == "__main__":
