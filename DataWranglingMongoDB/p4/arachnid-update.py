@@ -59,14 +59,39 @@ def add_field(filename, fields):
         reader = csv.DictReader(f)
         for i in range(3):
             l = reader.next()
-        # YOUR CODE HERE
+
+        for row in reader: 
+            key = ""
+            value = ""
+            for field in row: 
+                # check for the 2 fields: 
+                # rdf-schema#label, binomialAuthority_label
+                if field in fields:
+                    # if the field is rdf-schema#label, save value in key
+                    if field == 'rdf-schema#label': 
+                        key = row[field]
+                        # check for redundant suffixes
+                        if '(' in key or ')' in key: 
+                            # if suffix found, remove from label
+                            pos = key.find('(')
+                            key = key[:pos].strip()
+                        
+                    # if the field is binomialAuthority_label, save value in value 
+                    if field == 'binomialAuthority_label': 
+                        value = row[field]
+            if value != 'NULL':
+                data[key] = value
 
     return data
 
 
 def update_db(data, db):
-    # YOUR CODE HERE
-    pass
+    # iterate through all keys in data to add to the collection
+    for label in data:
+        # update will add if the item doesn't exist so should take care of inserting
+        db.arachnid.update({'label': label}, {'$set': {'classification.binomialAuthority': data[label]}})
+
+
 
 
 def test():
@@ -83,8 +108,8 @@ def test():
     update_db(data, db)
 
     updated = db.arachnid.find_one({'label': 'Opisthoncana'})
-    print updated
-    # assert updated['classification']['binomialAuthority'] == 'Embrik Strand'
+    
+    assert updated['classification']['binomialAuthority'] == 'Embrik Strand'
     pprint.pprint(data)
 
 
