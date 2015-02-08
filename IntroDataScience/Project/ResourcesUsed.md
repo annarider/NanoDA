@@ -86,6 +86,7 @@ http://en.wikipedia.org/wiki/Student%27s_t-distribution
 
 ** Shapiro-Wilk test 
 http://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test
+https://statistics.laerd.com/spss-tutorials/testing-for-normality-using-spss-statistics.php
 
 ** Mann-Whitney U test
 http://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test
