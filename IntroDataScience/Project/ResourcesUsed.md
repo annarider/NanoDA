@@ -87,6 +87,11 @@ http://en.wikipedia.org/wiki/Student%27s_t-distribution
 ** Shapiro-Wilk test 
 http://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test
 https://statistics.laerd.com/spss-tutorials/testing-for-normality-using-spss-statistics.php
+http://www.real-statistics.com/tests-normality-and-symmetry/statistical-tests-normality-symmetry/shapiro-wilk-test/
+
+** Shapiro-Wilk test versus Anderson-Darling/how to test for normality 
+http://stats.stackexchange.com/questions/1645/appropriate-normality-tests-for-small-samples
+
 
 ** Mann-Whitney U test
 http://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test
