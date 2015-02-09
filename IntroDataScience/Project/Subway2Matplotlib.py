@@ -33,21 +33,22 @@ def entries_histogram(subway_data_df):
     plt.figure()
 
     # filtering the data to only take hourly entries with rain and without rain
-    rain_df = subway_data_df['ENTRIESn_hourly'][subway_data_df['rain'] == 0]
-    no_rain_df = subway_data_df['ENTRIESn_hourly'][subway_data_df['rain'] == 1]
+    rain_df = subway_data_df['ENTRIESn_hourly'][subway_data_df['rain'] == 1]
+    no_rain_df = subway_data_df['ENTRIESn_hourly'][subway_data_df['rain'] == 0]
 
     # setting the number of bins
     binsize = 50
     
     # creating histogram with visual cues, incl. colors & legends
-    rain_df.hist(bins = binsize, label = "Rain", color = "red", alpha = 0.5, grid = False)
     no_rain_df.hist(bins = binsize, label = "No Rain", color='k', alpha = 0.5, grid = False)
+    rain_df.hist(bins = binsize, label = "Rain", color = "red", alpha = 0.75, grid = False)
+    
 
     # subway_data_df.hist([subway_data_df['ENTRIESn_hourly'], subway_data_df['rain']], bins = 50)
 
     # add axes labels
     plt.xlabel("Hourly Entries")
-    plt.ylabel("Records")
+    plt.ylabel("Frequency")
 
     # add title to histogram
     plt.title("Distribution of hourly entries")

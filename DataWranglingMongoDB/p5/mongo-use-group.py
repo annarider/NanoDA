@@ -30,7 +30,8 @@ def get_db(db_name):
     return db
 
 def make_pipeline():
-    pipeline = [{ '$group': { '_id': 'source', 'count': { '$sum': 1 }}}]
+    pipeline = [{ '$group': { '_id': 'source', 'count': { '$sum': 1 }}}, 
+                {  '$sort': { 'count': -1 }} ]
     return pipeline
 
 def tweet_sources(db, pipeline):

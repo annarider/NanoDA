@@ -88,6 +88,7 @@ http://en.wikipedia.org/wiki/Student%27s_t-distribution
 http://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test
 https://statistics.laerd.com/spss-tutorials/testing-for-normality-using-spss-statistics.php
 http://www.real-statistics.com/tests-normality-and-symmetry/statistical-tests-normality-symmetry/shapiro-wilk-test/
+http://stackoverflow.com/questions/15427692/perform-a-shapiro-wilk-normality-test
 
 ** Shapiro-Wilk test versus Anderson-Darling/how to test for normality 
 http://stats.stackexchange.com/questions/1645/appropriate-normality-tests-for-small-samples
@@ -95,6 +96,10 @@ http://stats.stackexchange.com/questions/1645/appropriate-normality-tests-for-sm
 
 ** Mann-Whitney U test
 http://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test
+https://statistics.laerd.com/spss-tutorials/mann-whitney-u-test-using-spss-statistics.php
+https://statistics.laerd.com/premium-sample/mwut/mann-whitney-test-in-spss-2.php
+** Ranks
+http://stackoverflow.com/questions/3071415/efficient-method-to-calculate-the-rank-vector-of-a-list-in-python
 
 ** Nonparametric tests
 http://en.wikipedia.org/wiki/Nonparametric_statistics
