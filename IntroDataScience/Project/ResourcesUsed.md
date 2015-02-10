@@ -98,6 +98,7 @@ http://stats.stackexchange.com/questions/1645/appropriate-normality-tests-for-sm
 http://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test
 https://statistics.laerd.com/spss-tutorials/mann-whitney-u-test-using-spss-statistics.php
 https://statistics.laerd.com/premium-sample/mwut/mann-whitney-test-in-spss-2.php
+http://www.graphpad.com/guides/prism/6/statistics/index.htm?how_the_mann-whitney_test_works.htm
 ** Ranks
 http://stackoverflow.com/questions/3071415/efficient-method-to-calculate-the-rank-vector-of-a-list-in-python
 
