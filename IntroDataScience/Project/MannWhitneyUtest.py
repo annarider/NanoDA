@@ -43,7 +43,6 @@ def mann_whitney_plus_means(turnstile_weather_csv):
     # print without_rain.describe()
     # print turnstile_weather['ENTRIESn_hourly'].describe()
 
-    print with_rain.
 
     with_rain_mean = np.mean(with_rain)
     without_rain_mean = np.mean(without_rain) 
@@ -51,7 +50,7 @@ def mann_whitney_plus_means(turnstile_weather_csv):
     U, p = scipy.stats.mannwhitneyu(with_rain, without_rain)
     
     # return with_rain_mean, without_rain_mean
-    return with_rain_mean, without_rain_mean, U, p # leave this line for the grader
+    return with_rain_mean, without_rain_mean, U, p*2 # multiply p by 2 for two-tail p-value
 
 
 print mann_whitney_plus_means('turnstile_weather_v2.csv')
