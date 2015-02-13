@@ -61,21 +61,22 @@ def predictions(weather_turnstile):
     features_df = sm.add_constant(features_df)
 
     # add dummy variables of turnstile units to features
-    # dummy_units = pandas.get_dummies(turnstile_df['UNIT'], prefix='unit')
+    dummy_units = pandas.get_dummies(turnstile_df['UNIT'], prefix='unit')
     # add dummy variables of rain to features (because rain is categorical)
     # dummy_rain = pandas.get_dummies(turnstile_df['rain'], prefix='rain')
-
     # features_df = features_df.join([dummy_rain])
-    # features_df = features_df.join([dummy_units])
+    
+    features_df = features_df.join([dummy_units])
 
     model = sm.OLS(label,features_df)
     # print model
     results = model.fit()
     # print results
-    # print results.params
-    # prediction = sm.OLS.predict(model,features_df)
+    parameters = results.params
+    results = results.summary()
+
     # print features_df
-    # print results.predict(features_df)
+
     prediction = results.predict(features_df)
     print prediction
     return prediction
