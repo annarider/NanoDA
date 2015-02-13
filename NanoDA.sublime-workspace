@@ -4,6 +4,86 @@
 		"selected_items":
 		[
 			[
+				"fea",
+				"features_df〔variable〕"
+			],
+			[
+				"dum",
+				"dummy_rain〔variable〕"
+			],
+			[
+				"dat",
+				"dataframe〔argument〕"
+			],
+			[
+				"pre",
+				"prediction〔variable〕"
+			],
+			[
+				"dumm",
+				"dummy_units〔variable〕"
+			],
+			[
+				"turn",
+				"turnstile_weather"
+			],
+			[
+				"withou",
+				"without_rain"
+			],
+			[
+				"with",
+				"with_rain〔variable〕"
+			],
+			[
+				"wi",
+				"with_rain〔variable〕"
+			],
+			[
+				"Sh",
+				"Shapiro"
+			],
+			[
+				"fi",
+				"field〔variable〕"
+			],
+			[
+				"update",
+				"updated〔variable〕"
+			],
+			[
+				"pa",
+				"parse_array〔function〕"
+			],
+			[
+				"class",
+				"classification"
+			],
+			[
+				"clas",
+				"classification〔variable〕"
+			],
+			[
+				"new",
+				"new_field〔variable〕"
+			],
+			[
+				"clean",
+				"clean_data〔variable〕"
+			],
+			[
+				"input",
+				"input_line〔argument〕"
+			],
+			[
+				"fiel",
+				"fields〔argument〕"
+			],
+			[
+				"proces",
+				"process_fields〔variable〕"
+			],
+			[
 				"check",
 				"check_valid_domain"
 			],
@@ -60,10 +140,6 @@
 				"valid_years"
 			],
 			[
-				"input",
-				"input_file"
-			],
-			[
 				"start",
 				"start_pos"
 			],
@@ -116,10 +192,6 @@
 				"surname"
 			],
 			[
-				"fi",
-				"firstname"
-			],
-			[
 				"da",
 				"data"
 			],
@@ -166,10 +238,6 @@
 			[
 				"ma",
 				"maxvalue"
-			],
-			[
-				"dat",
-				"datemode"
 			],
 			[
 				"xl",
@@ -292,10 +360,6 @@
 				"rain_df"
 			],
 			[
-				"with",
-				"without_rain"
-			],
-			[
 				"ander",
 				"anderson_norain"
 			],
@@ -372,10 +436,6 @@
 				"word"
 			],
 			[
-				"pre",
-				"predict"
-			],
-			[
 				"resul",
 				"results2"
 			],
@@ -410,10 +470,6 @@
 			[
 				"plot",
 				"plot_weather_data"
-			],
-			[
-				"turn",
-				"turnstile_df"
 			],
 			[
 				"tur",
@@ -452,98 +508,17 @@
 				"ifmain	if __name__ == '__main__'"
 			],
 			[
-				"withou",
-				"without_rain_mean"
-			],
-			[
 				"wiou",
 				"without_rain_mean"
 			],
 			[
 				"tunr",
 				"turnstile_weather"
-			],
-			[
-				"tru",
-				"turnstile_weather"
-			],
-			[
-				"entr",
-				"entries_histogram"
-			],
-			[
-				"sum",
-				"sum_of_predictions_minus_mean"
-			],
-			[
-				"r",
-				"returns"
-			],
-			[
-				"gra",
-				"gradient"
-			],
-			[
-				"teh",
-				"theta"
-			],
-			[
-				"the",
-				"theta"
-			],
-			[
-				"com",
-				"compute_cost"
-			],
-			[
-				"a",
-				"avg"
-			],
-			[
-				"rightha",
-				"righthanded_df"
-			],
-			[
-				"le",
-				"lefthanded_df"
-			],
-			[
-				"righ",
-				"righthanded_df"
-			],
-			[
-				"left",
-				"lefthanded_df"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "DataWranglingMongoDB/p3/audit-cities.py",
-			"settings":
-			{
-				"buffer_size": 3207,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "DataWranglingMongoDB/Project2/Resources Used.txt",
-			"settings":
-			{
-				"buffer_size": 2849,
-				"line_ending": "Unix",
-				"name": "Resources Used"
-			}
-		},
-		{
-			"file": "DataWranglingMongoDB/p1/Analyze-Distinct-values.py",
-			"settings":
-			{
-				"buffer_size": 3829,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -564,7 +539,11 @@
 	},
 	"console":
 	{
-		"height": 126.0
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
 	},
 	"distraction_free":
 	{
@@ -575,8 +554,28 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB"
+	],
 	"file_history":
 	[
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2/Resources Used.txt",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/MannWhitneyUtest.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/LinearRegressionGradientDescent.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/ResourcesUsed.md",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/LinearRegressionOLS.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/twitter-example.json",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p4/arachnid-update.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p5/mongo-use-group.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/Subway2Matplotlib.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p4/insert.py",
+		"/Users/horsepower/Dropbox/Udacity/Tools/OracleSQL/ChangeSystemOracledatabase.txt",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/Analyze-Distinct-values.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p4/arachnid.json",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p4/arachnid-dbinsert.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p4/arachnid-processing-2nd-try.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3/audit-cities.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/patent.data",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3/FIXME-autos.csv",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3/autos-valid.csv",
@@ -627,7 +626,6 @@
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/SimpleParsingCSV.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/beatles-diskography.csv",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/turnstile_weather_v2.csv",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/ResourcesUsed.md",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/SubwayDataDescribe.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/ShortcomingsData.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/ConclusionBarDateOnlyOneUnit.py",
@@ -641,7 +639,6 @@
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p3/TurnstileWeather.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p2/turnstile_110507.txt",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p3/Testggplot.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/Subway2Matplotlib.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p3/SubwayMannWhitneyU.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p3/OptionalLinearRegression.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/OLSRegressionAnalysis.py",
@@ -690,29 +687,15 @@
 		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/R2gradientdescent.py",
 		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/ndarrayTest.py",
 		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/NumpyMeanSum.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/SubwayMannWhitneyU.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/BaseballGradientDescent.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/Welcht-testbaseball.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/TempFoggyDays.py",
-		"/Users/horsepower/Downloads/PIMCaptions.sbv",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/TurnstileHourlyEntries.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/TimeToHour.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/ReformatSubwayDates.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/TurnstileHourlyExits.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p1/OlympicMedalsAvgMedals.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/FilterIrregularData.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/MeanTempWeekends.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/MasterTurnstileFile.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/MeanTempRainy.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p2/baseballCSVpractice.py"
+		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/SubwayMannWhitneyU.py"
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 27.0
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
 			"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience"
@@ -723,6 +706,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"coefficient",
+			"data",
+			"Hour",
+			"hour",
+			"Hour",
+			"hour",
+			"value",
+			"print",
+			"input_file",
+			"input)file",
+			"input",
+			"line",
+			"key",
 			"False",
 			"predecessor",
 			"class",
@@ -782,240 +778,14 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "DataWranglingMongoDB/p3/audit-cities.py",
-					"settings":
-					{
-						"buffer_size": 3207,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 403.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "DataWranglingMongoDB/Project2/Resources Used.txt",
-					"settings":
-					{
-						"buffer_size": 2849,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"auto_name": "Resources Used",
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_database_dir": "~/.codeintel",
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Node.js",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_exclude_scopes_from_complete_triggers":
-							[
-								"comment"
-							],
-							"codeintel_language_settings":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_exclude_dir":
-									[
-										"/build/",
-										"/min/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": false,
-									"codeintel_selected_catalogs":
-									[
-										"jQuery"
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 15,
-									"codeintel_scan_exclude_dir":
-									[
-										"/Applications/MAMP/bin/php/php5.5.3/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": true,
-									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
-								},
-								"Python3":
-								{
-									"codeintel_scan_extra_dir":
-									[
-										"/Applications/Sublime Text.app/Contents/MacOS",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
-									],
-									"codeintel_scan_files_in_project": true,
-									"codeintel_selected_catalogs":
-									[
-									],
-									"python3": "/usr/local/bin/python3.3"
-								}
-							},
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							[
-							],
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-							],
-							"codeintel_snippets": false,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"codeintel_word_completions": "buffer",
-							"sublime_auto_complete": true,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 213.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "DataWranglingMongoDB/p1/Analyze-Distinct-values.py",
-					"settings":
-					{
-						"buffer_size": 3829,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								425,
-								425
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 16.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 26.0
+		"height": 27.0
 	},
 	"input":
 	{
@@ -1052,9 +822,10 @@
 	{
 		"height": 0.0
 	},
+	"project": "NanoDA.sublime-project",
 	"replace":
 	{
-		"height": 64.0
+		"height": 50.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1085,10 +856,25 @@
 		],
 		"width": 380.0
 	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 228.0,
-	"status_bar_visible": true
+	"side_bar_width": 318.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }
