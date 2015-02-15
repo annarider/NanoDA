@@ -49,7 +49,7 @@ def predictions(weather_turnstile):
 
     # print prediction['hour']
     features_df = pandas.DataFrame({'hour': turnstile_df['hour'], 
-                                    'rain': turnstile_df['rain'],
+                                    # 'rain': turnstile_df['rain'],
                                     # 'tempi': turnstile_df['tempi'], #0.462161286773
                                     # 'meantempi': turnstile_df['meantempi'], #0.462484169607
                                     # 'wspdi': turnstile_df['wspdi'], # 0.462239183279
