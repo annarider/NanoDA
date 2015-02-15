@@ -554,10 +554,6 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB"
-	],
 	"file_history":
 	[
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2/Resources Used.txt",
@@ -691,7 +687,7 @@
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -785,7 +781,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 26.0
 	},
 	"input":
 	{
@@ -825,7 +821,7 @@
 	"project": "NanoDA.sublime-project",
 	"replace":
 	{
-		"height": 50.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":

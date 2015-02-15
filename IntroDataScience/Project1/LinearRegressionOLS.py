@@ -48,13 +48,13 @@ def predictions(weather_turnstile):
     # print prediction
 
     # print prediction['hour']
-    features_df = pandas.DataFrame({'hour': turnstile_df['hour'] }) #, 
-                                    # 'rain': turnstile_df['rain'],
+    features_df = pandas.DataFrame({'hour': turnstile_df['hour'], 
+                                    'rain': turnstile_df['rain'],
                                     # 'tempi': turnstile_df['tempi'], #0.462161286773
                                     # 'meantempi': turnstile_df['meantempi'], #0.462484169607
                                     # 'wspdi': turnstile_df['wspdi'], # 0.462239183279
                                     # 'meanwspdi': turnstile_df['meanwspdi'], # 0.462023237442
-                                    # 'precipi': turnstile_df['precipi']})
+                                    'precipi': turnstile_df['precipi']})
     label = turnstile_df['ENTRIESn_hourly']
 
     # Adds y-intercept to model
@@ -62,18 +62,17 @@ def predictions(weather_turnstile):
 
     # add dummy variables of turnstile units to features
     dummy_units = pandas.get_dummies(turnstile_df['UNIT'], prefix='unit')
-    # add dummy variables of rain to features (because rain is categorical)
-    # dummy_rain = pandas.get_dummies(turnstile_df['rain'], prefix='rain')
-    # features_df = features_df.join([dummy_rain])
-    
     features_df = features_df.join([dummy_units])
-
+    # add dummy variables of day week to features (day of week is categorical)
+    dummy_dayweek = pandas.get_dummies(turnstile_df['day_week'], prefix='day_week')
+    features_df = features_df.join([dummy_dayweek])
+    
     model = sm.OLS(label,features_df)
-    # print model
     results = model.fit()
     # print results
     parameters = results.params
-    results = results.summary()
+    print parameters
+    results_summary = results.summary()
 
     # print features_df
 
