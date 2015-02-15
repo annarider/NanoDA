@@ -74,7 +74,7 @@ def predictions(weather_turnstile):
     print parameters
     results_summary = results.summary()
 
-    # print features_df
+    print results_summary  
 
     prediction = results.predict(features_df)
     print prediction
