@@ -111,6 +111,9 @@ http://en.wikipedia.org/wiki/Coefficient_of_determination
 ** Normal Distribution
 http://en.wikipedia.org/wiki/Normal_distribution
 
+** Multicollinearity and what to do about it
+http://blog.minitab.com/blog/adventures-in-statistics/what-are-the-effects-of-multicollinearity-and-when-can-i-ignore-them
+
 * Misc
 
 ** Understanding normality tests: 
