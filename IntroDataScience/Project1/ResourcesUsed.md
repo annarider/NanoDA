@@ -105,8 +105,9 @@ http://stackoverflow.com/questions/3071415/efficient-method-to-calculate-the-ran
 ** Nonparametric tests
 http://en.wikipedia.org/wiki/Nonparametric_statistics
 
-** Coefficients of Determination
+** Coefficients of Determination/R-squared value
 http://en.wikipedia.org/wiki/Coefficient_of_determination
+http://blog.minitab.com/blog/adventures-in-statistics/regression-analysis-how-do-i-interpret-r-squared-and-assess-the-goodness-of-fit
 
 ** Normal Distribution
 http://en.wikipedia.org/wiki/Normal_distribution

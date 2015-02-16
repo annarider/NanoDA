@@ -49,7 +49,7 @@ def predictions(weather_turnstile):
 
     # print prediction['hour']
     features_df = pandas.DataFrame({'hour': turnstile_df['hour'], 
-                                    # 'rain': turnstile_df['rain'],
+                                    'rain': turnstile_df['rain'],
                                     # 'tempi': turnstile_df['tempi'], #0.462161286773
                                     # 'meantempi': turnstile_df['meantempi'], #0.462484169607
                                     # 'wspdi': turnstile_df['wspdi'], # 0.462239183279
@@ -57,17 +57,21 @@ def predictions(weather_turnstile):
                                     'precipi': turnstile_df['precipi']})
     label = turnstile_df['ENTRIESn_hourly']
 
-    # Adds y-intercept to model
-    features_df = sm.add_constant(features_df)
+    normalized_features = normalize_features(features_df)
 
+    # Adds y-intercept to model
+    normalized_features = sm.add_constant(normalized_features)
+    
     # add dummy variables of turnstile units to features
     dummy_units = pandas.get_dummies(turnstile_df['UNIT'], prefix='unit')
-    features_df = features_df.join([dummy_units])
+    normalized_features = normalized_features.join([dummy_units])
     # add dummy variables of day week to features (day of week is categorical)
     dummy_dayweek = pandas.get_dummies(turnstile_df['day_week'], prefix='day_week')
-    features_df = features_df.join([dummy_dayweek])
+    normalized_features = normalized_features.join([dummy_dayweek])
+
     
-    model = sm.OLS(label,features_df)
+    
+    model = sm.OLS(label,normalized_features)
     results = model.fit()
     # print results
     parameters = results.params
@@ -76,9 +80,21 @@ def predictions(weather_turnstile):
 
     print results_summary  
 
-    prediction = results.predict(features_df)
+    prediction = results.predict(normalized_features)
     print prediction
     return prediction
+
+def normalize_features(array):
+    """
+    Normalize the features in the data set.
+    """
+    # stdev = array.std()
+    # print stdev
+    # if stdev == 0:
+    #     stdev = 1
+    array_normalized = (array-array.mean())/array.std()
+
+    return array_normalized
 
 def compute_r_squared(label, predictions):
     # Write a function that, given two input numpy arrays, 'data', and 'predictions,'

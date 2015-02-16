@@ -37,11 +37,11 @@ def entries_histogram(subway_data_df):
     no_rain_df = subway_data_df['ENTRIESn_hourly'][subway_data_df['rain'] == 0]
 
     # setting the number of bins
-    binsize = 50
+    numbins = 250
     
     # creating histogram with visual cues, incl. colors & legends
-    no_rain_df.hist(bins = binsize, label = "No Rain", color='k', alpha = 0.5, grid = False)
-    rain_df.hist(bins = binsize, label = "Rain", color = "red", alpha = 0.75, grid = False)
+    no_rain_df.hist(bins = numbins, label = "No Rain", color='k', alpha = 0.5, grid = False)
+    rain_df.hist(bins = numbins, label = "Rain", color = "red", alpha = 0.75, grid = False)
     
 
     # subway_data_df.hist([subway_data_df['ENTRIESn_hourly'], subway_data_df['rain']], bins = 50)
