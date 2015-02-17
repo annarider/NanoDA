@@ -37,6 +37,7 @@ http://stackoverflow.com/questions/2590328/histogram-in-matplotlib-with-input-fi
 http://stackoverflow.com/questions/22239691/code-for-line-of-best-fit-of-a-scatter-plot-in-python
 http://docs.scipy.org/doc/numpy/reference/generated/numpy.polyfit.html
 http://matplotlib.org/users/pyplot_tutorial.html
+http://nbviewer.ipython.org/github/mbakker7/exploratory_computing_with_python/blob/master/notebook_s4/py_exp_comp_s4_sol.ipynb
 
 ** String function in Python (for stripping punctuation & other utilities)
 http://stackoverflow.com/questions/6797984/how-to-convert-string-to-lowercase-in-python
