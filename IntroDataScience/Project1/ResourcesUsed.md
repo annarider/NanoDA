@@ -31,6 +31,12 @@ http://stackoverflow.com/questions/6986986/bin-size-in-matplotlib-histogram
 http://stackoverflow.com/questions/11617719/how-to-plot-a-very-simple-bar-chart-python-matplotlib-using-input-txt-file
 http://stackoverflow.com/questions/2590328/histogram-in-matplotlib-with-input-file
 
+** Matplotlib and scatter
+
+*** Line of best fit
+http://stackoverflow.com/questions/22239691/code-for-line-of-best-fit-of-a-scatter-plot-in-python
+http://docs.scipy.org/doc/numpy/reference/generated/numpy.polyfit.html
+http://matplotlib.org/users/pyplot_tutorial.html
 
 ** String function in Python (for stripping punctuation & other utilities)
 http://stackoverflow.com/questions/6797984/how-to-convert-string-to-lowercase-in-python

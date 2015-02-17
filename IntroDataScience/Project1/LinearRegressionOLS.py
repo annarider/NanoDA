@@ -49,7 +49,6 @@ def predictions(weather_turnstile):
 
     # print prediction['hour']
     features_df = pandas.DataFrame({'hour': turnstile_df['hour'], 
-                                    'rain': turnstile_df['rain'],
                                     # 'tempi': turnstile_df['tempi'], #0.462161286773
                                     # 'meantempi': turnstile_df['meantempi'], #0.462484169607
                                     # 'wspdi': turnstile_df['wspdi'], # 0.462239183279
@@ -61,6 +60,9 @@ def predictions(weather_turnstile):
 
     # Adds y-intercept to model
     normalized_features = sm.add_constant(normalized_features)
+
+    # rain acts as a dummy variable because it is categorical, therefore doesn't need normalization
+    normalized_features = normalized_features.join([turnstile_df['rain']])
     
     # add dummy variables of turnstile units to features
     dummy_units = pandas.get_dummies(turnstile_df['UNIT'], prefix='unit')
@@ -68,8 +70,6 @@ def predictions(weather_turnstile):
     # add dummy variables of day week to features (day of week is categorical)
     dummy_dayweek = pandas.get_dummies(turnstile_df['day_week'], prefix='day_week')
     normalized_features = normalized_features.join([dummy_dayweek])
-
-    
     
     model = sm.OLS(label,normalized_features)
     results = model.fit()
@@ -88,12 +88,8 @@ def normalize_features(array):
     """
     Normalize the features in the data set.
     """
-    # stdev = array.std()
-    # print stdev
-    # if stdev == 0:
-    #     stdev = 1
     array_normalized = (array-array.mean())/array.std()
-
+    print "array.mean() ", array.mean()
     return array_normalized
 
 def compute_r_squared(label, predictions):

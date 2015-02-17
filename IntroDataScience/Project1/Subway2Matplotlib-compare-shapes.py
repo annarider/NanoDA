@@ -46,7 +46,6 @@ def entries_histogram(subway_data_df):
     no_rain_df.hist(bins = numbins, label = "No Rain", color='k', alpha = 0.5, grid = False, ax=ax0)
     rain_df.hist(bins = numbins, label = "Rain", color = "red", alpha = 0.75, grid = False, ax=ax1)
     
-
     # subway_data_df.hist([subway_data_df['ENTRIESn_hourly'], subway_data_df['rain']], bins = 50)
 
     # add axes labels
