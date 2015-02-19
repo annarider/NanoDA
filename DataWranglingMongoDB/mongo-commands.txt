@@ -1,0 +1,23 @@
+Commands to use in the mongo shell
+
+Doc from MongoDB: http://docs.mongodb.org/manual/tutorial/getting-started-with-the-mongo-shell
+
+Display database currently using
+> db
+
+List all databases
+> show dbs
+
+Enter a database
+> use <databasename>
+
+List all collections in current database
+> show collections
+(or) > show tables
+(or) > db.getCollectionNames()
+
+Enter a collection
+> use <collectionname>
+
+Import data from json file to 
+$ mongoimport --db <dbname> --collection <collectionname> --file <filename> --jsonArray

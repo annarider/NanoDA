@@ -57,8 +57,13 @@ http://stackoverflow.com/questions/19969056/python-beautifulsoup-findall-w-class
 http://stackoverflow.com/questions/4416013/beautiful-soup-python-and-the-extracting-of-text-in-a-table
 
 MongoDB
+* commands
+http://stackoverflow.com/questions/8866041/how-to-list-all-collections-in-the-mongo-shell
 * '$and' operator for multiple query expressions
 http://docs.mongodb.org/manual/reference/operator/query/and/
+* Aggregation
+** error with $group operator
+http://stackoverflow.com/questions/25373372/whats-wrong-with-this-mongoskin-aggregation-command
 
 Regex
 http://stackoverflow.com/questions/10944438/how-do-i-check-if-a-string-only-contains-alphanumeric-characters-and-dashes
