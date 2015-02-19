@@ -1,6 +1,7 @@
 Commands to use in the mongo shell
 
 Doc from MongoDB: http://docs.mongodb.org/manual/tutorial/getting-started-with-the-mongo-shell
+http://docs.mongodb.org/manual/reference/mongo-shell/
 
 Display database currently using
 > db
@@ -21,3 +22,9 @@ Enter a collection
 
 Import data from json file to 
 $ mongoimport --db <dbname> --collection <collectionname> --file <filename> --jsonArray
+
+
+
+
+Find all documents in a collection
+> db.<name of collection>.find()

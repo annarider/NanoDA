@@ -59,6 +59,8 @@ http://stackoverflow.com/questions/4416013/beautiful-soup-python-and-the-extract
 MongoDB
 * commands
 http://stackoverflow.com/questions/8866041/how-to-list-all-collections-in-the-mongo-shell
+http://docs.mongodb.org/manual/reference/mongo-shell/
+http://docs.mongodb.org/manual/tutorial/getting-started-with-the-mongo-shell
 * '$and' operator for multiple query expressions
 http://docs.mongodb.org/manual/reference/operator/query/and/
 * Aggregation
