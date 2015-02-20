@@ -4,7 +4,7 @@ In an earlier exercise we looked at the cities dataset and asked which region in
 the most cities. In this exercise, we'd like you to answer a related question regarding regions in 
 India. What is the average city population for a region in India? Calculate your answer by first 
 finding the average population of cities in each region and then by calculating the average of the 
-regional averages.
+regional averages. 
 
 Hint: If you want to accumulate using values from all input documents to a group stage, you may use 
 a constant as the value of the "_id" field. For example, 
@@ -31,9 +31,24 @@ def get_db(db_name):
     db = client[db_name]
     return db
 
+'''
+pseudo code: to documents- avg population of cities in each region
+- unwind: isPartOf
+- group: use constant, $avg: $population -->
+- avg the regional averages
+- avg population of cities in each region
+- avg the regional averages
+'''
 def make_pipeline():
     # complete the aggregation pipeline
-    pipeline = [ ]
+    pipeline = [{'$match': {'country': 'India'}},
+                {'$unwind': '$isPartOf'},
+                {'$group': {'_id': 'India Regional City Population Average',
+                            'regionalAvg': {'$avg': '$population' }},
+                {'$group': {'avgCityPop': 'Average pop in regions'},
+                            'avg': {'$avg': '$regionalAvg'}},
+                {'$sort': {'count': -1}},
+                {'$limit': 1} ]
     return pipeline
 
 def aggregate(db, pipeline):
