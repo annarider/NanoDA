@@ -20,8 +20,11 @@ List all collections in current database
 Enter a collection
 > use <collectionname>
 
-Import data from json file to 
+Import data from json file to certain database & collection
 $ mongoimport --db <dbname> --collection <collectionname> --file <filename> --jsonArray
+
+Import data from csv file to certain database & collections
+$ mongoimport --db users --collection contacts --type csv --headerline --file /opt/backups/contacts.csv
 
 
 

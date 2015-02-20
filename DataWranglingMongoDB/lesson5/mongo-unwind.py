@@ -3,6 +3,11 @@
 For this exercise, let's return to our cities infobox dataset. The question we would like you to answer
 is as follows:  Which region or district in India contains the most cities?
 
+- unwind: region/district - isPartOf 
+- group: regions/districts, id: cities, count: sum 1,
+- sort: count -1
+- limit: 1
+
 As a starting point, use the solution for the example question we looked at -- "Who includes the most
 user mentions in their tweets?"
 
@@ -30,8 +35,12 @@ def get_db(db_name):
     return db
 
 def make_pipeline():
-    # complete the aggregation pipeline
-    pipeline = []
+    pipeline = [{'$match': {'country': 'India'}},
+                {'$unwind': '$isPartOf'},
+                {'$group': {'_id': '$isPartOf',
+                               'count': { '$sum': 1} }},
+                {'$sort': {'count': -1}},
+                {'$limit': 1}]
     return pipeline
 
 def aggregate(db, pipeline):
