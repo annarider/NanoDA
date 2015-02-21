@@ -33,20 +33,20 @@ def get_db(db_name):
 
 '''
 pseudo code: to documents- avg population of cities in each region
-- unwind: isPartOf
-- group: use constant, $avg: $population -->
-- avg the regional averages
+- unwind: isPartOf - pull out districts/regions
+- group: by the regions 
+- avg the regional averages: use constant, $avg: $population -->
 - avg population of cities in each region
 - avg the regional averages
 '''
 def make_pipeline():
-    # complete the aggregation pipeline
+
     pipeline = [{'$match': {'country': 'India'}},
                 {'$unwind': '$isPartOf'},
+                {'$group': { '_id': 'isPartOf', 
+                             'regionalAvg': {'$avg': '$population' }}},
                 {'$group': {'_id': 'India Regional City Population Average',
-                            'regionalAvg': {'$avg': '$population' }},
-                {'$group': {'avgCityPop': 'Average pop in regions'},
-                            'avg': {'$avg': '$regionalAvg'}},
+                            'avg': {'$avg': 'regionalAvg'}}},
                 {'$sort': {'count': -1}},
                 {'$limit': 1} ]
     return pipeline
