@@ -32,23 +32,31 @@ def get_db(db_name):
     return db
 
 '''
-pseudo code: to documents- avg population of cities in each region
-- unwind: isPartOf - pull out districts/regions
-- group: by the regions 
-- avg the regional averages: use constant, $avg: $population -->
-- avg population of cities in each region
-- avg the regional averages
+pseudo code: 
+1. calculate avg population for cities in each region
+2. avg the regional averages
+Q: What is the average city population for a region in India?
+Steps:
+- match: india (filter only india)
+- unwind based on regions
+- group cities 
+-- calculate average of population
+-- add the calculations to a set?
+- group by regions 
+-- calculate the avg of population for each region
+- sort desc
+- limit to 1
 '''
 def make_pipeline():
 
     pipeline = [{'$match': {'country': 'India'}},
                 {'$unwind': '$isPartOf'},
-                {'$group': { '_id': 'isPartOf', 
+                {'$group': { '_id': '$isPartOf', 
                              'regionalAvg': {'$avg': '$population' }}},
-                {'$group': {'_id': 'India Regional City Population Average',
-                            'avg': {'$avg': 'regionalAvg'}}},
+                {'$group': { '_id' : 'India Regional City Population Average',
+                            'avg': {'$avg': '$regionalAvg' }}},
                 {'$sort': {'count': -1}},
-                {'$limit': 1} ]
+                {'$limit': 1}]
     return pipeline
 
 def aggregate(db, pipeline):
