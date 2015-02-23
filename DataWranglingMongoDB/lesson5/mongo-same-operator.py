@@ -48,15 +48,18 @@ Steps:
 - limit to 1
 '''
 def make_pipeline():
-
-    pipeline = [{'$match': {'country': 'India'}},
-                {'$unwind': '$isPartOf'},
-                {'$group': { '_id': '$isPartOf', 
-                             'regionalAvg': {'$avg': '$population' }}},
-                {'$group': { '_id' : 'India Regional City Population Average',
-                            'avg': {'$avg': '$regionalAvg' }}},
-                {'$sort': {'count': -1}},
-                {'$limit': 1}]
+    pipeline = [{'$unwind': '$isPartOf'},
+                {'$group': { '_id': {'country': '$country', 'region': '$isPartOf', 
+                                     'city': '$name', 'population':'$population'}, 
+                             'regionalAvg': {'$avg': '$population' }}}]
+    # pipeline = [{'$match': {'country': 'India'}},
+    #             {'$unwind': '$isPartOf'},
+    #             {'$group': { '_id': '$isPartOf', 
+    #                          'regionalAvg': {'$avg': '$population' }}},
+    #             {'$group': { '_id' : 'India Regional City Population Average',
+    #                         'avg': {'$avg': '$regionalAvg' }}},
+    #             {'$sort': {'count': -1}},
+    #             {'$limit': 1}]
     return pipeline
 
 def aggregate(db, pipeline):
