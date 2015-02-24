@@ -52,5 +52,5 @@ if __name__ == '__main__':
     result = aggregate(db, pipeline)
     import pprint
     pprint.pprint(result["result"][0])
-    assert len(result["result"]) == 1
-    assert result["result"][0] == {'_id': 'Shahpur', 'count': 6}
+    # assert len(result["result"]) == 1
+    # assert result["result"][0] == {'_id': 'Shahpur', 'count': 6}

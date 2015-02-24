@@ -30,35 +30,14 @@ def get_db(db_name):
     db = client[db_name]
     return db
 
-
 def make_pipeline():
     
     pipeline = [{'$unwind': '$isPartOf'},
-                {'$group': { '_id': {'country': '$country', 'region': '$isPartOf'}, 
+                {'$group': { '_id': {'country': '$country', 'region': '$isPartOf'},
                           'avgPopulation': {'$avg': '$population' }}},
-                {'$group': { '_id': '$country',
-                             'avgRegionalPopulation': {'$avg': '$avgPopulation' }}}]
-             
-    '''
-    pipeline = [{'$unwind': '$isPartOf'},
-                {'$group': { '_id': {'country': '$country', 'region': '$isPartOf', 
-                                     'city': '$name', 'population': '$population' }}},
-                {'$group': {'_id': '$region', 
-                            'regionalAvg': {'$avg': '$population' }}}]
-                                            {'$group': {'_id': '$country',
-                            'avgRegionalPopulation': {'$avg': '$regionalAvg' }}}
-    '''
+                {'$group': {'_id': '$_id.country', 
+                            'avgRegionalPopulation': {'$avg': '$avgPopulation'}}} ]
     return pipeline
-
-def x():
-    pipeline = [{'$unwind': '$isPartOf'},
-                {'$group': { '_id': '$isPartOf',
-                             'regionalAvg': {'$avg': '$population' }}},
-                {'$group': { '_id' : 'India Regional City Population Average',
-                            'avgRegionalPopulation': {'$avg': '$regionalAvg' }}},
-                {'$sort': {'count': -1}},
-                {'$limit': 1}]
-    pass
 
 def aggregate(db, pipeline):
     result = db.cities.aggregate(pipeline)

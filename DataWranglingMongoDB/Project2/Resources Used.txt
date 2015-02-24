@@ -68,6 +68,9 @@ http://docs.mongodb.org/manual/reference/operator/query/and/
 http://stackoverflow.com/questions/25373372/whats-wrong-with-this-mongoskin-aggregation-command
 ** group (_id) with compound keys
 http://stackoverflow.com/questions/22932364/mongodb-group-values-by-multiple-fields
+** Drop table
+http://docs.mongodb.org/manual/reference/method/db.dropDatabase/#db.dropDatabase
+
 
 Regex
 http://stackoverflow.com/questions/10944438/how-do-i-check-if-a-string-only-contains-alphanumeric-characters-and-dashes

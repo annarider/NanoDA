@@ -1,0 +1,36 @@
+Commands to use in the mongo shell
+
+Doc from MongoDB: http://docs.mongodb.org/manual/tutorial/getting-started-with-the-mongo-shell
+http://docs.mongodb.org/manual/reference/mongo-shell/
+
+Display database currently using
+> db
+
+List all databases
+> show dbs
+
+Enter a database
+> use <databasename>
+
+List all collections in current database
+> show collections
+(or) > show tables
+(or) > db.getCollectionNames()
+
+Enter a collection
+> use <collectionname>
+
+Import data from json file to certain database & collection
+$ mongoimport --db <dbname> --collection <collectionname> --file <filename> --jsonArray
+
+Import data from csv file to certain database & collections
+$ mongoimport --db users --collection contacts --type csv --headerline --file /opt/backups/contacts.csv
+
+
+
+
+Find all documents in a collection
+> db.<name of collection>.find()
+
+Drop database
+> db.dropDatabase()
