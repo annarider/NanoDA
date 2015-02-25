@@ -1,0 +1,13 @@
+OSM XML data 
+
+OpenStreetMap Documentation
+http://wiki.openstreetmap.org/wiki/Main_Page
+
+OSM XML Documentation
+http://http//wiki.openstreetmap.org/wiki/OSM_XML
+
+Tag nested within the node tags means the tags are modifying or adding tags to the 
+node tag. Same with way: tags nested in way describe the way tag.
+
+<way> = street, roads, commons, paths, etc.
+
