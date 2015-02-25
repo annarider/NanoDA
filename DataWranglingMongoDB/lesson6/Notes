@@ -11,3 +11,9 @@ node tag. Same with way: tags nested in way describe the way tag.
 
 <way> = street, roads, commons, paths, etc.
 
+When the file size is huge, may be impossible to put whole dataset into memory for 
+analysis. Therefore, use Element tree (c version) for additional features to help
+parse data. Can use iterative parsing to iterate through events.
+    - Can specify where to start for an event, e.g. start with open tags. Every
+    time there's an open tag <node it will spit out an event
+    - Can specify exactly which tags to get back e.g. elem.iter('tag')
