@@ -2,5 +2,6 @@
 .DS_Store
 *.zip
 *.sublime-project
+osm-auckland.xml
 data/
 dataset/
