@@ -8,7 +8,7 @@ http://http//wiki.openstreetmap.org/wiki/OSM_XML
 
 Tag nested within the node tags means the tags are modifying or adding tags to the 
 node tag. Same with way: tags nested in way describe the way tag.
-    - Access the tag in the element (using Elementree): element.tag
+    - Access the tag in the element (using cElementTree): element.tag
     e.g. element.tag == 'tag'
     - Access the dict in element with element.attrib
     e.g. k, v = element.attrib['k'], element.attrib['v'] 
