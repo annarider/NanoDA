@@ -27,19 +27,16 @@ def key_type(element, keys):
     if element.tag == "tag":
         # retrieve dict of attributes & assign to k & v variables respectively
         k, v = element.attrib['k'], element.attrib['v'] 
-        # check k value to see if it's a valid tag using regex 
-        # each key in keys matches regex so iterate through keys for regex test 
-        print k
-        for k_type in keys:
-            print 'key = ', k_type
-            if lower.match(k):
-                keys['lower'] += 1
-            elif lower_colon.match(k):
-                keys['lower_colon'] += 1
-            elif problemchars.match(k):
-                eys['problemchars'] += 1
-            else: 
-                keys[k_type] += 1
+        # check 'k' string to see if it's a valid key using regex 
+        # scan through looking for regex pattern & increment keys if matches condition
+        if lower.search(k) != None:
+            keys['lower'] += 1
+        if lower_colon.search(k) != None:
+            keys['lower_colon'] += 1
+        if problemchars.search(k) != None:
+            keys['problemchars'] += 1
+        if lower.search(k) == None and lower_colon.search(k) == None and problemchars.search(k) == None: 
+            keys['other'] += 1
         
     return keys
 
@@ -59,7 +56,7 @@ def test():
     # Note that the assertions will be incorrect then.
     keys = process_map('example2.osm')
     pprint.pprint(keys)
-    # assert keys == {'lower': 5, 'lower_colon': 0, 'other': 1, 'problemchars': 1}
+    assert keys == {'lower': 5, 'lower_colon': 0, 'other': 1, 'problemchars': 1}
 
 
 if __name__ == "__main__":
