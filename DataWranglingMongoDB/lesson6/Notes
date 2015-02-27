@@ -22,3 +22,12 @@ parse data. Can use iterative parsing to iterate through events.
     time there's an open tag <node it will spit out an event
     - Can specify exactly which tags to get back e.g. elem.iter('tag')
 
+REGEX
+
+Scan through string and find whether regex pattern occurs in string: 
+    - after compiling the regex, use the re.search
+    - returns None if no match
+Scan through string and find whether regex pattern occurs. Return where it matches
+    - after compiling, use re.match
+    - returns a MatchObject
+    - returns none if no match
