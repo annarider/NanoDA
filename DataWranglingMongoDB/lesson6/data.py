@@ -111,16 +111,13 @@ def shape_element(element):
                 node['type'] = attributes[attr]
             if attr == 'visible':
                 node['visible'] = attributes[attr]
-        
-            # test if attribute needs to go under 'created' dict
-            if attr in CREATED:
-                created[attr] = attributes[attr]
+            
 
             # test if attribute needs to go under 'created' dict
             if attr in CREATED:
                 created[attr] = attributes[attr]
-            # add 'created' dict to node
-            node['created'] = created
+                # add 'created' dict to node
+                node['created'] = created
 
             # save attributes pos, amenity, cuisine, name, or phone to node dict
             # test for lat & lon to save in pos then save pos to node
@@ -131,31 +128,40 @@ def shape_element(element):
                 pos[1] = float(attributes[attr])
                 node['pos'] = pos
 
-        # process attributes within 'tag'
-        if element.tag == 'tag':
-            k, v = element.attrib['k'], element.attrib['v']
+    # process attributes within 'tag'
+    if element.tag == 'tag':
+        k, v = element.attrib['k'], element.attrib['v']
+        print k
 
-            # check for problematic characters
-            if problemchars.search(k) == None:
+        # check for problematic characters
+        if problemchars.search(k) == None:
 
-                # save these below attributes to node, not address
-                if k == 'amenity':
-                    node['amenity'] = v
-                if k == 'cuisine':
-                    node['cuisine'] = v
-                if k == 'name':
-                    node['name'] = v
-                if k == 'phone':
-                    node['phone'] = v
+            # save these below attributes to node, not address
+            if k == 'amenity':
+                node['amenity'] = v
+            if k == 'cuisine':
+                node['cuisine'] = v
+            if k == 'name':
+                node['name'] = v
+            if k == 'phone':
+                node['phone'] = v
 
-                if k == 'addr:'
-                    pass
+            if 'addr:' in k:
+                print True
+            else: 
+                print False
             
-        print node
+        # print node
         return node
     else:
         return None
 
+''' 
+For all attributes in the CREATED list, add 
+'''
+def add_to_created(node, attributes, attr):
+    pass
+    # return node
 
 def process_map(file_in, pretty = False):
     # You do not need to change this file
