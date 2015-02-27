@@ -25,8 +25,19 @@ problemchars = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
 
 def key_type(element, keys):
     if element.tag == "tag":
-        # YOUR CODE HERE
-        pass
+        # retrieve dict of attributes & assign to k & v variables respectively
+        k, v = element.attrib['k'], element.attrib['v'] 
+        # check k value to see if it's a valid tag using regex 
+        # each key in keys matches regex so iterate through keys for regex test 
+        for k_type in keys:
+            if k_type == 'lower' and lower.match(k):
+                keys[k_type] += 1
+            if k_type == 'lower_colon' and lower_colon.match(k):
+                keys[k_type] += 1
+            if k_type == 'problemchars' and problemchars.match(k):
+                eys[k_type] += 1
+            elif k_type == 'other': 
+                keys[k_type] += 1
         
     return keys
 
@@ -44,9 +55,9 @@ def process_map(filename):
 def test():
     # You can use another testfile 'map.osm' to look at your solution
     # Note that the assertions will be incorrect then.
-    keys = process_map('example.osm')
+    keys = process_map('example2.osm')
     pprint.pprint(keys)
-    assert keys == {'lower': 5, 'lower_colon': 0, 'other': 1, 'problemchars': 1}
+    # assert keys == {'lower': 5, 'lower_colon': 0, 'other': 1, 'problemchars': 1}
 
 
 if __name__ == "__main__":
