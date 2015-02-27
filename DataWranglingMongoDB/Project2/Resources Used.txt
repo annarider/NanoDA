@@ -27,6 +27,7 @@ http://stackoverflow.com/questions/9299919/add-number-to-set
 http://stackoverflow.com/questions/4406501/change-the-key-value-in-python-dictionary
 * How to print out keys from dict
 http://stackoverflow.com/questions/5904969/python-how-to-print-a-dictionarys-key 
+http://stackoverflow.com/questions/2711579/concatenate-strings-in-python-2-4
 
 
 XLRD
