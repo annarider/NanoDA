@@ -29,14 +29,16 @@ def key_type(element, keys):
         k, v = element.attrib['k'], element.attrib['v'] 
         # check k value to see if it's a valid tag using regex 
         # each key in keys matches regex so iterate through keys for regex test 
+        print k
         for k_type in keys:
-            if k_type == 'lower' and lower.match(k):
-                keys[k_type] += 1
-            if k_type == 'lower_colon' and lower_colon.match(k):
-                keys[k_type] += 1
-            if k_type == 'problemchars' and problemchars.match(k):
-                eys[k_type] += 1
-            elif k_type == 'other': 
+            print 'key = ', k_type
+            if lower.match(k):
+                keys['lower'] += 1
+            elif lower_colon.match(k):
+                keys['lower_colon'] += 1
+            elif problemchars.match(k):
+                eys['problemchars'] += 1
+            else: 
                 keys[k_type] += 1
         
     return keys
