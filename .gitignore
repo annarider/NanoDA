@@ -3,5 +3,6 @@
 *.zip
 *.sublime-project
 osm-auckland.xml
+osm-auckland.json
 data/
 dataset/
