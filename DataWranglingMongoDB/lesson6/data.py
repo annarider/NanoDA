@@ -99,8 +99,13 @@ def shape_element(element):
         attributes = element.attrib
         # instantiate 'created' dict to start storing 'created' attributes
         created = {}
+        # instantiate 'address' dict to start storing address attributes
+        address = {}
         # create pos list in preparation to store lat & long
         pos = ['lat','lon']
+
+        # add the element type to node
+        node['type'] = element.tag
         # start iterating through attributes and assigning to node
         for attr in attributes:
 
@@ -128,40 +133,50 @@ def shape_element(element):
                 pos[1] = float(attributes[attr])
                 node['pos'] = pos
 
-    # process attributes within 'tag'
-    if element.tag == 'tag':
-        k, v = element.attrib['k'], element.attrib['v']
-        print k
-
-        # check for problematic characters
-        if problemchars.search(k) == None:
-
-            # save these below attributes to node, not address
-            if k == 'amenity':
-                node['amenity'] = v
-            if k == 'cuisine':
-                node['cuisine'] = v
-            if k == 'name':
-                node['name'] = v
-            if k == 'phone':
-                node['phone'] = v
-
-            if 'addr:' in k:
-                print True
-            else: 
-                print False
+            # if 'node' has child 'tag', iterate through to extract address and location data
+            for child in element:
             
-        # print node
+                # process attributes within 'tag', first check for tag
+                if child.tag  == 'tag':
+                    
+                    # assign tag values to k and v
+                    k, v = child.attrib['k'], child.attrib['v']
+
+                    # check for problematic characters, if problematic, ignore that tag
+                    if problemchars.search(k) == None:
+
+                        # save these below attributes to node, not address
+                        if k == 'amenity':
+                            node['amenity'] = v
+                        if k == 'cuisine':
+                            node['cuisine'] = v
+                        if k == 'name':
+                            node['name'] = v
+                        if k == 'phone':
+                            node['phone'] = v
+
+                        # test for address tags
+                        if 'addr:' in k and lower_colon.search(k) != None:
+                            # check for second level of ':', ignore tag if found 
+                            if 'addr:street:' not in k:
+                                start_colon = k.find(':')
+                                # extract the word after 'addr:' to use as key in address dict
+                                # add 1 to start of colon to avoid the ':'
+                                tag = k[start_colon+1:]
+                                address[tag] = v
+                                # print address
+                    node['address'] = address    
+                    
+                
+        
         return node
     else:
         return None
 
+
 ''' 
 For all attributes in the CREATED list, add 
 '''
-def add_to_created(node, attributes, attr):
-    pass
-    # return node
 
 def process_map(file_in, pretty = False):
     # You do not need to change this file
@@ -183,7 +198,7 @@ def test():
     # call the process_map procedure with pretty=False. The pretty=True option adds 
     # additional spaces to the output, making it significantly larger.
     data = process_map('example3.osm', True)
-    #pprint.pprint(data)
+    pprint.pprint(data)
     
     correct_first_elem = {
         "id": "261114295", 
@@ -198,13 +213,13 @@ def test():
             "timestamp": "2012-03-28T18:31:23Z"
         }
     }
-    # assert data[0] == correct_first_elem
-    # assert data[-1]["address"] == {
-    #                                 "street": "West Lexington St.", 
-    #                                 "housenumber": "1412"
-    #                                   }
-    # assert data[-1]["node_refs"] == [ "2199822281", "2199822390",  "2199822392", "2199822369", 
-                                    # "2199822370", "2199822284", "2199822281"]
+    assert data[0] == correct_first_elem
+    assert data[-1]["address"] == {
+                                    "street": "West Lexington St.", 
+                                    "housenumber": "1412"
+                                      }
+    assert data[-1]["node_refs"] == [ "2199822281", "2199822390",  "2199822392", "2199822369", 
+                                    "2199822370", "2199822284", "2199822281"]
 
 if __name__ == "__main__":
     test()
