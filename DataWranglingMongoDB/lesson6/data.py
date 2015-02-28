@@ -92,6 +92,13 @@ problemchars = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
 
 CREATED = [ "version", "changeset", "timestamp", "user", "uid"]
 
+''' 
+This method does all the hard work checking the xml data and processes it to clean the 
+map data. The goal is to prepare the data in a JSON format to import into mongodb
+The code is a huge block because refactoring it into smaller functions made the code's
+logic harder to follow. If you really want a refactored version, look for it in 
+data-refactored.py
+'''
 
 def shape_element(element):
     node = {}
@@ -133,10 +140,14 @@ def shape_element(element):
                 pos[1] = float(attributes[attr])
                 node['pos'] = pos
 
-            # if 'node' has child 'tag', iterate through to extract address and location data
+
+            # instantiate 'node_refs' list to start storing node references
+            node_refs = []
+
+            # if 'node' has child 'tag' or 'way has child 'nd', iterate through to extract address and location data
             for child in element:
             
-                # process attributes within 'tag', first check for tag
+                # process attributes within 'tag', first check for tag which is nested in 'node'
                 if child.tag  == 'tag':
                     
                     # assign tag values to k and v
@@ -166,17 +177,23 @@ def shape_element(element):
                                 address[tag] = v
                                 # print address
                     node['address'] = address    
+                        
                     
-                
+                # process attributes within 'nd', first check for 'nd' which is nested in 'way'
+                if child.tag  == 'nd':
+                    # assign nd values to k and v
+                    # retrieve the value of 'nd', e.g. 'ref': '2636086177'
+                    # extract the value from the key-value pair to only have the reference number
+                    ref_val = child.attrib['ref']
+                    # add the value of 'nd' to the node_refs list
+                    node_refs.append(ref_val)
+                # add list of 'node_refs' to 'node' dict
+                node['node_refs'] = node_refs
         
         return node
     else:
         return None
 
-
-''' 
-For all attributes in the CREATED list, add 
-'''
 
 def process_map(file_in, pretty = False):
     # You do not need to change this file
