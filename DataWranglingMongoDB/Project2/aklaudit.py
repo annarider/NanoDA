@@ -14,14 +14,14 @@ from collections import defaultdict
 import re
 import pprint
 
-OSMFILE = "osm-auckland-sample.xml"
+OSMFILE = "osm-auckland.xml"
 street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
 # add another regex to match for directions
 street_direction_re = re.compile(r'\b\S+\.?^', re.IGNORECASE)
 
 
 expected = ["Street", "Avenue", "Boulevard", "Drive", "Court", "Place", "Square", "Lane", "Road", 
-            "Trail", "Parkway", "Commons", "Crescent", "Way"]
+            "Trail", "Parkway", "Commons", "Crescent", "Way", "West", "East"]
 directions = ['North', 'South', 'East', 'West']
 
 # updated the mapping by adding more unusual street name endings to standardize to expected values
@@ -65,12 +65,12 @@ def audit(osmfile):
             for tag in elem.iter("tag"):
                 if is_street_name(tag):
                     audit_street_type(street_types, tag.attrib['v'])
-                    audit_street_direction (street_types, tag.attrib['v'])
+                    # audit_street_direction (street_types, tag.attrib['v'])
 
     return street_types
 
 
-def update_name(name, mapping):
+def update_name(name):
     # retrieve the street type e.g. Ave or St.
     m = street_type_re.search(name)
     if m:
@@ -90,7 +90,7 @@ def audit_data():
 
     for st_type, ways in st_types.iteritems():
         for name in ways:
-            better_name = update_name(name, mapping)
+            better_name = update_name(name)
             print name, "=>", better_name
 
 

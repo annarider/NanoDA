@@ -5,7 +5,7 @@ import pprint
 import re
 import codecs
 import json
-import akl-audit as audit
+import aklaudit as audit
 
 """
 Regex for testing for problematic characters and expected values
@@ -95,7 +95,11 @@ def shape_element(element):
                                 # extract the word after 'addr:' to use as key in address dict
                                 # add 1 to start of colon to avoid the ':'
                                 tag = k[start_colon+1:]
-                                address[tag] = v
+                                if tag == 'street': 
+                                    v = audit.update_name(v)
+                                    address[tag] = v
+                                else:
+                                    address[tag] = v
                                 # add address to node only if there are address-related tags 
                                 node['address'] = address    
                         
@@ -117,7 +121,7 @@ def shape_element(element):
 
 def create_json_map(file_in, pretty = False):
     # You do not need to change this file
-    file_out = "osm-auckland-test.json"
+    file_out = "osm-auckland.json"
     data = []
     with codecs.open(file_out, "w") as fo:
         # file is too big & need to clear out root to stop computer from freezing
@@ -146,8 +150,8 @@ def process_map():
     # NOTE: if you are running this code on your computer, with a larger dataset, 
     # call the create_json_map procedure with pretty=False. The pretty=True option adds 
     # additional spaces to the output, making it significantly larger.
-    data = create_json_map("osm-auckland-test.xml", True)
-    pprint.pprint(data)
+    data = create_json_map("osm-auckland.xml", True)
+    # pprint.pprint(data)
     
 
 if __name__ == "__main__":
