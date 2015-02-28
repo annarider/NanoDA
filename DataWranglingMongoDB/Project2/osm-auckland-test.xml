@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="Overpass API">
+<note>The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.</note>
+<meta osm_base="2015-02-26T06:59:02Z"/>
+  <node id="62213534" lat="-36.9034028" lon="174.7415448">
+    <tag k="created_by" v="Potlatch 0.10b"/>
+    <tag k="is_in" v="Auckland"/>
+    <tag k="name" v="Mount Roskill"/>
+    <tag k="place" v="suburb"/>
+  </node>
+  <node id="62214036" lat="-36.9025889" lon="174.7608396">
+    <tag k="created_by" v="Potlatch 0.10b"/>
+    <tag k="is_in" v="Auckland"/>
+    <tag k="name" v="Three Kings"/>
+    <tag k="place" v="suburb"/>
+  </node>
+  <node id="62217356" lat="-36.9221158" lon="174.7710391"/>
+  <node id="62217634" lat="-36.9119950" lon="174.7761848">
+    <tag k="is_in" v="Auckland"/>
+    <tag k="name" v="Royal Oak"/>
+    <tag k="place" v="suburb"/>
+  </node>
+  <node id="63547045" lat="-36.8918538" lon="174.7362885"/>
+  <node id="63548406" lat="-36.8930943" lon="174.7365013"/>
+  <node id="63548410" lat="-36.8931334" lon="174.7371849"/>
+  <node id="63578488" lat="-36.9017231" lon="174.7436579"/>
+  <node id="63578489" lat="-36.9014321" lon="174.7439504"/>
+  <node id="63578491" lat="-36.9009575" lon="174.7439527"/>
+  <node id="63578495" lat="-36.9018425" lon="174.7431646"/>
+  <node id="63603890" lat="-36.8869482" lon="174.7465504"/>
+  <node id="63603891" lat="-36.8874074" lon="174.7486742"/>
+  <node id="63604002" lat="-36.8875273" lon="174.7497244"/>
+  <node id="65373197" lat="-36.9079227" lon="174.7555707">
+    <tag k="name" v="Countdown"/>
+    <tag k="shop" v="supermarket"/>
+  </node>
+  <node id="65388911" lat="-36.8928530" lon="174.7743176">
+    <tag k="amenity" v="cinema"/>
+    <tag k="created_by" v="Potlatch 0.10b"/>
+    <tag k="name" v="Lido Cinema"/>
+  </node>
+  <node id="65389942" lat="-36.8683617" lon="174.7775985">
+    <tag k="addr:housenumber" v="167-169"/>
+    <tag k="addr:street" v="Broadway"/>
+    <tag k="amenity" v="cinema"/>
+    <tag k="name" v="Rialto Newmarket"/>
+    <tag k="phone" v="+64 9 369 2417"/>
+    <tag k="website" v="http://www.rialto.co.nz/Cinema/Newmarket"/>
+  </node>
+  <node id="65390974" lat="-36.8722161" lon="174.7773166">
+    <tag k="addr:city" v="Auckland"/>
+    <tag k="addr:housenumber" v="372"/>
+    <tag k="addr:street" v="Broadway"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="name" v="The Claddagh"/>
+    <tag k="phone" v="+64 9 522 4410"/>
+    <tag k="website" v="http://www.thecladdagh.co.nz/"/>
+  </node>
+  <node id="65392951" lat="-36.8643963" lon="174.7665711">
+    <tag k="highway" v="motorway_junction"/>
+    <tag k="name" v="Symonds Street/Wellesley Street/Port"/>
+    <tag k="ref" v="429A/B/C"/>
+  </node>
+  <node id="65393322" lat="-36.8685134" lon="174.7695266">
+    <tag k="highway" v="motorway_junction"/>
+    <tag k="name" v="Khyber Pass Road"/>
+    <tag k="ref" v="430"/>
+  </node>
+  <node id="65393327" lat="-36.8678229" lon="174.7683688"/>
+  <node id="65399659" lat="-36.8703855" lon="174.7507333"/>
+  <node id="68401252" lat="-36.8754420" lon="174.7717862"/>
+  <node id="68401253" lat="-36.8751119" lon="174.7727315"/>
+  <node id="68401254" lat="-36.8752432" lon="174.7734789"/>
+  <node id="68401258" lat="-36.8753495" lon="174.7703871"/>
+  <node id="68401819" lat="-36.8705579" lon="174.7720984"/>
+  <node id="68403049" lat="-36.8725276" lon="174.7741883">
+    <tag k="highway" v="traffic_signals"/>
+  </node>
+</osm>

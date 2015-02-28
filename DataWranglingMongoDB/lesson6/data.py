@@ -176,7 +176,7 @@ def shape_element(element):
                                 tag = k[start_colon+1:]
                                 address[tag] = v
                                 # print address
-                    node['address'] = address    
+                                node['address'] = address    
                         
                     
                 # process attributes within 'nd', first check for 'nd' which is nested in 'way'
@@ -187,8 +187,8 @@ def shape_element(element):
                     ref_val = child.attrib['ref']
                     # add the value of 'nd' to the node_refs list
                     node_refs.append(ref_val)
-                # add list of 'node_refs' to 'node' dict
-                node['node_refs'] = node_refs
+                    # add list of 'node_refs' to 'node' dict
+                    node['node_refs'] = node_refs
         
         return node
     else:

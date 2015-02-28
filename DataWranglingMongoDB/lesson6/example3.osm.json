@@ -271,27 +271,24 @@
   }
 }
 {
-  "node_refs": [], 
+  "id": "261221424", 
+  "visible": "true", 
+  "type": "node", 
+  "pos": [
+    41.9758794, 
+    -87.6923639
+  ], 
   "created": {
     "changeset": "8581395", 
     "user": "bbmiller", 
     "version": "7", 
     "uid": "451048", 
     "timestamp": "2011-06-29T14:14:15Z"
-  }, 
-  "pos": [
-    41.9758794, 
-    -87.6923639
-  ], 
-  "visible": "true", 
-  "address": {}, 
-  "type": "node", 
-  "id": "261221424"
+  }
 }
 {
   "cuisine": "mexican", 
   "amenity": "restaurant", 
-  "node_refs": [], 
   "name": "La Cabana De Don Luis", 
   "created": {
     "changeset": "17206049", 
@@ -316,7 +313,6 @@
   "id": "2406124091"
 }
 {
-  "node_refs": [], 
   "name": "Matty Ks", 
   "created": {
     "changeset": "20187349", 
@@ -361,7 +357,6 @@
 {
   "cuisine": "sausage", 
   "amenity": "fast_food", 
-  "node_refs": [], 
   "name": "Shelly's Tasty Freeze", 
   "created": {
     "changeset": "5288876", 
@@ -375,32 +370,29 @@
     -87.6920102
   ], 
   "visible": "true", 
-  "address": {}, 
   "type": "node", 
   "id": "757860928"
 }
 {
+  "id": "258219703", 
   "node_refs": [
     "2636086179", 
     "2636086178", 
     "2636086177", 
     "2636086176"
   ], 
+  "type": "way", 
+  "visible": "true", 
   "created": {
     "changeset": "20187382", 
     "user": "linuxUser16", 
     "version": "1", 
     "uid": "1219059", 
     "timestamp": "2014-01-25T02:01:54Z"
-  }, 
-  "visible": "true", 
-  "address": {}, 
-  "type": "way", 
-  "id": "258219703"
+  }
 }
 {
   "amenity": "townhall", 
-  "node_refs": [], 
   "name": "Village Hall", 
   "created": {
     "changeset": "11043902", 

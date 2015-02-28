@@ -14,7 +14,7 @@ from collections import defaultdict
 import re
 import pprint
 
-OSMFILE = "osm-auckland.xml"
+OSMFILE = "osm-auckland-sample.xml"
 street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
 # add another regex to match for directions
 street_direction_re = re.compile(r'\b\S+\.?^', re.IGNORECASE)
@@ -91,7 +91,7 @@ def audit_data():
     for st_type, ways in st_types.iteritems():
         for name in ways:
             better_name = update_name(name, mapping)
-            # print name, "=>", better_name
+            print name, "=>", better_name
 
 
 if __name__ == '__main__':
