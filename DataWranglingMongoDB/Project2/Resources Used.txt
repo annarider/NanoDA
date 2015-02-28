@@ -76,3 +76,9 @@ http://docs.mongodb.org/manual/reference/method/db.dropDatabase/#db.dropDatabase
 Regex
 http://stackoverflow.com/questions/10944438/how-do-i-check-if-a-string-only-contains-alphanumeric-characters-and-dashes
 
+OpenStreetMap
+** Downloading a custom region
+http://overpass-turbo.eu/
+http://overpass-api.de/query_form.html
+http://overpass-api.de/command_line.html
+http://wiki.openstreetmap.org/wiki/Downloading_data
