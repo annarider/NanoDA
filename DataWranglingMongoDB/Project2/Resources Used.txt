@@ -86,3 +86,4 @@ http://wiki.openstreetmap.org/wiki/Downloading_data
 ElementTree
 ** Clear root to preserve memory and stop my computer from freezing
 http://stackoverflow.com/questions/7544881/efficient-way-of-xml-parsing-in-elementtree1-3-0-python
+http://effbot.org/zone/element-iterparse.htm

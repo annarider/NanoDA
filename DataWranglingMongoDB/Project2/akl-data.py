@@ -134,7 +134,17 @@ def create_json_map(file_in, pretty = False):
     file_out = "osm-auckland.json"
     data = []
     with codecs.open(file_out, "w") as fo:
-        for _, element in ET.iterparse(file_in):
+        # file is too big & need to clear out root to stop computer from freezing
+        # start by getting an iterable (source: http://effbot.org/zone/element-iterparse.htm)
+        context = ET.iterparse(file_in, events=('start', ))
+
+        # turn context into an iterator
+        context = iter(context)
+
+        # get the root element
+        event, root = context.next()
+
+        for evet, element in context:
             el = shape_element(element)
             if el:
                 data.append(el)
@@ -142,6 +152,8 @@ def create_json_map(file_in, pretty = False):
                     fo.write(json.dumps(el, indent=2)+"\n")
                 else:
                     fo.write(json.dumps(el) + "\n")
+            root.clear()
+
     return data
 
 def process_map():
