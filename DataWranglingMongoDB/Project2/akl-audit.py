@@ -22,7 +22,7 @@ street_direction_re = re.compile(r'\b\S+\.?^', re.IGNORECASE)
 
 expected = ["Street", "Avenue", "Boulevard", "Drive", "Court", "Place", "Square", "Lane", "Road", 
             "Trail", "Parkway", "Commons", "Crescent", "Way"]
-directions = ['North', 'South', 'East', 'West', 'north']
+directions = ['North', 'South', 'East', 'West']
 
 # updated the mapping by adding more unusual street name endings to standardize to expected values
 mapping = { 'St': 'Street',
