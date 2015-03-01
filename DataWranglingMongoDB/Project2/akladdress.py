@@ -15,18 +15,39 @@ def get_db(db_name):
     db = client[db_name]
     return db
 
+'''
+MongoDB query to return street address if not null, group the values by
+street, and count the number of each street's occurences. The query
+returns the most common street names first.
+'''  
 def retrieve_streets():
-    pipeline = [ {'$group': {'_id': '$address.street',
+    pipeline = [ {'$match': {'address.street': {'$exists': 1}}},
+                 {'$group': {'_id': '$address.street',
                                'count': { '$sum': 1} }},
-                 {'$sort': {'count': -1}},
-                 {'$limit': 100} ]
+                 {'$sort': {'count': -1}}]
     return pipeline
 
+'''
+MongoDB query to return city if not null, group the values by
+city, and count the number of each city's occurences. The query
+returns the most common cities first.
+'''
 def retrieve_cities():
-    pipeline = [ {'$group': {'_id': '$address.city',
+    pipeline = [ {'$match': {'address.city': {'$exists': 1}}},
+                 {'$group': {'_id': '$address.city',
                                'count': { '$sum': 1} }},
-                 {'$sort': {'count': -1}},
-                 {'$limit': 100} ]
+                 {'$sort': {'count': -1}}]
+    return pipeline
+
+'''
+This query returns the number of address documents that are missing
+a city but have at least a street
+'''
+def missing_cities():
+    pipeline = [ {'$match': {'address': {'$exists': 1}}},
+                 {'$match': {'address.street': {'$exists': 1}}},
+                 {'$match': {'address.city': {'$exists': False}}},
+                 {'$group': {'_id': '$address.city','count': { '$sum': 1} }} ]
     return pipeline
 
 def aggregate(db, pipeline):
@@ -37,11 +58,19 @@ def aggregate(db, pipeline):
 if __name__ == '__main__':
     # access the db auckland with osm data on auckland
     db = get_db('auckland')
+    # set of street commands with aggregation pipeline query & pretty print streetnames
     # pipeline_street = retrieve_streets()    
     # result_street = aggregate(db, pipeline_street)
     # pprint.pprint(result_street)
 
-    pipeline_city = retrieve_cities()
-    result_city = aggregate(db, pipeline_city)
-    pprint.pprint(result_city)
+    # set of city commands to aggregate city data and pretty print all cities in dataaset
+    # pipeline_city = retrieve_cities()
+    # result_city = aggregate(db, pipeline_city)
+    # pprint.pprint(result_city)
+
+    # set of city commands to aggregate city data and pretty print all cities in dataaset
+    pipeline_missing_city = missing_cities()
+    missing_city = aggregate(db, pipeline_missing_city)
+    pprint.pprint(missing_city)
+
     
