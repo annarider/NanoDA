@@ -7,10 +7,17 @@ import codecs
 import json
 import aklaudit as audit
 
+'''
+Intro: This script is a modified version of the data cleaning data.py script from Lesson 6.
+It turns the original OSM xml data into JSON, by creating the appropriate key-value pairs
+in dicts. There is also some data cleaning, particularly through the aklaudit methods
+which standardize street types. This script also verifies correct address information, and
+ignores problematic characters.  
+'''
+
 """
 Regex for testing for problematic characters and expected values
 """
-
 lower = re.compile(r'^([a-z]|_)*$')
 lower_colon = re.compile(r'^([a-z]|_)*:([a-z]|_)*$')
 problemchars = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
