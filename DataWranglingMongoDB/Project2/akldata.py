@@ -5,7 +5,8 @@ import pprint
 import re
 import codecs
 import json
-import aklstreetaudit as audit
+import aklstreetaudit as audst
+import aklcitycleaning as audcit
 
 '''
 Intro: This script is a modified version of the data cleaning data.py script from Lesson 6.
@@ -103,8 +104,12 @@ def shape_element(element):
                                 # add 1 to start of colon to avoid the ':'
                                 tag = k[start_colon+1:]
                                 if tag == 'street': 
-                                    v = audit.update_name(v)
+                                    v = audst.update_name(v)
                                     address[tag] = v
+                                elif tag == 'city':
+                                    city, suburb = audcit.clean_city(v) 
+                                    address[tag] = city
+                                    address['suburb'] = suburb
                                 else:
                                     address[tag] = v
                                 # add address to node only if there are address-related tags 
