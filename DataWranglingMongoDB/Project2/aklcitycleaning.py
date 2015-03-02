@@ -14,8 +14,6 @@ import xml.etree.cElementTree as ET
 from collections import defaultdict
 import re
 import pprint
-from pymongo import MongoClient
-import json
 
 lower = re.compile(r'^([a-z]|_)*$')
 lower_colon = re.compile(r'^([a-z]|_)*:([a-z]|_)*$')
@@ -24,17 +22,6 @@ suburb_re = re.compile(r'^([a-zA-Z ]*)(,|$)')
 
 # use the OSM Auckland data
 OSMFILE = "osm-auckland.xml"
-
-def get_db(db_name):
-    
-    client = MongoClient('localhost:27017')
-    db = client[db_name]
-    return db
-
-def aggregate(db, pipeline):
-    # osm auckland data is in the 'full' collection
-    result = db.full.aggregate(pipeline)
-    return result
 
 def audit_city(cityname, city_types, count_auckland):
     if cityname != 'Auckland':

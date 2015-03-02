@@ -109,7 +109,9 @@ def shape_element(element):
                                 elif tag == 'city':
                                     city, suburb = audcit.clean_city(v) 
                                     address[tag] = city
-                                    address['suburb'] = suburb
+                                    # only if suburb is not None, add it to the JSON
+                                    if suburb != None:
+                                        address['suburb'] = suburb
                                 else:
                                     address[tag] = v
                                 # add address to node only if there are address-related tags 

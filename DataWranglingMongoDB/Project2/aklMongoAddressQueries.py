@@ -64,12 +64,24 @@ def missing_cities():
     missing_city = aggregate(db, pipeline_missing_city)
     pprint.pprint(missing_city)
 
+'''
+This query returns the all suburbs in Auckland dataset
+'''
+def retrieve_suburbs():
+    # set of city commands to aggregate city data and pretty print all cities in dataaset
+    pipeline_suburb = [ {'$match': {'address': {'$exists': 1}}},
+                 {'$match': {'address.suburb': {'$exists': 1}}},
+                 {'$group': {'_id': '$address.suburb','count': { '$sum': 1} }} ]
+    suburbs = aggregate(db, pipeline_suburb)
+    pprint.pprint(suburbs)
+
 if __name__ == '__main__':
     # access the db auckland with osm data on auckland
     db = get_db('auckland')
     # retrieve_cities()
-    retrieve_streets()
+    # retrieve_streets()
     # missing_cities()
+    retrieve_suburbs()
 
 
 
