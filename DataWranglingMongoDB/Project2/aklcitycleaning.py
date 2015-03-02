@@ -59,6 +59,7 @@ def clean_city(cityname):
     m = suburb_re.search(cityname)
     if m: 
         suburb = m.group(1)
+        if suburb
         # hard coded city to Auckland because I am only dealing with the Auckland metro area
     return 'Auckland', suburb
 
@@ -72,5 +73,4 @@ def audit_data(city_types):
 
 
 if __name__ == '__main__':
-    db = get_db('auckland')
     print audit(OSMFILE)

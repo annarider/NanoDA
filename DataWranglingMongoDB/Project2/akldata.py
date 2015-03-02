@@ -150,12 +150,12 @@ def create_json_map(file_in, pretty = False):
 
         for evet, element in context:
             el = shape_element(element)
-            # if el:
-            #     data.append(el)
-            #     if pretty:
-            #         fo.write(json.dumps(el, indent=2)+"\n")
-            #     else:
-            #         fo.write(json.dumps(el) + "\n")
+            if el:
+                data.append(el)
+                if pretty:
+                    fo.write(json.dumps(el, indent=2)+"\n")
+                else:
+                    fo.write(json.dumps(el) + "\n")
             root.clear()
 
     return data
