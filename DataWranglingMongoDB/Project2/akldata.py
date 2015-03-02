@@ -5,7 +5,7 @@ import pprint
 import re
 import codecs
 import json
-import aklaudit as audit
+import aklstreetaudit as audit
 
 '''
 Intro: This script is a modified version of the data cleaning data.py script from Lesson 6.

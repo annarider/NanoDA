@@ -71,6 +71,11 @@ def audit(osmfile):
 
 
 def update_name(name):
+    # clean the two instances discovered where street is missing a type
+    if name == 'Waverley':
+        name = 'Waverley Avenue'
+    if name == 'Hurstmere':
+        name = 'Hurstmere Road'
     # retrieve the street type e.g. Ave or St.
     m = street_type_re.search(name)
     if m:
@@ -80,7 +85,8 @@ def update_name(name):
             # street type is unexpected
             # find the beginning position of street type in street name
             start_pos = m.start()
-            name = name[:start_pos] + mapping[street_type] 
+            name = name[:start_pos] + mapping[street_type]
+            name = name.strip(' ') 
     return name
 
 

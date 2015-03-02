@@ -71,7 +71,8 @@ http://stackoverflow.com/questions/25373372/whats-wrong-with-this-mongoskin-aggr
 http://stackoverflow.com/questions/22932364/mongodb-group-values-by-multiple-fields
 ** Drop table
 http://docs.mongodb.org/manual/reference/method/db.dropDatabase/#db.dropDatabase
-
+** Find nulls in document
+http://stackoverflow.com/questions/10591543/mongodb-how-to-query-for-records-where-field-is-null-or-not-set
 
 Regex
 http://stackoverflow.com/questions/10944438/how-do-i-check-if-a-string-only-contains-alphanumeric-characters-and-dashes
