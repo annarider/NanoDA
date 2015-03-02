@@ -59,6 +59,7 @@ def clean_city(cityname):
     m = suburb_re.search(cityname)
     if m: 
         suburb = m.group(1)
+        # hard coded city to Auckland because I am only dealing with the Auckland metro area
     return 'Auckland', suburb
 
 

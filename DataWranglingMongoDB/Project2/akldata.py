@@ -107,10 +107,10 @@ def shape_element(element):
                                     v = audst.update_name(v)
                                     address[tag] = v
                                 elif tag == 'city':
-                                    city, suburb = audcit.clean_city(v) 
-                                    address[tag] = city
-                                    # only if suburb is not None, add it to the JSON
-                                    if suburb != None:
+                                    city, suburb = audcit.clean_city(v)
+                                    address['city'] = city
+                                    # only if suburb is not None or Auckland, add it to the JSON
+                                    if suburb and suburb != 'Auckland':
                                         address['suburb'] = suburb
                                 else:
                                     address[tag] = v
@@ -150,12 +150,12 @@ def create_json_map(file_in, pretty = False):
 
         for evet, element in context:
             el = shape_element(element)
-            if el:
-                data.append(el)
-                if pretty:
-                    fo.write(json.dumps(el, indent=2)+"\n")
-                else:
-                    fo.write(json.dumps(el) + "\n")
+            # if el:
+            #     data.append(el)
+            #     if pretty:
+            #         fo.write(json.dumps(el, indent=2)+"\n")
+            #     else:
+            #         fo.write(json.dumps(el) + "\n")
             root.clear()
 
     return data
@@ -170,3 +170,4 @@ def process_map():
 
 if __name__ == "__main__":
     process_map()
+    print "Finished processing, output JSON"
