@@ -19,6 +19,7 @@ lower = re.compile(r'^([a-z]|_)*$')
 lower_colon = re.compile(r'^([a-z]|_)*:([a-z]|_)*$')
 problemchars = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
 suburb_re = re.compile(r'^([a-zA-Z ]*)(,|$)')
+auck_re = re.compile(r'^([Auckland])*$')
 
 # use the OSM Auckland data
 OSMFILE = "osm-auckland.xml"
@@ -59,7 +60,9 @@ def clean_city(cityname):
     m = suburb_re.search(cityname)
     if m: 
         suburb = m.group(1)
-        if suburb
+        n = auck_re.search(suburb)
+        if n:
+            suburb = None
         # hard coded city to Auckland because I am only dealing with the Auckland metro area
     return 'Auckland', suburb
 
@@ -69,7 +72,9 @@ def audit_data(city_types):
     for city in city_types:
         correct_city, suburb = clean_city(city)
         print city, "=>", correct_city
-        print 'suburb => ', suburb
+        # print 'suburb => ', suburb
+        print city, "=>", suburb
+
 
 
 if __name__ == '__main__':
