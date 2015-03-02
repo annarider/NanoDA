@@ -18,6 +18,7 @@ OSMFILE = "osm-auckland.xml"
 street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
 # add another regex to match for directions
 street_direction_re = re.compile(r'\b\S+\.?^', re.IGNORECASE)
+housenumber_re = re.compile(r'(^[0-9 ]+)')
 
 
 expected = ["Street", "Avenue", "Boulevard", "Drive", "Court", "Place", "Square", "Lane", "Road", 
@@ -76,6 +77,8 @@ def update_name(name):
         name = 'Waverley Avenue'
     if name == 'Hurstmere':
         name = 'Hurstmere Road'
+    # strip any leading whitespaces from streets
+    name = name.strip(' ')
     # retrieve the street type e.g. Ave or St.
     m = street_type_re.search(name)
     if m:
@@ -86,7 +89,9 @@ def update_name(name):
             # find the beginning position of street type in street name
             start_pos = m.start()
             name = name[:start_pos] + mapping[street_type]
-            name = name.strip(' ') 
+            # print name
+    # strip any digits from street name
+    name = housenumber_re.sub("",name)
     return name
 
 

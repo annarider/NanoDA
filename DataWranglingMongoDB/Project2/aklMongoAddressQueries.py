@@ -75,13 +75,26 @@ def retrieve_suburbs():
     suburbs = aggregate(db, pipeline_suburb)
     pprint.pprint(suburbs)
 
+'''
+This query returns the all postal codes in Auckland dataset
+'''
+def retrieve_postcode():
+    # set of city commands to aggregate city data and pretty print all cities in dataaset
+    pipeline_postcode = [ {'$match': {'address': {'$exists': 1}}},
+                 {'$match': {'address.postcode': {'$exists': 1}}},
+                 {'$group': {'_id': '$address.postcode','count': { '$sum': 1} }}, 
+                 {'$sort': {'count': -1}}]
+    postcodes = aggregate(db, pipeline_postcode)
+    pprint.pprint(postcodes)
+
 if __name__ == '__main__':
     # access the db auckland with osm data on auckland
     db = get_db('auckland')
     # retrieve_cities()
-    # retrieve_streets()
+    retrieve_streets()
     # missing_cities()
-    retrieve_suburbs()
+    # retrieve_suburbs()
+    # retrieve_postcode()
 
 
 
