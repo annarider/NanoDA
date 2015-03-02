@@ -1,14 +1,17 @@
 '''
 Intro: This script is written to clean city data. 
 The main problems to address are: 
-1. Ensure the correct spelling of Auckland and consistent 
-capitalization
-2. If a suburb is present in the city value, return the
+1. Audit: Check for bad data in the city field, either incorrect
+spelling and capitalization of Auckland or city contains
+a suburb (including checking for numbers and punctuation like commas)
+2. Correct: Change city to the correct spelling of Auckland and 
+consistent capitalization
+3. Extract: If a suburb is present in the city value, return the
 suburb separately from the city so that the suburb can 
 have its own key-value pair in the JSON file to be imported
 into MongoDB
-3. Check street field to determine if there is city information
-(including checking for numbers and punctuation like commas)
+
+
 '''
 import xml.etree.cElementTree as ET
 from collections import defaultdict
@@ -18,7 +21,10 @@ import pprint
 lower = re.compile(r'^([a-z]|_)*$')
 lower_colon = re.compile(r'^([a-z]|_)*:([a-z]|_)*$')
 problemchars = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
+# check if there is a suburb in city by looking for a substring separated
+# by a comma, i.e. typical suburb format is 'suburb, Auckland'
 suburb_re = re.compile(r'^([a-zA-Z ]*)(,|$)')
+# checks for different spellings of Auckland
 auck_re = re.compile(r'^([Auckland])*$')
 
 # use the OSM Auckland data

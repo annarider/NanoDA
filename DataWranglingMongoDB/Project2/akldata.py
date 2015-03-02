@@ -26,7 +26,9 @@ problemchars = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
 CREATED = [ "version", "changeset", "timestamp", "user", "uid"]
 
 ''' 
-
+This method converts the xml data into JSON with different rules
+to transform the data appropriately. It calls two auditing
+scripts for cleaning address-related data.
 '''
 
 def shape_element(element):

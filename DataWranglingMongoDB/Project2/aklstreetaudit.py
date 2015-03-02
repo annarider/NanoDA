@@ -89,7 +89,6 @@ def update_name(name):
             # find the beginning position of street type in street name
             start_pos = m.start()
             name = name[:start_pos] + mapping[street_type]
-            # print name
     # strip any digits from street name
     name = housenumber_re.sub("",name)
     return name

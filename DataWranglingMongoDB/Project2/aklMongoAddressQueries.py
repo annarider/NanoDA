@@ -1,13 +1,13 @@
-import pprint
-from pymongo import MongoClient
 '''
-Intro: This script queries the MongoDB db auckland, collection full to retrieve
-the osm data on Auckland after it has been preliminarily cleaned, transformed
+Intro: This script queries the MongoDB db 'auckland', collection 'full' to retrieve
+the osm data on Auckland, after it was cleaned, standardized, transformed
 into JSON, and imported into MongoDB.
 
-The queries return information such as a list of all possible cities and streets
-to ensure consistent data values.  
+These sets of queries return address-related information, 
+such as a list of all possible cities, streets, and postcodes.
 '''
+import pprint
+from pymongo import MongoClient
 
 def get_db(db_name):
     

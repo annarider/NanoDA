@@ -32,5 +32,8 @@ $ mongoimport --db users --collection contacts --type csv --headerline --file /o
 Find all documents in a collection
 > db.<name of collection>.find()
 
+Find count of all documents in a collection
+> db.<name of collection>.count()
+
 Drop database
 > db.dropDatabase()
