@@ -25,6 +25,10 @@ problemchars = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
 
 CREATED = [ "version", "changeset", "timestamp", "user", "uid"]
 
+FEATURES = ['aerialway', 'aeroway', 'amenity', 'barrier', 'boundary', 'building', 'cuisine', 'name', 'phone',  'craft', 'website', 'emergency',
+            'geological', 'highway', 'sidewalk', 'cycleway', 'busway', 'historic', 'landuse', 'leisure', 'man_made', 'military', 'natural', 
+            'office', 'place', 'power', 'public_transport', 'railway', 'route', 'shop', 'sport', 'tourism', 'traffic_calming', 'waterway'] 
+
 ''' 
 This method converts the xml data into JSON with different rules
 to transform the data appropriately. It calls two auditing
@@ -87,15 +91,9 @@ def shape_element(element):
                     # check for problematic characters, if problematic, ignore that tag
                     if problemchars.search(k) == None:
 
-                        # save these below attributes to node, not address
-                        if k == 'amenity':
-                            node['amenity'] = v
-                        if k == 'cuisine':
-                            node['cuisine'] = v
-                        if k == 'name':
-                            node['name'] = v
-                        if k == 'phone':
-                            node['phone'] = v
+                        # save keys that appear in FEATURES to node dict for querying later
+                        if k in FEATURES:
+                            node[k] = v
 
                         # test for address tags
                         if 'addr:' in k and lower_colon.search(k) != None:

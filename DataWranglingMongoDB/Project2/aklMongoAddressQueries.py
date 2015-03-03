@@ -1,5 +1,5 @@
 '''
-Intro: This script queries the MongoDB db 'auckland', collection 'full' to retrieve
+Intro: This script queries the MongoDB db 'auckland', collection 'auckland' to retrieve
 the osm data on Auckland, after it was cleaned, standardized, transformed
 into JSON, and imported into MongoDB.
 
@@ -16,8 +16,8 @@ def get_db(db_name):
     return db
 
 def aggregate(db, pipeline):
-    # osm auckland data is in the 'full' collection
-    result = db.full.aggregate(pipeline)
+    # osm auckland data is in the 'auckland' collection
+    result = db.auckland.aggregate(pipeline)
     return result
 
 
@@ -89,9 +89,9 @@ def retrieve_postcode():
 
 if __name__ == '__main__':
     # access the db auckland with osm data on auckland
-    db = get_db('auckland')
+    db = get_db('osm')
     # retrieve_cities()
-    retrieve_streets()
+    # retrieve_streets()
     # missing_cities()
     # retrieve_suburbs()
     # retrieve_postcode()
