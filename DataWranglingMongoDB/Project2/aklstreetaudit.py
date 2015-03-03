@@ -14,7 +14,7 @@ from collections import defaultdict
 import re
 import pprint
 
-OSMFILE = "osm-auckland.xml"
+OSMFILE = "auckland.osm"
 street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
 # add another regex to match for directions
 street_direction_re = re.compile(r'\b\S+\.?^', re.IGNORECASE)

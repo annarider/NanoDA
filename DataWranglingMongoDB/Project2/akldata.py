@@ -139,7 +139,7 @@ def shape_element(element):
 
 def create_json_map(file_in, pretty = False):
     # You do not need to change this file
-    file_out = "osm-auckland.json"
+    file_out = "auckland.json"
     data = []
     with codecs.open(file_out, "w") as fo:
         # file is too big & need to clear out root to stop computer from freezing
@@ -168,7 +168,7 @@ def process_map():
     # NOTE: if you are running this code on your computer, with a larger dataset, 
     # call the create_json_map procedure with pretty=False. The pretty=True option adds 
     # additional spaces to the output, making it significantly larger.
-    data = create_json_map("osm-auckland.xml", True)
+    data = create_json_map("auckland.osm", True)
     # pprint.pprint(data)
     
 

@@ -28,7 +28,7 @@ suburb_re = re.compile(r'^([a-zA-Z ]*)(,|$)')
 auck_re = re.compile(r'^([Auckland])*$')
 
 # use the OSM Auckland data
-OSMFILE = "osm-auckland.xml"
+OSMFILE = "auckland.osm"
 
 def audit_city(cityname, city_types, count_auckland):
     if cityname != 'Auckland':
