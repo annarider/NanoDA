@@ -4,5 +4,6 @@
 *.sublime-project
 osm-auckland.xml
 osm-auckland.json
+auckland.osm
 data/
 dataset/
