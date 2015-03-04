@@ -92,3 +92,7 @@ ElementTree
 http://stackoverflow.com/questions/7544881/efficient-way-of-xml-parsing-in-elementtree1-3-0-python
 http://effbot.org/zone/element-iterparse.htm
 https://docs.python.org/2/library/xml.etree.elementtree.html
+
+People to thank
+Udacity coaches for office hours & answering forum questions
+Luke Allen for debugging help
