@@ -6,5 +6,8 @@ osm-auckland.xml
 osm-auckland.json
 auckland.osm
 auckland.json
+auckland-sample.osm
+DataWranglingMongoDB/Project2/auckland.json
 data/
+DataWranglingMongoDB/data
 dataset/
