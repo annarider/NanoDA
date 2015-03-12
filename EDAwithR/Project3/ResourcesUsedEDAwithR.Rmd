@@ -1,0 +1,71 @@
+---
+title: "ResourcesUsedEDAwithR"
+author: "Anna Li"
+date: "March 11, 2015"
+output: html_document
+---
+
+# Common & Useful R commands 
+## syntax for creating R chunks in RMD
+```{r}
+summary(mtcars)
+```
+
+
+## Directories
+### Find current directory
+getwd()
+### Move to a different directory
+setwd('/Users/horsepower/Dropbox/Udacity/NanoDA/EDAwithR/EDA_Course_Materials/lesson2')
+### See all files in directory
+list.files()
+
+## CSV
+reddit <- read.csv('reddit.csv')
+*If the file is tab separated, there are two ways to import the data:*   
+reddit <- read.csv('reddit.tsv', sep='\t')
+reddit <- read.delim('reddit.tsv')
+
+## Exploring data
+Column names (in R times, see the variables):
+names(reddit)
+Find the dimensions (rows, columns)
+dim(reddit)
+Find the structure (columns, data types, example of values...)
+str(reddit)
+Descriptive stats on data, e.g. mean, median, & quartiles 
+summary(reddit)
+
+# Resources Used in the Exploratory Data Analysis with R class
+
+## Installation of packages
+* Error around mirroring
+http://stackoverflow.com/questions/16826933/installation-of-r-fpc-package
+http://stackoverflow.com/questions/17705133/package-error-when-running-r-code-on-command-line
+
+## ggplot
+http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/
+
+
+
+
+
+
+
+
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+summary(cars)
+```
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

@@ -4,6 +4,258 @@
 		"selected_items":
 		[
 			[
+				"list",
+				"list_offices〔function〕"
+			],
+			[
+				"offic",
+				"offices〔variable〕"
+			],
+			[
+				"l",
+				"list_amenities"
+			],
+			[
+				"uni",
+				"unique_users"
+			],
+			[
+				"users",
+				"users_results"
+			],
+			[
+				"user",
+				"user_pipeline"
+			],
+			[
+				"db",
+				"db_name〔argument〕"
+			],
+			[
+				"if",
+				"ifmain	if __name__ == '__main__'"
+			],
+			[
+				"city",
+				"cityname〔argument〕"
+			],
+			[
+				"clean",
+				"clean_city〔function〕"
+			],
+			[
+				"audit",
+				"audit_data〔function〕"
+			],
+			[
+				"count",
+				"count_auckland〔variable〕"
+			],
+			[
+				"cou",
+				"count_auckland"
+			],
+			[
+				"miss",
+				"missing_cities〔function〕"
+			],
+			[
+				"ret",
+				"retrieve_streets〔function〕"
+			],
+			[
+				"retr",
+				"retrieve_cities"
+			],
+			[
+				"qer",
+				"query"
+			],
+			[
+				"Mon",
+				"MongoDB"
+			],
+			[
+				"process",
+				"process_map"
+			],
+			[
+				"att",
+				"attributes"
+			],
+			[
+				"proc",
+				"process_element〔function〕"
+			],
+			[
+				"stre",
+				"street_name〔argument〕"
+			],
+			[
+				"street_",
+				"street_name"
+			],
+			[
+				"st",
+				"street"
+			],
+			[
+				"street",
+				"street_name"
+			],
+			[
+				"stree",
+				"street_direction_re〔variable〕"
+			],
+			[
+				"str",
+				"street_types"
+			],
+			[
+				"ref",
+				"ref_val〔variable〕"
+			],
+			[
+				"node",
+				"node_refs"
+			],
+			[
+				"no",
+				"node_refs〔variable〕"
+			],
+			[
+				"attr",
+				"attrib"
+			],
+			[
+				"attri",
+				"attributes"
+			],
+			[
+				"star",
+				"start_colon〔variable〕"
+			],
+			[
+				"lower",
+				"lower_colon〔variable〕"
+			],
+			[
+				"cr",
+				"created〔variable〕"
+			],
+			[
+				"add",
+				"add_to_created"
+			],
+			[
+				"e",
+				"element"
+			],
+			[
+				"sta",
+				"start_pos〔variable〕"
+			],
+			[
+				"map",
+				"mapping〔argument〕"
+			],
+			[
+				"way",
+				"ways〔variable〕"
+			],
+			[
+				"st_",
+				"st_types"
+			],
+			[
+				"A",
+				"Avenue"
+			],
+			[
+				"ele",
+				"element_dict〔variable〕"
+			],
+			[
+				"pro",
+				"problemchars〔variable〕"
+			],
+			[
+				"por",
+				"problemchars"
+			],
+			[
+				"reg",
+				"regionalAvg"
+			],
+			[
+				"av",
+				"avg"
+			],
+			[
+				"tw",
+				"tweet_texts"
+			],
+			[
+				"scr",
+				"screen_name"
+			],
+			[
+				"time",
+				"time_zone"
+			],
+			[
+				"tim",
+				"timezone"
+			],
+			[
+				"best",
+				"best_fit"
+			],
+			[
+				"in",
+				"intercept〔variable〕"
+			],
+			[
+				"norm",
+				"norm_precipi〔variable〕"
+			],
+			[
+				"nor",
+				"norm_precipi〔variable〕"
+			],
+			[
+				"preici",
+				"precipitation"
+			],
+			[
+				"plt",
+				"plt〔module〕"
+			],
+			[
+				"n",
+				"norm_entries"
+			],
+			[
+				"p",
+				"precipi"
+			],
+			[
+				"arr",
+				"array〔argument〕"
+			],
+			[
+				"result",
+				"results_summary"
+			],
+			[
+				"para",
+				"parameters〔variable〕"
+			],
+			[
+				"day",
+				"day_week"
+			],
+			[
 				"fea",
 				"features_df〔variable〕"
 			],
@@ -68,10 +320,6 @@
 				"new_field〔variable〕"
 			],
 			[
-				"clean",
-				"clean_data〔variable〕"
-			],
-			[
 				"input",
 				"input_line〔argument〕"
 			],
@@ -120,10 +368,6 @@
 				"invalid_years"
 			],
 			[
-				"pro",
-				"productionStartYear"
-			],
-			[
 				"inv",
 				"invalid_years"
 			],
@@ -156,28 +400,12 @@
 				"line_index"
 			],
 			[
-				"star",
-				"start_pos"
-			],
-			[
 				"line_",
 				"line_end"
 			],
 			[
 				"extract",
 				"extract_data"
-			],
-			[
-				"cou",
-				"courier"
-			],
-			[
-				"in",
-				"input_tag"
-			],
-			[
-				"e",
-				"eventvalidation"
 			],
 			[
 				"insr",
@@ -244,24 +472,12 @@
 				"xlrd"
 			],
 			[
-				"time",
-				"time_index"
-			],
-			[
 				"cell",
 				"cell_value"
 			],
 			[
-				"tim",
-				"time_index"
-			],
-			[
 				"coa",
 				"coast_data"
-			],
-			[
-				"n",
-				"nrows"
 			],
 			[
 				"min",
@@ -298,227 +514,83 @@
 			[
 				"d",
 				"data"
-			],
-			[
-				"row",
-				"row_count"
-			],
-			[
-				"ro",
-				"row_count"
-			],
-			[
-				"on",
-				"one_unit_data_df"
-			],
-			[
-				"x",
-				"xticks  (function)"
-			],
-			[
-				"subw",
-				"subway_data_df"
-			],
-			[
-				"sub",
-				"subway_df"
-			],
-			[
-				"su",
-				"subway_df"
-			],
-			[
-				"day",
-				"daysOfTheWeekEntries"
-			],
-			[
-				"ent",
-				"entriesBar"
-			],
-			[
-				"avg",
-				"avgDailyEntries"
-			],
-			[
-				"days",
-				"daysOfTheWeek"
-			],
-			[
-				"cal",
-				"calculateAvgEntries"
-			],
-			[
-				"bin",
-				"binwidth"
-			],
-			[
-				"no",
-				"no_rain_df"
-			],
-			[
-				"rain",
-				"rain_df"
-			],
-			[
-				"ander",
-				"anderson_norain"
-			],
-			[
-				"sha",
-				"shapwilk_test"
-			],
-			[
-				"bu",
-				"busiest_units"
-			],
-			[
-				"tot",
-				"total_hours_per_weather"
-			],
-			[
-				"we",
-				"weather"
-			],
-			[
-				"to",
-				"total"
-			],
-			[
-				"rider",
-				"ridership"
-			],
-			[
-				"form",
-				"format_key"
-			],
-			[
-				"for",
-				"format_key"
-			],
-			[
-				"aadha",
-				"aadhaar_generated"
-			],
-			[
-				"aa",
-				"aadhaar_generated"
-			],
-			[
-				"aadhaa",
-				"aadhaar_generated"
-			],
-			[
-				"wor",
-				"word_count"
-			],
-			[
-				"featu",
-				"features_df"
-			],
-			[
-				"pred",
-				"prediction"
-			],
-			[
-				"comp",
-				"compute_r_squared"
-			],
-			[
-				"f",
-				"features_df"
-			],
-			[
-				"pr",
-				"prediction"
-			],
-			[
-				"word",
-				"word"
-			],
-			[
-				"resul",
-				"results2"
-			],
-			[
-				"model",
-				"model2"
-			],
-			[
-				"temp",
-				"temp_entries_df"
-			],
-			[
-				"av",
-				"avgEntries"
-			],
-			[
-				"tem",
-				"temps"
-			],
-			[
-				"Data",
-				"dataframe"
-			],
-			[
-				"mean",
-				"meantempi"
-			],
-			[
-				"tun",
-				"turnstile_df"
-			],
-			[
-				"plot",
-				"plot_weather_data"
-			],
-			[
-				"tur",
-				"turnstile_weather_csv"
-			],
-			[
-				"categ",
-				"category_var"
-			],
-			[
-				"ca",
-				"category_var"
-			],
-			[
-				"year",
-				"yearID"
-			],
-			[
-				"hr",
-				"hr_year_df"
-			],
-			[
-				"hr_year_",
-				"hr_year_csv"
-			],
-			[
-				"impor",
-				"import_csv"
-			],
-			[
-				"impo",
-				"import_csv"
-			],
-			[
-				"if",
-				"ifmain	if __name__ == '__main__'"
-			],
-			[
-				"wiou",
-				"without_rain_mean"
-			],
-			[
-				"tunr",
-				"turnstile_weather"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "DataWranglingMongoDB/lesson6/Notes",
+			"settings":
+			{
+				"buffer_size": 1349,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "DataWranglingMongoDB/mongo-commands.txt",
+			"settings":
+			{
+				"buffer_size": 947,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "DataWranglingMongoDB/Project2/explore-dataset.py",
+			"settings":
+			{
+				"buffer_size": 1826,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "DataWranglingMongoDB/Project2/aklMongoAddtlAnalysis.py",
+			"settings":
+			{
+				"buffer_size": 2940,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "DataWranglingMongoDB/lesson4/find-porsche.py",
+			"settings":
+			{
+				"buffer_size": 1017,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "DataWranglingMongoDB/Project2/auckland.json",
+			"settings":
+			{
+				"buffer_size": 161331291,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "DataWranglingMongoDB/Project2/akldata.py",
+			"settings":
+			{
+				"buffer_size": 7571,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "DataWranglingMongoDB/Project2/auckland.osm",
+			"settings":
+			{
+				"buffer_size": 114585117,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "DataWranglingMongoDB/Project2/aklMongoAddressQueries.py",
+			"settings":
+			{
+				"buffer_size": 3654,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -542,6 +614,7 @@
 		"height": 126.0,
 		"history":
 		[
+			"pwd",
 			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
 		]
 	},
@@ -554,9 +627,56 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/dataset",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson4",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson6",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2"
+	],
 	"file_history":
 	[
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2/auckland-sample.osm",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2/Resources Used.txt",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2/osm-auckland-sample.xml",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2/akldata.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2/aklcitycleaning.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2/aklstreetaudit.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson6/example3.osm",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2/osm-auckland.json",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2/osm-auckland.xml",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2/osm-auckland-test.json",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2/aklaudit.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson6/data.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson6/audit.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2/osm-auckland-test.xml",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2/akl-audit.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson6/data-refactored.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson6/example2.osm",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson6/tags.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson6/users.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson6/osm-iterative-parsing.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson6/example.osm",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson3/auditing-streetmap-example.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/cities-infobox-example.json",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/region-cities.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/mongo-same-operator.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/most-common-city-name.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/mongo-commands.txt",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/avg-population.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/most-common-city-name.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/mongo-push.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/mongo-unwind.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/mongo-match-project.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/mongo-use-group.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project1/Subway2Matplotlib-precipi-ridership.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project1/Subway2Matplotlib-compare-shapes.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project1/LinearRegressionOLS.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project1/ResourcesUsed.md",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project1/Subway2Matplotlib.py",
+		"/Users/horsepower/anaconda/lib/python2.7/site-packages/numpy/lib/function_base.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/MannWhitneyUtest.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/LinearRegressionGradientDescent.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/ResourcesUsed.md",
@@ -645,45 +765,7 @@
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/Subway2Matplotlib_Luke.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p3/Subway2Matplotlib.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p3/OptionalLinearRegression_submitted.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/SubwayDatat-test.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/Analyzing the NYC Subway Dataset.textile",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p3/SubwayExploratoryDataAnalysis.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/SubwayDataAndersonDarling.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/SubwayDataShapiroWilk.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p5/busiest_hour_reducer.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p5/busiest_hour_mapper.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p3/Welcht-testbaseball.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p5/ridership_by_weather_reducer.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p5/ridership_by_weather_mapper.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p5/aadhaar_generated_reducer.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p5/riders_per_station_reducer.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p5/riders_per_station_mapper.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p3/TestStatsLinearRegressionOLS.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p5/CountingWordsAlice.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p5/aadhaar_generated_mapper_submitted.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p5/aadhaar_generated_mapper.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p2/aadhaarComplexSQL.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p2/aadhaarBeginnerSQL.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p1/OlympicMedals.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p5/Project Gutenberg's Alice's Adventures in Wonderland.txt",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p4/BaseballggplotLine.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p5/LoggingTutorialBasic.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p4/BaseballggplotLine.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/TurnstileWeather.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p4/hr_by_team_year_sf_la.csv",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/p4/VizPractice1.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/turnstile_data_master_with_weather.csv",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p4/Baseballggplot.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/OptionalLinearRegression.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/TurnstileComputerR^2.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/Testggplot.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/PlottingResiduals.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/Testmatplot.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/SubwayLinearRegression.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/R2gradientdescent.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/ndarrayTest.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/NumpyMeanSum.py",
-		"/Users/horsepower/Dropbox/Udacity/Nanodegree DA/IntroDataScience/p3/SubwayMannWhitneyU.py"
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/SubwayDatat-test.py"
 	],
 	"find":
 	{
@@ -694,6 +776,7 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"/Users/horsepower/Dropbox/Udacity/NanoDA",
 			"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience"
 		]
 	},
@@ -702,6 +785,72 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"address",
+			"les mills",
+			"cuisine",
+			"sport",
+			"population",
+			"man_made",
+			"leisure",
+			"craft",
+			"amenity",
+			"religion",
+			"amenity",
+			"full",
+			"num_users",
+			"osm-auckland.xml",
+			"created_by",
+			"user",
+			"created",
+			"changeset",
+			"\"user\"",
+			"created_by",
+			"user",
+			"Queen st",
+			"suburb",
+			"Mount Wellington Highway",
+			" Mount Wellington Highway",
+			"Mount Wellington Highway",
+			"Mt Wellington Highway",
+			"Halsey Street",
+			"suburb",
+			"audit",
+			"ies",
+			"New North Rd",
+			"suburb",
+			"addr:suburb",
+			"postal",
+			"suburb",
+			":suburb",
+			"suburb",
+			"mt",
+			"albert",
+			"Hurstmere",
+			"Gillies Ave",
+			"Gillies",
+			"Balm St",
+			"addr:",
+			"directions",
+			"json",
+			"highway traffic_signals",
+			"chicago:building_id",
+			"attr",
+			"lat",
+			"hair",
+			"\"",
+			"match",
+			"osm_file = open(\"chicago.osm\", \"r\")",
+			"auditing",
+			"end",
+			"remove",
+			"drop",
+			"status",
+			"tweets",
+			"time_zone",
+			"features_df",
+			"ormalize_feat",
+			"summary()",
+			"summary",
 			"coefficient",
 			"data",
 			"Hour",
@@ -774,14 +923,287 @@
 	"groups":
 	[
 		{
+			"selected": 7,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "DataWranglingMongoDB/lesson6/Notes",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1349,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								354,
+								366
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "DataWranglingMongoDB/mongo-commands.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 947,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								910,
+								910
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "DataWranglingMongoDB/Project2/explore-dataset.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1826,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								1826
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "DataWranglingMongoDB/Project2/aklMongoAddtlAnalysis.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2940,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1993,
+								2218
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 833.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "DataWranglingMongoDB/lesson4/find-porsche.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1017,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1017,
+								1017
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "DataWranglingMongoDB/Project2/auckland.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 161331291,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								16560130,
+								16560130
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 18792562.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "DataWranglingMongoDB/Project2/akldata.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7571,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1185,
+								1191
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "DataWranglingMongoDB/Project2/auckland.osm",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 114585117,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2149292,
+								2149292
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 356366.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "DataWranglingMongoDB/Project2/aklMongoAddressQueries.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3654,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3638,
+								3638
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 975.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 26.0
+		"height": 27.0
 	},
 	"input":
 	{
@@ -812,7 +1234,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 167.0
+		"height": 250.0
 	},
 	"output.find_results":
 	{
@@ -821,7 +1243,7 @@
 	"project": "NanoDA.sublime-project",
 	"replace":
 	{
-		"height": 64.0
+		"height": 50.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -831,7 +1253,7 @@
 		[
 			[
 				"",
-				"Project/turnstile_weather_v2.csv"
+				"DataWranglingMongoDB/Project2/aklMongoAddtlAnalysis.py"
 			],
 			[
 				"sub",
@@ -864,11 +1286,11 @@
 	"settings":
 	{
 	},
-	"show_minimap": true,
+	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 318.0,
+	"side_bar_width": 231.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
