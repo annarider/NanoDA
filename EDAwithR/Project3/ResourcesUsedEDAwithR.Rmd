@@ -36,6 +36,14 @@ str(reddit)
 Descriptive stats on data, e.g. mean, median, & quartiles 
 summary(reddit)
 
+## Basic Plotting
+### qplot
+qplot(x = friend_count, data = pf)
+(x is the x variable you want to display in the histogram)
+### ggplot 
+ggplot(aes(x = friend_count), data = pf) + 
+  geom_histogram()
+
 # Resources Used in the Exploratory Data Analysis with R class
 
 ## Installation of packages
@@ -45,6 +53,7 @@ http://stackoverflow.com/questions/17705133/package-error-when-running-r-code-on
 
 ## ggplot
 http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/
+
 
 
 
