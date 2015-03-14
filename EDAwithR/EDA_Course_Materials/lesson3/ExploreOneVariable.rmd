@@ -164,7 +164,7 @@ p1 <- ggplot(aes(x = friend_count), data = pf) +
   geom_histogram()
 p2 <- ggplot(aes(x = friend_count), data = pf) + 
   geom_histogram() +
-  scale_x_log10()
+  scale_x_log10()  # use scale_x_log10 instead of calculating log10 wrapper so x-axis has actual x values
 p3 <- ggplot(aes(x = friend_count), data = pf) + 
   geom_histogram() +
   scale_x_sqrt()
@@ -186,5 +186,17 @@ r2 <- r1 + scale_x_log10()
 r3 <- r1 + scale_x_sqrt()
 # super convenient & saved me so many lines
 grid.arrange(r1, r2, r3, ncol=1)
+```
+
+# Frequency polygons
+## Create freqpoly to see the shapes and peaks of the data. 
+Freqpoly allows side-by-side comparison with several curves stacked on top of each other
+
+?qplot
+
+```{r}
+qplot(x = friend_count, data = subset(pf, !is.na(gender)), binwidth = 10) +
+  scale_x_continuous(lim = c(0, 1000), breaks = seq(0, 1000, 50)) +
+  facet_wrap(~gender)
 ```
 
