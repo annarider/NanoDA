@@ -148,10 +148,6 @@ ggplot(aes(x = age), data = pf) +
 ```
 
 # Exercise to use scales and create multiple plots on one page. Use log10 & sqrt
-```{r}
-install.packages('gridExtra') 
-library(gridExtra)
-```
 
 Tips about transforming data with log base 10 and log base 2: 
 [R-stats blog](http://www.r-statistics.com/2013/05/log-transformations-for-skewed-and-wide-distributions-from-practical-data-science-with-r/)
@@ -160,9 +156,27 @@ signedlog10 = function(x) {
 ifelse(abs(x) <= 1, 0, sign(x)*log10(abs(x)))
 }
 ```
-p1 = ggplot(aes(x = friend_count), data = pf) + 
+```{r}
+install.packages('gridExtra') 
+library(gridExtra)
+
+p1 <- ggplot(aes(x = friend_count), data = pf) + 
   geom_histogram()
-p2 = ggplot(aes(x = friend_count), data = pf) + 
-  geom_histogram()
-p3 = ggplot(aes(x = friend_count), data = pf) + 
-  geom_histogram()
+p2 <- ggplot(aes(x = friend_count), data = pf) + 
+  geom_histogram() +
+  scale_x_log10()
+p3 <- ggplot(aes(x = friend_count), data = pf) + 
+  geom_histogram() +
+  scale_x_sqrt()
+grid.arrange(p1, p2, p3, ncol=1)
+```
+
+### Note instructor's answers with qplot
+```{r}
+q1 <- qplot(x = friend_count, data = pf)
+# Adding +1 helps deal with -Infinity and Infinity as log10 approaches 0
+q2 <- qplot(x = log10(friend_count + 1), data = pf)
+q3 <- qplot(x = sqrt(friend_count), data = pf)
+grid.arrange(q1, q2, q3, ncol=1)
+```
+
