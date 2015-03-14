@@ -1,11 +1,18 @@
 # Install packages
-```{r}
+```
 install.packages('ggthemes', dependencies = TRUE) 
 install.packages('ggplot2', dependencies = TRUE) 
 install.packages('knitr', dependencies = TRUE) 
+```
+```{r}
 library(ggplot2)
 library(ggthemes)
 library(knitr)
+```
+### Change directory - get Facebook data
+```{r}
+setwd("~/Dropbox/Udacity/NanoDA/EDAwithR/EDA_Course_Materials/lesson3")
+pf <- read.delim('pseudo_facebook.tsv')
 ```
 # Data of birth plot
 ## First create with breaks
@@ -20,11 +27,6 @@ ggplot(data = pf, aes(x = dob_day)) +
   geom_histogram() + 
   scale_x_discrete(breaks = 1:31) + 
   facet_wrap(~dob_month)
-```
-### Change directory - get Facebook data
-```{r}
-setwd("~/Dropbox/Udacity/NanoDA/EDAwithR/EDA_Course_Materials/lesson3")
-pf <- read.delim('pseudo_facebook.tsv')
 ```
 
 # Plot Friend Count Facebook data
@@ -156,8 +158,10 @@ signedlog10 = function(x) {
 ifelse(abs(x) <= 1, 0, sign(x)*log10(abs(x)))
 }
 ```
-```{r}
+```
 install.packages('gridExtra') 
+```
+```{r}
 library(gridExtra)
 
 p1 <- ggplot(aes(x = friend_count), data = pf) + 
@@ -195,8 +199,58 @@ Freqpoly allows side-by-side comparison with several curves stacked on top of ea
 ?qplot
 
 ```{r}
-qplot(x = friend_count, data = subset(pf, !is.na(gender)), binwidth = 10) +
-  scale_x_continuous(lim = c(0, 1000), breaks = seq(0, 1000, 50)) +
-  facet_wrap(~gender)
+qplot(x = friend_count, y = ..count../sum(..count..),
+      data = subset(pf, !is.na(gender)),
+      xlab = 'Friend Count',
+      ylab = 'Proportion of users with that friend count',
+      binwidth = 10, geom = 'freqpoly', color = gender) +
+  scale_x_continuous(lim = c(0, 1000), breaks = seq(0, 1000, 50))
 ```
 
+## Frequency polygons for which gender makes more likes on world wide web
+```{r}
+qplot(x = www_likes, y = ..count../sum(..count..),
+      data = subset(pf, !is.na(gender)),
+      xlab = 'WWW likes Count',
+      ylab = 'Proportion of users with that WWW likes count',
+      binwidth = 10, geom = 'freqpoly', color = gender) +
+  scale_x_continuous(lim = c(0, 1000), breaks = seq(0, 1000, 50))
+```
+
+### Iterate to find best limits & xbreaks (full likes) 
+```{r}
+summary(pf$www_likes)
+qplot(x = www_likes, y = ..count../sum(..count..),
+      data = subset(pf, !is.na(gender)),
+      xlab = 'WWW likes Count',
+      ylab = 'Proportion of users with that WWW likes count',
+      binwidth = 10, geom = 'freqpoly', color = gender) +
+  scale_x_continuous(lim = c(0, 15000), breaks = seq(0, 15000, 5000))
+```
+
+### Iterate to find best limits & xbreaks (using log10 x scale)
+```{r}
+summary(pf$www_likes)
+qplot(x = www_likes,
+      data = subset(pf, !is.na(gender)),
+      xlab = 'WWW likes Count',
+      ylab = 'Proportion of users with that WWW likes count',
+      geom = 'freqpoly', color = gender) +
+  scale_x_log10()
+  #scale_x_continuous(lim = c(0, 8), breaks = seq(0, 8, 1))
+```
+
+## Instructor's plot answer in ggplot2
+```{r}
+ggplot(aes(x = friend_count, y = ..count../sum(..count..)), data = subset(pf, !is.na(gender))) +
+  geom_freqpoly(aes(color = gender)) + 
+  scale_x_continuous(limits = c(0, 1000), breaks = seq(0, 1000, 50)) +
+  xlab('Friend Count') + 
+  ylab('Percentage of users with that friend count')
+```
+
+```
+Switch CRAN mirror 
+chooseCRANmirror()
+options("repos")
+```
