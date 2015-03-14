@@ -178,5 +178,13 @@ q1 <- qplot(x = friend_count, data = pf)
 q2 <- qplot(x = log10(friend_count + 1), data = pf)
 q3 <- qplot(x = sqrt(friend_count), data = pf)
 grid.arrange(q1, q2, q3, ncol=1)
+
+# With the ggplot syntax, I can just use the original plot and add the log10 or sqrt function:
+r1 <- ggplot(aes(x = friend_count), data = pf) + 
+  geom_histogram()
+r2 <- r1 + scale_x_log10()
+r3 <- r1 + scale_x_sqrt()
+# super convenient & saved me so many lines
+grid.arrange(r1, r2, r3, ncol=1)
 ```
 
