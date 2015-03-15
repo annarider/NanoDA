@@ -281,6 +281,10 @@ qplot( x = gender, y = friend_count,
     data = subset(pf, !is.na(gender)), geom = 'boxplot' ) +
     coord_cartesian(ylim = c(0, 500))
 
+## Use a summary by command to see descriptive stats on the two populations
+by(pf$friend_count, pf$gender, summary)
+
+
 # P.S. Library problems can be partially solved by switching the CRAN mirror to UC Berkeley's
 ```
 Switch CRAN mirror 
