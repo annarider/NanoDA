@@ -207,6 +207,16 @@ qplot(x = friend_count, y = ..count../sum(..count..),
   scale_x_continuous(lim = c(0, 1000), breaks = seq(0, 1000, 50))
 ```
 
+## Instructor's plot answer to Frequency Polygons in ggplot2
+```{r}
+ggplot(aes(x = friend_count, y = ..count../sum(..count..)), data = subset(pf, !is.na(gender))) +
+  geom_freqpoly(aes(color = gender)) + 
+  scale_x_continuous(limits = c(0, 1000), breaks = seq(0, 1000, 50)) +
+  xlab('Friend Count') + 
+  ylab('Percentage of users with that friend count')
+```
+
+
 ## Frequency polygons for which gender makes more likes on world wide web
 ```{r}
 qplot(x = www_likes, y = ..count../sum(..count..),
@@ -240,15 +250,38 @@ qplot(x = www_likes,
   #scale_x_continuous(lim = c(0, 8), breaks = seq(0, 8, 1))
 ```
 
-## Instructor's plot answer in ggplot2
-```{r}
-ggplot(aes(x = friend_count, y = ..count../sum(..count..)), data = subset(pf, !is.na(gender))) +
+## Instructor answer: "The variable www_likes is a count variable and should be on a discrete scale not a continuous scale." 
+ggplot(aes(x = www_likes), data = subset(pf, !is.na(gender))) + 
   geom_freqpoly(aes(color = gender)) + 
-  scale_x_continuous(limits = c(0, 1000), breaks = seq(0, 1000, 50)) +
-  xlab('Friend Count') + 
-  ylab('Percentage of users with that friend count')
-```
+  scale_x_log10()
 
+## Answer questions on WWW Likes
+```{r}
+by(pf$www_likes, pf$gender, sum)
+```
+**What's the www_like count for males?**
+1430175
+**Which gender has more www_likes?**
+female
+
+# Box plots
+## Box plots to focus on users in our sample who have friend counts between 0 and 1000
+qplot( x = gender, y = friend_count,
+    data = subset(pf, !is.na(gender)), geom = 'boxplot' )
+
+## Goal is to update the box plots to only see the plots without the outliers
+Remove the max number and let the y-axis be limited to the 3rd quartile
+summary(pf$friend_count)
+qplot( x = gender, y = friend_count,
+    data = subset(pf, !is.na(gender)), geom = 'boxplot' ) +
+    scale_y_continuous(lim = c(0, 500))
+
+## Changing the y axis (using ylim()) is a bad solution. Better solution is to use the coord_cartesian() layer
+qplot( x = gender, y = friend_count,
+    data = subset(pf, !is.na(gender)), geom = 'boxplot' ) +
+    coord_cartesian(ylim = c(0, 500))
+
+# P.S. Library problems can be partially solved by switching the CRAN mirror to UC Berkeley's
 ```
 Switch CRAN mirror 
 chooseCRANmirror()
