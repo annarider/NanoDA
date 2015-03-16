@@ -196,7 +196,9 @@ grid.arrange(r1, r2, r3, ncol=1)
 ## Create freqpoly to see the shapes and peaks of the data. 
 Freqpoly allows side-by-side comparison with several curves stacked on top of each other
 
+```
 ?qplot
+```
 
 ```{r}
 qplot(x = friend_count, y = ..count../sum(..count..),
@@ -251,9 +253,11 @@ qplot(x = www_likes,
 ```
 
 ## Instructor answer: "The variable www_likes is a count variable and should be on a discrete scale not a continuous scale." 
+```{r}
 ggplot(aes(x = www_likes), data = subset(pf, !is.na(gender))) + 
   geom_freqpoly(aes(color = gender)) + 
   scale_x_log10()
+```
 
 ## Answer questions on WWW Likes
 ```{r}
@@ -266,23 +270,31 @@ female
 
 # Box plots
 ## Box plots to focus on users in our sample who have friend counts between 0 and 1000
+```{r}
 qplot( x = gender, y = friend_count,
     data = subset(pf, !is.na(gender)), geom = 'boxplot' )
+```
 
 ## Goal is to update the box plots to only see the plots without the outliers
 Remove the max number and let the y-axis be limited to the 3rd quartile
+```{r}
 summary(pf$friend_count)
 qplot( x = gender, y = friend_count,
     data = subset(pf, !is.na(gender)), geom = 'boxplot' ) +
     scale_y_continuous(lim = c(0, 500))
+```
 
 ## Changing the y axis (using ylim()) is a bad solution. Better solution is to use the coord_cartesian() layer
+```{r}
 qplot( x = gender, y = friend_count,
     data = subset(pf, !is.na(gender)), geom = 'boxplot' ) +
     coord_cartesian(ylim = c(0, 500))
+```
 
 ## Use a summary by command to see descriptive stats on the two populations
+```{r}
 by(pf$friend_count, pf$gender, summary)
+```
 
 ## Answer questions on friendships_initiated
 **On average, who initiated more friendships in our sample?**

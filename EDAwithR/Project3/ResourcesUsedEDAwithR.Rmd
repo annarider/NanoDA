@@ -52,9 +52,12 @@ http://stackoverflow.com/questions/16826933/installation-of-r-fpc-package
 http://stackoverflow.com/questions/17705133/package-error-when-running-r-code-on-command-line
 
 ## ggplot
+### Facet_wrap
 http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/
 ### Box plot
 http://stackoverflow.com/questions/21533158/remove-outliers-fully-from-multiple-boxplots-made-with-ggplot2-in-r-and-display
+### Scale x log10
+http://forums.udacity.com/questions/100224132/error-using-scale_x_log10-with-this-data
 
 ## R language syntax
 ### Calculate percentage statistics on a column in a dataframe
