@@ -284,6 +284,33 @@ qplot( x = gender, y = friend_count,
 ## Use a summary by command to see descriptive stats on the two populations
 by(pf$friend_count, pf$gender, summary)
 
+## Answer questions on friendships_initiated
+**On average, who initiated more friendships in our sample?**
+```{r}
+by(pf$friendships_initiated, pf$gender, summary)
+```
+Females made more friendship requests, on average, more than men because the female average for friendships_initiated variable is higher. 
+
+# Dummy variables
+```{r}
+summary(pf$mobile_likes > 0)
+
+# Create a new variable to determine if users have used FB via mobile
+# Begin initializing all values in mobile_check_in column to NA
+pf$mobile_check_in <- NA
+# If at least 1 mobile_likes, then make mobile_check_in true, i.e. 1, else 0 
+pf$mobile_check_in <- ifelse(pf$mobile_likes > 0, 1, 0)
+pf$mobile_check_in <- factor(pf$mobile_check_in)
+summary(pf$mobile_check_in)
+
+# Find percentage of check ins using mobile. Note: Can't use sum on a factor
+# variable. Use the length() function instead of determine number of values in a vector.
+
+table(pf$mobile_check_in)
+prop.table(table(pf$mobile_check_in))
+```
+** What percent of check ins use mobile? **
+64.6%
 
 # P.S. Library problems can be partially solved by switching the CRAN mirror to UC Berkeley's
 ```
