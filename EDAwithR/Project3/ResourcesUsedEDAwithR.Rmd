@@ -53,7 +53,8 @@ http://stackoverflow.com/questions/17705133/package-error-when-running-r-code-on
 
 ## ggplot
 http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/
-
+### Box plot
+http://stackoverflow.com/questions/21533158/remove-outliers-fully-from-multiple-boxplots-made-with-ggplot2-in-r-and-display
 
 
 
