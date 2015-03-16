@@ -206,5 +206,103 @@ ggplot(aes(x = cut, y = price), data = diamonds) +
     geom_boxplot()
 ggplot(aes(x = clarity, y = price), data = diamonds) +
     geom_boxplot()
+ggplot(aes(x = color, y = price), data = diamonds) +
+    geom_boxplot()
+```
 
+# 11. Interquartile Range - IQR
+```{r}
+# Price range for middle 50% of diamonds with Color D & J
+by(diamonds$price, diamonds$color, summary)
+# Example of IQR function - remember to specify variable in subset dataframe 
+IQR(subset(diamonds, price <1000)$price)
+IQR(subset(diamonds, color == 'D')$price)
+IQR(subset(diamonds, color == 'J')$price)
+```
+
+# 12. Price per Carat Box Plots by Color
+
+```{r}
+# Investigate the price per carat of diamonds across
+# the different colors of diamonds using boxplots.
+
+# Go to the discussions to
+# share your thoughts and to discover
+# what other people found.
+
+# You can save images by using the ggsave() command.
+# ggsave() will save the last plot created.
+# For example...
+#                  qplot(x = price, data = diamonds)
+#                  ggsave('priceHistogram.png')
+
+# ggsave currently recognises the extensions eps/ps, tex (pictex),
+# pdf, jpeg, tiff, png, bmp, svg and wmf (windows only).
+
+# Copy and paste all of the code that you used for
+# your investigation, and submit it when you are ready.
+
+# SUBMIT YOUR CODE BELOW THIS LINE
+# ===================================================================
+ggplot(aes(x = color, y = price/carat), data = diamonds) +
+    geom_boxplot()
+
+```
+
+# 13.  Carat Frequency Polygon 
+```{r}
+ggplot(aes(x = carat), data = diamonds ) + 
+    geom_freqpoly(binwidth = .01) +
+    scale_x_continuous(lim = c(0, 2.5))
+```
+
+# 14. Data Wrangling with R
+Refer to the Resources Used EDA with R doc for details
+
+# 15. Gapminder Data
+```{r}
+# The Gapminder website contains over 500 data sets with information about
+# the world's population. Your task is to download a data set of your choice
+# and create 2-5 plots that make use of the techniques from Lesson 3.
+
+# You might use a simple histogram, a boxplot split over a categorical variable,
+# or a frequency polygon. The choice is yours!
+
+# You can find a link to the Gapminder website in the Instructor Notes.
+
+# Once you've completed your investigation, create a post in the discussions that includes:
+#       1. any questions you answered, your observations, and summary statistics
+#       2. snippets of code that created the plots
+#       3. links to the images of your plots
+
+# You can save images by using the ggsave() command.
+# ggsave() will save the last plot created.
+# For example...
+#                  qplot(x = price, data = diamonds)
+#                  ggsave('priceHistogram.png')
+
+# ggsave currently recognises the extensions eps/ps, tex (pictex),
+# pdf, jpeg, tiff, png, bmp, svg and wmf (windows only).
+
+# Copy and paste all of the code that you used for
+# your investigation, and submit it when you are ready.
+# ====================================================================================
+read.csv('sugar_consumption.csv', header = TRUE, row.names = 1)
+
+install.packages('xlsx', dependencies = TRUE) 
+library(xlsx)
+sugar <- read.xlsx('sugar_consumption.xlsx', sheetName = 'Data')
+
+summary(sugar)
+names(sugar)
+# rename variable to include country & total
+install.packages('reshape', dependencies = TRUE) 
+library(reshape)
+sugar <- rename(sugar, c(NA. = "Country"))
+sugar <- rename(sugar, c(NA..1 = "Total"))
+sugar_val <- sugar[, -1]
+names(sugar_val)
+sugar_val <- sugar_val[, -45]
+sugar$Total <- sum(sugar_val)
+ggplot(aes(x = ))
 ```
