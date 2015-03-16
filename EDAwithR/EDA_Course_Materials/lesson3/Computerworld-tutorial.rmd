@@ -1,0 +1,65 @@
+---
+title: "ComputerWorld - R for advanced beginners"
+author: "Anna Li"
+date: "March 16, 2015"
+output: html_document
+---
+
+# Following tutorial from Sharon Machlis on ComputerWorld
+[Business Intelligence in R for advanced beginners](http://www.computerworld.com/article/2486425/business-intelligence-4-data-wrangling-tasks-in-r-for-advanced-beginners.html)
+```{r}
+fy <- c(2010,2011,2012,2010,2011,2012,2010,2011,2012) 
+company <- c("Apple","Apple","Apple","Google","Google","Google","Microsoft","Microsoft","Microsoft") 
+revenue <- c(65225,108249,156508,29321,37905,50175,62484,69943,73723) 
+profit <- c(14013,25922,41733,8505,9737,10737,18760,23150,16978) 
+companiesData <- data.frame(fy, company, revenue, profit)
+
+str(companiesData)
+companiesData$fy <- as.factor(companiesData$fy)
+```
+
+# Add a column to an existing data frame
+## Method 1 - simple addition, division, and multiplication on columns
+```{r}
+companiesData$margin <- (companiesData$profit / companiesData$revenue) * 100
+# round the numbers in margin to 1 decimal point
+# Positive number will round to that number of decimal, negative will round tens or thousands
+companiesData$margin <- round(companiesData$margin, 1)
+
+```
+## Method 2 - transform()
+```{r}
+# Use transform method with round
+companiesData <- transform(companiesData, margin = round((profit/revenue) * 100, 1))
+```
+## Method 3 - apply()
+```{r}
+# Format for apply() is:
+# dataFrame$newColumn <- apply(dataFrame, 1, function(x) { . . . } )
+# Create a subset of the dataframe and use only those two columns 
+companiesData$sums <- apply(companiesData[,c('revenue', 'profit')], 1, function(x) sum(x))
+# For computations on the two columns, reference them using indices, i.e. x[2] == profit
+companiesData$margin <- apply(companiesData[,c('revenue', 'profit')], 1, function(x) { (x[2]/x[1]) * 100 } )
+```
+### Method 4 - mapply() (uses a function)
+```{r}
+# Pass in a function. Sample syntax
+# dataFrame$newColumn <- mapply(someFunction, dataFrame$column1, dataFrame$column2, dataFrame$column3)
+
+# First create a named function: 
+profitMargin <- function(netIncome, revenue) 
+    { mar <- (netIncome/revenue) * 100 
+      mar <- round(mar, 1) return(mar) }
+# Then use the mapply command with the profitMargin function
+companiesData$margin <- mapply(profitMargin, companiesData$profit, companiesData$revenue)
+
+```
+
+```{r}
+
+```
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
