@@ -311,7 +311,10 @@ prop.table(table(pf$mobile_check_in))
 ```
 ** What percent of check ins use mobile? **
 64.6%
-
+## Instructor's answer on calculating percentage from factor
+```{r}
+sum(pf$mobile_check_in == 1)/length(pf$mobile_check_in)
+```
 # P.S. Library problems can be partially solved by switching the CRAN mirror to UC Berkeley's
 ```
 Switch CRAN mirror 

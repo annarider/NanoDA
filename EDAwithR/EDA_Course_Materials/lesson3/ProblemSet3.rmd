@@ -1,0 +1,74 @@
+---
+title: "ProblemSet3"
+author: "Anna Li"
+date: "March 15, 2015"
+output: html_document
+---
+
+# 1. Explore dataset 
+```{r}
+library(ggplot2)
+data(diamonds) # diamonds dataset comes from ggplot2
+summary(diamonds)
+diamonds$color # prints out the colors for diamonds data set. 
+# Levels: D < E < F < G < H < I < J signals the ordering of data
+# Learn about diamonds dataset
+?diamonds
+```
+
+# 2. Price Histogram
+
+```{r, echo=FALSE}
+# Create a histogram of the price of
+# all the diamonds in the diamond data set.
+
+# TYPE YOUR CODE BELOW THE LINE
+# =======================================
+names(diamonds)
+ggplot(aes(x = price), data = diamonds) +
+    geom_histogram()
+```
+
+# 3. Price Histogram Summary
+
+```{r}
+summary(diamonds$price)
+```
+
+# 4. Diamond Counts
+```{r}
+summary(diamonds$price < 500)
+summary(diamonds$price < 250)
+summary(diamonds$price >= 15000)
+```
+1729, 0 , 1656
+
+5. Cheaper Diamonds
+
+```{r}
+# Explore the largest peak in the
+# price histogram you created earlier.
+
+# Try limiting the x-axis, altering the bin width,
+# and setting different breaks on the x-axis.
+
+# There won’t be a solution video for this
+# question so go to the discussions to
+# share your thoughts and discover
+# what other people find.
+
+# You can save images by using the ggsave() command.
+# ggsave() will save the last plot created.
+# For example...
+#                  qplot(x = price, data = diamonds)
+#                  ggsave('priceHistogram.png')
+
+# ggsave currently recognises the extensions eps/ps, tex (pictex),
+# pdf, jpeg, tiff, png, bmp, svg and wmf (windows only).
+
+# Submit your final code when you are ready.
+
+# TYPE YOUR CODE BELOW THE LINE
+# ======================================================================
+
+```
