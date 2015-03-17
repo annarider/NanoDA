@@ -321,6 +321,49 @@ library(ggplot2)
 ggplot(aes(x = Country, y = TotalAvg), data = sugar_complete, fill = Country) +
     geom_bar(stat="identity", color = 'black', fill = '#5760AB') +
     theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5)) +
-    xlab("Country") + ylab("Average sugar consumption in grams per person (from 1961 - 2004)")
+    xlab("Country") + ylab("Average sugar consumption in grams per person (1961 - 2004)")
 
+# Bar chart to 
+sugar_complete$Country
+
+usa <- subset(sugar_complete, sugar_complete$Country == 'United States')
+str(usa)
+# Get rid of the 'X' in front of all the years
+names(usa) <- substr(names(usa), 2, 5)
+library(reshape)
+usa <- rename(usa, c(ount = "Country")) # rename columns as appropriate
+usa <- rename(usa, c(otal = "Total"))
+colnames(usa)[47] <- 'TotalAvg'
+names(usa)
+
+# Transpose the columns so they are set up in a dataframe ready for time series chart
+subset(usa, select = (names(usa) != 'Country') & (names(usa) != 'Total') & (names(usa) != 'TotalAvg'))
+usa <- subset(usa, select = (names(usa) != 'Country') & (names(usa) != 'Total') & (names(usa) != 'TotalAvg'))
+
+
+head(usa)
+str(usa)
+colnames(usa)
+rownames(usa)
+row.names(usa) <- 'Sugar consumption'
+row.names(usa)
+usa$Year <- row.names(usa)
+?substring
+usa1 <- t(usa)
+usa[-1]
+usa <- usa[-1]
+usa <- usa[]
+usarows <- rownames(usa)
+do.call(rbind, lapply(usa, usa, stringsAsFactors=FALSE)))
+
+usa$Year <- usarows
+usadf = as.data.frame(as.table(usa1))
+usadf <- rename(usadf, c(Var1 = "Year")) # rename columns as appropriate
+usadf <- rename(usadf, c("Sugar Consumption (grams per person)" = "Consumption"))
+
+ggplot(data = usadf, aes(x = Year, y = Consumption, group = Var2)) + 
+    geom_line() +
+    xlab('Year') +
+    ylab('Sugar Consumption in U.S. (grams per person)') +
+    theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
 ```

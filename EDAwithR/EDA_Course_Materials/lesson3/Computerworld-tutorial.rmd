@@ -52,6 +52,9 @@ profitMargin <- function(netIncome, revenue)
       mar <- round(mar, 1) return(mar) }
 # Then use the mapply command with the profitMargin function
 companiesData$margin <- mapply(profitMargin, companiesData$profit, companiesData$revenue)
+# Alternatively use an anonymous function
+companiesData$margin <- mapply(function(x, y) round((x/y) * 100, 1), companiesData$profit, companiesData$revenue)
+# Advantage of mapply is the ability to use columns from dirferent dataframes and using a function on a vector that 
 
 ```
 

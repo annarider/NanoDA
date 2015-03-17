@@ -65,6 +65,8 @@ Free scales
 http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/
 ### Scale x log10
 http://forums.udacity.com/questions/100224132/error-using-scale_x_log10-with-this-data
+### Setting labels
+http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/
 
 ## R language syntax
 ### Calculate percentage statistics on a column in a dataframe
@@ -78,6 +80,10 @@ http://stackoverflow.com/questions/20819100/colsum-rowsum-populating-matrix
 http://www.inside-r.org/r-doc/base/colMeans
 ### Rename variables
 http://www.statmethods.net/management/variables.html
+http://stackoverflow.com/questions/7531868/how-to-rename-a-single-column-in-a-data-frame-in-r
+### Substring
+http://stackoverflow.com/questions/7963898/extracting-the-last-n-characters-from-a-string-in-r
+
 
 # Data Wrangling Resources
 Taken directly from Udacity's EDA with R course materials
