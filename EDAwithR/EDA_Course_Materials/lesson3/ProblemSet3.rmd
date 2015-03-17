@@ -300,9 +300,27 @@ install.packages('reshape', dependencies = TRUE)
 library(reshape)
 sugar <- rename(sugar, c(NA. = "Country"))
 sugar <- rename(sugar, c(NA..1 = "Total"))
+# subsetting by using the index
 sugar_val <- sugar[, -1]
-names(sugar_val)
 sugar_val <- sugar_val[, -45]
-sugar$Total <- sum(sugar_val)
-ggplot(aes(x = ))
+# subsetting by using the name of the column
+sugar_val <- subset(sugar, select = (names(sugar) != 'Country') & (names(sugar) != 'Total') )
+names(sugar_val)
+
+sugar$Total <- rowSums(sugar_val, na.rm = TRUE)
+sugar$TotalAvg <- sugar$Total/44
+str(sugar)
+head(sugar)
+
+sugar_complete <- na.omit(sugar)
+str(sugar_complete)
+head(sugar_complete)
+library(ggplot2)
+
+# Bar chart on total sugar consumption for all countries with data
+ggplot(aes(x = Country, y = TotalAvg), data = sugar_complete, fill = Country) +
+    geom_bar(stat="identity", color = 'black', fill = '#5760AB') +
+    theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5)) +
+    xlab("Country") + ylab("Average sugar consumption in grams per person (from 1961 - 2004)")
+
 ```
