@@ -321,7 +321,9 @@ library(ggplot2)
 ggplot(aes(x = Country, y = TotalAvg), data = sugar_complete, fill = Country) +
     geom_bar(stat="identity", color = 'black', fill = '#5760AB') +
     theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5)) +
-    xlab("Country") + ylab("Average sugar consumption in grams per person (1961 - 2004)")
+    xlab("Country") + 
+    ylab("Avg. sugar consumption (g/person") +
+    ggtitle('Average sugar consumption in grams per person from 1961 to 2004 for 151 countries')
 
 # Bar chart to 
 sugar_complete$Country
@@ -342,11 +344,13 @@ usa <- subset(usa, select = (names(usa) != 'Country') & (names(usa) != 'Total') 
 
 
 head(usa)
+tail(usa)
 str(usa)
 colnames(usa)
 rownames(usa)
 row.names(usa) <- 'Sugar consumption'
 row.names(usa)
+
 usa$Year <- row.names(usa)
 ?substring
 usa1 <- t(usa)
@@ -363,6 +367,7 @@ usadf <- rename(usadf, c("Sugar Consumption (grams per person)" = "Consumption")
 
 ggplot(data = usadf, aes(x = Year, y = Consumption, group = Var2)) + 
     geom_line() +
+    ggtitle('Sugar Consumption in U.S. from 1961 to 2004') +
     xlab('Year') +
     ylab('Sugar Consumption in U.S. (grams per person)') +
     theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))

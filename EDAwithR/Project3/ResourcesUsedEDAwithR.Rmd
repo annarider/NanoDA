@@ -27,14 +27,27 @@ reddit <- read.csv('reddit.tsv', sep='\t')
 reddit <- read.delim('reddit.tsv')
 
 ## Exploring data
-Column names (in R times, see the variables):
+**Column names (in R times, see the variables)**
 names(reddit)
-Find the dimensions (rows, columns)
+**Find the dimensions (rows, columns)**
 dim(reddit)
-Find the structure (columns, data types, example of values...)
+**Find the structure (columns, data types, example of values...)**
 str(reddit)
-Descriptive stats on data, e.g. mean, median, & quartiles 
+**Print out the first 6 lines of dataframe (6 is default)**
+head(reddit)
+head(reddit, 3) # integer specifies only first 3 lines, use negative to last 3 lines
+**Print out last 6 lines of dataframe**
+tail(reddit)
+tail(reddit, 10) # print out last 10 lines, can use negative integer
+**Descriptive stats on data, e.g. mean, median, & quartiles **
 summary(reddit)
+**Find all attributes**
+attributes(reddit)
+**Find all column names**
+colnames(reddit)
+**Find all row names**
+rownames(reddit)
+
 
 ## Basic Plotting
 ### qplot
