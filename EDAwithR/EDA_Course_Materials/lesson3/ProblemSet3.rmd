@@ -371,4 +371,48 @@ ggplot(data = usadf, aes(x = Year, y = Consumption, group = Var2)) +
     xlab('Year') +
     ylab('Sugar Consumption in U.S. (grams per person)') +
     theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
+
+str(sugar_val)
+sugar_val$Country <- sugar$Country
+names(sugar_val) <- substr(names(sugar_val), 2, 5)
+sugar_complete <- na.omit(sugar_val)
+str(sugar_complete)
+
+# Top 5 countries by total average sugar consumption
+sugar_top5 <- subset(sugar, TotalAvg > 150)
+# Frequency polygon for sugar data
+ggplot(aes(x = Country, y = TotalAvg), data = sugar_top5 ) + 
+    geom_bar(stat = "identity") +
+    ggtitle("Top 5 countries by average sugar consumption per person from 1961 to 2004") +
+    xlab("Country") +
+    ylab("Sugar Consumption (g/person)") 
+
+sugar_top5_line <- sugar_top5
+names(sugar_top5_line) <- substr(names(sugar_top5), 2, 5)
+sugar_top5_line <- rename(sugar_top5_line, c(ount = "Country"))
+str(sugar_top5_line)
+
+sugar_top5_line_trans <- t(sugar_top5_line)
+sugar_top5_line_trans = as.data.frame(as.table(sugar_top5_line_trans))
+sugar_top5_line_trans <- subset(sugar_top5_line_trans, Var1 != 'Country' & Var1 != 'otal' & Var1 != 'otalAvg')
+sugar_top5_line_trans$Var2 <- as.factor(sugar_top5_line_trans$Var2)
+library(plyr)
+sugar_top5_line_trans$Var2 <- revalue(sugar_top5_line_trans$Var2, c("20" = "Barbados"))
+sugar_top5_line_trans$Var2 <- revalue(sugar_top5_line_trans$Var2, c("53" = "Costa Rica"))
+sugar_top5_line_trans$Var2 <- revalue(sugar_top5_line_trans$Var2, c("56" = "Cuba"))
+sugar_top5_line_trans$Var2 <- revalue(sugar_top5_line_trans$Var2, c("101" = "Iceland"))
+sugar_top5_line_trans$Var2 <- revalue(sugar_top5_line_trans$Var2, c("241" = "United States"))
+sugar_top5_line_trans[sugar_top5_line_trans$Var2 == "20"] <- "Barbados"
+sugar_top5_line_trans <- rename(sugar_top5_line_trans, c(Freq = "Consumption"))
+sugar_top5_line_trans <- rename(sugar_top5_line_trans, c(Var1 = "Year"))
+sugar_top5_line_trans <- rename(sugar_top5_line_trans, c(Var2 = "Country"))
+sugar_top5_line_trans$Consumption <- as.numeric(sugar_top5_line_trans$Consumption)
+
+ggplot(data = sugar_top5_line_trans, aes(x = Year, y = Consumption, group = Country)) + 
+    geom_line(aes(colour=Country, group=Country)) +
+    scale_y_continuous() +
+    ggtitle("Average Sugar Consumption per person for Top 5 countries from 1961 to 2004") +
+    xlab('Year') +
+    ylab('Sugar Consumption (grams per person)') +
+    theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
 ```

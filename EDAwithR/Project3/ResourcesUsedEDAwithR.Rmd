@@ -79,10 +79,18 @@ http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/
 ### Line plots
 http://docs.ggplot2.org/current/geom_line.html
 http://stackoverflow.com/questions/10357768/plotting-lines-and-the-group-aesthetic-in-ggplot2
-### Scale x log10
+### Scale x axis
+**log10**
 http://forums.udacity.com/questions/100224132/error-using-scale_x_log10-with-this-data
+### Scale y axis
+**scale_y_continuous**
+http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/
 ### Setting labels
 http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/
+http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/
+### Styling
+**Add color to lines** 
+http://www.cookbook-r.com/Graphs/Colors_%28ggplot2%29/
 
 ## R language syntax
 ### Calculate percentage statistics on a column in a dataframe
@@ -101,6 +109,11 @@ http://stackoverflow.com/questions/7531868/how-to-rename-a-single-column-in-a-da
 http://stackoverflow.com/questions/7963898/extracting-the-last-n-characters-from-a-string-in-r
 ### Create a dataframe from a matrix
 http://stackoverflow.com/questions/15885111/create-data-frame-from-a-matrix-in-r
+### Subsetting
+http://stackoverflow.com/questions/8005154/conditionally-remove-dataframe-rows-with-r
+### Overwrite/Replace values
+http://stackoverflow.com/questions/19503266/r-replace-all-particular-values-in-a-data-frame
+http://stackoverflow.com/questions/5824173/replace-a-value-in-a-data-frame-based-on-a-conditional-if-statement-in-r
 
 
 # Data Wrangling Resources
