@@ -415,4 +415,18 @@ ggplot(data = sugar_top5_line_trans, aes(x = Year, y = Consumption, group = Coun
     xlab('Year') +
     ylab('Sugar Consumption (grams per person)') +
     theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
+
+
+# See the top 5 countries with highest consumption & lowest consumption, total & avg
+# Top 5 country with highest total consumption of sugar
+head(arrange(sugar, desc(Total)), 5)
+# Top 5 country with highest total consumption of sugar
+head(arrange(sugar, desc(TotalAvg)), 5)
+## -> U.S., Cuba, Costa Rica, Iceland, Barbados
+
+# Top 5 country with lowest total consumption of sugar
+tail(arrange(na.omit(sugar), desc(Total)), 5)
+# Top 5 country with lowest total consumption of sugar
+tail(arrange(na.omit(sugar), desc(TotalAvg)), 5)
+## -> Congo, Dem. Rep., Nepal, Burundi, Laos, Rwanda
 ```
