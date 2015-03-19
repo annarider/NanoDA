@@ -114,6 +114,9 @@ http://stackoverflow.com/questions/8005154/conditionally-remove-dataframe-rows-w
 ### Overwrite/Replace values
 http://stackoverflow.com/questions/19503266/r-replace-all-particular-values-in-a-data-frame
 http://stackoverflow.com/questions/5824173/replace-a-value-in-a-data-frame-based-on-a-conditional-if-statement-in-r
+### plyr library
+**subsetting & deleting rows**
+http://blog.rstudio.org/2014/01/17/introducing-dplyr/
 
 
 # Data Wrangling Resources

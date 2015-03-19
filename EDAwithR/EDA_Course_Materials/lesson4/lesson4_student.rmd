@@ -12,7 +12,11 @@ Notes:
 Notes:
 
 ```{r Scatterplots}
-
+getwd()
+setwd( "/Users/horsepower/Dropbox/Udacity/NanoDA/EDAwithR/EDA_Course_Materials/lesson3")
+pf <- read.delim('pseudo_facebook.tsv') 
+ggplot(aes(x = age, y = friend_count), data = pf) + 
+  geom_point()
 ```
 
 ***
