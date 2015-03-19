@@ -443,8 +443,9 @@ tail(arrange(na.omit(sugar), desc(TotalAvg)), 5)
 
 # How many people share your birthday? Do you know them?
 # (Reserve time with them or save money to buy them a gift!)
-
+# --> 2 people 
 # Which month contains the most number of birthdays?
+# --> March
 
 # How many birthdays are in each month?
 
@@ -492,13 +493,40 @@ tail(arrange(na.omit(sugar), desc(TotalAvg)), 5)
 # Copy and paste all of the code that you used for
 # your investigation below the line. Submit it when you are ready.
 # ===============================================================================
-bday <- read.csv('birthdaysExample.csv')
-dates <- as.character(bday)
-bday_dates <- as.Date(dates, format = '%d %B %Y')
+bday <- read.csv('birthdaysExample.csv', format='%m/%d/%y')
+?strptime
+str(bday)
+dates <- strptime(bday$dates, '%m/%d/%y')
+str(dates)
+summary(dates)
 
+library(lubridate)
+?lubridate
 
+day <- day(dates)
+month <- month(dates)
+year <- year(dates)
+bday_dates <- data.frame(day, month, year)
 
+str(bday_dates)
 
+# 2 people share the same birthday as me 
+same_bday <- subset(bday_dates, day == 5 & month == 10 )
+same_bday
 
-                
+?aggregate
+
+# March is the most common month for birthdays in the dataset
+library(ggplot)
+ggplot(data = bday_dates, aes(x = month)) +
+    geom_histogram() +
+    scale_x_discrete(c(1:12))
+
+library(plyr)
+count <- ddply(bday_dates, .(bday_dates$month), nrow)
+arrange(count, desc(V1))
+?arrange
+
+aggregate(bday_dates$Freq, by = list(month = bday_dates$month), FUN = count)
+               
 ```
