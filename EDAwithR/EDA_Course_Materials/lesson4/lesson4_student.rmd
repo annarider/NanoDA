@@ -92,6 +92,16 @@ The biggest group of friend initiators are in the under 25 group. There is also 
 
 ***
 
+# dplyr
+```{r}
+install.packages("dplyr", dependencies = TRUE)
+library(dplyr)
+
+```
+Great library for slicing dataframes and computing quick analyses,  
+
+install.packages("dplyr")
+
 ### Overplotting and Domain Knowledge
 Notes:
 

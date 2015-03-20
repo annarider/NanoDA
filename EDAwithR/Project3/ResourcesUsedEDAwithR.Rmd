@@ -122,6 +122,15 @@ http://blog.rstudio.org/2014/01/17/introducing-dplyr/
 **arrange**
 http://127.0.0.1:24449/library/plyr/html/arrange.html
 http://stackoverflow.com/questions/10879551/frequency-count-of-two-column-in-r
+### dplyr
+http://blog.rstudio.org/2014/01/17/introducing-dplyr/
+#### code examples
+### lapply
+#### First intro to list
+https://rollingyours.wordpress.com/2014/10/20/the-lapply-command-101/
+***
+
+http://rstudio-pubs-static.s3.amazonaws.com/11068_8bc42d6df61341b2bed45e9a9a3bf9f4.html
 ### Date Time methods 
 **strptime**
 http://127.0.0.1:24449/library/base/html/strptime.html
