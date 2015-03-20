@@ -76,11 +76,19 @@ There's almost a bimodal distribution of friend count where the under 25s have t
 ***
 
 ### Alpha and Jitter
-Notes:
+Notes: Explore relationship between friends initiated, friendships_initiated (y) and age (x) with ggplot
+# We recommend creating a basic scatter
+# plot first to see what the distribution looks like.
+# and then adjusting it by adding one layer at a time.
 
 ```{r Alpha and Jitter}
-
+ggplot(data = pf, aes(x = age, y = friendships_initiated)) +
+    geom_point(alpha = 1/5, position = position_jitter(h = 0)) +
+    xlim(13, 90)
 ```
+
+#### What are your observations about your final plot?
+The biggest group of friend initiators are in the under 25 group. There is also a sudden spike in the mid to late 60s. The trend is consistent with the friend_count and age plot. 
 
 ***
 
