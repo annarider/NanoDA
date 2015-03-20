@@ -4,7 +4,7 @@ Lesson 4
 ***
 
 ### Scatterplots and Perceived Audience Size
-Notes:
+Notes: 
 
 ***
 
@@ -15,6 +15,7 @@ Notes:
 getwd()
 setwd( "/Users/horsepower/Dropbox/Udacity/NanoDA/EDAwithR/EDA_Course_Materials/lesson3")
 pf <- read.delim('pseudo_facebook.tsv') 
+library(ggplot2)
 ggplot(aes(x = age, y = friend_count), data = pf) + 
   geom_point()
 ```
@@ -22,15 +23,17 @@ ggplot(aes(x = age, y = friend_count), data = pf) +
 ***
 
 #### What are some things that you notice right away?
-Response:
+Response: Most of the data is clustered towards age of less than 30 and friend count less than 2000
 
 ***
 
 ### ggplot Syntax
-Notes:
+Notes: The vast majority of people have less than 1000 friends regardless of age. And the majority of users are less than 50 years only, in fact, a huge number are less than 25 years old.
 
 ```{r ggplot Syntax}
-
+ggplot(data = pf, aes(x = age, y = friend_count)) +
+    geom_jitter(alpha = 1/20) +
+    xlim(13, 90)
 ```
 
 ***
@@ -39,7 +42,9 @@ Notes:
 Notes:
 
 ```{r Overplotting}
-
+ggplot(data = pf, aes(x = age, y = friend_count)) +
+    geom_point(alpha = 1/20) +
+    xlim(13, 90)
 ```
 
 #### What do you notice in the plot?
@@ -48,20 +53,26 @@ Response:
 ***
 
 ### Coord_trans()
-Notes:
+Notes: The transformation combined with jitter might cause some friend_counts to be negative (which is impossible because you can't have negative friends). So more elaborate syntax is needed to only jitter the ages and not friend_count (see 2nd plot for answer).
 
 ```{r Coord_trans()}
-
+ggplot(data = pf, aes(x = age, y = friend_count)) +
+    geom_point(alpha = 1/20) +
+    xlim(13, 90) +
+    coord_trans(y = 'sqrt')
 ```
 
 #### Look up the documentation for coord_trans() and add a layer to the plot that transforms friend_count using the square root function. Create your plot!
 
 ```{r}
-
+ggplot(data = pf, aes(x = age, y = friend_count)) +
+    geom_point(alpha = 1/20, position = position_jitter(h = 0))  +
+    xlim(13, 90) +
+    coord_trans(y = 'sqrt')
 ```
 
 #### What do you notice?
-
+There's almost a bimodal distribution of friend count where the under 25s have the first big peak and there's a dip between 30-50 and then another smaller peak around 65.
 ***
 
 ### Alpha and Jitter

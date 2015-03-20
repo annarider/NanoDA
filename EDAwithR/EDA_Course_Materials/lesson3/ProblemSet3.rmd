@@ -523,10 +523,13 @@ ggplot(data = bday_dates, aes(x = month)) +
     scale_x_discrete(c(1:12))
 
 library(plyr)
+# show the frequency of birthdays per month
 count <- ddply(bday_dates, .(bday_dates$month), nrow)
 arrange(count, desc(V1))
 ?arrange
 
-aggregate(bday_dates$Freq, by = list(month = bday_dates$month), FUN = count)
-               
+# Day of the year with the most birthdays
+count_d <- ddply(bday_dates, .(bday_dates$day), nrow)
+arrange(count_d, desc(V1))
+# --> 3rd has the most birthdays, closely followed by the 9th
 ```

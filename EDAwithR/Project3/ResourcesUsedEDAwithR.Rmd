@@ -91,6 +91,8 @@ http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/
 ### Styling
 **Add color to lines** 
 http://www.cookbook-r.com/Graphs/Colors_%28ggplot2%29/
+### Plotting Datetime
+http://matpalm.com/blog/2012/03/18/ggplot_posix_cheat_sheet/
 
 ## R language syntax
 ### Calculate percentage statistics on a column in a dataframe
@@ -117,6 +119,9 @@ http://stackoverflow.com/questions/5824173/replace-a-value-in-a-data-frame-based
 ### plyr library
 **subsetting & deleting rows**
 http://blog.rstudio.org/2014/01/17/introducing-dplyr/
+**arrange**
+http://127.0.0.1:24449/library/plyr/html/arrange.html
+http://stackoverflow.com/questions/10879551/frequency-count-of-two-column-in-r
 ### Date Time methods 
 **strptime**
 http://127.0.0.1:24449/library/base/html/strptime.html
