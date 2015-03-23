@@ -93,6 +93,12 @@ http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/
 http://www.cookbook-r.com/Graphs/Colors_%28ggplot2%29/
 ### Plotting Datetime
 http://matpalm.com/blog/2012/03/18/ggplot_posix_cheat_sheet/
+### Coord_cartesian & Coord_trans
+http://docs.ggplot2.org/current/coord_trans.html
+### Stat Summary
+http://docs.ggplot2.org/current/stat_summary.html
+### Aesthetics
+http://docs.ggplot2.org/current/aes_linetype_size_shape.html
 
 ## R language syntax
 ### Calculate percentage statistics on a column in a dataframe
@@ -129,6 +135,7 @@ http://datascience.la/hadley-wickhams-dplyr-tutorial-at-user-2014-part-1/
 http://www.r-bloggers.com/hadley-wickhams-dplyr-tutorial-at-user-2014-part-2/
 #### code examples
 ### lapply
+https://rollingyours.wordpress.com/2014/10/20/the-lapply-command-101/
 #### First intro to list
 https://rollingyours.wordpress.com/2014/10/20/the-lapply-command-101/
 ***

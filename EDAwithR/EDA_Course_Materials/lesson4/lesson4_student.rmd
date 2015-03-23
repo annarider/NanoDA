@@ -165,12 +165,21 @@ ggplot(data = pf.fc_by_age, aes(x = age, y = friend_count_mean)) +
 Notes:
 
 ```{r Overlaying Summaries with Raw Data}
+ggplot(data = pf, aes(x = age, y = friend_count)) +
+    geom_point(alpha = 1/20, position = position_jitter(h = 0), color = 'blue')  +
+    coord_cartesian(xlim = c(13, 90)) +
+    coord_trans(y = 'sqrt') +
+    geom_line(stat = 'summary', fun.y = mean, linetype = 1, color = 'red') +
+    geom_line(stat = 'summary', fun.y = quantile, probs = .1, linetype = 1, color = 'orange') +
+    geom_line(stat = 'summary', fun.y = quantile, probs = .5, linetype = 2, color = 'orange') +
+    geom_line(stat = 'summary', fun.y = quantile, probs = .9, linetype = 3, color = 'orange')
+    
 
 ```
 
 #### What are some of your observations of the plot?
 Response:
-
+The mean isn't an accurate description of where most friend count is for age because it is being pull higher by very large outlier friend counts. The quantiles are better measures
 ***
 
 ### Moira: Histogram Summary and Scatterplot
@@ -181,16 +190,19 @@ Notes:
 ***
 
 ### Correlation
-Notes:
+Notes: According to instructor, 0.3 or -0.3 is meaningful correlation but small. 0.5 or -0.5 is moderate, 0.7 or -0.7 is strong, and 0.9 or -0.9 is large.
 
 ```{r Correlation}
+cor.test(pf$age, pf$friend_count)
 
+# alternative way to code pearson test with new with() method
+with(pf, cor.test(age, friend_count, method = 'pearson'))
 ```
 
 Look up the documentation for the cor.test function.
 
 What's the correlation between age and friend count? Round to three decimal places.
-Response:
+Response: -0.027
 
 ***
 
