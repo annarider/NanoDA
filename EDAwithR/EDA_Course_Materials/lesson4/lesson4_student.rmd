@@ -225,6 +225,21 @@ Notes:
 Notes:
 
 ```{r}
+# Create a scatterplot of likes_received (y)
+# vs. www_likes_received (x). Use any of the
+# techniques that you've learned so far to
+# modify the plot.
+
+# ENTER ALL OF YOUR CODE TO CREATE THE PLOT BELOW THIS LINE.
+# ===========================================================
+
+names(pf)
+ggplot(data = pf, aes(x = log10(www_likes_received), y = log10(likes_received))) +
+    geom_point(alpha = 1/20, color = 'blue') +
+    coord_cartesian(xlim = c(0, 6), ylim = c(0,50000)) +
+    coord_trans(x = 'sqrt', y = 'sqrt')
+    
+head(pf$likes_received)
 
 ```
 
