@@ -246,19 +246,23 @@ head(pf$likes_received)
 ***
 
 ### Strong Correlations
-Notes:
+Notes: Instructor's answer. Much better way of zooming in on biggest cluster of points
 
 ```{r Strong Correlations}
-
+ggplot(data = pf, aes(x = www_likes_received, y = likes_received)) +
+    geom_point() +
+    xlim(0, quantile(pf$www_likes_received, 0.95)) +
+    ylim(0, quantile(pf$likes_received, 0.95)) +
+    geom_smooth(method = 'lm', color = 'red')
 ```
 
 What's the correlation betwen the two variables? Include the top 5% of values for the variable in the calculation and round to 3 decimal places.
 
 ```{r Correlation Calcuation}
-
+cor.test(pf$www_likes_received, pf$likes_received)
 ```
 
-Response:
+Response: 0.9479902, rounded to 0.948
 
 ***
 
@@ -271,26 +275,34 @@ Notes:
 Notes:
 
 ```{r More Caution With Correlation}
-install.packages('alr3')
+install.packages('alr3', dependencies = TRUE)
 library(alr3)
+data(Mitchell)
+summary(Mitchell)
+str(Mitchell)
+head(Mitchell)
 ```
 
 Create your plot!
 
 ```{r Temp vs Month}
+# Create a scatterplot of temperature (Temp)
+# vs. months (Month).
 
+ggplot(data = Mitchell, aes(x = Month, y = Temp)) +
+    geom_point()
 ```
 
 ***
 
 ### Noisy Scatterplots
 a. Take a guess for the correlation coefficient for the scatterplot.
-
+0
 b. What is the actual correlation of the two variables?
 (Round to the thousandths place)
-
+0.057
 ```{r Noisy Scatterplots}
-
+cor.test(Mitchell$Month, Mitchell$Temp)
 ```
 
 ***
