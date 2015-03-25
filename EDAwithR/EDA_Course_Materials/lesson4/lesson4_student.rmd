@@ -311,7 +311,14 @@ cor.test(Mitchell$Month, Mitchell$Temp)
 Notes:
 
 ```{r Making Sense of Data}
-
+# Break up the x-axis into 12 month increments so it corresponds to a year.
+library(ggplot2)
+ggplot(data = Mitchell, aes(x = Month %% 12, y = Temp)) +
+    geom_point() 
+ggplot(data = Mitchell, aes(x = Month, y = Temp)) +
+    geom_point() + 
+    scale_x_discrete(breaks = seq(0, 203, 12))
+    
 ```
 
 ***
