@@ -12,6 +12,10 @@ summary(mtcars)
 ```
 
 
+## Comment blocks
+Command + Shift + c (but only for the r code blocks)
+http://stackoverflow.com/questions/4131338/is-it-possible-to-have-a-multi-line-comments-in-r
+
 ## Directories
 ### Find current directory
 getwd()
