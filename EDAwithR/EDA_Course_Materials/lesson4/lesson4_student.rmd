@@ -404,7 +404,14 @@ pf.fc_by_age_months <- pf %>%
 ### Noise in Conditional Means
 
 ```{r Noise in Conditional Means}
+# Create a new scatterplot showing friend_count_mean
+# versus the new variable, age_with_months. Be sure to use
+# the correct data frame (the one you create in the last
+# exercise) AND subset the data to investigate
+# users with ages less than 71.
 
+ggplot(data = subset(pf.fc_by_age_months, age_with_months < 71), aes(x = age_with_months, y = friend_count_mean)) +
+    geom_line()
 ```
 
 ***
@@ -425,6 +432,9 @@ Notes:
 
 ### Analyzing Two Variables
 Reflection:
+Useful to learn how to analyze two variables
+Dplyr is very useful
+Manipulating data to add or reduce noise is interesting
 
 ***
 
