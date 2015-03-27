@@ -36,8 +36,9 @@ cor.test(diamonds_volume$price, diamonds_volume$volume)
 # Instructor Notes or look up the documentation of
 # geom_smooth() for more details about smoothers.)
 
-# We encourage you to think about this next question and
-# to post your thoughts in the discussion section.
+ggplot(data = diamonds_volume, aes(x = volume, y = price)) +
+    geom_point(alpha = 1/10) +
+
 
 # Do you think this would be a useful model to estimate
 # the price of diamonds? Why or why not?
