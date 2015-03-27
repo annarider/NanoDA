@@ -38,7 +38,11 @@ cor.test(diamonds_volume$price, diamonds_volume$volume)
 
 ggplot(data = diamonds_volume, aes(x = volume, y = price)) +
     geom_point(alpha = 1/10) +
+    geom_smooth(method = "lm")
 
 
 # Do you think this would be a useful model to estimate
 # the price of diamonds? Why or why not?
+
+# No the linear model doesn't appear to be a good fit because the points
+# have an exponential relationship. A polynomial model would be better.
