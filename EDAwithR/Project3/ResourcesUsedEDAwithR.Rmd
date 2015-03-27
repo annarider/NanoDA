@@ -9,6 +9,8 @@ output: html_document
 ## syntax for creating R chunks in RMD
 ```{r}
 summary(mtcars)
+# Find the 90% quartile of data in variable prices in diamonds dataset
+quantile(diamonds$price, 0.9)
 ```
 
 
@@ -92,6 +94,7 @@ http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/
 ### Setting labels
 http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/
 http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/
+http://stackoverflow.com/questions/10438752/adding-x-and-y-axis-labels-in-ggplot2
 ### Styling
 **Add color to lines** 
 http://www.cookbook-r.com/Graphs/Colors_%28ggplot2%29/
@@ -103,6 +106,8 @@ http://docs.ggplot2.org/current/coord_trans.html
 http://docs.ggplot2.org/current/stat_summary.html
 ### Aesthetics
 http://docs.ggplot2.org/current/aes_linetype_size_shape.html
+### Smoothers
+http://www.ats.ucla.edu/stat/r/faq/smooths.htm
 
 ## R language syntax
 ### Calculate percentage statistics on a column in a dataframe
@@ -143,6 +148,8 @@ https://rollingyours.wordpress.com/2014/10/20/the-lapply-command-101/
 #### First intro to list
 https://rollingyours.wordpress.com/2014/10/20/the-lapply-command-101/
 ***
+### Quantile
+https://stat.ethz.ch/R-manual/R-devel/library/stats/html/quantile.html
 
 http://rstudio-pubs-static.s3.amazonaws.com/11068_8bc42d6df61341b2bed45e9a9a3bf9f4.html
 ### Date Time methods 

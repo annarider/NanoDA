@@ -420,7 +420,26 @@ ggplot(data = subset(pf.fc_by_age_months, age_with_months < 71), aes(x = age_wit
 Notes:
 
 ```{r Smoothing Conditional Means}
+# Copied from instructor's video
 
+p1 <- ggplot(data = subset(pf.fc_by_age, age < 71), 
+             aes(x = age, y = friend_count_mean)) +
+    geom_line() +
+    geom_smooth()
+
+p2 <- ggplot(data = subset(pf.fc_by_age_months, age_with_months < 71), 
+             aes(x = age_with_months, y = friend_count_mean)) +
+    geom_line() +
+    geom_smooth()
+
+p3 <- ggplot(data = subset(pf, age < 71), 
+             aes(x = round(age / 5) * 5, y = friend_count)) +
+    geom_line(stat = 'summary', fun.y = mean) 
+
+install.packages('gridExtra', dependencies = TRUE)
+library(gridExtra)
+
+grid.arrange(p2, p1, p3, ncol = 1)
 ```
 
 ***
