@@ -63,6 +63,9 @@ pf.fc_by_age_gender
 
 ggplot(aes(x = gender, y = age),
        data = subset(pf, !is.na(gender))) + geom_histogram(stat="identity")
+
+
+
 ```
 
 ***
@@ -100,6 +103,17 @@ Notes:
 ```{r}
 install.packages('reshape2')
 library(reshape2)
+install.packages('tidyr', dependencies = TRUE)
+library(tidyr)
+# this dplyr dataframe code doesn't work. See tidyr spread below
+pf.fc_by_age_gender.wide <- pf.fc_by_age_gender %>% 
+    group_by(age) %>%
+    summarise(male = friend_count.median[gender = 'male'],
+              female = friend_count.median[gender = 'female'], 
+              ratio = female / male) %>% 
+    arrange(age) 
+
+head(pf.fc_by_age_gender.wide)
 ```
 
 
@@ -109,7 +123,22 @@ library(reshape2)
 Notes:
 
 ```{r Ratio Plot}
+# Plot the ratio of the female to male median
+# friend counts using the data frame
+# pf.fc_by_age_gender.wide.
 
+# Think about what geom you should use.
+# Add a horizontal line to the plot with
+# a y intercept of 1, which will be the
+# base line. Look up the documentation
+# for geom_hline to do that. Use the parameter
+# linetype in geom_hline to make the
+# line dashed.
+
+# The linetype parameter can take the values 0-6:
+# 0 = blank, 1 = solid, 2 = dashed
+# 3 = dotted, 4 = dotdash, 5 = longdash
+# 6 = twodash
 ```
 
 ***

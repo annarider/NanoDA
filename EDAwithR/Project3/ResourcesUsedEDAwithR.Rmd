@@ -174,5 +174,10 @@ https://www.udacity.com/course/viewer#!/c-ud651-nd/l-685569242/m-3552939568
 > http://www.rstudio.com/resources/cheatsheets/
 > You may also download this useful Data Wrangling Cheat Sheet. There are some other useful cheat sheets at > RStudio. https://s3.amazonaws.com/udacity-hosted-downloads/ud651/DataWranglingWithR.pdf
 
-
+## From wide to long and long to wide
+### tidyr & reshape2
+http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/
+### reshape2
+http://seananderson.ca/2013/10/19/reshape.html
+http://www.r-bloggers.com/melt/
 
