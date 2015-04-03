@@ -159,6 +159,12 @@ http://stackoverflow.com/questions/9372211/reading-csv-with-date-and-time
 **lubridate**
 http://cran.r-project.org/web/packages/lubridate/lubridate.pdf
 
+### Math
+** Difference between floor, ceiling & truncate **
+http://stackoverflow.com/questions/14/difference-between-math-floor-and-math-truncate
+** Built in functions **
+http://www.statmethods.net/management/functions.html
+
 # Data Wrangling Resources
 Taken directly from Udacity's EDA with R course materials
 https://www.udacity.com/course/viewer#!/c-ud651-nd/l-685569242/m-3552939568

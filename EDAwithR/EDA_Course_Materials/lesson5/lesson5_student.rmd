@@ -160,7 +160,16 @@ ggplot(data = pf.fc_by_age_gender.wide, aes(x = age, y = ratio)) +
 Notes:
 
 ```{r Third Quantitative Variable}
+# Create a variable called year_joined
+# in the pf data frame using the variable
+# tenure and 2014 as the reference year.
 
+# The variable year joined should contain the year
+# that a user joined facebook.
+
+head(pf$tenure, 20)
+
+pf$year_joined <- trunc(abs(pf$tenure/365 - 2014))
 ```
 
 ***
