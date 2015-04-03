@@ -178,7 +178,26 @@ pf$year_joined <- trunc(abs(pf$tenure/365 - 2014))
 Notes:
 
 ```{r Cut a Variable}
+# Create a new variable in the data frame
+# called year_joined.bucket by using
+# the cut function on the variable year_joined.
 
+# You need to create the following buckets for the
+# new variable, year_joined.bucket
+
+#        (2004, 2009]
+#        (2009, 2011]
+#        (2011, 2012]
+#        (2012, 2014]
+
+# Note that a parenthesis means exclude the year and a
+# bracket means include the year.
+
+str(pf$year_joined)
+
+cut(pf$year_joined, breaks = c(2004,2009,2011,2012))
+
+?cut
 ```
 
 ***

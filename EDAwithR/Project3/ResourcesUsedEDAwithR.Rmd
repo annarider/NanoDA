@@ -164,6 +164,8 @@ http://cran.r-project.org/web/packages/lubridate/lubridate.pdf
 http://stackoverflow.com/questions/14/difference-between-math-floor-and-math-truncate
 ** Built in functions **
 http://www.statmethods.net/management/functions.html
+### Cut
+http://www.r-bloggers.com/r-function-of-the-day-cut-2/
 
 # Data Wrangling Resources
 Taken directly from Udacity's EDA with R course materials
