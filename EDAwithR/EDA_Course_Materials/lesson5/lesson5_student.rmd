@@ -83,6 +83,7 @@ Notes:
 ggplot(data = pf.fc_by_age_gender, aes(x = age, y = median_friend_count)) +
     geom_line(aes(color = gender))
 
+head(pf.fc_by_age_gender)
 ```
 
 ***
@@ -130,7 +131,8 @@ Notes:
 # Plot the ratio of the female to male median
 # friend counts using the data frame
 # pf.fc_by_age_gender.wide.
-pf.fc_by_age_gender.wide$ratio <- pf.fc_by_age_gender.wide$female/pf.fc_by_age_gender.wide$male
+pf.fc_by_age_gender.wide$ratio <- pf.fc_by_age_gender.wide$female_median/pf.fc_by_age_gender.wide$male_median
+head(pf.fc_by_age_gender.wide)
 
 # Think about what geom you should use.
 # Add a horizontal line to the plot with
@@ -140,7 +142,11 @@ pf.fc_by_age_gender.wide$ratio <- pf.fc_by_age_gender.wide$female/pf.fc_by_age_g
 # linetype in geom_hline to make the
 # line dashed.
 
-
+ggplot(data = pf.fc_by_age_gender.wide, aes(x = age, y = ratio)) +
+    geom_point() +
+    geom_line() +
+    geom_hline(yintercept = 1, linetype = 2, color = 'red')
+    
 
 # The linetype parameter can take the values 0-6:
 # 0 = blank, 1 = solid, 2 = dashed
