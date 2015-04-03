@@ -181,3 +181,7 @@ http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_lon
 http://seananderson.ca/2013/10/19/reshape.html
 http://www.r-bloggers.com/melt/
 
+## Functions
+### 3 different kinds of functions & their syntax
+http://discussions.udacity.com/t/writing-functions-in-r/14299/3
+

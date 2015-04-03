@@ -105,15 +105,19 @@ install.packages('reshape2')
 library(reshape2)
 install.packages('tidyr', dependencies = TRUE)
 library(tidyr)
-# this dplyr dataframe code doesn't work. See tidyr spread below
-pf.fc_by_age_gender.wide <- pf.fc_by_age_gender %>% 
-    group_by(age) %>%
-    summarise(male = friend_count.median[gender = 'male'],
-              female = friend_count.median[gender = 'female'], 
-              ratio = female / male) %>% 
-    arrange(age) 
+# dplyr dataframe code creates wide frame with median friend counts
+pf.fc_by_age_gender.wide <- pf.fc_by_age_gender %>%
+  group_by(age) %>%
+  arrange(age, gender) %>%
+  summarise(female_median = first(median_friend_count),
+            male_median = last(median_friend_count))
 
+# wide dataframe correctly created using reshape2 to do same as above
+pf.fc_by_age_gender.wide <- dcast(pf.fc_by_age_gender,
+                                  age ~ gender, 
+                                  value.var = 'median_friend_count')
 head(pf.fc_by_age_gender.wide)
+names(pf.fc_by_age_gender)
 ```
 
 
@@ -126,6 +130,7 @@ Notes:
 # Plot the ratio of the female to male median
 # friend counts using the data frame
 # pf.fc_by_age_gender.wide.
+pf.fc_by_age_gender.wide$ratio <- pf.fc_by_age_gender.wide$female/pf.fc_by_age_gender.wide$male
 
 # Think about what geom you should use.
 # Add a horizontal line to the plot with
@@ -134,6 +139,8 @@ Notes:
 # for geom_hline to do that. Use the parameter
 # linetype in geom_hline to make the
 # line dashed.
+
+
 
 # The linetype parameter can take the values 0-6:
 # 0 = blank, 1 = solid, 2 = dashed
