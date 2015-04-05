@@ -251,6 +251,14 @@ ggplot(data = subset(pf, !is.na(year_joined.bucket)), aes(x =  age, y = friend_c
 Notes:
 
 ```{r Friending Rate}
+# Subset dataframe to only include users with tenure of one day or greater. Then calculate rate
+
+# median friend rate
+?median
+median(subset(pf$friend_count/pf$tenure, pf$tenure > 0), na.rm = TRUE)
+
+?max
+max(subset(pf$friend_count/pf$tenure, pf$tenure > 0), na.rm = TRUE)
 
 ```
 
@@ -260,10 +268,23 @@ Notes:
 Notes:
 
 What is the median friend rate?
+82
 
 What is the maximum friend rate?
+4923
 
 ```{r Friendships Initiated}
+# Create a line graph of mean of friendships_initiated per day (of tenure)
+# vs. tenure colored by year_joined.bucket.
+
+# You need to make use of the variables tenure,
+# friendships_initiated, and year_joined.bucket.
+
+# You also need to subset the data to only consider user with at least
+# one day of tenure.
+
+ggplot(data = subset(pf, pf$tenure > 0), aes(x =  tenure, y = friendships_initiated/tenure)) +
+    geom_line(aes(color = year_joined.bucket), stat = 'summary', fun.y = mean)  
 
 ```
 
@@ -298,6 +319,11 @@ ggplot(aes(x = 90 * round(tenure / 90), y = friendships_initiated / tenure),
             stat = "summary",
             fun.y = mean)
 
+ggplot(aes(x = tenure, y = friendships_initiated / tenure),
+       data = subset(pf, tenure >= 1)) +
+  geom_smooth(aes(color = year_joined.bucket))
+
+
 ```
 
 ***
@@ -309,22 +335,72 @@ Notes:
 
 ### Introducing the Yogurt Data Set
 Notes:
+```{r Yogurt dataset}
+getwd()
+setwd("/Users/horsepower/Dropbox/Udacity/NanoDA/EDAwithR/EDA_Course_Materials/lesson5")
+
+yo <- read.csv('yogurt.csv')
+str(yo)
+
+yo$id <- factor(yo$id)
+```
 
 ***
 
 ### Histograms Revisited
-Notes:
 
 ```{r Histograms Revisited}
+# more bins so see the gaps between discrete bars & the valleys between tall bars 
+ggplot(data = yo, aes(x =  price)) +
+    geom_histogram()
 
+# more biased model because fewer number of bars obscures the differences in between 
+ggplot(data = yo, aes(x =  price)) +
+    geom_histogram(binwidth = 10)
+
+# See these observations numerically instead of graphically
+summary(yo)
+length(unique(yo$price))
+table(yo$price)
 ```
 
+What do I notice?:
+The highest priced yogurts are the most common purchased compared to the cheapest yogurts. There's an unexpected trend around $30-40 that doesn't conform to this trend.
 ***
 
 ### Number of Purchases
 Notes:
 
 ```{r Number of Purchases}
+# Create a new variable called all.purchases,
+# which gives the total counts of yogurt for
+# each observation or household.
+
+# One way to do this is using the transform
+# function. You can look up the function transform
+# and run the examples of code at the bottom of the
+# documentation to figure out what it does.
+
+# The transform function produces a data frame
+# so if you use it then save the result to 'yo'!
+# OR you can figure out another way to create the
+# variable.
+
+?transform
+head(airquality,10)
+head(transform(airquality, Ozone = -Ozone))
+head(transform(airquality, new = -Ozone, Temp = (Temp-32)/1.8))
+
+attach(airquality)
+head(transform(Ozone, logOzone = log(Ozone))) # marginally interesting ...
+detach(airquality)
+
+head(yo)
+names(yo)
+yo <- transform(yo, all.purchases = strawberry + blueberry + pina.colada + plain + mixed.berry)
+head(transform(yo, all.purchases = strawberry + blueberry + pina.colada + plain + mixed.berry), 10)
+head(transform(yo, all.purchases = rowSums(yo[, 4:8])), 10)
+
 
 ```
 
