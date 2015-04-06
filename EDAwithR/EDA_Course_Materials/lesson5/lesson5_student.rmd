@@ -410,19 +410,46 @@ head(transform(yo, all.purchases = rowSums(yo[, 4:8])), 10)
 Notes:
 
 ```{r Prices over Time}
+# Create a scatterplot of price vs time.
 
+# This will be an example of a time series plot.
+
+# Resolve overplotting issues by using
+# techniques you learned in Lesson 4.
+
+head(yo)
+cor.test(yo$time, yo$price)
+
+ggplot(data = yo, aes(x = time, y = price)) +
+    geom_point(alpha = .1) +
+    coord_cartesian(ylim = c(30, 70))
+
+# What are some things that you notice?
+# Very low correlation between price and time. Most yogurt prices are between $55 and $70. There are three main prices that seem to stay fairly consistent over time (at least they plateau for a while).
 ```
 
 ***
 
 ### Sampling Observations
 Notes:
+x %in% y returns a logical (boolean) vector the same length as x that says whether each entry in x appears in y. That is, for each entry in x, it checks to see whether it is in y. 
 
+This allows us to subset the data so we get all the purchases occasions for the households in the sample. Then, we create scatterplots of price vs. time and facet by the sample id. 
+
+
+Use the pch or shape parameter to specify the symbol when plotting points. Scroll down to 'Plotting Points' on QuickR's Graphical Parameters.
 ***
 
 ### Looking at Samples of Households
 
 ```{r Looking at Sample of Households}
+set.seed(1290)
+sample.ids <- sample(levels(yo$id), 16)
+
+ggplot(data = subset (yo, id %in% sample.ids), aes(x = time, y = price)) +
+    geom_line() +
+    geom_point(aes(size = all.purchases), pch = 1) +
+    facet_wrap( ~ id)
 
 ```
 
@@ -441,6 +468,20 @@ Notes:
 ### Scatterplot Matrix
 Notes:
 
+```{r Scatterplot Matrix}
+
+install.packages('GGally', dependencies = TRUE)
+library(GGally)
+theme_set(theme_minimal(20))
+
+# set seed
+set.seed(1836)
+pf_subset <- pf[, c(2:15)]
+names(pf_subset)
+ggpairs(pf_subset[sample.int(nrow(pf_subset), 1000), ])
+
+```
+
 ***
 
 ### Even More Variables
@@ -457,6 +498,7 @@ colnames(nci) <- c(1:64)
 ```
 
 ```{r}
+library(reshape2)
 nci.long.samp <- melt(as.matrix(nci[1:200,]))
 names(nci.long.samp) <- c("gene", "case", "value")
 head(nci.long.samp)
