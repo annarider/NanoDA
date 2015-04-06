@@ -98,6 +98,12 @@ http://stackoverflow.com/questions/10438752/adding-x-and-y-axis-labels-in-ggplot
 ### Styling
 **Add color to lines** 
 http://www.cookbook-r.com/Graphs/Colors_%28ggplot2%29/
+**Add color to bars in histogram**
+http://stackoverflow.com/questions/17732084/colours-for-geom-histogram
+http://docs.ggplot2.org/current/geom_histogram.html
+http://stackoverflow.com/questions/10016316/how-to-manually-fill-colors-in-a-ggplot2-histogram
+**Add color to points in scatterplot**
+http://docs.ggplot2.org/0.9.3.1/geom_point.html
 ### Plotting Datetime
 http://matpalm.com/blog/2012/03/18/ggplot_posix_cheat_sheet/
 ### Coord_cartesian & Coord_trans
@@ -108,6 +114,11 @@ http://docs.ggplot2.org/current/stat_summary.html
 http://docs.ggplot2.org/current/aes_linetype_size_shape.html
 ### Smoothers
 http://www.ats.ucla.edu/stat/r/faq/smooths.htm
+### GGally 
+**Scatterplot Matrix (ggpairs)**
+http://www.gettinggeneticsdone.com/2011/07/scatterplot-matrices-in-r.html
+### Add Horizontal or Vertical line to plot
+http://www.sthda.com/english/wiki/ggplot2-add-straight-lines-to-a-plot-horizontal-vertical-and-regression-lines
 
 ## R language syntax
 ### Calculate percentage statistics on a column in a dataframe
