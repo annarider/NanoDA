@@ -35,7 +35,8 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 ***
 
 ### Price and Carat Relationship
-Response:
+Response: There is a positive relationship between carat and price. 
+At the lower end of carat, there is less price variance compared to at the higher end of carat where price is much more spread out. 
 
 ***
 
