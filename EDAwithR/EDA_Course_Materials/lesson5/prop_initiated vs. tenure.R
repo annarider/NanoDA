@@ -28,6 +28,8 @@ pf_prop_friend <- pf %>%
 
 summary(pf_prop_friend)
 
-ggplot(data = pf_prop_friend, aes(x = mean_tenure, y = median_prop_initiated)) +
+ggplot(data = pf, aes(x = mean(tenure), y = median(prop_initiated))) +
     geom_line(aes(color = year_joined.bucket))
 
+ggplot(data = pf, aes(x = tenure, y = prop_initiated)) +
+    geom_line(fun.y = median, aes(color = year_joined.bucket))
