@@ -18,8 +18,13 @@
 # OR this
 # http://i.imgur.com/IBN1ufQ.jpg
 
+ggplot(data = pf, aes(x = tenure, y = prop_initiated)) +
+    geom_line(stat = 'summary', fun.y = median, aes(color = year_joined.bucket))
+
+### Everything below is scratch pad
 names(pf)
-pf_prop_friend <- pf %>%
+str(pf)
+summary(pf$prop_initiatedpf_prop_friend <- pf %>%
     group_by(prop_initiated, tenure, year_joined.bucket) %>%
    # select(year_joined.bucket) %>%
     summarise(median_prop_initiated = median(prop_initiated),
@@ -31,5 +36,4 @@ summary(pf_prop_friend)
 ggplot(data = pf, aes(x = mean(tenure), y = median(prop_initiated))) +
     geom_line(aes(color = year_joined.bucket))
 
-ggplot(data = pf, aes(x = tenure, y = prop_initiated)) +
-    geom_line(fun.y = median, aes(color = year_joined.bucket))
+
