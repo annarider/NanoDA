@@ -5,7 +5,8 @@
 
 
 str(pf)
-
+ggplot(data = pf, aes(x = tenure, y = prop_initiated)) +
+    geom_line(aes(color = year_joined.bucket), stat = "summary", fun.y = median)
 
 ggplot(data = pf, aes(x = tenure, y = prop_initiated)) +
     geom_line(stat = 'summary', fun.y = median, aes(color = year_joined.bucket))

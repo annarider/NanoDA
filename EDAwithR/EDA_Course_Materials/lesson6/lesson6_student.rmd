@@ -58,14 +58,14 @@ Notes:
 
 ```{r ggpairs Function}
 # install these if necessary
-install.packages('GGally')
-install.packages('scales')
-install.packages('memisc')
-install.packages('lattice')
-install.packages('MASS')
-install.packages('car')
-install.packages('reshape')
-install.packages('plyr')
+install.packages('GGally', dependencies = TRUE)
+install.packages('scales', dependencies = TRUE)
+install.packages('memisc', dependencies = TRUE)
+install.packages('lattice', dependencies = TRUE)
+install.packages('MASS', dependencies = TRUE)
+install.packages('car', dependencies = TRUE)
+install.packages('reshape', dependencies = TRUE)
+install.packages('plyr', dependencies = TRUE)
 
 # load the ggplot graphics package and the others
 library(ggplot2)
