@@ -18,22 +18,19 @@
 # OR this
 # http://i.imgur.com/IBN1ufQ.jpg
 
-ggplot(data = pf, aes(x = tenure, y = prop_initiated)) +
-    geom_line(stat = 'summary', fun.y = median, aes(color = year_joined.bucket))
+getwd()
+setwd("/Users/horsepower/Dropbox/Udacity/NanoDA/EDAwithR/EDA_Course_Materials/lesson3/")
 
-### Everything below is scratch pad
+pf <- read.delim("pseudo_facebook.tsv")
+
+pf$year_joined <- trunc(abs(pf$tenure/365 - 2014))
+pf$year_joined.bucket <- cut(pf$year_joined, breaks = c(2004,2009,2011,2012,2014))
+pf$prop_initiated <- pf$friendships_initiated/pf$friend_count
+
 names(pf)
-str(pf)
-summary(pf$prop_initiatedpf_prop_friend <- pf %>%
-    group_by(prop_initiated, tenure, year_joined.bucket) %>%
-   # select(year_joined.bucket) %>%
-    summarise(median_prop_initiated = median(prop_initiated),
-              mean_tenure = mean(tenure),
-              year_joined.bucket = year_joined.bucket)
 
-summary(pf_prop_friend)
+ggplot(data = pf, aes(x = tenure, y = prop_initiated)) +
+    geom_line(aes(color = year_joined.bucket), stat = "summary", fun.y = median)
 
-ggplot(data = pf, aes(x = mean(tenure), y = median(prop_initiated))) +
-    geom_line(aes(color = year_joined.bucket))
-
-
+ggplot(data = pf, aes(x = tenure, y = prop_initiated)) +
+    stat_summary(geom = 'line', fun.y = median, aes(color = year_joined.bucket))
