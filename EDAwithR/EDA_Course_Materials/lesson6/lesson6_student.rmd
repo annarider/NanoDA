@@ -80,7 +80,7 @@ ggpairs(diamond_samp, params = c(shape = I('.'), outlier.shape = I('.')))
 ```
 
 What are some things you notice in the ggpairs output?
-Response:
+Response: log relationship between price and x, y, z individually
 
 ***
 
@@ -88,13 +88,39 @@ Response:
 Notes:
 
 ```{r The Demand of Diamonds}
+# Create two histograms of the price variable
+# and place them side by side on one output image.
 
+# We’ve put some code below to get you started.
+
+# The first plot should be a histogram of price
+# and the second plot should transform
+# the price variable using log10.
+
+# Set appropriate bin widths for each plot.
+# ggtitle() will add a title to each histogram.
+
+# You can self-assess your work with the plots
+# in the solution video.
+
+library(gridExtra)
+
+plot1 <- ggplot(data = diamonds, aes(x = price)) + 
+    geom_histogram() +
+    ggtitle('Price')
+
+plot2 <- ggplot(data = diamonds, aes(x = price)) +
+    geom_histogram() +
+    scale_x_log10()
+    ggtitle('Price (log10)')
+
+grid.arrange(plot1, plot2)
 ```
 
 ***
 
 ### Connecting Demand and Price Distributions
-Notes:
+Notes: The transformed plot reveals a bimodal distribution that's hidden in the untransofrmed price plot. This bimodal distribution makes sense because the first peak occurs before 1000, so there is a popular range of diamonds at a certain priced being purchased. The second peak comes around 7000 for less price sensitive buyers.
 
 ***
 
