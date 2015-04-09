@@ -204,3 +204,11 @@ http://www.r-bloggers.com/melt/
 ### 3 different kinds of functions & their syntax
 http://discussions.udacity.com/t/writing-functions-in-r/14299/3
 
+
+## Linear Regression in R
+http://data.princeton.edu/R/linearModels.html
+### Interpreting regression coefficients in R
+http://www.r-bloggers.com/interpreting-regression-coefficient-in-r/?utm_source=feedburner&utm_medium=email&utm_campaign=Feed%3A+RBloggers+%28R+bloggers%29
+http://www.theanalysisfactor.com/interpreting-regression-coefficients/
+http://blog.yhathq.com/posts/r-lm-summary.html
+http://stats.stackexchange.com/questions/24242/how-to-apply-coefficient-term-for-factors-and-interactive-terms-in-a-linear-equa/24256#24256
