@@ -66,8 +66,8 @@ img {
 </div>
 <div id="summary-statistics" class="section level1">
 <h1>Summary statistics</h1>
-<div id="preliminary-look-at-the-inc.-5000-company-list-data-set." class="section level3">
-<h3>Preliminary look at the Inc. 5000 Company List data set.</h3>
+<div id="preliminary-look-at-the-inc.-5000-company-list-data-set." class="section level2">
+<h2>Preliminary look at the Inc. 5000 Company List data set.</h2>
 <p>List of all variables in the dataframe</p>
 <pre><code>##  [1] &quot;rowNum&quot;      &quot;id&quot;          &quot;rank&quot;        &quot;workers&quot;     &quot;company&quot;    
 ##  [6] &quot;url&quot;         &quot;state_l&quot;     &quot;state_s&quot;     &quot;city&quot;        &quot;metro&quot;      
@@ -90,6 +90,37 @@ img {
 ##  $ revenue    : num  1.96e+08 8.26e+07 8.51e+07 3.53e+07 7.77e+07 ...
 ##  $ industry   : Factor w/ 25 levels &quot;Advertising &amp; Marketing&quot;,..: 5 11 2 23 24 7 13 13 25 7 ...
 ##  $ yrs_on_list: int  2 1 1 1 1 2 2 1 1 1 ...</code></pre>
+<p>Explore factor variabless and the different levels in State and Industry</p>
+<pre><code>##  [1] &quot;Alabama&quot;              &quot;Alaska&quot;               &quot;Arizona&quot;             
+##  [4] &quot;Arkansas&quot;             &quot;California&quot;           &quot;Colorado&quot;            
+##  [7] &quot;Connecticut&quot;          &quot;Delaware&quot;             &quot;District of Columbia&quot;
+## [10] &quot;Florida&quot;              &quot;Georgia&quot;              &quot;Hawaii&quot;              
+## [13] &quot;Idaho&quot;                &quot;Illinois&quot;             &quot;Indiana&quot;             
+## [16] &quot;Iowa&quot;                 &quot;Kansas&quot;               &quot;Kentucky&quot;            
+## [19] &quot;Louisiana&quot;            &quot;Maine&quot;                &quot;Maryland&quot;            
+## [22] &quot;Massachusetts&quot;        &quot;Michigan&quot;             &quot;Minnesota&quot;           
+## [25] &quot;Mississippi&quot;          &quot;Missouri&quot;             &quot;Montana&quot;             
+## [28] &quot;Nebraska&quot;             &quot;Nevada&quot;               &quot;New Hampshire&quot;       
+## [31] &quot;New Jersey&quot;           &quot;New Mexico&quot;           &quot;New York&quot;            
+## [34] &quot;North Carolina&quot;       &quot;North Dakota&quot;         &quot;Ohio&quot;                
+## [37] &quot;Oklahoma&quot;             &quot;Oregon&quot;               &quot;Pennsylvania&quot;        
+## [40] &quot;Puerto Rico&quot;          &quot;Rhode Island&quot;         &quot;South Carolina&quot;      
+## [43] &quot;South Dakota&quot;         &quot;Tennessee&quot;            &quot;Texas&quot;               
+## [46] &quot;Utah&quot;                 &quot;Vermont&quot;              &quot;Virginia&quot;            
+## [49] &quot;Washington&quot;           &quot;West Virginia&quot;        &quot;Wisconsin&quot;</code></pre>
+<pre><code>##  [1] &quot;Advertising &amp; Marketing&quot;      &quot;Business Products &amp; Services&quot;
+##  [3] &quot;Computer Hardware&quot;            &quot;Construction&quot;                
+##  [5] &quot;Consumer Products &amp; Services&quot; &quot;Education&quot;                   
+##  [7] &quot;Energy&quot;                       &quot;Engineering&quot;                 
+##  [9] &quot;Environmental Services&quot;       &quot;Financial Services&quot;          
+## [11] &quot;Food &amp; Beverage&quot;              &quot;Government Services&quot;         
+## [13] &quot;Health&quot;                       &quot;Human Resources&quot;             
+## [15] &quot;Insurance&quot;                    &quot;IT Services&quot;                 
+## [17] &quot;Logistics &amp; Transportation&quot;   &quot;Manufacturing&quot;               
+## [19] &quot;Media&quot;                        &quot;Real Estate&quot;                 
+## [21] &quot;Retail&quot;                       &quot;Security&quot;                    
+## [23] &quot;Software&quot;                     &quot;Telecommunications&quot;          
+## [25] &quot;Travel &amp; Hospitality&quot;</code></pre>
 <p>Summary of the data set</p>
 <pre><code>##      rowNum           id             rank         workers     
 ##  Min.   :   0   Min.   :    4   Min.   :   1   Min.   :    0  
@@ -123,36 +154,9 @@ img {
 ##  3rd Qu.:2.695e+07   Software                    : 338   3rd Qu.: 4.000  
 ##  Max.   :5.528e+09   Financial Services          : 278   Max.   :12.000  
 ##                      (Other)                     :2386</code></pre>
-<pre><code>##  [1] &quot;Alabama&quot;              &quot;Alaska&quot;               &quot;Arizona&quot;             
-##  [4] &quot;Arkansas&quot;             &quot;California&quot;           &quot;Colorado&quot;            
-##  [7] &quot;Connecticut&quot;          &quot;Delaware&quot;             &quot;District of Columbia&quot;
-## [10] &quot;Florida&quot;              &quot;Georgia&quot;              &quot;Hawaii&quot;              
-## [13] &quot;Idaho&quot;                &quot;Illinois&quot;             &quot;Indiana&quot;             
-## [16] &quot;Iowa&quot;                 &quot;Kansas&quot;               &quot;Kentucky&quot;            
-## [19] &quot;Louisiana&quot;            &quot;Maine&quot;                &quot;Maryland&quot;            
-## [22] &quot;Massachusetts&quot;        &quot;Michigan&quot;             &quot;Minnesota&quot;           
-## [25] &quot;Mississippi&quot;          &quot;Missouri&quot;             &quot;Montana&quot;             
-## [28] &quot;Nebraska&quot;             &quot;Nevada&quot;               &quot;New Hampshire&quot;       
-## [31] &quot;New Jersey&quot;           &quot;New Mexico&quot;           &quot;New York&quot;            
-## [34] &quot;North Carolina&quot;       &quot;North Dakota&quot;         &quot;Ohio&quot;                
-## [37] &quot;Oklahoma&quot;             &quot;Oregon&quot;               &quot;Pennsylvania&quot;        
-## [40] &quot;Puerto Rico&quot;          &quot;Rhode Island&quot;         &quot;South Carolina&quot;      
-## [43] &quot;South Dakota&quot;         &quot;Tennessee&quot;            &quot;Texas&quot;               
-## [46] &quot;Utah&quot;                 &quot;Vermont&quot;              &quot;Virginia&quot;            
-## [49] &quot;Washington&quot;           &quot;West Virginia&quot;        &quot;Wisconsin&quot;</code></pre>
-<pre><code>##  [1] &quot;Advertising &amp; Marketing&quot;      &quot;Business Products &amp; Services&quot;
-##  [3] &quot;Computer Hardware&quot;            &quot;Construction&quot;                
-##  [5] &quot;Consumer Products &amp; Services&quot; &quot;Education&quot;                   
-##  [7] &quot;Energy&quot;                       &quot;Engineering&quot;                 
-##  [9] &quot;Environmental Services&quot;       &quot;Financial Services&quot;          
-## [11] &quot;Food &amp; Beverage&quot;              &quot;Government Services&quot;         
-## [13] &quot;Health&quot;                       &quot;Human Resources&quot;             
-## [15] &quot;Insurance&quot;                    &quot;IT Services&quot;                 
-## [17] &quot;Logistics &amp; Transportation&quot;   &quot;Manufacturing&quot;               
-## [19] &quot;Media&quot;                        &quot;Real Estate&quot;                 
-## [21] &quot;Retail&quot;                       &quot;Security&quot;                    
-## [23] &quot;Software&quot;                     &quot;Telecommunications&quot;          
-## [25] &quot;Travel &amp; Hospitality&quot;</code></pre>
+</div>
+<div id="initial-observations-from-data-set" class="section level2">
+<h2>Initial Observations from data set</h2>
 </div>
 </div>
 <div id="univariate-plots-section" class="section level1">

@@ -40,9 +40,13 @@ dim(com)
 Structure of dataframe with preview of data values
 ```{r echo=FALSE}
 str(com)
+# After discovering structure, some clean up is necessary
+# Rank should be ordered factor since the variable 
+## is categorical and order matters
+com$rank <- as.ordered(com$rank)
 ```
 
-Explore factor variabless and the different levels in State and Industry
+Explore factor variables and the different levels in State and Industry
 ```{r echo=FALSE}
 levels(com$state_l)
 levels(com$industry)
@@ -55,8 +59,11 @@ summary(com)
 ```
 
 ## Initial Observations from data set
-
-
+* There are 5000 companies ranked from 1 to 5000 based on their percentage growth in 2014, from greatest rate of growth (ranked 1) to slowest rate of growth (ranked 5000).
+* There are companies representing all 50 states plus one territory (Puerto Rico), resulting in 51 levels for state.
+* The minimum number of works is 0 (need to explore further how it is possible to have no employees) with the maximum at 34219. Most companies on the list have under 150 employees.
+* The top 5 states with the greatest number of companies on the list are: California, Texas, New York, Florida, and Virginia. But the top 5 cities with the greatest number of companies on the list are: New York, Chicago, Atlanta, Austin, and San Diego. It may be worth figuring out why the top states and top cities don't match.
+* The top industries representing greatest growth are: IT, Ad & Marketing, Business Products & Services, Health, and Software. 
 
 # Univariate Plots Section
 ```{r echo=FALSE, Univariate_Plots}
