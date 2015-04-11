@@ -12,7 +12,7 @@ TITLE by Anna Li
 library(ggplot2)
 ```
 
-```{r echo=FALSE, Load_the_Data}
+```{r echo=FALSE, include=FALSE, Load_the_Data}
 # Load the Data into dataframe called "com"
 # See WrangleInc5000.py for python code that cleaned and
 # subsetted original CSV before importing to R
@@ -25,15 +25,37 @@ names(com)[names(com) == 'X'] <- 'rowNum'
 ```
 
 # Summary statistics
-Preliminary look at the data set
+## Preliminary look at the Inc. 5000 Company List data set. 
 
+List of all variables in the dataframe
 ```{r echo=FALSE}
 names(com)
-dim(com)
-str(com)
-summary(com)
-levels(com$state_l)
 ```
+
+Dimensions of the dataframe
+```{r echo=FALSE}
+dim(com)
+```
+
+Structure of dataframe with preview of data values
+```{r echo=FALSE}
+str(com)
+```
+
+Explore factor variabless and the different levels in State and Industry
+```{r echo=FALSE}
+levels(com$state_l)
+levels(com$industry)
+
+```
+
+Summary of the data set
+```{r echo=FALSE}
+summary(com)
+```
+
+## Initial Observations from data set
+
 
 
 # Univariate Plots Section

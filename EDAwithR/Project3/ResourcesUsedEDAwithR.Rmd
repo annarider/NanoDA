@@ -53,6 +53,9 @@ attributes(reddit)
 colnames(reddit)
 **Find all row names**
 rownames(reddit)
+**See all possible values for a factor**
+levels(reddit)
+
 
 
 ## Basic Plotting
@@ -126,6 +129,8 @@ http://stackoverflow.com/questions/9623763/in-r-how-can-i-compute-percentage-sta
 ### Read in dataset into R
 http://stackoverflow.com/questions/18161009/error-in-reading-in-data-set-in-r
 http://www.statmethods.net/input/importingdata.html
+### More about Factors in R
+http://www.stat.berkeley.edu/~s133/factors.html
 #### rowSums
 http://stackoverflow.com/questions/3991905/vector-that-is-sum-of-rows
 http://stackoverflow.com/questions/20819100/colsum-rowsum-populating-matrix
