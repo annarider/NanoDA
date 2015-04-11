@@ -28,10 +28,11 @@ names(com)[names(com) == 'X'] <- 'rowNum'
 Preliminary look at the data set
 
 ```{r echo=FALSE}
-str(com)
+names(com)
 dim(com)
+str(com)
 summary(com)
-com$revenue
+levels(com$state_l)
 ```
 
 
