@@ -30,7 +30,7 @@ pf$prop_initiated <- pf$friendships_initiated/pf$friend_count
 names(pf)
 
 ggplot(data = pf, aes(x = tenure, y = prop_initiated)) +
-    geom_line(aes(color = year_joined.bucket), stat = "summary", fun.y = median)
+    geom_line(aes(color = year_joined.bucket), stat = "summary", fun.y = mean)
 
 ggplot(data = pf, aes(x = tenure, y = prop_initiated)) +
     stat_summary(geom = 'line', fun.y = median, aes(color = year_joined.bucket))

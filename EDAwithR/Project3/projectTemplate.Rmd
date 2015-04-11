@@ -1,4 +1,4 @@
-TITLE by YOUR_NAME_HERE
+TITLE by Anna Li
 ========================================================
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
@@ -13,9 +13,27 @@ library(ggplot2)
 ```
 
 ```{r echo=FALSE, Load_the_Data}
-# Load the Data
+# Load the Data into dataframe called "com"
+# See WrangleInc5000.py for python code that cleaned and
+# subsetted original CSV before importing to R
 
+getwd()
+setwd("/Users/horsepower/Dropbox/Udacity/NanoDA/EDAwithR/Project3/")
+com <- read.csv("Inc5000_Companies_2014_subset.csv")
+# Rename the first column with a null variable name to "rowNum"
+names(com)[names(com) == 'X'] <- 'rowNum'
 ```
+
+# Summary statistics
+Preliminary look at the data set
+
+```{r echo=FALSE}
+str(com)
+dim(com)
+summary(com)
+com$revenue
+```
+
 
 # Univariate Plots Section
 ```{r echo=FALSE, Univariate_Plots}
