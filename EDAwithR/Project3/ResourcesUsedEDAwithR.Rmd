@@ -126,6 +126,9 @@ http://www.ats.ucla.edu/stat/r/faq/smooths.htm
 http://www.gettinggeneticsdone.com/2011/07/scatterplot-matrices-in-r.html
 ### Add Horizontal or Vertical line to plot
 http://www.sthda.com/english/wiki/ggplot2-add-straight-lines-to-a-plot-horizontal-vertical-and-regression-lines
+### Rotate axis labels
+http://stackoverflow.com/questions/10063701/how-to-rotate-the-axis-labels-in-ggplot2
+http://stackoverflow.com/questions/15838533/rotating-axis-labels-in-date-format
 
 ## R language syntax
 ### Calculate percentage statistics on a column in a dataframe

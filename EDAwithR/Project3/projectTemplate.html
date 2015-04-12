@@ -90,7 +90,7 @@ img {
 ##  $ revenue    : num  1.96e+08 8.26e+07 8.51e+07 3.53e+07 7.77e+07 ...
 ##  $ industry   : Factor w/ 25 levels &quot;Advertising &amp; Marketing&quot;,..: 5 11 2 23 24 7 13 13 25 7 ...
 ##  $ yrs_on_list: int  2 1 1 1 1 2 2 1 1 1 ...</code></pre>
-<p>Explore factor variabless and the different levels in State and Industry</p>
+<p>Explore factor variables and the different levels in State and Industry</p>
 <pre><code>##  [1] &quot;Alabama&quot;              &quot;Alaska&quot;               &quot;Arizona&quot;             
 ##  [4] &quot;Arkansas&quot;             &quot;California&quot;           &quot;Colorado&quot;            
 ##  [7] &quot;Connecticut&quot;          &quot;Delaware&quot;             &quot;District of Columbia&quot;
@@ -123,13 +123,13 @@ img {
 ## [25] &quot;Travel &amp; Hospitality&quot;</code></pre>
 <p>Summary of the data set</p>
 <pre><code>##      rowNum           id             rank         workers     
-##  Min.   :   0   Min.   :    4   Min.   :   1   Min.   :    0  
-##  1st Qu.:1250   1st Qu.:19575   1st Qu.:1251   1st Qu.:   24  
-##  Median :2500   Median :23292   Median :2500   Median :   50  
-##  Mean   :2500   Mean   :20037   Mean   :2500   Mean   :  209  
-##  3rd Qu.:3749   3rd Qu.:25370   3rd Qu.:3750   3rd Qu.:  125  
-##  Max.   :4999   Max.   :26620   Max.   :5000   Max.   :34219  
-##                                                               
+##  Min.   :   0   Min.   :    4   1      :   1   Min.   :    0  
+##  1st Qu.:1250   1st Qu.:19575   2      :   1   1st Qu.:   24  
+##  Median :2500   Median :23292   3      :   1   Median :   50  
+##  Mean   :2500   Mean   :20037   4      :   1   Mean   :  209  
+##  3rd Qu.:3749   3rd Qu.:25370   5      :   1   3rd Qu.:  125  
+##  Max.   :4999   Max.   :26620   6      :   1   Max.   :34219  
+##                                 (Other):4994                  
 ##            company                 url             state_l    
 ##  (add)ventures :   1   @properties   :   1   California: 694  
 ##  @Properties   :   1   110-consulting:   1   Texas     : 404  
@@ -157,6 +157,14 @@ img {
 </div>
 <div id="initial-observations-from-data-set" class="section level2">
 <h2>Initial Observations from data set</h2>
+<ul>
+<li>There are 5000 companies ranked from 1 to 5000 based on their percentage growth in 2014, from greatest rate of growth (ranked 1) to slowest rate of growth (ranked 5000).</li>
+<li>Greatest</li>
+<li>There are companies representing all 50 states plus one territory (Puerto Rico), resulting in 51 levels for state.</li>
+<li>The minimum number of works is 0 (need to explore further how it is possible to have no employees) with the maximum at 34219. Most companies on the list have under 150 employees.</li>
+<li>The top 5 states with the greatest number of companies on the list are: California, Texas, New York, Florida, and Virginia. But the top 5 cities with the greatest number of companies on the list are: New York, Chicago, Atlanta, Austin, and San Diego. It may be worth figuring out why the top states and top cities don’t match.</li>
+<li>The top industries representing greatest growth are: IT, Ad &amp; Marketing, Business Products &amp; Services, Health, and Software.</li>
+</ul>
 </div>
 </div>
 <div id="univariate-plots-section" class="section level1">
