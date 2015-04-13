@@ -81,6 +81,7 @@ ggplot(data = com, aes(x = state_l)) +
     
 ```
 
+Histograms of workers by count
 
 ```{r echo=FALSE, Univariate_Plots}
 ggplot(data = com, aes(x = workers)) +
@@ -88,7 +89,13 @@ ggplot(data = com, aes(x = workers)) +
     xlab("Workers") + 
     ylab("Count") +
     ggtitle("Count of Workers")
+```
 
+First plot doesn't have small enough binwidths to see the trend. Reduce binwidth shows
+a histogram plot that skews right. Transforming the long tail by taking the log10 of workers
+helps better understand the distribution of workers. The transformed workers distribution 
+looks close to a normal distribution with a longer tail on the right. 
+```{r echo=FALSE, Univariate_Plots}
 ggplot(data = com, aes(x = workers)) +
     geom_histogram(binwidth = 10, 
                    color = 'black', fill = '#F79420') +
@@ -96,6 +103,14 @@ ggplot(data = com, aes(x = workers)) +
     xlab("Workers") + 
     ylab("Count") +
     ggtitle("Count of Workers")
+
+ggplot(data = com, aes(x = workers)) +
+    geom_histogram(binwidth = .05,
+                   color = 'black', fill = '#F79420') +
+    scale_x_log10() +
+    xlab("Workers") + 
+    ylab("Count") +
+    ggtitle("Count of Workers (log10)")
 
 ```
 
