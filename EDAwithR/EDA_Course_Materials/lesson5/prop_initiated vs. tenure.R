@@ -34,3 +34,8 @@ ggplot(data = pf, aes(x = tenure, y = prop_initiated)) +
 
 ggplot(data = pf, aes(x = tenure, y = prop_initiated)) +
     stat_summary(geom = 'line', fun.y = median, aes(color = year_joined.bucket))
+
+ggplot(data = subset(pf, !is.na(prop_initiated) & !is.na(year_joined.bucket)),
+       aes(x = tenure, y = prop_initiated)) +
+    geom_line(aes(color = year_joined.bucket), stat = "summary", fun.y = mean)
+

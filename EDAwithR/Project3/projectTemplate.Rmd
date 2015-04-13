@@ -70,7 +70,7 @@ summary(com)
 Histogram of states where companies are located
 ```{r echo=FALSE, Univariate_Plots}
 ggplot(data = com, aes(x = state_l)) +
-    geom_histogram() +
+    geom_bar() +
     xlab("State") + 
     ylab("Count") +
     # densely packed x axis labels need spacing
@@ -78,7 +78,7 @@ ggplot(data = com, aes(x = state_l)) +
                                      hjust = 1)) +
     ggtitle("Count of states where 
             companies are located")
-    
+
 ```
 
 Histograms of workers by count
@@ -92,18 +92,24 @@ ggplot(data = com, aes(x = workers)) +
 ```
 
 First plot doesn't have small enough binwidths to see the trend. Reduce binwidth shows
-a histogram plot that skews right. Transforming the long tail by taking the log10 of workers
-helps better understand the distribution of workers. The transformed workers distribution 
-looks close to a normal distribution with a longer tail on the right. 
+a histogram plot that skews right. What happens to distribution if I perform a 
+long10 transformation?
 ```{r echo=FALSE, Univariate_Plots}
 ggplot(data = com, aes(x = workers)) +
     geom_histogram(binwidth = 10, 
                    color = 'black', fill = '#F79420') +
+    # cut out some outliers
     xlim(0, 1000) +
     xlab("Workers") + 
     ylab("Count") +
     ggtitle("Count of Workers")
 
+```
+
+Transforming the long tail by taking the log10 of workers
+helps better understand the distribution of workers. The transformed workers distribution 
+looks close to a normal distribution with a longer tail on the right. 
+```{r echo=FALSE, Univariate_Plots}
 ggplot(data = com, aes(x = workers)) +
     geom_histogram(binwidth = .05,
                    color = 'black', fill = '#F79420') +
@@ -112,16 +118,22 @@ ggplot(data = com, aes(x = workers)) +
     ylab("Count") +
     ggtitle("Count of Workers (log10)")
 
+summary(com$workers)
+
 ```
 
 
 
 ```{r echo=FALSE, Univariate_Plots}
-
+ggplot(data = com, aes(x = industry)) +
+    geom_bar() +
+    theme(axis.text.x = element_text(angle = 45, 
+                                     hjust = 1))
 ```
 
 
 ```{r echo=FALSE, Univariate_Plots}
+names(com)
 
 ```
 
