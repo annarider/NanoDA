@@ -123,7 +123,7 @@ summary(com$workers)
 ```
 
 
-
+Distribution of industry
 ```{r echo=FALSE, Univariate_Plots}
 ggplot(data = com, aes(x = industry)) +
     geom_bar() +
@@ -131,15 +131,29 @@ ggplot(data = com, aes(x = industry)) +
                                      hjust = 1))
 ```
 
-
+Distribution of growth
 ```{r echo=FALSE, Univariate_Plots}
-names(com)
+ggplot(data = com, aes(x = growth)) +
+    geom_histogram(binwidth = 10,
+                   color = 'black', fill = '#F79420') +
+    scale_x_continuous(limits = c(0, 1000))
 
+ggplot(data = com, aes(x = growth)) +
+    geom_histogram(binwidth = 10,
+                   color = 'black', fill = '#F79420') +
+    scale_x_log10()
+
+summary(com$growth)
 ```
 
-
+Distribution of revenue
 ```{r echo=FALSE, Univariate_Plots}
+ggplot(data = com, aes(x = revenue)) +
+    geom_histogram()
 
+ggplot(data = com, aes(x = revenue)) +
+    geom_histogram(binwidth = 30,
+                   color = 'black', fill = '#F79420')
 ```
 
 
