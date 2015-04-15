@@ -35,6 +35,9 @@ reddit <- read.csv('reddit.csv')
 *If the file is tab separated, there are two ways to import the data:*   
 reddit <- read.csv('reddit.tsv', sep='\t')
 reddit <- read.delim('reddit.tsv')
+*Additional arguments to determine header & check variable names*
+reddit <- read.delim('reddit.tsv', row.names = 1, check.names = F)
+
 
 ## Exploring data
 **Column names (in R times, see the variables)**

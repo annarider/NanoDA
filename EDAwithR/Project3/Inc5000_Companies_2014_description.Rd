@@ -11,7 +11,7 @@ The 2014 Inc. 5000 - the fastest growing private companies in the U.S. - by edit
 \format{
   A data frame with 5000 observations on the following 19 variables.
   \describe{
-    \item{\code{rowNum}}{Row number}
+    \item{\code{row_num}}{Row number}
     \item{\code{id}}{Internal ID assigned by Inc}
     \item{\code{rank}}{Company's rank on the list of fastest growing private companies in the U.S.}
     \item{\code{workers}}{Number of employees}

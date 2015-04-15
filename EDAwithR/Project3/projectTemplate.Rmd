@@ -21,7 +21,7 @@ getwd()
 setwd("/Users/horsepower/Dropbox/Udacity/NanoDA/EDAwithR/Project3/")
 com <- read.csv("Inc5000_Companies_2014_subset.csv")
 # Rename the first column with a null variable name to "rowNum"
-names(com)[names(com) == 'X'] <- 'rowNum'
+names(com)[names(com) == 'X'] <- 'row_num'
 ```
 
 # Summary statistics
@@ -151,8 +151,10 @@ Distribution of revenue
 ggplot(data = com, aes(x = revenue)) +
     geom_histogram()
 
+range(com$revenue)
+
 ggplot(data = com, aes(x = revenue)) +
-    geom_histogram(binwidth = 30,
+    geom_histogram(binwidth = 5528202691/5000,
                    color = 'black', fill = '#F79420')
 ```
 
