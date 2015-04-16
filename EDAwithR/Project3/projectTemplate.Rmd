@@ -199,7 +199,7 @@ ggplot(data = com, aes(x = revenue)) +
 ### Of the features you investigated, were there any unusual distributions? Did you perform any operations on the data to tidy, adjust, or change the form of the data? If so, why did you do this?
 
 
-geom_boxplot, geom_point, geom_violin, geom_jitter with geom_rug, geom_point(stat = 'summary'), geom_bin2d, geom_tile, geom_density2d,  
+geom_boxplot, geom_point, geom_violin, geom_jitter with geom_rug, geom_point(stat = 'summary'), geom_bin2d, geom_tile, geom_density2d, geom_point(alpha = 1/10, color = 'gray') + geom_line(stat = 'summary', fun.y = median), geom_point(alpha = 1/10, color = 'gray') + geom_step(stat = 'summary', fun.y = median) 
 # Bivariate Plots Section
 ```{r echo=FALSE, Bivariate_Plots}
 
