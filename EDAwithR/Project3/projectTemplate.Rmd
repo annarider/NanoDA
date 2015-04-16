@@ -155,11 +155,33 @@ range(com$revenue)
 
 ggplot(data = com, aes(x = revenue)) +
     geom_histogram(binwidth = 5528202691/5000,
-                   color = 'black', fill = '#F79420')
+                   color = 'black', fill = '#F79420'
+    
+
+
 ```
 
+The distribution of growth and revenue look really similar. Let's try another type of plot to tease apart how the distributions differ. The frequency polygon plot better shows the diffent shapes of the distributions. The amount of growth is based on revenue generated so it is not surprising the two distributions are similar since they are highly correlated.   
 
 ```{r echo=FALSE, Univariate_Plots}
+
+ggplot(data = com, aes(x = growth)) +
+    geom_freqpoly() +
+    scale_x_log10()
+
+ggplot(data = com, aes(x = revenue)) +
+    geom_freqpoly() +
+    scale_x_log10()
+
+
+ggplot(data = com, aes(x = growth)) +
+    geom_density() +
+    scale_x_log10()
+
+ggplot(data = com, aes(x = revenue)) +
+    geom_density() +
+    scale_x_log10()
+
 
 ```
 
@@ -177,7 +199,7 @@ ggplot(data = com, aes(x = revenue)) +
 ### Of the features you investigated, were there any unusual distributions? Did you perform any operations on the data to tidy, adjust, or change the form of the data? If so, why did you do this?
 
 
-
+geom_boxplot, geom_point, geom_violin, geom_jitter with geom_rug, geom_point(stat = 'summary'), geom_bin2d, geom_tile, geom_density2d,  
 # Bivariate Plots Section
 ```{r echo=FALSE, Bivariate_Plots}
 
