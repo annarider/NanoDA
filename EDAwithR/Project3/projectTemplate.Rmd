@@ -131,21 +131,6 @@ ggplot(data = com, aes(x = industry)) +
                                      hjust = 1))
 ```
 
-Distribution of growth
-```{r echo=FALSE, Univariate_Plots}
-ggplot(data = com, aes(x = growth)) +
-    geom_histogram(binwidth = 10,
-                   color = 'black', fill = '#F79420') +
-    scale_x_continuous(limits = c(0, 1000))
-
-ggplot(data = com, aes(x = growth)) +
-    geom_histogram(binwidth = 10,
-                   color = 'black', fill = '#F79420') +
-    scale_x_log10()
-
-summary(com$growth)
-```
-
 Distribution of revenue
 ```{r echo=FALSE, Univariate_Plots}
 ggplot(data = com, aes(x = revenue)) +
@@ -160,7 +145,20 @@ ggplot(data = com, aes(x = revenue)) +
 
 
 ```
+Distribution of growth
+```{r echo=FALSE, Univariate_Plots}
+ggplot(data = com, aes(x = growth)) +
+    geom_histogram(binwidth = 10,
+                   color = 'black', fill = '#F79420') +
+    scale_x_continuous(limits = c(0, 1000))
 
+ggplot(data = com, aes(x = growth)) +
+    geom_histogram(binwidth = 10,
+                   color = 'black', fill = '#F79420') +
+    scale_x_log10()
+
+summary(com$growth)
+```
 The distribution of growth and revenue look really similar. Let's try another type of plot to tease apart how the distributions differ. The frequency polygon plot better shows the diffent shapes of the distributions. The amount of growth is based on revenue generated so it is not surprising the two distributions are similar since they are highly correlated.   
 
 ```{r echo=FALSE, Univariate_Plots}
@@ -183,6 +181,18 @@ ggplot(data = com, aes(x = revenue)) +
     scale_x_log10()
 
 
+```
+
+Many of the highest ranked companies are small businesses. This could be because smaller companies grow faster than big public companies. But it could also be that smaller companies are starting with smaller amounts of revenues. Absolute growth in dollars is different from percentage growth. For example, company with no revenue the previous year that gains some revenue the next year has infinite percentage growth. But this isn't a good reflection on how much revenue the company is generating compared to another company that's making more in absolute revenue but has a lower percentage growth. 
+
+I created two new variables, revenue 2013, calculated in terms of current revenue and percentage growth to derive last year's revenue, and growth in dollars, which is revenue 2013 substracted from revenue 2014. 
+
+```{r echo=FALSE, Univariate_Plots}
+com$revenue2013 <- com$revenue/((com$growth/100) + 1)
+head(com$revenue2013)
+
+com$growth_dollar <- com$revenue - com$revenue2013
+head(com$growth_dollar)
 ```
 
 
