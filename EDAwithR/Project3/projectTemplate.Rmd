@@ -13,15 +13,19 @@ library(ggplot2)
 ```
 
 ```{r echo=FALSE, include=FALSE, Load_the_Data}
-# Load the Data into "com" (abbreviation of company)
+# Load the Data into "companies"
 # See WrangleInc5000.py for python code that cleaned and
 # subsetted original CSV before importing to R
 
 getwd()
 setwd("/Users/horsepower/Dropbox/Udacity/NanoDA/EDAwithR/Project3/")
-com <- read.csv("Inc5000_Companies_2014_subset.csv")
+companies <- read.csv("Inc5000_Companies_2014_subset.csv")
 # Rename the first column with a null variable name to "rowNum"
-names(com)[names(com) == 'X'] <- 'row_num'
+names(companies)[names(companies) == 'X'] <- 'row_num'
+population <- read.csv("state_population_census.csv")
+head(population)
+companies.population <- merge(companies, population, by.x = "state_l", by.y = "Geographic_Area")
+names(companies.population)
 ```
 
 # Summary statistics
@@ -29,32 +33,32 @@ names(com)[names(com) == 'X'] <- 'row_num'
 
 List of all variables in the dataframe
 ```{r echo=FALSE}
-names(com)
+names(companies)
 ```
 
 Dimensions of the dataframe
 ```{r echo=FALSE}
-dim(com)
+dim(companies)
 ```
 
 Structure of dataframe with preview of data values
 ```{r echo=FALSE}
-str(com)
+str(companies)
 # Change rank to ordered factor since the variable 
 # is categorical and order matters
-com$rank <- as.ordered(com$rank)
+companies$rank <- as.ordered(companies$rank)
 ```
 
 Explore factor variables and the different levels in State and Industry
 ```{r echo=FALSE}
-levels(com$state_l)
-levels(com$industry)
+levels(companies$state_l)
+levels(companies$industry)
 
 ```
 
 Summary of the data set
 ```{r echo=FALSE}
-summary(com)
+summary(companies)
 ```
 
 ## Initial Observations from a summary of the data set
@@ -69,7 +73,7 @@ summary(com)
 # Univariate Plots Section
 Histogram of states where companies are located
 ```{r echo=FALSE, Univariate_Plots}
-ggplot(data = com, aes(x = state_l)) +
+ggplot(data = companies, aes(x = state_l)) +
     geom_bar() +
     xlab("State") + 
     ylab("Count") +
@@ -84,7 +88,7 @@ ggplot(data = com, aes(x = state_l)) +
 Histograms of workers by count
 
 ```{r echo=FALSE, Univariate_Plots}
-ggplot(data = com, aes(x = workers)) +
+ggplot(data = companies, aes(x = workers)) +
     geom_histogram() +
     xlab("Workers") + 
     ylab("Count") +
@@ -95,7 +99,7 @@ First plot doesn't have small enough binwidths to see the trend. Reduce binwidth
 a histogram plot that skews right. What happens to distribution if I perform a 
 long10 transformation?
 ```{r echo=FALSE, Univariate_Plots}
-ggplot(data = com, aes(x = workers)) +
+ggplot(data = companies, aes(x = workers)) +
     geom_histogram(binwidth = 10, 
                    color = 'black', fill = '#F79420') +
     # cut out some outliers
@@ -110,7 +114,7 @@ Transforming the long tail by taking the log10 of workers
 helps better understand the distribution of workers. The transformed workers distribution 
 looks close to a normal distribution with a longer tail on the right. 
 ```{r echo=FALSE, Univariate_Plots}
-ggplot(data = com, aes(x = workers)) +
+ggplot(data = companies, aes(x = workers)) +
     geom_histogram(binwidth = .05,
                    color = 'black', fill = '#F79420') +
     scale_x_log10() +
@@ -118,14 +122,14 @@ ggplot(data = com, aes(x = workers)) +
     ylab("Count") +
     ggtitle("Count of Workers (log10)")
 
-summary(com$workers)
+summary(companies$workers)
 
 ```
 
 
 Distribution of industry
 ```{r echo=FALSE, Univariate_Plots}
-ggplot(data = com, aes(x = industry)) +
+ggplot(data = companies, aes(x = industry)) +
     geom_bar() +
     theme(axis.text.x = element_text(angle = 45, 
                                      hjust = 1))
@@ -133,12 +137,12 @@ ggplot(data = com, aes(x = industry)) +
 
 Distribution of revenue
 ```{r echo=FALSE, Univariate_Plots}
-ggplot(data = com, aes(x = revenue)) +
+ggplot(data = companies, aes(x = revenue)) +
     geom_histogram()
 
-range(com$revenue)
+range(companies$revenue)
 
-ggplot(data = com, aes(x = revenue)) +
+ggplot(data = companies, aes(x = revenue)) +
     geom_histogram(binwidth = 5528202691/5000,
                    color = 'black', fill = '#F79420'
     
@@ -147,36 +151,36 @@ ggplot(data = com, aes(x = revenue)) +
 ```
 Distribution of growth
 ```{r echo=FALSE, Univariate_Plots}
-ggplot(data = com, aes(x = growth)) +
+ggplot(data = companies, aes(x = growth)) +
     geom_histogram(binwidth = 10,
                    color = 'black', fill = '#F79420') +
     scale_x_continuous(limits = c(0, 1000))
 
-ggplot(data = com, aes(x = growth)) +
+ggplot(data = companies, aes(x = growth)) +
     geom_histogram(binwidth = 10,
                    color = 'black', fill = '#F79420') +
     scale_x_log10()
 
-summary(com$growth)
+summary(companies$growth)
 ```
 The distribution of growth and revenue look really similar. Let's try another type of plot to tease apart how the distributions differ. The frequency polygon plot better shows the diffent shapes of the distributions. The amount of growth is based on revenue generated so it is not surprising the two distributions are similar since they are highly correlated.   
 
 ```{r echo=FALSE, Univariate_Plots}
 
-ggplot(data = com, aes(x = growth)) +
+ggplot(data = companies, aes(x = growth)) +
     geom_freqpoly() +
     scale_x_log10()
 
-ggplot(data = com, aes(x = revenue)) +
+ggplot(data = companies, aes(x = revenue)) +
     geom_freqpoly() +
     scale_x_log10()
 
 
-ggplot(data = com, aes(x = growth)) +
+ggplot(data = companies, aes(x = growth)) +
     geom_density() +
     scale_x_log10()
 
-ggplot(data = com, aes(x = revenue)) +
+ggplot(data = companies, aes(x = revenue)) +
     geom_density() +
     scale_x_log10()
 
@@ -188,11 +192,11 @@ Many of the highest ranked companies are small businesses. This could be because
 I created two new variables, revenue 2013, calculated in terms of current revenue and percentage growth to derive last year's revenue, and growth in dollars, which is revenue 2013 substracted from revenue 2014. 
 
 ```{r echo=FALSE, Univariate_Plots}
-com$revenue2013 <- com$revenue/((com$growth/100) + 1)
-head(com$revenue2013)
+companies$revenue2013 <- companies$revenue/((companies$growth/100) + 1)
+head(companies$revenue2013)
 
-com$growth_dollar <- com$revenue - com$revenue2013
-head(com$growth_dollar)
+companies$growth_dollar <- companies$revenue - companies$revenue2013
+head(companies$growth_dollar)
 ```
 
 
