@@ -243,3 +243,6 @@ http://stats.stackexchange.com/questions/24242/how-to-apply-coefficient-term-for
 http://stackoverflow.com/questions/10665889/how-to-take-column-slices-of-dataframe-in-pandas
 ### Write pandas data frame to csv
 http://stackoverflow.com/questions/16923281/pandas-writing-dataframe-to-csv-file
+### Perform a join with two dataframes
+https://stat.ethz.ch/R-manual/R-devel/library/base/html/merge.html
+http://stackoverflow.com/questions/1299871/how-to-join-data-frames-in-r-inner-outer-left-right

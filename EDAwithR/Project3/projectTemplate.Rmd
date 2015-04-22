@@ -26,6 +26,7 @@ population <- read.csv("state_population_census.csv")
 head(population)
 companies.population <- merge(companies, population, by.x = "state_l", by.y = "Geographic_Area")
 names(companies.population)
+unique(companies.population$Est_2014)
 ```
 
 # Summary statistics
