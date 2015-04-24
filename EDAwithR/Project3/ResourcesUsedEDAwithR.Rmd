@@ -62,6 +62,9 @@ colnames(reddit)
 rownames(reddit)
 **See all possible values for a factor**
 levels(reddit)
+**See all unique values in a dataframe, vector, array, or column**
+unique(reddit)
+https://stat.ethz.ch/R-manual/R-devel/library/base/html/unique.html
 
 
 

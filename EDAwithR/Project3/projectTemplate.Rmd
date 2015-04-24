@@ -22,11 +22,6 @@ setwd("/Users/horsepower/Dropbox/Udacity/NanoDA/EDAwithR/Project3/")
 companies <- read.csv("Inc5000_Companies_2014_subset.csv")
 # Rename the first column with a null variable name to "rowNum"
 names(companies)[names(companies) == 'X'] <- 'row_num'
-population <- read.csv("state_population_census.csv")
-head(population)
-companies.population <- merge(companies, population, by.x = "state_l", by.y = "Geographic_Area")
-names(companies.population)
-unique(companies.population$Est_2014)
 ```
 
 # Summary statistics
@@ -200,6 +195,22 @@ companies$growth_dollar <- companies$revenue - companies$revenue2013
 head(companies$growth_dollar)
 ```
 
+There is a limitation in my data set. Without data about resident populations in each state or city or metro area it is hard to determine whether the states with the highest number of growing companies have growing companies because there are more people living there or if there is something special about that state that fosters growth. Therefore, I looked for population data from the U.S. Census Bureau and found population estimates for 2010 to 2014. This works with the company data from 2014 with the reverse engineered revenue and growth numbers I calculated for 2013.
+
+```{r echo=FALSE, Univariate_Plots}
+
+population <- read.csv("state_population_census.csv")
+head(population)
+companies.population <- merge(companies, population, by.x = "state_l", by.y = "Geographic_Area")
+names(companies.population)
+unique(companies.population$Est_2014)
+```
+
+```{r echo=FALSE, Univariate_Plots}
+
+ggplot(data = companies.population, aes(x = growth)) +
+    geom_freqpoly() +
+    scale_x_log10()
 
 # Univariate Analysis
 
