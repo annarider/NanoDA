@@ -118,6 +118,8 @@ http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/
 http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/
 http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/
 http://stackoverflow.com/questions/10438752/adding-x-and-y-axis-labels-in-ggplot2
+**Get rid of scientific notation in axis label**
+http://stackoverflow.com/questions/11610377/how-do-i-change-the-formatting-of-numbers-on-an-axis-with-ggplot
 ### Styling
 **Add color to lines** 
 http://www.cookbook-r.com/Graphs/Colors_%28ggplot2%29/

@@ -229,14 +229,14 @@ state_growth$growth_per_capita <- state_growth$state_growth_dollar/
 
 ```{r echo=FALSE, Univariate_Plots}
 
+library(scales)
 ggplot(data = state_growth, aes(x = state_growth_dollar)) +
-    geom_histogram(binwidth = 10,
-                   color = 'black', fill = '#F79420')
+    geom_histogram(color = 'black', fill = '#F79420') +
+    scale_x_continuous(name = "State Growth Dollars", labels = comma)
 
-ggplot(data = companies, aes(x = growth_percentage)) +
-    geom_histogram(binwidth = 10,
-                   color = 'black', fill = '#F79420') +
-    scale_x_continuous(limits = c(0, 1000))
+ggplot(data = state_growth, aes(x = growth_per_capita)) +
+    geom_histogram(color = 'black', fill = '#F79420') +
+    scale_x_continuous(name = "State Growth per capita", labels = comma)
 
 ```
 
@@ -256,14 +256,66 @@ State population data is also important to better understand growth. A larger st
 I created 4 new variables from existing varibles across two datasets
 I created two new variables in the companies data frame: 1. revenue2013, 2. growth_dollar. I reverse engineered revenue from 2013 using revenue from 2014 and percentage growth. Then I substracted the 2013 revenue from 2014 revenue to get the growth_dollar. 
 
-I also created a new dataframe using the state population data from the census. In this dataframe, I added two other variables: 3. state_growth_dollar and 4. growth_per_capita.    
+I also created a new dataframe using the state population data from the census. In this dataframe, I added two other variables: 3. state_growth_dollar and 4. growth_per_capita. state_growth_dollar was calculated by grouping together states and summing the growth_dollar derived from the 2nd variable I created growth_dollar. The growth_per_capita variable was created by dividing growth_dollar by the state population. 
+
 ### Of the features you investigated, were there any unusual distributions? Did you perform any operations on the data to tidy, adjust, or change the form of the data? If so, why did you do this?
+The revenue, growth, and workers histograms all skewed right with a very long tail. I had to perform a log transformation to better understand the data. I performed a lot of tidying and adjusting to import and join the two data frames, including converting the population data to a numeric because the commas that separated the thousands place was causing the read.csv() command to import population numbers as characters. I needed population numbers to be numeric so I could perform division to calculate the growth_per_capita.
+
 
 
 geom_boxplot, geom_point, geom_violin, geom_jitter with geom_rug, geom_point(stat = 'summary'), geom_bin2d, geom_tile, geom_density2d, geom_point(alpha = 1/10, color = 'gray') + geom_line(stat = 'summary', fun.y = median), geom_point(alpha = 1/10, color = 'gray') + geom_step(stat = 'summary', fun.y = median) 
 # Bivariate Plots Section
-```{r echo=FALSE, Bivariate_Plots}
+```{r echo=FALSE, include=FALSE, Bivariate_Plots}
+str(state_growth)
+str(companies)
+```
 
+```{r echo=FALSE, Bivariate_Plots}
+ggplot(data = companies, aes(x = , y = )) +
+    geom_()
+```
+
+```{r echo=FALSE, Bivariate_Plots}
+ggplot(data = state_growth, aes(x = state_l, y = growth_per_capita)) +
+    geom_bar(stat = "identity", color = 'black', fill = '#F79420')
+
+
+state_growth <- arrange(state_growth, desc(growth_per_capita))
+          
+str(state_growth)
+
+ggplot(data = state_growth, aes(x = as.factor(state_l), y = growth_per_capita)) +
+    geom_bar(stat = "identity", color = 'black', fill = '#F79420')
+```
+
+```{r echo=FALSE, Bivariate_Plots}
+ggplot(data = companies, aes(x = , y = )) +
+    geom_()
+```
+
+```{r echo=FALSE, Bivariate_Plots}
+ggplot(data = companies, aes(x = , y = )) +
+    geom_()
+```
+
+```{r echo=FALSE, Bivariate_Plots}
+ggplot(data = companies, aes(x = , y = )) +
+    geom_()
+```
+
+```{r echo=FALSE, Bivariate_Plots}
+ggplot(data = companies, aes(x = , y = )) +
+    geom_()
+```
+
+```{r echo=FALSE, Bivariate_Plots}
+ggplot(data = companies, aes(x = , y = )) +
+    geom_()
+```
+
+```{r echo=FALSE, Bivariate_Plots}
+ggplot(data = companies, aes(x = , y = )) +
+    geom_()
 ```
 
 # Bivariate Analysis
