@@ -229,22 +229,34 @@ state_growth$growth_per_capita <- state_growth$state_growth_dollar/
 
 ```{r echo=FALSE, Univariate_Plots}
 
-ggplot(data = companies.population, aes(x = growth)) +
-    geom_freqpoly() +
-    scale_x_log10()
+ggplot(data = state_growth, aes(x = state_growth_dollar)) +
+    geom_histogram(binwidth = 10,
+                   color = 'black', fill = '#F79420')
+
+ggplot(data = companies, aes(x = growth_percentage)) +
+    geom_histogram(binwidth = 10,
+                   color = 'black', fill = '#F79420') +
+    scale_x_continuous(limits = c(0, 1000))
 
 ```
 
 # Univariate Analysis
 
 ### What is the structure of your dataset?
+I have two datasets. The original dataset is a list of the 5000 fastest growing private companies in 2014 in the U.S. from Inc. 5000. The second dataset I have is state population data from the Census Bureau. I have two resulting data frames: companies is the Inc. 5000 data set with new variables added, and state_growth is population data with additional variables.   
 
 ### What is/are the main feature(s) of interest in your dataset?
-
+The variables most interesting to explore are the growth in percentage and dollar amounts since the dataset from Inc. 5000 is specifically about the fastest growing private companies in the U.S. I am also very interested in the industry the companies are in.
 ### What other features in the dataset do you think will help support your investigation into your feature(s) of interest?
+Revenue will be important way to understand growth. For example, a company with a small revenue will see greater gains in percentage growth than a company with larger revenue amount but the latter could have a much greater revenue and growth in absolute dollar amounts. So it is critical to interpret growth in light of revenue. 
+
+State population data is also important to better understand growth. A larger state might appear to have greater growth in absolute dollar amounts but that could be influenced by a greater population. Therefore investigating growth per capita can provide a fairer way to look at growth, especially from the point of view of smaller states.
 
 ### Did you create any new variables from existing variables in the dataset?
+I created 4 new variables from existing varibles across two datasets
+I created two new variables in the companies data frame: 1. revenue2013, 2. growth_dollar. I reverse engineered revenue from 2013 using revenue from 2014 and percentage growth. Then I substracted the 2013 revenue from 2014 revenue to get the growth_dollar. 
 
+I also created a new dataframe using the state population data from the census. In this dataframe, I added two other variables: 3. state_growth_dollar and 4. growth_per_capita.    
 ### Of the features you investigated, were there any unusual distributions? Did you perform any operations on the data to tidy, adjust, or change the form of the data? If so, why did you do this?
 
 

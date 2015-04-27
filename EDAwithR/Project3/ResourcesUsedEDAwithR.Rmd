@@ -167,6 +167,7 @@ http://stackoverflow.com/questions/7963898/extracting-the-last-n-characters-from
 http://stackoverflow.com/questions/15885111/create-data-frame-from-a-matrix-in-r
 ### Subsetting
 http://stackoverflow.com/questions/8005154/conditionally-remove-dataframe-rows-with-r
+http://www.r-tutor.com/r-introduction/data-frame/data-frame-column-slice
 ### Overwrite/Replace values
 http://stackoverflow.com/questions/19503266/r-replace-all-particular-values-in-a-data-frame
 http://stackoverflow.com/questions/5824173/replace-a-value-in-a-data-frame-based-on-a-conditional-if-statement-in-r
@@ -249,3 +250,6 @@ http://stackoverflow.com/questions/16923281/pandas-writing-dataframe-to-csv-file
 ### Perform a join with two dataframes
 https://stat.ethz.ch/R-manual/R-devel/library/base/html/merge.html
 http://stackoverflow.com/questions/1299871/how-to-join-data-frames-in-r-inner-outer-left-right
+http://stackoverflow.com/questions/18107002/joining-one-column-of-a-data-frame-to-an-existing-data-frame-of-unqual-length-by
+### Casting different data types
+http://stackoverflow.com/questions/3418128/how-to-convert-a-factor-to-an-integer-numeric-without-a-loss-of-information
