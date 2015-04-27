@@ -205,17 +205,26 @@ There is a limitation in my data set. Without data about resident populations in
 # Population numbers have commas separating the thousands place. 
 # Must convert population to numeric to perform arithmetic 
 population <- read.csv("state_population_census.csv", stringsAsFactors=FALSE)
-str(population)
-convert_cols <- 2:8
-population[ , convert_cols] <- lapply(population[])
 head(population)
-companies.population <- merge(companies, population, by.x = "state_l", 
-                              by.y = "Geographic_Area")
-names(companies.population)
-unique(companies.population$Est_2014)
-str(companies.population)
-companies.population$growth_per_capita <- companies.population$growth_dollar/
-                                            companies.population$Est_2014
+
+library(dplyr)
+state_growth <- companies %>%
+    group_by(state_l) %>%
+    summarise(state_growth_dollar = sum(growth_dollar)) %>%
+    ungroup() %>%
+    arrange(state_l)
+state_growth <- merge(x = state_growth, 
+                      y = subset(population, 
+                                 select = c("Geographic_Area", "Est_2014")), 
+                      by.x = "state_l", by.y = "Geographic_Area")
+names(state_growth)[names(state_growth) == 'Est_2014'] <- 'state_population2014'
+names(state_growth)
+str(state_growth)
+
+state_growth$state_population2014 <- as.numeric(gsub(",", "", 
+                                                     state_growth$state_population2014))
+state_growth$growth_per_capita <- state_growth$state_growth_dollar/
+                                    state_growth$state_population2014
 ```
 
 ```{r echo=FALSE, Univariate_Plots}
