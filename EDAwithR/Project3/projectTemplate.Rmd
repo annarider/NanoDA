@@ -193,17 +193,29 @@ head(companies$revenue2013)
 
 companies$growth_dollar <- companies$revenue - companies$revenue2013
 head(companies$growth_dollar)
+
+# renames original columns for clarity
+names(companies)[names(companies) == 'revenue'] <- 'revenue2014'
+names(companies)[names(companies) == 'growth'] <- 'growth_percentage'
 ```
 
 There is a limitation in my data set. Without data about resident populations in each state or city or metro area it is hard to determine whether the states with the highest number of growing companies have growing companies because there are more people living there or if there is something special about that state that fosters growth. Therefore, I looked for population data from the U.S. Census Bureau and found population estimates for 2010 to 2014. This works with the company data from 2014 with the reverse engineered revenue and growth numbers I calculated for 2013.
 
 ```{r echo=FALSE, Univariate_Plots}
-
-population <- read.csv("state_population_census.csv")
+# Population numbers have commas separating the thousands place. 
+# Must convert population to numeric to perform arithmetic 
+population <- read.csv("state_population_census.csv", stringsAsFactors=FALSE)
+str(population)
+convert_cols <- 2:8
+population[ , convert_cols] <- lapply(population[])
 head(population)
-companies.population <- merge(companies, population, by.x = "state_l", by.y = "Geographic_Area")
+companies.population <- merge(companies, population, by.x = "state_l", 
+                              by.y = "Geographic_Area")
 names(companies.population)
 unique(companies.population$Est_2014)
+str(companies.population)
+companies.population$growth_per_capita <- companies.population$growth_dollar/
+                                            companies.population$Est_2014
 ```
 
 ```{r echo=FALSE, Univariate_Plots}
@@ -211,6 +223,8 @@ unique(companies.population$Est_2014)
 ggplot(data = companies.population, aes(x = growth)) +
     geom_freqpoly() +
     scale_x_log10()
+
+```
 
 # Univariate Analysis
 
