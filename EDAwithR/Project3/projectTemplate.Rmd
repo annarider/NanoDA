@@ -42,7 +42,9 @@ Structure of dataframe with preview of data values
 str(companies)
 # Change rank to ordered factor since the variable 
 # is categorical and order matters
-companies$rank <- as.ordered(companies$rank)
+companies$rank <- sort(companies$rank, descending = TRUE)
+companies$rank <- ordered(companies$rank, levels=rev(levels(companies$rank)))
+
 ```
 
 Explore factor variables and the different levels in State and Industry
@@ -318,6 +320,14 @@ ggplot(data = companies, aes(x = revenue2014/1000000, y = growth_percentage)) +
 ```{r echo=FALSE, Bivariate_Plots}
 ggplot(data = companies, aes(x = , y = )) +
     geom_()
+str(companies)
+
+companies_matrix_subset <- subset(companies, select = c(-row_num, -id, -company, -url, -state_s))
+names(companies_matrix_subset)
+library(GGally)
+theme_set(theme_minimal(20))
+ggpairs(companies_matrix_subset)
+
 ```
 
 ```{r echo=FALSE, Bivariate_Plots}

@@ -174,6 +174,7 @@ http://stackoverflow.com/questions/15885111/create-data-frame-from-a-matrix-in-r
 ### Subsetting
 http://stackoverflow.com/questions/8005154/conditionally-remove-dataframe-rows-with-r
 http://www.r-tutor.com/r-introduction/data-frame/data-frame-column-slice
+https://stat.ethz.ch/R-manual/R-devel/library/base/html/subset.html
 ### Overwrite/Replace values
 http://stackoverflow.com/questions/19503266/r-replace-all-particular-values-in-a-data-frame
 http://stackoverflow.com/questions/5824173/replace-a-value-in-a-data-frame-based-on-a-conditional-if-statement-in-r
