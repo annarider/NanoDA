@@ -42,7 +42,7 @@ Structure of dataframe with preview of data values
 str(companies)
 # Change rank to ordered factor since the variable 
 # is categorical and order matters
-companies$rank <- sort(companies$rank, descending = TRUE)
+companies$rank <- as.ordered(companies$rank)
 companies$rank <- ordered(companies$rank, levels=rev(levels(companies$rank)))
 
 ```
@@ -322,11 +322,13 @@ ggplot(data = companies, aes(x = , y = )) +
     geom_()
 str(companies)
 
-companies_matrix_subset <- subset(companies, select = c(-row_num, -id, -company, -url, -state_s))
+companies_matrix_subset <- subset(companies, select = c(-row_num, -id, -company, -url, -state_l, -state_s, -city, - metro))
 names(companies_matrix_subset)
 library(GGally)
+library(ggplot2)
 theme_set(theme_minimal(20))
 ggpairs(companies_matrix_subset)
+ggpairs(state_growth)
 
 ```
 

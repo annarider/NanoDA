@@ -160,6 +160,8 @@ http://www.statmethods.net/input/importingdata.html
 http://www.stat.berkeley.edu/~s133/factors.html
 http://stackoverflow.com/questions/5208679/order-bars-in-ggplot2-bar-graph
 http://statistics.ats.ucla.edu/stat/r/modules/factor_variables.htm
+**Order a factor**
+http://www.cookbook-r.com/Manipulating_data/Changing_the_order_of_levels_of_a_factor/
 #### rowSums
 http://stackoverflow.com/questions/3991905/vector-that-is-sum-of-rows
 http://stackoverflow.com/questions/20819100/colsum-rowsum-populating-matrix
