@@ -322,24 +322,32 @@ ggplot(data = companies, aes(x = , y = )) +
     geom_()
 str(companies)
 
-companies_matrix_subset <- subset(companies, select = c(-row_num, -id, -company, -url, -state_l, -state_s, -city, - metro))
+companies_matrix_subset <- subset(companies, select = c(-row_num, -id, -rank, -company, -url, -state_l, -state_s, -city, -metro))
 str(companies_matrix_subset)
 library(GGally)
 library(ggplot2)
 theme_set(theme_minimal(20))
 ?sample_n
 
-ggpairs(sample_n(companies_matrix_subset, 100))
+ggpairs(companies_matrix_subset)
 
-ggpairs(sample_n(companies_matrix_subset, 100), 
+ggpairs(sample_n(companies_matrix_subset, 1000), 
         upper = list(continuous = "density", combo = "dot", discrete = "ratio"),
         lower = list(continuous = "points", combo = "box", discrete = "facetbar"))
-ggpairs(sample_n(companies_matrix_subset, 100), 
+ggpairs(sample_n(companies_matrix_subset, 1000), 
         upper = list(continuous = "cor", combo = "facethist", discrete = "ratio"),
         lower = list(continuous = "smooth", combo = "denstrip", discrete = "facetbar"),
         diag = list(continuous = "bar", discrete = "bar"))
 
 ggpairs(state_growth)
+ggpairs(state_growth,
+        upper = list(continuous = "cor", combo = "facethist", discrete = "ratio"),
+        lower = list(continuous = "smooth", combo = "denstrip", discrete = "facetbar"),
+        diag = list(continuous = "bar", discrete = "bar"))
+ggpairs(state_growth,
+        upper = list(continuous = "density", combo = "dot", discrete = "ratio"),
+        lower = list(continuous = "points", combo = "box", discrete = "facetbar"),
+        diag = list(continuous = "bar", discrete = "bar"))
 
 ```
 
