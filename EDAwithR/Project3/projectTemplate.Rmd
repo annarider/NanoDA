@@ -330,11 +330,11 @@ theme_set(theme_minimal(20))
 ?sample_n
 
 ggpairs(companies_matrix_subset)
-
-ggpairs(sample_n(companies_matrix_subset, 1000), 
+# sample_n(companies_matrix_subset, 1000)
+ggpairs(companies_matrix_subset, 
         upper = list(continuous = "density", combo = "dot", discrete = "ratio"),
         lower = list(continuous = "points", combo = "box", discrete = "facetbar"))
-ggpairs(sample_n(companies_matrix_subset, 1000), 
+ggpairs(companies_matrix_subset, 
         upper = list(continuous = "cor", combo = "facethist", discrete = "ratio"),
         lower = list(continuous = "smooth", combo = "denstrip", discrete = "facetbar"),
         diag = list(continuous = "bar", discrete = "bar"))
