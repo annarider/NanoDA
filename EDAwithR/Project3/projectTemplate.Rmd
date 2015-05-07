@@ -10,6 +10,7 @@ TITLE by Anna Li
 # You should set echo=FALSE for all code chunks in your file.
 
 library(ggplot2)
+library(GGally)
 ```
 
 ```{r echo=FALSE, include=FALSE, Load_the_Data}
@@ -329,6 +330,7 @@ library(ggplot2)
 theme_set(theme_minimal(20))
 ?sample_n
 
+head(companies_matrix_subset)
 ggpairs(companies_matrix_subset)
 # sample_n(companies_matrix_subset, 1000)
 ggpairs(companies_matrix_subset, 
@@ -352,18 +354,36 @@ ggpairs(state_growth,
 ```
 
 ```{r echo=FALSE, Bivariate_Plots}
-ggplot(data = companies, aes(x = , y = )) +
-    geom_()
+ggplot(data = companies, aes(x = revenue2014, y = growth_percentage)) +
+    geom_point()
+
+ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
+    geom_point()
+
+cor.test(companies$revenue2014, companies$growth_percentage)
+cor.test(companies$revenue2014, companies$growth_dollar)
 ```
 
 ```{r echo=FALSE, Bivariate_Plots}
-ggplot(data = companies, aes(x = , y = )) +
-    geom_()
+ggplot(data = companies, aes(x = revenue2013, y = growth_percentage)) +
+    geom_point()
+
+ggplot(data = companies, aes(x = revenue2013, y = growth_dollar)) +
+    geom_point()
+cor.test(companies$revenue2013, companies$growth_percentage)
+cor.test(companies$revenue2013, companies$growth_dollar)
 ```
 
 ```{r echo=FALSE, Bivariate_Plots}
-ggplot(data = companies, aes(x = , y = )) +
-    geom_()
+ggplot(data = companies, aes(x = yrs_on_list, y = revenue2014)) +
+    geom_point()
+
+ggplot(data = companies, aes(x = yrs_on_list, y = revenue2014)) +
+    geom_jitter(alpha = 1/5) +
+    scale_y_continuous(limits = c(0, 500000000))
+
+cor.test(companies$yrs_on_list, companies$revenue2014)
+```
 ```
 
 ```{r echo=FALSE, Bivariate_Plots}
