@@ -387,13 +387,28 @@ cor.test(companies$yrs_on_list, companies$revenue2014)
 ```
 
 ```{r echo=FALSE, Bivariate_Plots}
-ggplot(data = companies, aes(x = , y = )) +
-    geom_()
+ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
+    geom_boxplot()
+
+ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
+    geom_boxplot() +
+    scale_y_continuous(limits = c(0, 8)) + 
+    theme(axis.text.x = element_text(angle = 45, 
+                                     hjust = 1))
 ```
 
 ```{r echo=FALSE, Bivariate_Plots}
-ggplot(data = companies, aes(x = , y = )) +
-    geom_()
+ggplot(data = companies, aes(x = industry, y = growth_dollar)) +
+    geom_jitter(alpha = 1/4) +
+    scale_y_continuous(limits = c(0, 150000000)) + 
+    theme(axis.text.x = element_text(angle = 45, 
+                                     hjust = 1))
+
+ggplot(data = companies, aes(x = industry, y = growth_percentage)) +
+    geom_jitter(alpha = 1/4) +
+    scale_y_continuous(limits = c(0, 7500)) + 
+    theme(axis.text.x = element_text(angle = 45, 
+                                     hjust = 1))
 ```
 
 # Bivariate Analysis
