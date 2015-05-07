@@ -383,6 +383,7 @@ ggplot(data = companies, aes(x = yrs_on_list, y = revenue2014)) +
     scale_y_continuous(limits = c(0, 500000000))
 
 cor.test(companies$yrs_on_list, companies$revenue2014)
+cor.test(companies$yrs_on_list, companies$revenue2013)
 ```
 ```
 
@@ -409,6 +410,19 @@ ggplot(data = companies, aes(x = industry, y = growth_percentage)) +
     scale_y_continuous(limits = c(0, 7500)) + 
     theme(axis.text.x = element_text(angle = 45, 
                                      hjust = 1))
+
+ggplot(data = companies, aes(x = industry, y = revenue2014)) +
+    geom_jitter(alpha = 1/4) +
+    scale_y_continuous(limits = c(0, 500000000)) + 
+    theme(axis.text.x = element_text(angle = 45, 
+                                     hjust = 1))
+
+ggplot(data = companies, aes(x = industry, y = revenue2013)) +
+    geom_jitter(alpha = 1/4) +
+    scale_y_continuous(limits = c(0, 500000000)) + 
+    theme(axis.text.x = element_text(angle = 45, 
+                                     hjust = 1))
+
 ```
 
 # Bivariate Analysis
