@@ -71,7 +71,7 @@ summary(companies)
 
 # Univariate Plots Section
 Histogram of states where companies are located
-```{r echo=FALSE, Univariate_Plots}
+```{r echo=FALSE, States_Univariate_Plots}
 ggplot(data = companies, aes(x = state_l)) +
     geom_bar() +
     xlab("State") + 
@@ -86,7 +86,7 @@ ggplot(data = companies, aes(x = state_l)) +
 
 Histograms of workers by count
 
-```{r echo=FALSE, Univariate_Plots}
+```{r echo=FALSE, Workers_Univariate_Plots}
 ggplot(data = companies, aes(x = workers)) +
     geom_histogram() +
     xlab("Workers") + 
@@ -97,7 +97,7 @@ ggplot(data = companies, aes(x = workers)) +
 First plot doesn't have small enough binwidths to see the trend. Reduce binwidth shows
 a histogram plot that skews right. What happens to distribution if I perform a 
 long10 transformation?
-```{r echo=FALSE, Univariate_Plots}
+```{r echo=FALSE}
 ggplot(data = companies, aes(x = workers)) +
     geom_histogram(binwidth = 10, 
                    color = 'black', fill = '#F79420') +
@@ -112,7 +112,7 @@ ggplot(data = companies, aes(x = workers)) +
 Transforming the long tail by taking the log10 of workers
 helps better understand the distribution of workers. The transformed workers distribution 
 looks close to a normal distribution with a longer tail on the right. 
-```{r echo=FALSE, Univariate_Plots}
+```{r echo=FALSE}
 ggplot(data = companies, aes(x = workers)) +
     geom_histogram(binwidth = .05,
                    color = 'black', fill = '#F79420') +
@@ -127,7 +127,7 @@ summary(companies$workers)
 
 
 Distribution of industry
-```{r echo=FALSE, Univariate_Plots}
+```{r echo=FALSE, Industry_Univariate_Plots}
 ggplot(data = companies, aes(x = industry)) +
     geom_bar() +
     theme(axis.text.x = element_text(angle = 45, 
@@ -135,21 +135,19 @@ ggplot(data = companies, aes(x = industry)) +
 ```
 
 Distribution of revenue
-```{r echo=FALSE, Univariate_Plots}
+```{r echo=FALSE, Revenue_Univariate_Plots}
 ggplot(data = companies, aes(x = revenue)) +
     geom_histogram()
 
 range(companies$revenue)
 
 ggplot(data = companies, aes(x = revenue)) +
-    geom_histogram(binwidth = 5528202691/5000,
-                   color = 'black', fill = '#F79420'
-    
-
+    geom_histogram(color = 'black', fill = '#F79420')
 
 ```
+
 Distribution of growth
-```{r echo=FALSE, Univariate_Plots}
+```{r echo=FALSE, Growth_Univariate_Plots}
 ggplot(data = companies, aes(x = growth)) +
     geom_histogram(binwidth = 10,
                    color = 'black', fill = '#F79420') +
@@ -164,7 +162,7 @@ summary(companies$growth)
 ```
 The distribution of growth and revenue look really similar. Let's try another type of plot to tease apart how the distributions differ. The frequency polygon plot better shows the diffent shapes of the distributions. The amount of growth is based on revenue generated so it is not surprising the two distributions are similar since they are highly correlated.   
 
-```{r echo=FALSE, Univariate_Plots}
+```{r echo=FALSE}
 
 ggplot(data = companies, aes(x = growth)) +
     geom_freqpoly() +
@@ -190,7 +188,7 @@ Many of the highest ranked companies are small businesses. This could be because
 
 I created two new variables, revenue 2013, calculated in terms of current revenue and percentage growth to derive last year's revenue, and growth in dollars, which is revenue 2013 substracted from revenue 2014. 
 
-```{r echo=FALSE, Univariate_Plots}
+```{r echo=FALSE, New_Variables}
 companies$revenue2013 <- companies$revenue/((companies$growth/100) + 1)
 head(companies$revenue2013)
 
@@ -204,7 +202,7 @@ names(companies)[names(companies) == 'growth'] <- 'growth_percentage'
 
 There is a limitation in my data set. Without data about resident populations in each state or city or metro area it is hard to determine whether the states with the highest number of growing companies have growing companies because there are more people living there or if there is something special about that state that fosters growth. Therefore, I looked for population data from the U.S. Census Bureau and found population estimates for 2010 to 2014. This works with the company data from 2014 with the reverse engineered revenue and growth numbers I calculated for 2013.
 
-```{r echo=FALSE, Univariate_Plots}
+```{r echo=FALSE, Population}
 # Population numbers have commas separating the thousands place. 
 # Must convert population to numeric to perform arithmetic 
 population <- read.csv("state_population_census.csv", stringsAsFactors=FALSE)
@@ -230,7 +228,7 @@ state_growth$growth_per_capita <- state_growth$state_growth_dollar/
                                     state_growth$state_population2014
 ```
 
-```{r echo=FALSE, Univariate_Plots}
+```{r echo=FALSE, State_Growth_Univariate_Plots}
 
 library(scales)
 ggplot(data = state_growth, aes(x = state_growth_dollar)) +
@@ -268,13 +266,13 @@ The revenue, growth, and workers histograms all skewed right with a very long ta
 
 geom_boxplot, geom_point, geom_violin, geom_jitter with geom_rug, geom_point(stat = 'summary'), geom_bin2d, geom_tile, geom_density2d, geom_point(alpha = 1/10, color = 'gray') + geom_line(stat = 'summary', fun.y = median), geom_point(alpha = 1/10, color = 'gray') + geom_step(stat = 'summary', fun.y = median) 
 # Bivariate Plots Section
-```{r echo=FALSE, include=FALSE, Bivariate_Plots}
+```{r echo=FALSE, include=FALSE, Structure_Dataset}
 options(scipen=999)
 str(state_growth)
 str(companies)
 ```
 Which state has greatest revenue growth per capita in 2014?  
-```{r echo=FALSE, Bivariate_Plots}
+```{r echo=FALSE, State_Growth_Bivariate_Plots}
 ggplot(data = state_growth, aes(x = state_l, y = growth_per_capita)) +
     geom_bar(stat = "identity", color = 'black', fill = '#F79420') +
     theme(axis.text.x = element_text(angle = 45, 
@@ -318,7 +316,7 @@ ggplot(data = companies, aes(x = revenue2014/1000000, y = growth_percentage)) +
 
 ```
 
-```{r echo=FALSE, Bivariate_Plots}
+```{r echo=FALSE, Matrix_Bivariate_Plots}
 str(companies)
 
 companies_matrix_subset <- subset(companies, select = c(-row_num, -id, -rank, -company, -url, -state_l, -state_s, -city, -metro))
@@ -351,7 +349,7 @@ ggpairs(state_growth,
 
 ```
 
-```{r echo=FALSE, Bivariate_Plots}
+```{r echo=FALSE, Revenue2014_Bivariate_Plots}
 ggplot(data = companies, aes(x = revenue2014, y = growth_percentage)) +
     geom_point()
 
@@ -362,7 +360,7 @@ cor.test(companies$revenue2014, companies$growth_percentage)
 cor.test(companies$revenue2014, companies$growth_dollar)
 ```
 
-```{r echo=FALSE, Bivariate_Plots}
+```{r echo=FALSE, Revenue2013_Bivariate_Plots}
 ggplot(data = companies, aes(x = revenue2013, y = growth_percentage)) +
     geom_point()
 
@@ -372,7 +370,7 @@ cor.test(companies$revenue2013, companies$growth_percentage)
 cor.test(companies$revenue2013, companies$growth_dollar)
 ```
 
-```{r echo=FALSE, Bivariate_Plots}
+```{r echo=FALSE, YearsOnList_Bivariate_Plots}
 ggplot(data = companies, aes(x = yrs_on_list, y = revenue2014)) +
     geom_point()
 
@@ -385,7 +383,7 @@ cor.test(companies$yrs_on_list, companies$revenue2013)
 ```
 ```
 
-```{r echo=FALSE, Bivariate_Plots}
+```{r echo=FALSE, Industry_Bivariate_Plots}
 ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
     geom_boxplot()
 
@@ -402,7 +400,7 @@ ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
                                      hjust = 1))
 ```
 
-```{r echo=FALSE, Bivariate_Plots}
+```{r echo=FALSE, Industry_Growth_Bivariate_Plots}
 ggplot(data = companies, aes(x = industry, y = growth_dollar)) +
     geom_jitter(alpha = 1/4) +
     scale_y_continuous(limits = c(0, 150000000)) + 
@@ -440,7 +438,7 @@ ggplot(data = companies, aes(x = yrs_on_list, y = growth_percentage)) +
 
 ```
 
-```{r echo=FALSE, Bivariate_Plots}
+```{r echo=FALSE, Experiment_Bivariate_Plots}
 
 ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
     geom_jitter() +
@@ -469,11 +467,11 @@ ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
 ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
     geom_step(stat = 'summary', fun.y = median)
 
-geom_boxplot, geom_point, geom_violin, geom_jitter with geom_rug, geom_point(stat = 'summary'), geom_bin2d, geom_tile, geom_density2d, geom_point(alpha = 1/10, color = 'gray') + geom_line(stat = 'summary', fun.y = median), geom_point(alpha = 1/10, color = 'gray') + geom_step(stat = 'summary', fun.y = median)
+
 
 ```
 
-
+geom_boxplot, geom_point, geom_violin, geom_jitter with geom_rug, geom_point(stat = 'summary'), geom_bin2d, geom_tile, geom_density2d, geom_point(alpha = 1/10, color = 'gray') + geom_line(stat = 'summary', fun.y = median), geom_point(alpha = 1/10, color = 'gray') + geom_step(stat = 'summary', fun.y = median)
 # Bivariate Analysis
 
 ### Talk about some of the relationships you observed in this part of the investigation. How did the feature(s) of interest vary with other features in the dataset?
