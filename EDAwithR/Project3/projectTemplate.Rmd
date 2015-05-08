@@ -394,6 +394,12 @@ ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
     scale_y_continuous(limits = c(0, 8)) + 
     theme(axis.text.x = element_text(angle = 45, 
                                      hjust = 1))
+
+ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
+    geom_violin() +
+    scale_y_continuous(limits = c(0, 8)) + 
+    theme(axis.text.x = element_text(angle = 45, 
+                                     hjust = 1))
 ```
 
 ```{r echo=FALSE, Bivariate_Plots}
