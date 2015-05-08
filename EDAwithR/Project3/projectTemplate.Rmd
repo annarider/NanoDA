@@ -319,8 +319,6 @@ ggplot(data = companies, aes(x = revenue2014/1000000, y = growth_percentage)) +
 ```
 
 ```{r echo=FALSE, Bivariate_Plots}
-ggplot(data = companies, aes(x = , y = )) +
-    geom_()
 str(companies)
 
 companies_matrix_subset <- subset(companies, select = c(-row_num, -id, -rank, -company, -url, -state_l, -state_s, -city, -metro))
@@ -423,7 +421,52 @@ ggplot(data = companies, aes(x = industry, y = revenue2013)) +
     theme(axis.text.x = element_text(angle = 45, 
                                      hjust = 1))
 
+ggplot(data = companies, aes(x = yrs_on_list, y = growth_dollar)) +
+    geom_jitter()
+
+ggplot(data = companies, aes(x = yrs_on_list, y = growth_dollar/1000000)) +
+    geom_jitter(alpha = 1/4) +
+    scale_y_continuous(limits = c(0, 250))
+
+ggplot(data = companies, aes(x = yrs_on_list, y = growth_percentage)) +
+    geom_jitter(alpha = 1/4) +
+    scale_y_continuous(limits = c(0, 1000))
+
 ```
+
+```{r echo=FALSE, Bivariate_Plots}
+
+ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter() +
+    geom_rug() 
+
+ggplot(data = companies, aes(x = revenue2014/1000000, y = growth_dollar/1000000)) +
+    geom_jitter(alpha = 1/3, color = 'steelblue') +
+    geom_rug() +
+    scale_x_continuous(limits = c(0, 500)) +
+    scale_y_continuous(limits = c(0, 400))
+
+ggplot(data = companies, aes(x = revenue2014/1000000, y = growth_dollar/1000000)) +
+    geom_jitter(alpha = 1/3, color = 'steelblue') +
+    geom_rug() +
+    scale_x_continuous(limits = c(0, 100)) +
+    scale_y_continuous(limits = c(0, 100))
+
+ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
+    geom_bin2d()
+
+ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
+    geom_density2d()
+
+ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
+    geom_step()
+ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
+    geom_step(stat = 'summary', fun.y = median)
+
+geom_boxplot, geom_point, geom_violin, geom_jitter with geom_rug, geom_point(stat = 'summary'), geom_bin2d, geom_tile, geom_density2d, geom_point(alpha = 1/10, color = 'gray') + geom_line(stat = 'summary', fun.y = median), geom_point(alpha = 1/10, color = 'gray') + geom_step(stat = 'summary', fun.y = median)
+
+```
+
 
 # Bivariate Analysis
 
