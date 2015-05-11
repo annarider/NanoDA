@@ -152,11 +152,23 @@ ggplot(data = companies, aes(x = industry)) +
 ggplot(data = companies, aes(x = revenue)) +
     geom_histogram(color = 'black', fill = '#F79420')
 
+message("The revenue distribution is really skewed right. 
+        A log10 transformation and adjusting bin width will
+        help illustrate trends.")
 range(companies$revenue)
 
-message()
 ggplot(data = companies, aes(x = revenue)) +
-    geom_histogram()
+    geom_histogram(color = 'black', fill = '#F79420') +
+    scale_x_log10()
+
+message("Even after a log10 transformation, the data is still skewed 
+        to the right. Removing extremely high
+        revenue outliers helps show a more normal distribution")
+
+ggplot(data = companies, aes(x = revenue)) +
+    geom_histogram(color = 'black', fill = '#F79420') +
+    scale_x_continuous(trans = "log10")
+
 
 ```
 
@@ -168,33 +180,43 @@ ggplot(data = companies, aes(x = growth)) +
                    color = 'black', fill = '#F79420') +
     scale_x_continuous(limits = c(0, 1000))
 
+message("The long tail skew to the right justifies log10 transformation.")
+
 ggplot(data = companies, aes(x = growth)) +
-    geom_histogram(binwidth = 10,
+    geom_histogram(binwidth = 0.05,
                    color = 'black', fill = '#F79420') +
     scale_x_log10()
 
 summary(companies$growth)
 ```
-The distribution of growth and revenue look really similar. Let's try another type of plot to tease apart how the distributions differ. The frequency polygon plot better shows the diffent shapes of the distributions. The amount of growth is based on revenue generated so it is not surprising the two distributions are similar since they are highly correlated.   
+The distribution of growth and revenue look really similar. Let's try another type of plot to tease apart how the distributions differ. The frequency polygon plot better shows the different shapes of the distributions. The amount of growth is based on revenue generated so it is not surprising the two distributions are similar since they are highly correlated.   
 
+### Distribution of Growth vs. Revenue
 ```{r echo=FALSE}
 
-ggplot(data = companies, aes(x = growth)) +
+freqp.growth <- ggplot(data = companies, aes(x = growth)) +
     geom_freqpoly() +
     scale_x_log10()
 
-ggplot(data = companies, aes(x = revenue)) +
+freqp.revenue <- ggplot(data = companies, aes(x = revenue)) +
     geom_freqpoly() +
-    scale_x_log10()
+    scale_x_log10() +
+    scale_y_continuous(limits = c(0, 600))
 
+library(gridExtra)
 
-ggplot(data = companies, aes(x = growth)) +
+grid.arrange(freqp.growth, freqp.revenue, nrow = 1)
+
+dens.growth <- ggplot(data = companies, aes(x = growth)) +
     geom_density() +
     scale_x_log10()
 
-ggplot(data = companies, aes(x = revenue)) +
-    geom_density() +
-    scale_x_log10()
+dens.revenue <- ggplot(data = companies, aes(x = revenue)) +
+    geom_point() +
+    scale_x_log10() +
+    scale_y_continuous(limits = c(0, 1))
+
+grid.arrange(dens.growth, dens.revenue, nrow = 1)
 
 
 ```
@@ -215,14 +237,21 @@ names(companies)[names(companies) == 'revenue'] <- 'revenue2014'
 names(companies)[names(companies) == 'growth'] <- 'growth_percentage'
 ```
 
+
+## Population Dataset
 There is a limitation in my data set. Without data about resident populations in each state or city or metro area it is hard to determine whether the states with the highest number of growing companies have growing companies because there are more people living there or if there is something special about that state that fosters growth. Therefore, I looked for population data from the U.S. Census Bureau and found population estimates for 2010 to 2014. This works with the company data from 2014 with the reverse engineered revenue and growth numbers I calculated for 2013.
 
-```{r echo=FALSE, Population}
+The structure of the new dataset of state population data:
+
+```{r echo=FALSE, Population, message=FALSE, warning=FALSE}
 # Population numbers have commas separating the thousands place. 
 # Must convert population to numeric to perform arithmetic 
 population <- read.csv("state_population_census.csv", stringsAsFactors=FALSE)
 head(population)
+```
 
+Using dplyr, I can create a new dataset that aggregates all growth and revenue numbers for companies by state and calculates the growth per capita.
+```{r echo=FALSE, State_PerCapita, message=FALSE, warning=FALSE}
 library(dplyr)
 state_growth <- companies %>%
     group_by(state_l) %>%
@@ -234,26 +263,19 @@ state_growth <- merge(x = state_growth,
                                  select = c("Geographic_Area", "Est_2014")), 
                       by.x = "state_l", by.y = "Geographic_Area")
 names(state_growth)[names(state_growth) == 'Est_2014'] <- 'state_population2014'
-names(state_growth)
-str(state_growth)
 
 state_growth$state_population2014 <- as.numeric(gsub(",", "", 
                                                      state_growth$state_population2014))
 state_growth$growth_per_capita <- state_growth$state_growth_dollar/
                                     state_growth$state_population2014
+state_growth <- arrange(state_growth, desc(state_growth_dollar))
+
 ```
 
-```{r echo=FALSE, State_Growth_Univariate_Plots}
-
-library(scales)
-ggplot(data = state_growth, aes(x = state_growth_dollar)) +
-    geom_histogram(color = 'black', fill = '#F79420') +
-    scale_x_continuous(name = "State Growth Dollars", labels = comma)
-
-ggplot(data = state_growth, aes(x = growth_per_capita)) +
-    geom_histogram(color = 'black', fill = '#F79420') +
-    scale_x_continuous(name = "State Growth per capita", labels = comma)
-
+The variables and structure of the new dataset.
+```{r echo=FALSE, State_Growth}
+names(state_growth)
+str(state_growth)
 ```
 
 # Univariate Analysis
@@ -263,6 +285,7 @@ I have two datasets. The original dataset is a list of the 5000 fastest growing 
 
 ### What is/are the main feature(s) of interest in your dataset?
 The variables most interesting to explore are the growth in percentage and dollar amounts since the dataset from Inc. 5000 is specifically about the fastest growing private companies in the U.S. I am also very interested in the industry the companies are in.
+
 ### What other features in the dataset do you think will help support your investigation into your feature(s) of interest?
 Revenue will be important way to understand growth. For example, a company with a small revenue will see greater gains in percentage growth than a company with larger revenue amount but the latter could have a much greater revenue and growth in absolute dollar amounts. So it is critical to interpret growth in light of revenue. 
 
@@ -279,56 +302,16 @@ The revenue, growth, and workers histograms all skewed right with a very long ta
 
 
 
-geom_boxplot, geom_point, geom_violin, geom_jitter with geom_rug, geom_point(stat = 'summary'), geom_bin2d, geom_tile, geom_density2d, geom_point(alpha = 1/10, color = 'gray') + geom_line(stat = 'summary', fun.y = median), geom_point(alpha = 1/10, color = 'gray') + geom_step(stat = 'summary', fun.y = median) 
 # Bivariate Plots Section
+The structure of the two datasets: 
+1. State population and aggregate growth of companies
+2. 5000 fastest growing companies and the attributes that describe them  
 ```{r echo=FALSE, include=FALSE, Structure_Dataset}
 str(state_growth)
 str(companies)
 ```
-Which state has greatest revenue growth per capita in 2014?  
-```{r echo=FALSE, State_Growth_Bivariate_Plots}
-ggplot(data = state_growth, aes(x = state_l, y = growth_per_capita)) +
-    geom_bar(stat = "identity", color = 'black', fill = '#F79420') +
-    theme(axis.text.x = element_text(angle = 45, 
-                                     hjust = 1)) 
 
-
-state_growth <- arrange(state_growth, desc(growth_per_capita))
-
-ggplot(data = state_growth, aes(x = factor(state_l, levels = state_l), 
-                                y = growth_per_capita)) +
-    geom_bar(stat = "identity", color = 'black', fill = '#F79420') +
-    xlab("State") + 
-    ylab("Fast growth dollars per capita") +
-    # densely packed x axis labels need spacing
-    theme(axis.text.x = element_text(angle = 45, 
-                                     hjust = 1)) +
-    ggtitle("Revenue growth by state, normalized by population")
-```
-
-```{r echo=FALSE, Bivariate_Plots}
-ggplot(data = companies, aes(x = revenue2014, y = growth_percentage)) +
-    geom_point()
-
-
-ggplot(data = companies, aes(x = revenue2014/1000000, y = growth_percentage)) +
-    geom_point() +
-    scale_x_continuous(limits = c(0, 1300), aes(x = "Revenue (Millions)")) +
-    scale_y_continuous(limits = c(0, 15000), aes(y = "Growth (percent)"))
-
-ggplot(data = companies, aes(x = revenue2014/1000000, y = growth_percentage)) +
-    geom_jitter(alpha = 1/5) +
-    scale_x_continuous(limits = c(0, 500), aes(x = "Revenue (Millions)")) +
-    scale_y_continuous(limits = c(0, 5000), aes(y = "Growth (percent)")) + 
-    scale_x_log10()
-
-ggplot(data = companies, aes(x = revenue2014/1000000, y = growth_percentage)) +
-    geom_jitter(alpha = 1/2) +
-    scale_x_continuous(limits = c(0, 100), aes(x = "Revenue (Millions)")) +
-    scale_y_continuous(limits = c(0, 1000), aes(y = "Growth (percent)")) + 
-    scale_x_log10()
-
-```
+### Scatter Matrix plots to understand the relationships between variables in the two datasets
 
 ```{r echo=FALSE, Matrix_Bivariate_Plots}
 str(companies)
@@ -363,6 +346,48 @@ ggpairs(state_growth,
 
 ```
 
+### Which state has greatest revenue growth per capita in 2014?  
+```{r echo=FALSE, State_Growth_Univariate_Plots}
+
+library(scales)
+ggplot(data = state_growth, aes(x = state_growth_dollar)) +
+    geom_histogram(color = 'black', fill = '#F79420') +
+    scale_x_continuous(name = "State Growth Dollars", labels = comma)
+
+ggplot(data = state_growth, aes(x = growth_per_capita)) +
+    geom_histogram(color = 'black', fill = '#F79420') +
+    scale_x_continuous(name = "State Growth per capita")
+
+state_growth <- arrange(state_growth, desc(growth_per_capita))
+```
+The state growth in dollars shows most states clustered in the same area under $7.5 Billion. However, there are 2 states, California and Texas, with a extremely large amount of growth at  $17-18 Billion. But when looking at state growth in dollars per capita, the top two states are Virginia and Colorado with Texas trailing closely behind Colorado. How does population affect  growth? Future plots should explore the relationship between state population and revenue as well as state population and growth to uncover other trends.
+
+```{r echo=FALSE, State_Growth_Bivariate_Plots}
+ggplot(data = state_growth, aes(x = state_l, y = growth_per_capita)) +
+    geom_bar(stat = "identity", color = 'black', fill = '#F79420') +
+    theme(axis.text.x = element_text(angle = 90, 
+                                     hjust = 1)) 
+
+state_growth <- arrange(state_growth, desc(growth_per_capita))
+
+ggplot(data = state_growth, aes(x = factor(state_l, levels = state_l), 
+                                y = growth_per_capita)) +
+    geom_bar(stat = "identity", color = 'black', fill = '#F79420') +
+    xlab("State") + 
+    ylab("Fast growth dollars per capita") +
+    # densely packed x axis labels need spacing
+    theme(axis.text.x = element_text(angle = 90, 
+                                     hjust = 1)) +
+    ggtitle("Revenue growth by state, normalized by population")
+```
+As concluded earlier, Virginia, Colorado, and Texas have the fastest growth in dollars per capita. California is trailing at #13. 
+
+### What's the relationship between Revenue and Growth?
+
+Note: Refer to the frequency polygon and density plots in the Univariate section to see the differences in distribution between revenue in 2014 and percentage growth.
+
+The relationship between revenue in 2014 and growth appears to be strongly correlated based on the Pearson's r value, `r cor(revenue2014, growth_percentage)` for revenue2014 and growth_percentage, and `r cor(revenue2014, growth_dollar)` for revenue2014 and growth_dollar.  
+
 ```{r echo=FALSE, Revenue2014_Bivariate_Plots}
 ggplot(data = companies, aes(x = revenue2014, y = growth_percentage)) +
     geom_point()
@@ -374,6 +399,8 @@ cor.test(companies$revenue2014, companies$growth_percentage)
 cor.test(companies$revenue2014, companies$growth_dollar)
 ```
 
+A highly correlated relationship also exists between revenue in 2013 and growth. However the relationship is weaker than the relationship between revenue in 2014 and growth, which 
+
 ```{r echo=FALSE, Revenue2013_Bivariate_Plots}
 ggplot(data = companies, aes(x = revenue2013, y = growth_percentage)) +
     geom_point()
@@ -383,6 +410,32 @@ ggplot(data = companies, aes(x = revenue2013, y = growth_dollar)) +
 cor.test(companies$revenue2013, companies$growth_percentage)
 cor.test(companies$revenue2013, companies$growth_dollar)
 ```
+
+```{r echo=FALSE, Bivariate_Plots, warning=FALSE}
+ggplot(data = companies, aes(x = revenue2014, y = growth_percentage)) +
+    geom_point()
+
+
+ggplot(data = companies, aes(x = revenue2014/1000000, y = growth_percentage)) +
+    geom_point() +
+    scale_x_continuous(limits = c(0, 1300), aes(x = "Revenue (Millions)")) +
+    scale_y_continuous(limits = c(0, 15000), aes(y = "Growth (percent)"))
+
+ggplot(data = companies, aes(x = revenue2014/1000000, y = growth_percentage)) +
+    geom_jitter(alpha = 1/5) +
+    scale_x_continuous(limits = c(0, 500), aes(x = "Revenue (Millions)")) +
+    scale_y_continuous(limits = c(0, 5000), aes(y = "Growth (percent)")) + 
+    scale_x_log10()
+
+ggplot(data = companies, aes(x = revenue2014/1000000, y = growth_percentage)) +
+    geom_jitter(alpha = 1/2) +
+    scale_x_continuous(limits = c(0, 100), aes(x = "Revenue (Millions)")) +
+    scale_y_continuous(limits = c(0, 1000), aes(y = "Growth (percent)")) + 
+    scale_x_log10()
+
+```
+
+
 
 ```{r echo=FALSE, YearsOnList_Bivariate_Plots}
 ggplot(data = companies, aes(x = yrs_on_list, y = revenue2014)) +
