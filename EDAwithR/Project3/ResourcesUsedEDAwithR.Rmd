@@ -15,7 +15,9 @@ quantile(diamonds$price, 0.9)
 
 ### Remove command output from knitted HTML file
 http://stackoverflow.com/questions/13090838/r-markdown-avoiding-package-loading-messages
-```{r include=FALSE, message=FALSE, cache=FALSE}
+http://stackoverflow.com/questions/15406028/suppressing-messages-in-knitr-rmarkdown
+
+```{r include=FALSE, message=FALSE, warnings = FALSE, cache=FALSE}
 ```
 
 ## Comment blocks

@@ -1,5 +1,10 @@
-TITLE by Anna Li
-========================================================
+---
+title: "Exploration of the 5000 Fastest Growing Private Companies in the U.S."
+author: "Anna Li"
+date: "May 10, 2015"
+output: html_document
+---
+5000 Fastest Growing Private Companies in the U.S.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
 # Load all of the packages that you end up using
@@ -11,6 +16,8 @@ TITLE by Anna Li
 
 library(ggplot2)
 library(GGally)
+# eliminates scientific notation when printing large numbers
+options(scipen=999)
 ```
 
 ```{r echo=FALSE, include=FALSE, Load_the_Data}
@@ -33,7 +40,8 @@ List of all variables in the dataframe
 names(companies)
 ```
 
-Dimensions of the dataframe
+Dimensions of the dataframe: 
+`r nrow(companies)` companies observed over `r ncol(companies)` variables listed above
 ```{r echo=FALSE}
 dim(companies)
 ```
@@ -49,10 +57,13 @@ companies$rank <- ordered(companies$rank, levels=rev(levels(companies$rank)))
 ```
 
 Explore factor variables and the different levels in State and Industry
-```{r echo=FALSE}
+#### State
+```{r echo=FALSE state_factor}
 levels(companies$state_l)
-levels(companies$industry)
-
+```
+#### Industry
+```{r echo=FALSE industry_factor}
+levels(companies$state_l)
 ```
 
 Summary of the data set
@@ -70,7 +81,7 @@ summary(companies)
 * For most companies, it is their first or second year on the list. About a quarter have been on the list for more than 4 times, with 12 years being the highest number of years any one company has been on the list.
 
 # Univariate Plots Section
-Histogram of states where companies are located
+### Histogram of states where companies are located
 ```{r echo=FALSE, States_Univariate_Plots}
 ggplot(data = companies, aes(x = state_l)) +
     geom_bar() +
@@ -84,7 +95,7 @@ ggplot(data = companies, aes(x = state_l)) +
 
 ```
 
-Histograms of workers by count
+### Histograms of workers by count
 
 ```{r echo=FALSE, Workers_Univariate_Plots}
 ggplot(data = companies, aes(x = workers)) +
@@ -126,27 +137,31 @@ summary(companies$workers)
 ```
 
 
-Distribution of industry
+### Distribution of industry
+Top industry is IT Services with almost 800 companies. IT Services is the most represented industry by a large margin. The next two industries with greatest number of companies is Ad & Marketing and Business Products & Services with just over 400 companies each, counts that are just over half of IT Services. 
 ```{r echo=FALSE, Industry_Univariate_Plots}
 ggplot(data = companies, aes(x = industry)) +
     geom_bar() +
-    theme(axis.text.x = element_text(angle = 45, 
+    theme(axis.text.x = element_text(angle = 90, 
                                      hjust = 1))
 ```
 
-Distribution of revenue
+### Distribution of revenue
+
 ```{r echo=FALSE, Revenue_Univariate_Plots}
-ggplot(data = companies, aes(x = revenue)) +
-    geom_histogram()
-
-range(companies$revenue)
-
 ggplot(data = companies, aes(x = revenue)) +
     geom_histogram(color = 'black', fill = '#F79420')
 
+range(companies$revenue)
+
+message()
+ggplot(data = companies, aes(x = revenue)) +
+    geom_histogram()
+
 ```
 
-Distribution of growth
+### Distribution of growth
+
 ```{r echo=FALSE, Growth_Univariate_Plots}
 ggplot(data = companies, aes(x = growth)) +
     geom_histogram(binwidth = 10,
@@ -267,7 +282,6 @@ The revenue, growth, and workers histograms all skewed right with a very long ta
 geom_boxplot, geom_point, geom_violin, geom_jitter with geom_rug, geom_point(stat = 'summary'), geom_bin2d, geom_tile, geom_density2d, geom_point(alpha = 1/10, color = 'gray') + geom_line(stat = 'summary', fun.y = median), geom_point(alpha = 1/10, color = 'gray') + geom_step(stat = 'summary', fun.y = median) 
 # Bivariate Plots Section
 ```{r echo=FALSE, include=FALSE, Structure_Dataset}
-options(scipen=999)
 str(state_growth)
 str(companies)
 ```
@@ -381,11 +395,13 @@ ggplot(data = companies, aes(x = yrs_on_list, y = revenue2014)) +
 cor.test(companies$yrs_on_list, companies$revenue2014)
 cor.test(companies$yrs_on_list, companies$revenue2013)
 ```
-```
 
-```{r echo=FALSE, Industry_Bivariate_Plots}
+
+```{r echo=FALSE, message = FALSE, warnings = FALSE, Industry_Years_Bivariate_Plots}
 ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
-    geom_boxplot()
+    geom_boxplot() + 
+    theme(axis.text.x = element_text(angle = 45, 
+                                     hjust = 1))
 
 ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
     geom_boxplot() +
@@ -400,7 +416,7 @@ ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
                                      hjust = 1))
 ```
 
-```{r echo=FALSE, Industry_Growth_Bivariate_Plots}
+```{r echo=FALSE, message = FALSE, warnings = FALSE, Industry_Growth_Bivariate_Plots}
 ggplot(data = companies, aes(x = industry, y = growth_dollar)) +
     geom_jitter(alpha = 1/4) +
     scale_y_continuous(limits = c(0, 150000000)) + 
@@ -438,7 +454,7 @@ ggplot(data = companies, aes(x = yrs_on_list, y = growth_percentage)) +
 
 ```
 
-```{r echo=FALSE, Experiment_Bivariate_Plots}
+```{r echo=FALSE, message = FALSE, warnings = FALSE, Experiment_Bivariate_Plots}
 
 ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
     geom_jitter() +
