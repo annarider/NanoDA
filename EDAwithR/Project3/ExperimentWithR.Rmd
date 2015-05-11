@@ -39,4 +39,5 @@ ggplot(data = companies, aes(x = industry)) +
                                      hjust = 1))
 ```
 
-The relationship between revenue in 2014 and growth appears to be strongly correlated based on the Pearson's r value, `r cor(revenue2014, growth_percentage)` for revenue2014 and growth_percentage, and `r cor(revenue2014, growth_dollar)` for revenue2014 and growth_dollar.  
+The relationship between revenue in 2014 and growth appears to be strongly correlated based on the Pearson's r value, `r cor.test(companies$revenue2014, companies$growth_percentage)` for 2014 revenue and percentage growth, and for `r cor.test(companies$revenue2014, companies$growth_dollar)` for 2014 revenue and dollar growth.  
+

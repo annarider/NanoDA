@@ -386,35 +386,31 @@ As concluded earlier, Virginia, Colorado, and Texas have the fastest growth in d
 
 Note: Refer to the frequency polygon and density plots in the Univariate section to see the differences in distribution between revenue in 2014 and percentage growth.
 
-The relationship between revenue in 2014 and growth appears to be strongly correlated based on the Pearson's r value, `r cor(revenue2014, growth_percentage)` for revenue2014 and growth_percentage, and `r cor(revenue2014, growth_dollar)` for revenue2014 and growth_dollar.  
+The relationship between revenue in 2014 and growth appears to be strongly correlated based on the Pearson's r value, 0.95 for 2014 revenue and growth in dollars.  
 
 ```{r echo=FALSE, Revenue2014_Bivariate_Plots}
-ggplot(data = companies, aes(x = revenue2014, y = growth_percentage)) +
-    geom_point()
-
 ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
     geom_point()
 
-cor.test(companies$revenue2014, companies$growth_percentage)
 cor.test(companies$revenue2014, companies$growth_dollar)
+
 ```
 
-A highly correlated relationship also exists between revenue in 2013 and growth. However the relationship is weaker than the relationship between revenue in 2014 and growth, which 
+A highly correlated relationship also exists between revenue in 2013 and growth in dollars, with a Pearson's r correlation of 0.77. However this relationship is weaker than the relationship between revenue in 2014 and growth, which is expected since the dataset is focusing on fastest growing companies in 2014. Growth in 2014 is clearly tied to revenue in 2013 hence the relationship between growth and revenue in 2013 is expectedly high. 
 
 ```{r echo=FALSE, Revenue2013_Bivariate_Plots}
-ggplot(data = companies, aes(x = revenue2013, y = growth_percentage)) +
-    geom_point()
-
 ggplot(data = companies, aes(x = revenue2013, y = growth_dollar)) +
     geom_point()
-cor.test(companies$revenue2013, companies$growth_percentage)
 cor.test(companies$revenue2013, companies$growth_dollar)
+
+ggplot(data = companies, aes(x = revenue2013, y = growth_percentage)) +
+    geom_point()
 ```
 
+Let's plot revenue and growth percentage to see the trends. 
 ```{r echo=FALSE, Bivariate_Plots, warning=FALSE}
 ggplot(data = companies, aes(x = revenue2014, y = growth_percentage)) +
     geom_point()
-
 
 ggplot(data = companies, aes(x = revenue2014/1000000, y = growth_percentage)) +
     geom_point() +
