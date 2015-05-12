@@ -58,11 +58,11 @@ companies$rank <- ordered(companies$rank, levels=rev(levels(companies$rank)))
 
 Explore factor variables and the different levels in State and Industry
 #### State
-```{r echo=FALSE state_factor}
+```{r echo=FALSE, state_factor}
 levels(companies$state_l)
 ```
 #### Industry
-```{r echo=FALSE industry_factor}
+```{r echo=FALSE, industry_factor}
 levels(companies$state_l)
 ```
 
@@ -167,7 +167,8 @@ message("Even after a log10 transformation, the data is still skewed
 
 ggplot(data = companies, aes(x = revenue)) +
     geom_histogram(color = 'black', fill = '#F79420') +
-    scale_x_continuous(trans = "log10")
+    scale_x_continuous(trans = "log10", 
+                       breaks = c(1953000, 100000000, 1000000000, 5528202691))
 
 
 ```
@@ -193,7 +194,6 @@ The distribution of growth and revenue look really similar. Let's try another ty
 
 ### Distribution of Growth vs. Revenue
 ```{r echo=FALSE}
-
 freqp.growth <- ggplot(data = companies, aes(x = growth)) +
     geom_freqpoly() +
     scale_x_log10()
@@ -212,7 +212,7 @@ dens.growth <- ggplot(data = companies, aes(x = growth)) +
     scale_x_log10()
 
 dens.revenue <- ggplot(data = companies, aes(x = revenue)) +
-    geom_point() +
+    geom_density() +
     scale_x_log10() +
     scale_y_continuous(limits = c(0, 1))
 
