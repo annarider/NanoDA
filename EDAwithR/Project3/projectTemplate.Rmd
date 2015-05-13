@@ -361,8 +361,8 @@ The state growth in dollars shows most states clustered in the same area under $
 ```{r echo=FALSE, State_Growth_Bivariate_Plots}
 ggplot(data = state_growth, aes(x = state_l, y = growth_per_capita)) +
     geom_bar(stat = "identity", color = 'black', fill = '#F79420') +
-    theme(axis.text.x = element_text(angle = 90, 
-                                     hjust = 1)) 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
 
 state_growth <- arrange(state_growth, desc(growth_per_capita))
 
@@ -372,8 +372,8 @@ ggplot(data = state_growth, aes(x = factor(state_l, levels = state_l),
     xlab("State") + 
     ylab("Fast growth dollars per capita") +
     # densely packed x axis labels need spacing
-    theme(axis.text.x = element_text(angle = 90, 
-                                     hjust = 1)) +
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
     ggtitle("Revenue growth by state, normalized by population")
 ```
 As concluded earlier, Virginia, Colorado, and Texas have the fastest growth in dollars per capita. California is trailing at #13. 
@@ -445,46 +445,46 @@ cor.test(companies$yrs_on_list, companies$revenue2013)
 ```{r echo=FALSE, message = FALSE, warnings = FALSE, Industry_Years_Bivariate_Plots}
 ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
     geom_boxplot() + 
-    theme(axis.text.x = element_text(angle = 45, 
-                                     hjust = 1))
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
 
 ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
     geom_boxplot() +
     scale_y_continuous(limits = c(0, 8)) + 
-    theme(axis.text.x = element_text(angle = 45, 
-                                     hjust = 1))
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
 
 ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
     geom_violin() +
     scale_y_continuous(limits = c(0, 8)) + 
-    theme(axis.text.x = element_text(angle = 45, 
-                                     hjust = 1))
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
 ```
 
 ```{r echo=FALSE, message = FALSE, warnings = FALSE, Industry_Growth_Bivariate_Plots}
 ggplot(data = companies, aes(x = industry, y = growth_dollar)) +
     geom_jitter(alpha = 1/4) +
     scale_y_continuous(limits = c(0, 150000000)) + 
-    theme(axis.text.x = element_text(angle = 45, 
-                                     hjust = 1))
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
 
 ggplot(data = companies, aes(x = industry, y = growth_percentage)) +
     geom_jitter(alpha = 1/4) +
     scale_y_continuous(limits = c(0, 7500)) + 
-    theme(axis.text.x = element_text(angle = 45, 
-                                     hjust = 1))
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
 
 ggplot(data = companies, aes(x = industry, y = revenue2014)) +
     geom_jitter(alpha = 1/4) +
     scale_y_continuous(limits = c(0, 500000000)) + 
-    theme(axis.text.x = element_text(angle = 45, 
-                                     hjust = 1))
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
 
 ggplot(data = companies, aes(x = industry, y = revenue2013)) +
     geom_jitter(alpha = 1/4) +
     scale_y_continuous(limits = c(0, 500000000)) + 
-    theme(axis.text.x = element_text(angle = 45, 
-                                     hjust = 1))
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
 
 ggplot(data = companies, aes(x = yrs_on_list, y = growth_dollar)) +
     geom_jitter()
