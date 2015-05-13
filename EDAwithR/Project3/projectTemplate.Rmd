@@ -528,9 +528,41 @@ ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
 ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
     geom_step(stat = 'summary', fun.y = median)
 
-
-
 ```
+
+### Growth in terms of state population 
+#### Growth in Dollars
+```{r echo=FALSE, message = FALSE, warnings = FALSE, State_Growth_Dollar_Bivariate_Plots}
+ggplot(data = state_growth, aes(x = state_population2014, y = state_growth_dollar)) +
+    geom_point()
+
+ggplot(data = state_growth, aes(x = state_population2014, y = state_growth_dollar)) +
+    geom_point() +
+    scale_x_continuous(limits = c(0, 10000000)) +
+    scale_y_continuous(limits = c(0, 5000000000))
+
+cor.test(state_growth$state_population2014, state_growth$state_growth_dollar)
+```
+
+Generally the trend appears to be that the higher the population, the greater the total state growth in dollars. This theory is supported by the highly Pearson r correlation between state population in 2014 and state growth dollar variables, 0.94.
+
+#### Growth per capita
+
+```{r echo=FALSE, message = FALSE, warnings = FALSE, State_Growth_Dollar_Bivariate_Plots}
+ggplot(data = state_growth, aes(x = state_population2014, y = growth_per_capita)) +
+    geom_point()
+
+ggplot(data = state_growth, aes(x = state_population2014, y = growth_per_capita)) +
+    geom_point() +
+    scale_x_continuous(limits = c(0, 30000000)) +
+    scale_y_continuous(limits = c(0, 700))
+
+cor.test(state_growth$state_population2014, state_growth$growth_per_capita)
+```
+
+On the other hand, the correlation between state population and growth per capita didn't have as strong of a relationship, Pearson's r of 0.36. 
+
+Why would this be the case? 
 
 geom_boxplot, geom_point, geom_violin, geom_jitter with geom_rug, geom_point(stat = 'summary'), geom_bin2d, geom_tile, geom_density2d, geom_point(alpha = 1/10, color = 'gray') + geom_line(stat = 'summary', fun.y = median), geom_point(alpha = 1/10, color = 'gray') + geom_step(stat = 'summary', fun.y = median)
 # Bivariate Analysis
