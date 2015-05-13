@@ -474,6 +474,18 @@ ggplot(data = companies, aes(x = industry, y = growth_percentage)) +
     theme(text = element_text(size=14),
           axis.text.x = element_text(angle = 90, hjust = 1)) 
 
+ggplot(data = companies, aes(x = industry, y = growth_dollar)) +
+    geom_boxplot() +
+    scale_y_continuous(limits = c(0, 60000000)) + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+ggplot(data = companies, aes(x = industry, y = growth_percentage)) +
+    geom_boxplot() +
+    scale_y_continuous(limits = c(0, 1000)) + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+
 ggplot(data = companies, aes(x = industry, y = revenue2014)) +
     geom_jitter(alpha = 1/4) +
     scale_y_continuous(limits = c(0, 500000000)) + 
@@ -562,7 +574,7 @@ cor.test(state_growth$state_population2014, state_growth$growth_per_capita)
 
 On the other hand, the correlation between state population and growth per capita didn't have as strong of a relationship, Pearson's r of 0.36. 
 
-Why would this be the case? 
+**Why is there a difference between the two relationships? **
 
 geom_boxplot, geom_point, geom_violin, geom_jitter with geom_rug, geom_point(stat = 'summary'), geom_bin2d, geom_tile, geom_density2d, geom_point(alpha = 1/10, color = 'gray') + geom_line(stat = 'summary', fun.y = median), geom_point(alpha = 1/10, color = 'gray') + geom_step(stat = 'summary', fun.y = median)
 # Bivariate Analysis
