@@ -441,6 +441,7 @@ cor.test(companies$yrs_on_list, companies$revenue2014)
 cor.test(companies$yrs_on_list, companies$revenue2013)
 ```
 
+### Relationship between Industry and Years on List
 
 ```{r echo=FALSE, message = FALSE, warnings = FALSE, Industry_Years_Bivariate_Plots}
 ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
@@ -460,6 +461,8 @@ ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
     theme(text = element_text(size=14),
           axis.text.x = element_text(angle = 90, hjust = 1)) 
 ```
+
+### Relationship between Industry and Growth
 
 ```{r echo=FALSE, message = FALSE, warnings = FALSE, Industry_Growth_Bivariate_Plots}
 ggplot(data = companies, aes(x = industry, y = growth_dollar)) +
@@ -497,8 +500,9 @@ ggplot(data = companies, aes(x = industry, y = revenue2013)) +
     scale_y_continuous(limits = c(0, 500000000)) + 
     theme(text = element_text(size=14),
           axis.text.x = element_text(angle = 90, hjust = 1)) 
-
 ```
+
+### Relationship between workers and growth
 
 ```{r echo=FALSE, message = FALSE, warnings = FALSE, Workers_Growth_Bivariate_Plots}
 ggplot(data = companies, aes(x = workers, y = growth_dollar)) +
@@ -508,13 +512,6 @@ ggplot(data = companies, aes(x = workers, y = growth_dollar)) +
     theme(text = element_text(size=14),
           axis.text.x = element_text(angle = 90, hjust = 1)) 
 
-ggplot(data = companies, aes(x = workers, y = growth_percentage)) +
-    geom_jitter(alpha = 1/3, color = 'steelblue') +
-    scale_x_continuous(limits = c(0, 250)) +
-    scale_y_continuous(limits = c(0, 2000)) + 
-    theme(text = element_text(size=14),
-          axis.text.x = element_text(angle = 90, hjust = 1))
-
 ggplot(data = companies, aes(x = workers, y = growth_dollar)) +
     geom_jitter(alpha = 1/3, color = 'steelblue') +
     scale_x_continuous(limits = c(0, 250)) +
@@ -522,7 +519,16 @@ ggplot(data = companies, aes(x = workers, y = growth_dollar)) +
     geom_line(stat = 'summary', fun.y = median) + 
     theme(text = element_text(size=14),
           axis.text.x = element_text(angle = 90, hjust = 1)) 
+str(companies)
 
+cor.test(companies$workers, companies$growth_dollar)
+
+ggplot(data = companies, aes(x = workers, y = growth_percentage)) +
+    geom_jitter(alpha = 1/3, color = 'steelblue') +
+    scale_x_continuous(limits = c(0, 250)) +
+    scale_y_continuous(limits = c(0, 2000)) + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1))
 
 ggplot(data = companies, aes(x = workers, y = growth_percentage)) +
     geom_jitter(alpha = 1/3, color = 'steelblue') +
@@ -532,7 +538,13 @@ ggplot(data = companies, aes(x = workers, y = growth_percentage)) +
     theme(text = element_text(size=14),
           axis.text.x = element_text(angle = 90, hjust = 1))
 
+cor.test(companies$workers, companies$growth_percentage)
+
 ```
+
+Relationship between workers and growth is quite weak. This makes sense as the number of workers isn't necessarily predictive of growth compared to revenue or even the product being produced.
+
+### Relationship between growth and years on list
 
 
 ```{r echo=FALSE, message = FALSE, warnings = FALSE, Years_List_Bivariate_Plots}
@@ -548,6 +560,8 @@ ggplot(data = companies, aes(x = yrs_on_list, y = growth_percentage)) +
     scale_y_continuous(limits = c(0, 1000))
 
 ```
+
+### Miscellaneous plots
 
 ```{r echo=FALSE, message = FALSE, warnings = FALSE, Experiment_Bivariate_Plots}
 
@@ -619,11 +633,15 @@ geom_boxplot, geom_point, geom_violin, geom_jitter with geom_rug, geom_point(sta
 
 ### Talk about some of the relationships you observed in this part of the investigation. How did the feature(s) of interest vary with other features in the dataset?
 
+There is a very strong relationship between 2014 revenue and growth. There is a weaker but still very strong relationship between 2013 revenue and growth.  
+
+The other features didn't seem to affect growth as much as revenue, trailing behind by a lot.
+
 ### Did you observe any interesting relationships between the other features (not the main feature(s) of interest)?
 
 ### What was the strongest relationship you found?
 
-
+The strongest relationship observed was between 2014 revenue and growth dollar (with r value of 0.95) closely followed by the relationship between 2014 state population and 2014 state total revenue (r value of 0.94).
 
 
 # Multivariate Plots Section
