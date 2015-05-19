@@ -441,26 +441,6 @@ cor.test(companies$yrs_on_list, companies$revenue2014)
 cor.test(companies$yrs_on_list, companies$revenue2013)
 ```
 
-### Relationship between Industry and Years on List
-
-```{r echo=FALSE, message = FALSE, warnings = FALSE, Industry_Years_Bivariate_Plots}
-ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
-    geom_boxplot() + 
-    theme(text = element_text(size=14),
-          axis.text.x = element_text(angle = 90, hjust = 1)) 
-
-ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
-    geom_boxplot() +
-    scale_y_continuous(limits = c(0, 8)) + 
-    theme(text = element_text(size=14),
-          axis.text.x = element_text(angle = 90, hjust = 1)) 
-
-ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
-    geom_violin() +
-    scale_y_continuous(limits = c(0, 8)) + 
-    theme(text = element_text(size=14),
-          axis.text.x = element_text(angle = 90, hjust = 1)) 
-```
 
 ### Relationship between Industry and Growth
 
@@ -561,6 +541,7 @@ ggplot(data = companies, aes(x = yrs_on_list, y = growth_percentage)) +
 
 ```
 
+
 ### Miscellaneous plots
 
 ```{r echo=FALSE, message = FALSE, warnings = FALSE, Experiment_Bivariate_Plots}
@@ -597,31 +578,37 @@ ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
 ### Growth in terms of state population 
 #### Growth in Dollars
 ```{r echo=FALSE, message = FALSE, warnings = FALSE, State_Growth_Dollar_Bivariate_Plots}
-ggplot(data = state_growth, aes(x = state_population2014, y = state_growth_dollar)) +
+ggplot(data = state_growth, aes(x = state_population2014, 
+                                y = state_growth_dollar)) +
     geom_point()
 
-ggplot(data = state_growth, aes(x = state_population2014, y = state_growth_dollar)) +
+ggplot(data = state_growth, aes(x = state_population2014, 
+                                y = state_growth_dollar)) +
     geom_point() +
     scale_x_continuous(limits = c(0, 10000000)) +
     scale_y_continuous(limits = c(0, 5000000000))
 
-cor.test(state_growth$state_population2014, state_growth$state_growth_dollar)
+cor.test(state_growth$state_population2014, 
+         state_growth$state_growth_dollar)
 ```
 
 Generally the trend appears to be that the higher the population, the greater the total state growth in dollars. This theory is supported by the highly Pearson r correlation between state population in 2014 and state growth dollar variables, 0.94.
 
 #### Growth per capita
 
-```{r echo=FALSE, message = FALSE, warnings = FALSE, State_Growth_Dollar_Bivariate_Plots}
-ggplot(data = state_growth, aes(x = state_population2014, y = growth_per_capita)) +
+```{r echo=FALSE, message = FALSE, warnings = FALSE, State_Growth_Capita_Bivariate_Plots}
+ggplot(data = state_growth, aes(x = state_population2014, 
+                                y = growth_per_capita)) +
     geom_point()
 
-ggplot(data = state_growth, aes(x = state_population2014, y = growth_per_capita)) +
+ggplot(data = state_growth, aes(x = state_population2014, 
+                                y = growth_per_capita)) +
     geom_point() +
     scale_x_continuous(limits = c(0, 30000000)) +
     scale_y_continuous(limits = c(0, 700))
 
-cor.test(state_growth$state_population2014, state_growth$growth_per_capita)
+cor.test(state_growth$state_population2014, 
+         state_growth$growth_per_capita)
 ```
 
 On the other hand, the correlation between state population and growth per capita didn't have as strong of a relationship, Pearson's r of 0.36. 
@@ -629,6 +616,27 @@ On the other hand, the correlation between state population and growth per capit
 **Why is there a difference between the two relationships? **
 
 geom_boxplot, geom_point, geom_violin, geom_jitter with geom_rug, geom_point(stat = 'summary'), geom_bin2d, geom_tile, geom_density2d, geom_point(alpha = 1/10, color = 'gray') + geom_line(stat = 'summary', fun.y = median), geom_point(alpha = 1/10, color = 'gray') + geom_step(stat = 'summary', fun.y = median)
+### Relationship between Industry and Years on List
+
+```{r echo=FALSE, message = FALSE, warnings = FALSE, Industry_Years_Bivariate_Plots}
+ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
+    geom_boxplot() + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
+    geom_boxplot() +
+    scale_y_continuous(limits = c(0, 8)) + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
+    geom_violin() +
+    scale_y_continuous(limits = c(0, 8)) + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+```
+
 # Bivariate Analysis
 
 ### Talk about some of the relationships you observed in this part of the investigation. How did the feature(s) of interest vary with other features in the dataset?
@@ -647,6 +655,12 @@ The strongest relationship observed was between 2014 revenue and growth dollar (
 # Multivariate Plots Section
 
 ```{r echo=FALSE, Multivariate_Plots}
+
+```
+
+```{r echo=FALSE, Revenue_Growth_Outliers_Plots}
+ggplot(data = subset(companies, )) 
+
 
 ```
 
