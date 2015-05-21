@@ -658,12 +658,22 @@ The strongest relationship observed was between 2014 revenue and growth dollar (
 
 ```
 
-```{r echo=FALSE, Revenue_Growth_Outliers_Plots}
+```{r echo=FALSE, Multivariate_Revenue_Growth_Plots}
+
+ggplot(data = subset(companies, revenue2014 < 150000000),
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry)) +
+    scale_color_brewer(type = 'qual')
+
+
+```
+
+```{r echo=FALSE, Multivariate_Revenue_Growth_Outliers_Plots}
 ggplot(data = subset(companies, revenue2014 > 3000000000),
        aes(x = revenue2014, y = growth_dollar)) +
     geom_point(aes(color = industry))
 
-
+subset(companies, revenue2014 > 3000000000)
 
 ```
 
