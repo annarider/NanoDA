@@ -663,7 +663,15 @@ The strongest relationship observed was between 2014 revenue and growth dollar (
 ggplot(data = subset(companies, revenue2014 < 150000000),
        aes(x = revenue2014, y = growth_dollar)) +
     geom_jitter(aes(color = industry)) +
-    scale_color_brewer(type = 'qual')
+    scale_color_brewer(type = 'qual', palette="Set3")
+
+ggplot(data = companies, aes(x = revenue2014, 
+                             fill = growth_dollar)) +
+    geom_histogram(fill = 'steelblue', color = 'black') +
+    facet_wrap( ~ industry) +
+    scale_fill_brewer(type = 'qual') +
+    theme(axis.text.x = element_text(size = 8)) +
+    scale_x_log10()
 
 
 ```

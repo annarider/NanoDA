@@ -133,6 +133,8 @@ http://docs.ggplot2.org/current/geom_histogram.html
 http://stackoverflow.com/questions/10016316/how-to-manually-fill-colors-in-a-ggplot2-histogram
 **Add color to points in scatterplot**
 http://docs.ggplot2.org/0.9.3.1/geom_point.html
+** Color Brewer
+http://docs.ggplot2.org/current/scale_brewer.html
 ### Plotting Datetime
 http://matpalm.com/blog/2012/03/18/ggplot_posix_cheat_sheet/
 ### Coord_cartesian & Coord_trans
