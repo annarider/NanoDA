@@ -693,6 +693,8 @@ subset(companies, revenue2014 > 3000000000)
 
 ```
 
+Industry has too many values (25 levels). I need to group the existing industries into overarching categories to plot using color. If not, the values will be too difficult to see on a scatterplot. 
+I grouped industries based on the [Global Industry Classification Standard],(http://en.wikipedia.org/wiki/Global_Industry_Classification_Standard) developed by MSCI and S&P. 
 ```{r echo=FALSE, Multivariate_Recode_Industry_Plots}
 
 library(plyr)
@@ -723,11 +725,29 @@ companies$industry_categories <- revalue(companies$industry, c(
     "Software" = "Information Technology",
     "Telecommunications" = "Telecommunication Services",          
     "Travel & Hospitality" = "Consumer Sector"))
+
+ggplot(data = subset(companies, revenue2014 < 150000000),
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_categories)) +
+    scale_color_brewer(type = 'qual', palette = "Set3")
+
+ggplot(data = companies, aes(x = revenue2014, 
+                             fill = growth_dollar)) +
+    geom_histogram(fill = 'steelblue', color = 'black') +
+    facet_wrap( ~ industry_categories) +
+    scale_fill_brewer(type = 'qual') +
+    theme(axis.text.x = element_text(size = 8)) +
+    scale_x_log10()
+
+ggplot(data = companies, aes(x = revenue2014, 
+                             y = growth_dollar)) +
+    geom_jitter(color = 'steelblue', alpha = 1/3) +
+    facet_wrap( ~ industry_categories) +
+    scale_fill_brewer(type = 'qual') +
+    theme(axis.text.x = element_text(size = 8)) +
+    scale_x_log10() +
+    scale_y_log10()
     
-    mydata$agecat <- ifelse(mydata$age > 70, 
-c("older"), c("younger"))
-
-
 ```
 
 
