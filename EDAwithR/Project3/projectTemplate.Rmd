@@ -766,42 +766,63 @@ companies$industry_tech <- revalue(companies$industry_categories, c(
     "Telecommunication Services" = "Non-IT"))
 
 library(dplyr)
+
 ggplot(data = sample_n(subset(companies, revenue2014 < 15000000), 1000),
        aes(x = revenue2014, y = growth_dollar)) +
     geom_jitter(aes(color = industry_tech )) +
-    scale_color_brewer(type = 'qual') +
-    geom_smooth(aes(color = industry_tech), method = 'lm')
+    scale_color_brewer(type = 'qual', palette = "Set1")
 
-ggplot(data = sample_n(subset(companies, revenue2014 < 15000000), 1000),
+ggplot(data = companies,
        aes(x = revenue2014, y = growth_dollar)) +
-    geom_density2d(aes(color = industry_tech )) +
-    scale_color_brewer(type = 'qual') +
-    geom_point(aes(color = industry_tech, size = yrs_on_list))
+    geom_jitter(aes(color = industry_tech ), alpha = 1/3) +
+    scale_color_brewer(type = 'qual', palette = "Set1") +
+    scale_x_log10() +
+    scale_y_log10() +
+    geom_point(aes(color = industry_tech, size = yrs_on_list)) 
 
-ggplot(data = sample_n(subset(companies, revenue2014 < 15000000 & workers < 1000), 1000),
-       aes(x = revenue2014, y = workers, color =  industry_tech)) +
-    geom_violin() +
-    scale_color_brewer(type = 'qual') +
+
+ggplot(data = subset(companies, revenue2014 < 2000000000),
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_tech )) +
+    scale_color_brewer(type = 'qual', palette = "Set1") +
     geom_smooth(aes(color = industry_tech))
 
+subset(companies, revenue2014 > 2000000000)
 ```
 
-It turns out there is not a noticeable difference in trends between the IT Services industry and all other industries. IT Services follows more or less the same trend when it comes to revenue and growth. 
+It turns out at the lower levels of revenue (revenue of $15 Million or less), there is not a noticeable difference in trends between the IT Services industry and all other industries. However, when evaluating almost the complete dataset of companies, that is revenue at $2 Billion or less which excludes a half a dozen outliers (which have over $2 Billion in revenue), IT Services industry category shows it lags behind in revenue and growth compared to companies in non-IT industry categories. The plots suggest IT Services category has a logarithmic growth that exceeds non-IT industries at around $250 Million in revenue but non-IT Services category exceeds the IT Services category after the $500 Million mark. 
 
+It makes sense that the top 6 highest revenue and growth companies excluded from the plot are companies not IT companies. Rather they in the industry categories of Energy, Health, Construction, and Real Estate. These industries typically require bigger capital investments with higher barriers of entry because they are offering expensive products and services. Logically, I conclude that they are likelier to produce higher revenue, and the U.S. spends a lot of money in energy, health care, real estate, and construction sectors. Also note the revenue doesn't equal profit. These industries could have high revenues with low profit margins precisely because of the infrastructure and capital expenses required to operate the company. 
+
+
+### How are the top 3 industry categories different from the other industries? 
 
 ```{r echo=FALSE, Multivariate_Recode_Top3_Industries_Plots}
-companies$industry_tech <- revalue(companies$industry_categories, c(
-    "Information Technology" = "IT",
-    "Consumer Sector" = "Non-IT",
-    "Industrials" = "Non-IT",    
-    "Energy" = "Non-IT",
-    "Financials" = "Non-IT",
-    "Health Care" = "Non-IT",
-    "Telecommunication Services" = "Non-IT"))
+
+select (companies,industry_categories) %>%
+    group_by(industry_categories) %>%
+    summarise (count = n()) %>%
+    arrange(desc(count))
 
 
+companies$industry_top3 <- revalue(companies$industry_categories, c(
+    "Information Technology" = "Top 3 Industry Category",
+    "Consumer Sector" = "Top 3 Industry Category",
+    "Industrials" = "Top 3 Industry Category",    
+    "Energy" = "Bottom 4 Industry Category",
+    "Financials" = "Bottom 4 Industry Category",
+    "Health Care" = "Bottom 4 Industry Category",
+    "Telecommunication Services" = "Bottom 4 Industry Category"))
 
-
+ggplot(data = sample_n(subset(companies, revenue2014 < 15000000), 2000), 
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_top3)) +
+    geom_smooth(aes(color = industry_top3))
+    
+ggplot(data = companies, 
+       aes(x = revenue2014, y = workers)) +
+    geom_jitter(aes(color = industry_top3)) +
+    geom_smooth(aes(color = industry_top3), method = 'lm')
     
 ```
 
