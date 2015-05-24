@@ -693,10 +693,36 @@ subset(companies, revenue2014 > 3000000000)
 
 ```
 
-```{r echo=FALSE, Multivariate_Tech_NonTech_Plots}
+```{r echo=FALSE, Multivariate_Recode_Industry_Plots}
 
-companies$
-    
+library(plyr)
+levels(companies$industry)
+companies$industry_categories <- revalue(companies$industry, c(
+    "Advertising & Marketing" = "Consumer Sector", 
+    "Business Products & Services" = "Industrials",
+    "Computer Hardware" = "Information Technology",          
+    "Construction" = "Industrials",
+    "Consumer Products & Services" = "Consumer Sector",
+    "Education" = "Consumer Sector",                   
+    "Energy" = "Energy",
+    "Engineering" = "Industrials",
+    "Environmental Services" = "Industrials",
+    "Financial Services" = "Financials",
+    "Food & Beverage" = "Consumer Sector",
+    "Government Services" = "Industrials",
+    "Health" = "Health Care",
+    "Human Resources" = "Industrials",
+    "Insurance" = "Financials",
+    "IT Services" = "Information Technology",
+    "Logistics & Transportation" = "Industrials",
+    "Manufacturing" = "Industrials",               
+    "Media" = "Consumer Sector",
+    "Real Estate" = "Financials",
+    "Retail" = "Consumer Sector",                      
+    "Security" = "Industrials",
+    "Software" = "Information Technology",
+    "Telecommunications" = "Telecommunication Services",          
+    "Travel & Hospitality" = "Consumer Sector"))
     
     mydata$agecat <- ifelse(mydata$age > 70, 
 c("older"), c("younger"))
