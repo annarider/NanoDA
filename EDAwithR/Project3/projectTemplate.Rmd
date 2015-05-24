@@ -726,11 +726,6 @@ companies$industry_categories <- revalue(companies$industry, c(
     "Telecommunications" = "Telecommunication Services",          
     "Travel & Hospitality" = "Consumer Sector"))
 
-ggplot(data = subset(companies, revenue2014 < 150000000),
-       aes(x = revenue2014, y = growth_dollar)) +
-    geom_jitter(aes(color = industry_categories)) +
-    scale_color_brewer(type = 'qual', palette = "Set3")
-
 ggplot(data = companies, aes(x = revenue2014, 
                              fill = growth_dollar)) +
     geom_histogram(fill = 'steelblue', color = 'black') +
@@ -747,6 +742,66 @@ ggplot(data = companies, aes(x = revenue2014,
     theme(axis.text.x = element_text(size = 8)) +
     scale_x_log10() +
     scale_y_log10()
+
+ggplot(data = subset(companies, revenue2014 < 150000000),
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_categories)) +
+    scale_color_brewer(type = 'qual', palette = "Paired")
+
+```
+
+### What trends emerge when the IT industry is compared to all other industries?
+Since I work in the IT/Software industry, I am curious about whether the IT Services category has different traits compared to the other industries. I decided to group all 6 other categories that were not IT into "Non-IT" category and plot variables to see if any trends emerged. 
+
+```{r echo=FALSE, Multivariate_Recode_IT_Plots}
+levels(companies$industry_categories)
+
+companies$industry_tech <- revalue(companies$industry_categories, c(
+    "Information Technology" = "IT",
+    "Consumer Sector" = "Non-IT",
+    "Industrials" = "Non-IT",    
+    "Energy" = "Non-IT",
+    "Financials" = "Non-IT",
+    "Health Care" = "Non-IT",
+    "Telecommunication Services" = "Non-IT"))
+
+library(dplyr)
+ggplot(data = sample_n(subset(companies, revenue2014 < 15000000), 1000),
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_tech )) +
+    scale_color_brewer(type = 'qual') +
+    geom_smooth(aes(color = industry_tech), method = 'lm')
+
+ggplot(data = sample_n(subset(companies, revenue2014 < 15000000), 1000),
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_density2d(aes(color = industry_tech )) +
+    scale_color_brewer(type = 'qual') +
+    geom_point(aes(color = industry_tech, size = yrs_on_list))
+
+ggplot(data = sample_n(subset(companies, revenue2014 < 15000000 & workers < 1000), 1000),
+       aes(x = revenue2014, y = workers, color =  industry_tech)) +
+    geom_violin() +
+    scale_color_brewer(type = 'qual') +
+    geom_smooth(aes(color = industry_tech))
+
+```
+
+It turns out there is not a noticeable difference in trends between the IT Services industry and all other industries. IT Services follows more or less the same trend when it comes to revenue and growth. 
+
+
+```{r echo=FALSE, Multivariate_Recode_Top3_Industries_Plots}
+companies$industry_tech <- revalue(companies$industry_categories, c(
+    "Information Technology" = "IT",
+    "Consumer Sector" = "Non-IT",
+    "Industrials" = "Non-IT",    
+    "Energy" = "Non-IT",
+    "Financials" = "Non-IT",
+    "Health Care" = "Non-IT",
+    "Telecommunication Services" = "Non-IT"))
+
+
+
+
     
 ```
 

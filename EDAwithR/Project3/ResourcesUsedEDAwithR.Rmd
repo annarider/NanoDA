@@ -88,8 +88,9 @@ axis_sizer <- theme(axis.title.x = element_text(size = 18),
                     axis.text.y = element_text(size = 16))
                     
 ## dplyr how tos
-*Sample smaller subset of data for quicker processing*
+*Sample smaller randomized subset of data for quicker processing*
 diamonds <- sample_n(diamonds, 10000)
+http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html
 # Resources Used in the Exploratory Data Analysis with R class
 
 ## Installation of packages
