@@ -648,7 +648,6 @@ The other features didn't seem to affect growth as much as revenue, trailing beh
 ### Did you observe any interesting relationships between the other features (not the main feature(s) of interest)?
 
 ### What was the strongest relationship you found?
-
 The strongest relationship observed was between 2014 revenue and growth dollar (with r value of 0.95) closely followed by the relationship between 2014 state population and 2014 state total revenue (r value of 0.94).
 
 
@@ -770,24 +769,22 @@ library(dplyr)
 ggplot(data = sample_n(subset(companies, revenue2014 < 15000000), 1000),
        aes(x = revenue2014, y = growth_dollar)) +
     geom_jitter(aes(color = industry_tech )) +
-    scale_color_brewer(type = 'qual', palette = "Set1")
+    scale_color_brewer(type = 'qual', palette = "Set1") +
+    geom_point(aes(color = industry_tech, size = yrs_on_list))
 
 ggplot(data = companies,
        aes(x = revenue2014, y = growth_dollar)) +
     geom_jitter(aes(color = industry_tech ), alpha = 1/3) +
     scale_color_brewer(type = 'qual', palette = "Set1") +
     scale_x_log10() +
-    scale_y_log10() +
-    geom_point(aes(color = industry_tech, size = yrs_on_list)) 
+    scale_y_log10()  
 
 
 ggplot(data = subset(companies, revenue2014 < 2000000000),
        aes(x = revenue2014, y = growth_dollar)) +
-    geom_jitter(aes(color = industry_tech )) +
+    geom_jitter(aes(color = industry_tech)) +
     scale_color_brewer(type = 'qual', palette = "Set1") +
     geom_smooth(aes(color = industry_tech))
-
-subset(companies, revenue2014 > 2000000000)
 ```
 
 It turns out at the lower levels of revenue (revenue of $15 Million or less), there is not a noticeable difference in trends between the IT Services industry and all other industries. However, when evaluating almost the complete dataset of companies, that is revenue at $2 Billion or less which excludes a half a dozen outliers (which have over $2 Billion in revenue), IT Services industry category shows it lags behind in revenue and growth compared to companies in non-IT industry categories. The plots suggest IT Services category has a logarithmic growth that exceeds non-IT industries at around $250 Million in revenue but non-IT Services category exceeds the IT Services category after the $500 Million mark. 
@@ -814,15 +811,45 @@ companies$industry_top3 <- revalue(companies$industry_categories, c(
     "Health Care" = "Bottom 4 Industry Category",
     "Telecommunication Services" = "Bottom 4 Industry Category"))
 
-ggplot(data = sample_n(subset(companies, revenue2014 < 15000000), 2000), 
+ggplot(data = companies, 
        aes(x = revenue2014, y = growth_dollar)) +
     geom_jitter(aes(color = industry_top3)) +
-    geom_smooth(aes(color = industry_top3))
-    
+    geom_smooth(aes(color = industry_top3)) +
+    scale_color_brewer(type = 'qual', palette = "Set1")
+
+```
+
+### What is the relationship of workers in the different industries 
+Let's take a look at the relationship among the variable workers, revenue, growth, and other factors that might shed light on growth of companies. 
+```{r echo=FALSE, Multivariate_Workers_Plots}
+
+
+summary(companies$workers)
+companies$workers_grouped <- cut(companies$workers, 
+    breaks = c(0, 25, 50, 125, 250, 2500, 10000, 20000, 35000))
+
+ggplot(data = subset(companies, !is.na(workers_grouped)), 
+       aes(x = workers_grouped, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_categories), alpha = 1/2) +
+    scale_color_brewer(type = 'qual', palette = "Set3") +
+    scale_x_log10()
+    geom_line(aes(color = workers_grouped), stat = 'summary', fun.y = median)
+
 ggplot(data = companies, 
-       aes(x = revenue2014, y = workers)) +
-    geom_jitter(aes(color = industry_top3)) +
-    geom_smooth(aes(color = industry_top3), method = 'lm')
+       aes(x = workers, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_top3), alpha = 1/3) +
+    scale_color_brewer(type = 'qual', palette = "Set1") +
+    scale_x_log10() +
+    scale_y_log10() 
+
+ggplot(data = subset(companies, !is.na(workers_grouped)), 
+       aes(x = workers_grouped, y = growth_dollar)) +
+    geom_violin(aes(color = industry_tech)) +
+    scale_color_brewer(type = 'qual', palette = "Set1") +
+    scale_y_log10() +
+    theme(axis.text.x = element_text(size = 12))
+
+cor.test(companies$workers, companies$growth_dollar)
     
 ```
 
