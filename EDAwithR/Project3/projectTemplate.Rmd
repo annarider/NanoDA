@@ -673,6 +673,14 @@ ggplot(data = companies, aes(x = revenue2014,
     theme(axis.text.x = element_text(size = 8)) +
     scale_x_log10()
 
+ggplot(data = companies, aes(x = revenue2014, 
+                             y = growth_dollar)) +
+    geom_jitter(color = 'steelblue', alpha = 1/3) +
+    facet_wrap( ~ industry) +
+    scale_fill_brewer(type = 'qual') +
+    theme(axis.text.x = element_text(size = 8)) +
+    scale_x_log10() +
+    scale_y_log10()
 
 ```
 
@@ -684,6 +692,18 @@ ggplot(data = subset(companies, revenue2014 > 3000000000),
 subset(companies, revenue2014 > 3000000000)
 
 ```
+
+```{r echo=FALSE, Multivariate_Tech_NonTech_Plots}
+
+companies$
+    
+    
+    mydata$agecat <- ifelse(mydata$age > 70, 
+c("older"), c("younger"))
+
+
+```
+
 
 # Multivariate Analysis
 
