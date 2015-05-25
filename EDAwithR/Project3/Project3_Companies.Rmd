@@ -86,7 +86,7 @@ summary(companies)
 * There are 5000 companies ranked from 1 to 5000 based on their percentage growth in 2014, from greatest rate of growth (ranked 1) to slowest rate of growth (ranked 5000).
     + Greatest rate of growth is 158956.91%, lowest is 42.45%
 * There are companies representing all 50 states plus one territory (Puerto Rico), resulting in 51 levels for state.
-* The minimum number of works is 0 (need to explore further how it is possible to have no employees) with the maximum at 34219. Most companies on the list have under 150 employees.
+* The minimum number of works is 0 (need to explore further how it is possible to have no employees) with the maximum at 34219. Most companies on the list have fewer than 150 employees.
 * The top 5 states with the greatest number of companies on the list are: California, Texas, New York, Florida, and Virginia. But the top 5 cities with the greatest number of companies on the list are: New York, Chicago, Atlanta, Austin, and San Diego. It may be worth figuring out why the top states and top cities don't match.
 * The top industries representing greatest growth are: IT, Ad & Marketing, Business Products & Services, Health, and Software.
 * For most companies, it is their first or second year on the list. About a quarter have been on the list for more than 4 times, with 12 years being the highest number of years any one company has been on the list.
@@ -233,7 +233,7 @@ grid.arrange(dens.growth, dens.revenue, nrow = 1)
 
 Many of the highest ranked companies are small businesses. This could be because smaller companies grow faster than big public companies. But it could also be that smaller companies are starting with smaller amounts of revenues. Absolute growth in dollars is different from percentage growth. For example, company with no revenue the previous year that gains some revenue the next year has infinite percentage growth. But this isn't a good reflection on how much revenue the company is generating compared to another company that's making more in absolute revenue but has a lower percentage growth. 
 
-I created two new variables, revenue 2013, calculated in terms of current revenue and percentage growth to derive last year's revenue, and growth in dollars, which is revenue 2013 substracted from revenue 2014. 
+I created two new variables, revenue 2013, calculated in terms of current revenue and percentage growth to derive last year's revenue, and growth in dollars, which is revenue 2013 subtracted from revenue 2014. 
 
 ```{r echo=FALSE, New_Variables}
 companies$revenue2013 <- companies$revenue/((companies$growth/100) + 1)
@@ -305,8 +305,8 @@ Revenue will be important way to understand growth. For example, a company with 
 State population data is also important to better understand growth. A larger state might appear to have greater growth in absolute dollar amounts but that could be influenced by a greater population. Therefore investigating growth per capita can provide a fairer way to look at growth, especially from the point of view of smaller states.
 
 ### Did you create any new variables from existing variables in the dataset?
-I created 4 new variables from existing varibles across two datasets
-I created two new variables in the companies data frame: 1. revenue2013, 2. growth_dollar. I reverse engineered revenue from 2013 using revenue from 2014 and percentage growth. Then I substracted the 2013 revenue from 2014 revenue to get the growth_dollar. 
+I created 4 new variables from existing variables across two datasets
+I created two new variables in the companies data frame: 1. revenue2013, 2. growth_dollar. I reverse engineered revenue from 2013 using revenue from 2014 and percentage growth. Then I subtracted the 2013 revenue from 2014 revenue to get the growth_dollar. 
 
 I also created a new dataframe using the state population data from the census. In this dataframe, I added two other variables: 3. state_growth_dollar and 4. growth_per_capita. state_growth_dollar was calculated by grouping together states and summing the growth_dollar derived from the 2nd variable I created growth_dollar. The growth_per_capita variable was created by dividing growth_dollar by the state population. 
 
@@ -422,7 +422,7 @@ ggplot(data = companies, aes(x = revenue2013, y = growth_percentage)) +
     scale_y_log10() 
 ```
 
-Growth measured in dollars and percentage by 2013 Revenue plots with a log10 transformation have a very unusual fan-shaped distribution. Constrasting with the 2014 Revenue plots which are more cone-shaped. This trend could be explained by the same trend marking why the revenue histogram appeared to be truncated on the left side. This fan-shaped is likely a result of the fact that companies with 2013 revenue less $1,000,000 were excluded from the list.   
+Growth measured in dollars and percentage by 2013 Revenue plots with a log10 transformation have a very unusual fan-shaped distribution. Contrasting with the 2014 Revenue plots which are more cone-shaped. This trend could be explained by the same trend marking why the revenue histogram appeared to be truncated on the left side. This fan-shaped is likely a result of the fact that companies with 2013 revenue less $1,000,000 were excluded from the list.   
 
 ### Revenue and growth percentage 
 ```{r echo=FALSE, Bivariate_Plots, warning=FALSE}
@@ -675,7 +675,7 @@ ggplot(data = companies, aes(x = revenue2014,
 
 ```
 
-I removed 5 outliers who revenues were greater than $3 Billion so I could see the general trend in the data. However, I would like to see only the outliers to determine wehat kinds of trends are observable from the growth and industry they are in. 
+I removed 5 outliers who revenues were greater than $3 Billion so I could see the general trend in the data. However, I would like to see only the outliers to determine what kinds of trends are observable from the growth and industry they are in. 
 
 #### Top 5 Companies by Growth and Revenue colored by Industry
 
@@ -1102,9 +1102,9 @@ ggplot(data = subset(companies, revenue2014 < 2000000000),
 ```
 
 ### Description Two
-Companies in non-IT-relatd industries experience greater revenue and growth than companies in the IT industries (including IT Services, software, and computer hardware). This trend is less prevalent in lower levels of revenue and growth where IT and non-IT-related companies are more competitive. In fact, IT industries exceed non-IT industries in growth by revenue at around $150-200 Million mark in terms of revenue and growth in dollars. 
+Companies in non-IT-related industries experience greater revenue and growth than companies in the IT industries (including IT Services, software, and computer hardware). This trend is less prevalent in lower levels of revenue and growth where IT and non-IT-related companies are more competitive. In fact, IT industries exceed non-IT industries in growth by revenue at around $150-200 Million mark in terms of revenue and growth in dollars. 
 
-But at the highest levels of revenue, around $1.2-2 Billion, non-IT industires far outperform IT industries in terms of growth by revenue. This is likely due to capital-intensive and large-scale operations involved in healthcare, energy, and construction industries.
+But at the highest levels of revenue, around $1.2-2 Billion, non-IT industries far outperform IT industries in terms of growth by revenue. This is likely due to capital-intensive and large-scale operations involved in healthcare, energy, and construction industries.
 
 I decided not to perform a log10 transformation on the x and y axes for this plot because I was more interested in the upward trends extrapolating from the smoothing function and therefore wanted to see where the line would go beyond $2 Billion, rather than focusing on what is under $250 Million. 
 
