@@ -942,6 +942,8 @@ ggplot(data = companies_top_states_capita,
     scale_color_brewer(type = 'qual', palette = 'Dark2')
 ```
 
+### What effect does industry have on growth? 
+
 ```{r echo=FALSE, Multivariate_Industry_Plots}
 
 ggplot(data = companies, 
@@ -959,9 +961,16 @@ ggplot(data = companies,
     scale_color_brewer(type = 'qual', palette = 'Dark2') +
     theme(axis.text.x = element_text(angle = 15, 
                                      hjust = 1))
+
+ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = workers_grouped)) +
+    facet_wrap( ~industry_categories) +
+    scale_color_brewer(type = 'qual', palette = 'Dark2') +
+    scale_x_log10() +
+    scale_y_log10()
     
 ```
-Returning to the analysis of greatest growth 
+The effect of industry on revenue and growth. There isn't much of a consistent trend. The top 3 industries have the densest points but there is no consistent pattern across industries. They all tend towards a positive relationship between revenue and growth in dollars. When employee numbers are added to the plots, the trend supports the previous findings that groups with a smaller number of employees tends to have lower income and lower growth.   
 
 # Multivariate Analysis
 
