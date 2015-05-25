@@ -38,18 +38,22 @@ names(companies)[names(companies) == 'X'] <- 'row_num'
 # Summary statistics
 ## Preliminary look at the Inc. 5000 Company List data set. 
 
-List of all variables in the dataframe
+#### List of all variables in the dataframe
+
 ```{r echo=FALSE}
 names(companies)
 ```
 
-Dimensions of the dataframe: 
+#### Dimensions of the dataframe
+
 `r nrow(companies)` companies observed over `r ncol(companies)` variables listed above
+
 ```{r echo=FALSE}
 dim(companies)
 ```
 
-Structure of dataframe with preview of data values
+#### Structure of dataframe with preview of data values
+
 ```{r echo=FALSE}
 str(companies)
 # Change rank to ordered factor since the variable 
@@ -61,16 +65,19 @@ companies$rank <- ordered(companies$rank,
 ```
 
 Explore factor variables and the different levels in State and Industry
+
 #### State
 ```{r echo=FALSE, state_factor}
 levels(companies$state_l)
 ```
+
 #### Industry
 ```{r echo=FALSE, industry_factor}
 levels(companies$state_l)
 ```
 
-Summary of the data set
+#### Summary of the data set
+
 ```{r echo=FALSE}
 summary(companies)
 ```
