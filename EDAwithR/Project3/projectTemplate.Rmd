@@ -16,6 +16,8 @@ output: html_document
 
 library(ggplot2)
 library(GGally)
+library("RColorBrewer")
+
 # eliminates scientific notation when printing large numbers
 options(scipen=999)
 ```
@@ -859,15 +861,113 @@ ggplot(data = companies,
     scale_color_brewer(type = 'qual', palette = "Paired") +
     scale_x_log10() +
     scale_y_log10() 
+
+companies$growth_per_worker <- companies$growth_dollar/companies$workers
+
+ggplot(data = companies, 
+       aes(x = revenue2014, y = growth_per_worker)) +
+    geom_point(aes(color = workers_grouped)) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = "Paired")
 ```
 
 Companies that have lower number of employees also tend to have a lower amount of revenue and therefore lower growth in dollars (since growth is derived from revenue). There is a consistent trends of the companies with the greatest number of employees also having the highest revenue and growth. The second plot with revenue and percentage growth colored by workers shows that companies with fewer employees also have lower percentage growth. This conclusion dispels the theory I proposed earlier that smaller companies with fewer employees and lower revenue in dollars have greater percentage growth because every incremental revenue dollar accounts for a greater degree of growth. 
 
-Rather, the trend seems to point to the fact that companies with the greatest number of employees also tend to generate the most revenue and growth calculated in dollars and percentage.
+Rather, the trend seems to point to the fact that companies with the greatest number of employees also tend to generate the most revenue and growth calculated in dollars and percentage. This conclusion is further supported by the scatter plot that shows the relationship between revenue and growth per worker. There is quite clear grouping of revenue and growth per worker based on the workers groups.   
+
+```{r echo=FALSE, Multivariate_State_Plots}
+
+companies_top_states <- filter(companies, 
+                               state_l == "California" | 
+                               state_l == "Texas" | 
+                               state_l == "New York" |
+                               state_l == "Florida" |
+                               state_l == "Virginia")
+
+companies_top_states_capita <- filter(companies, 
+                               state_l == "Colorado" |
+                               state_l == "Texas" |
+                               state_l == "Utah" |
+                               state_l == "Massachusetts" |
+                               state_l == "Virginia")
+
+ggplot(data = companies_top_states, 
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_boxplot(aes(color = state_l)) +
+    facet_wrap( ~state_l) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = 'Set1')
+
+ggplot(data = companies_top_states_capita, 
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_boxplot(aes(color = state_l)) +
+    facet_wrap( ~state_l) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = 'Set1')
+
+ggplot(data = companies_top_states, 
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_violin(aes(color = industry_tech)) +
+    facet_wrap(~ state_l) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = 'Set1')
+
+ggplot(data = companies_top_states_capita, 
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_violin(aes(color = industry_tech)) +
+    facet_wrap(~ state_l) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = 'Set1')
+
+ggplot(data = companies_top_states, 
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_categories), alpha = 1/2) +
+    facet_wrap(~ state_l) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = 'Dark2')
+
+
+ggplot(data = companies_top_states_capita, 
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_categories), alpha = 1/2) +
+    facet_wrap(~ state_l) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = 'Dark2')
+```
+
+```{r echo=FALSE, Multivariate_Industry_Plots}
+
+ggplot(data = companies, 
+       aes(x = industry_categories, y = growth_dollar)) +
+    geom_violin(aes(color = industry_categories)) +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = 'Dark2') +
+    theme(axis.text.x = element_text(angle = 15, 
+                                     hjust = 1))
+
+ggplot(data = companies, 
+       aes(x = industry_categories, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_categories)) +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = 'Dark2') +
+    theme(axis.text.x = element_text(angle = 15, 
+                                     hjust = 1))
+    
+```
+Returning to the analysis of greatest growth 
 
 # Multivariate Analysis
 
 ### Talk about some of the relationships you observed in this part of the investigation. Were there features that strengthened each other in terms of looking at your feature(s) of interest?
+There is a strong relationship between the 
+
 
 ### Were there any interesting or surprising interactions between features?
 
