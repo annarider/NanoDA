@@ -1,0 +1,1136 @@
+---
+title: "Exploration of the 5000 Fastest Growing Private Companies in the U.S."
+author: "Anna Li"
+date: "May 25, 2015"
+output: html_document
+---
+
+5000 Fastest Growing Private Companies in the U.S.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
+# Load all of the packages that you end up using
+# in your analysis in this code chunk.
+
+# Notice that the parameter "echo" was set to FALSE for this code chunk.
+# This prevents the code from displaying in the knitted HTML output.
+# You should set echo=FALSE for all code chunks in your file.
+
+library(ggplot2)
+library(GGally)
+library("RColorBrewer")
+
+# eliminates scientific notation when printing large numbers
+options(scipen=999)
+```
+
+```{r echo=FALSE, include=FALSE, Load_the_Data}
+# Load the Data into "companies"
+# See WrangleInc5000.py for python code that cleaned and
+# subsetted original CSV before importing to R
+
+getwd()
+setwd("/Users/horsepower/Dropbox/Udacity/NanoDA/EDAwithR/Project3/")
+companies <- read.csv("Inc5000_Companies_2014_subset.csv")
+# Rename the first column with a null variable name to "rowNum"
+names(companies)[names(companies) == 'X'] <- 'row_num'
+```
+
+# Summary statistics
+## Preliminary look at the Inc. 5000 Company List data set. 
+
+List of all variables in the dataframe
+```{r echo=FALSE}
+names(companies)
+```
+
+Dimensions of the dataframe: 
+`r nrow(companies)` companies observed over `r ncol(companies)` variables listed above
+```{r echo=FALSE}
+dim(companies)
+```
+
+Structure of dataframe with preview of data values
+```{r echo=FALSE}
+str(companies)
+# Change rank to ordered factor since the variable 
+# is categorical and order matters
+companies$rank <- as.ordered(companies$rank)
+companies$rank <- ordered(companies$rank, 
+                          levels=rev(levels(companies$rank)))
+
+```
+
+Explore factor variables and the different levels in State and Industry
+#### State
+```{r echo=FALSE, state_factor}
+levels(companies$state_l)
+```
+#### Industry
+```{r echo=FALSE, industry_factor}
+levels(companies$state_l)
+```
+
+Summary of the data set
+```{r echo=FALSE}
+summary(companies)
+```
+
+## Initial Observations from a summary of the data set
+* There are 5000 companies ranked from 1 to 5000 based on their percentage growth in 2014, from greatest rate of growth (ranked 1) to slowest rate of growth (ranked 5000).
+    + Greatest rate of growth is 158956.91%, lowest is 42.45%
+* There are companies representing all 50 states plus one territory (Puerto Rico), resulting in 51 levels for state.
+* The minimum number of works is 0 (need to explore further how it is possible to have no employees) with the maximum at 34219. Most companies on the list have under 150 employees.
+* The top 5 states with the greatest number of companies on the list are: California, Texas, New York, Florida, and Virginia. But the top 5 cities with the greatest number of companies on the list are: New York, Chicago, Atlanta, Austin, and San Diego. It may be worth figuring out why the top states and top cities don't match.
+* The top industries representing greatest growth are: IT, Ad & Marketing, Business Products & Services, Health, and Software.
+* For most companies, it is their first or second year on the list. About a quarter have been on the list for more than 4 times, with 12 years being the highest number of years any one company has been on the list.
+
+# Univariate Plots Section
+### Histogram of states where companies are located
+```{r echo=FALSE, States_Univariate_Plots}
+ggplot(data = companies, aes(x = state_l)) +
+    geom_bar() +
+    xlab("State") + 
+    ylab("Count") +
+    # densely packed x axis labels need spacing
+    theme(axis.text.x = element_text(angle = 45, 
+                                     hjust = 1)) +
+    ggtitle("Count of states where 
+            companies are located")
+
+```
+
+### Histograms of workers by count
+
+```{r echo=FALSE, Workers_Univariate_Plots}
+ggplot(data = companies, aes(x = workers)) +
+    geom_histogram() +
+    xlab("Workers") + 
+    ylab("Count") +
+    ggtitle("Count of Workers")
+```
+
+First plot doesn't have small enough binwidths to see the trend. Reduce binwidth shows
+a histogram plot that skews right. What happens to distribution if I perform a 
+long10 transformation?
+```{r echo=FALSE}
+ggplot(data = companies, aes(x = workers)) +
+    geom_histogram(binwidth = 10, 
+                   color = 'black', fill = '#F79420') +
+    # cut out some outliers
+    xlim(0, 1000) +
+    xlab("Workers") + 
+    ylab("Count") +
+    ggtitle("Count of Workers")
+
+```
+
+Transforming the long tail by taking the log10 of workers
+helps better understand the distribution of workers. The transformed workers distribution 
+looks close to a normal distribution with a longer tail on the right. 
+```{r echo=FALSE}
+ggplot(data = companies, aes(x = workers)) +
+    geom_histogram(binwidth = .05,
+                   color = 'black', fill = '#F79420') +
+    scale_x_log10() +
+    xlab("Workers") + 
+    ylab("Count") +
+    ggtitle("Count of Workers (log10)")
+
+summary(companies$workers)
+
+```
+
+
+### Distribution of industry
+Top industry is IT Services with almost 800 companies. IT Services is the most represented industry by a large margin. The next two industries with greatest number of companies is Ad & Marketing and Business Products & Services with just over 400 companies each, counts that are just over half of IT Services.
+
+```{r echo=FALSE, Industry_Univariate_Plots}
+ggplot(data = companies, aes(x = industry)) +
+    geom_bar() +
+    theme(axis.text.x = element_text(angle = 90, 
+                                     hjust = 1))
+```
+
+### Distribution of revenue
+
+```{r echo=FALSE, Revenue_Univariate_Plots}
+ggplot(data = companies, aes(x = revenue)) +
+    geom_histogram(color = 'black', fill = '#F79420')
+
+ggplot(data = companies, aes(x = revenue)) +
+    geom_histogram(color = 'black', fill = '#F79420') +
+    scale_x_log10()
+
+range <- range(companies$revenue)
+
+ggplot(data = companies, aes(x = revenue)) +
+    geom_histogram(color = 'black', fill = '#F79420', 
+                   binwidth = 0.1) +
+    scale_x_continuous(trans = "log10",  
+                       breaks = c(1000000, 10000000, 100000000, 5000000000))
+```
+
+The revenue distribution is really skewed right with a very long tail. A log10 transformation and adjusting bin width provides a more natural way to see revenue data and illustrate trends in the data. However, even after a log10 transformation, the data is still skewed to the right. Removing extremely high revenue outliers helps show a more normal distribution. 
+
+Part of the reason the distribution doesn't look entirely normal is because the log-normal distribution looks truncated on the left side. This is likely due to the dataset containing only the top 5000 companies. If the data extended to 10,000, for example, the curve will likely look more normally distributed.  
+
+### Distribution of growth
+
+```{r echo=FALSE, Growth_Univariate_Plots}
+ggplot(data = companies, aes(x = growth)) +
+    geom_histogram(binwidth = 10,
+                   color = 'black', fill = '#F79420') +
+    scale_x_continuous(limits = c(0, 1000))
+
+
+
+ggplot(data = companies, aes(x = growth)) +
+    geom_histogram(binwidth = 0.05,
+                   color = 'black', fill = '#F79420') +
+    scale_x_log10()
+
+summary(companies$growth)
+```
+
+The long tail skew to the right justifies log10 transformation.
+
+The distribution of growth and revenue look really similar. Let's try another type of plot to tease apart how the distributions differ. The frequency polygon plot better shows the different shapes of the distributions. The amount of growth is based on revenue generated so it is not surprising the two distributions are similar since they are highly correlated.   
+
+### Distribution of Growth vs. Revenue
+```{r echo=FALSE}
+freqp.growth <- ggplot(data = companies, aes(x = growth)) +
+    geom_freqpoly() +
+    scale_x_log10()
+
+freqp.revenue <- ggplot(data = companies, aes(x = revenue)) +
+    geom_freqpoly() +
+    scale_x_log10() +
+    scale_y_continuous(limits = c(0, 600))
+
+library(gridExtra)
+
+grid.arrange(freqp.growth, freqp.revenue, nrow = 1)
+
+dens.growth <- ggplot(data = companies, aes(x = growth)) +
+    geom_density() +
+    scale_x_log10()
+
+dens.revenue <- ggplot(data = companies, aes(x = revenue)) +
+    geom_density() +
+    scale_x_log10() +
+    scale_y_continuous(limits = c(0, 1))
+
+grid.arrange(dens.growth, dens.revenue, nrow = 1)
+
+
+```
+
+Many of the highest ranked companies are small businesses. This could be because smaller companies grow faster than big public companies. But it could also be that smaller companies are starting with smaller amounts of revenues. Absolute growth in dollars is different from percentage growth. For example, company with no revenue the previous year that gains some revenue the next year has infinite percentage growth. But this isn't a good reflection on how much revenue the company is generating compared to another company that's making more in absolute revenue but has a lower percentage growth. 
+
+I created two new variables, revenue 2013, calculated in terms of current revenue and percentage growth to derive last year's revenue, and growth in dollars, which is revenue 2013 substracted from revenue 2014. 
+
+```{r echo=FALSE, New_Variables}
+companies$revenue2013 <- companies$revenue/((companies$growth/100) + 1)
+head(companies$revenue2013)
+
+companies$growth_dollar <- companies$revenue - companies$revenue2013
+head(companies$growth_dollar)
+
+# renames original columns for clarity
+names(companies)[names(companies) == 'revenue'] <- 'revenue2014'
+names(companies)[names(companies) == 'growth'] <- 'growth_percentage'
+```
+
+
+## Population Dataset
+There is a limitation in my data set. Without data about resident populations in each state or city or metro area it is hard to determine whether the states with the highest number of growing companies have growing companies because there are more people living there or if there is something special about that state that fosters growth. Therefore, I looked for population data from the U.S. Census Bureau and found population estimates for 2010 to 2014. This works with the company data from 2014 with the reverse engineered revenue and growth numbers I calculated for 2013.
+
+The structure of the new dataset of state population data:
+
+```{r echo=FALSE, Population, message=FALSE, warning=FALSE}
+# Population numbers have commas separating the thousands place. 
+# Must convert population to numeric to perform arithmetic 
+population <- read.csv("state_population_census.csv", stringsAsFactors=FALSE)
+head(population)
+```
+
+Using dplyr, I can create a new dataset that aggregates all growth and revenue numbers for companies by state and calculates the growth per capita.
+```{r echo=FALSE, State_PerCapita, message=FALSE, warning=FALSE}
+library(dplyr)
+state_growth <- companies %>%
+    group_by(state_l) %>%
+    summarise(state_growth_dollar = sum(growth_dollar)) %>%
+    ungroup() %>%
+    arrange(state_l)
+state_growth <- merge(x = state_growth, 
+                      y = subset(population, 
+                                 select = c("Geographic_Area", 
+                                            "Est_2014")), 
+                      by.x = "state_l", by.y = "Geographic_Area")
+names(state_growth)[names(state_growth) == 'Est_2014'] <- 'state_population2014'
+
+state_growth$state_population2014 <- 
+    as.numeric(gsub(",", "", state_growth$state_population2014))
+
+state_growth$growth_per_capita <- state_growth$state_growth_dollar/
+                                    state_growth$state_population2014
+
+state_growth <- arrange(state_growth, desc(state_growth_dollar))
+
+```
+
+The variables and structure of the new dataset.
+```{r echo=FALSE, State_Growth}
+names(state_growth)
+str(state_growth)
+```
+
+# Univariate Analysis
+
+### What is the structure of your dataset?
+I have two datasets. The original dataset is a list of the 5000 fastest growing private companies in 2014 in the U.S. from Inc. 5000. The second dataset I have is state population data from the Census Bureau. I have two resulting data frames: companies is the Inc. 5000 data set with new variables added, and state_growth is population data with additional variables.   
+
+### What is/are the main feature(s) of interest in your dataset?
+The variables most interesting to explore are the growth in percentage and dollar amounts since the dataset from Inc. 5000 is specifically about the fastest growing private companies in the U.S. I am also very interested in the industry the companies are in.
+
+### What other features in the dataset do you think will help support your investigation into your feature(s) of interest?
+Revenue will be important way to understand growth. For example, a company with a small revenue will see greater gains in percentage growth than a company with larger revenue amount but the latter could have a much greater revenue and growth in absolute dollar amounts. So it is critical to interpret growth in light of revenue. 
+
+State population data is also important to better understand growth. A larger state might appear to have greater growth in absolute dollar amounts but that could be influenced by a greater population. Therefore investigating growth per capita can provide a fairer way to look at growth, especially from the point of view of smaller states.
+
+### Did you create any new variables from existing variables in the dataset?
+I created 4 new variables from existing varibles across two datasets
+I created two new variables in the companies data frame: 1. revenue2013, 2. growth_dollar. I reverse engineered revenue from 2013 using revenue from 2014 and percentage growth. Then I substracted the 2013 revenue from 2014 revenue to get the growth_dollar. 
+
+I also created a new dataframe using the state population data from the census. In this dataframe, I added two other variables: 3. state_growth_dollar and 4. growth_per_capita. state_growth_dollar was calculated by grouping together states and summing the growth_dollar derived from the 2nd variable I created growth_dollar. The growth_per_capita variable was created by dividing growth_dollar by the state population. 
+
+### Of the features you investigated, were there any unusual distributions? Did you perform any operations on the data to tidy, adjust, or change the form of the data? If so, why did you do this?
+The revenue, growth, and workers histograms all skewed right with a very long tail. I had to perform a log transformation to better understand the data. I performed a lot of tidying and adjusting to import and join the two data frames, including converting the population data to a numeric because the commas that separated the thousands place was causing the read.csv() command to import population numbers as characters. I needed population numbers to be numeric so I could perform division to calculate the growth_per_capita.
+
+
+
+# Bivariate Plots Section
+The structure of the two datasets: 
+1. State population and aggregate growth of companies
+2. 5000 fastest growing companies and the attributes that describe them  
+```{r echo=FALSE, include=FALSE, Structure_Dataset}
+str(state_growth)
+str(companies)
+```
+
+### Scatter Matrix plots to understand the relationships between variables in the two datasets
+
+```{r echo=FALSE, Matrix_Bivariate_Plots}
+str(companies)
+
+# Creating subset for plotting in scatter matrix
+companies_matrix_subset <- subset(companies, select = c(-row_num, -id, -rank, -company, -url, -state_l, -state_s, -city, -metro))
+str(companies_matrix_subset)
+library(GGally)
+library(ggplot2)
+theme_set(theme_minimal(20))
+
+# Creating scatter matrix for subsetted companies dataset 
+ggpairs(companies_matrix_subset)
+
+# Creating scatter matrix for subsetted state population dataset
+ggpairs(state_growth)
+
+```
+
+### Which state has greatest revenue growth per capita in 2014?  
+```{r echo=FALSE, State_Growth_Univariate_Plots}
+
+library(scales)
+ggplot(data = state_growth, aes(x = state_growth_dollar)) +
+    geom_histogram(color = 'black', fill = '#F79420') +
+    scale_x_continuous(name = "State Growth Dollars", labels = comma)
+
+ggplot(data = state_growth, aes(x = growth_per_capita)) +
+    geom_histogram(color = 'black', fill = '#F79420') +
+    scale_x_continuous(name = "State Growth per capita")
+
+state_growth <- arrange(state_growth, desc(growth_per_capita))
+```
+
+The state growth in dollars shows most states clustered in the same area under $7.5 Billion. However, there are 2 states, California and Texas, with a extremely large amount of growth at  $17-18 Billion. But when looking at state growth in dollars per capita, the top two states are Virginia and Colorado with Texas trailing closely behind Colorado. How does population affect  growth? Future plots should explore the relationship between state population and revenue as well as state population and growth to uncover other trends.
+
+```{r echo=FALSE, State_Growth_Bivariate_Plots}
+ggplot(data = state_growth, aes(x = state_l, y = growth_per_capita)) +
+    geom_bar(stat = "identity", color = 'black', fill = '#F79420') +
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+state_growth <- arrange(state_growth, desc(growth_per_capita))
+
+ggplot(data = state_growth, aes(x = factor(state_l, levels = state_l), 
+                                y = growth_per_capita)) +
+    geom_bar(stat = "identity", color = 'black', fill = '#F79420') +
+    xlab("State") + 
+    ylab("Fast growth dollars per capita") +
+    # densely packed x axis labels need spacing
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+    ggtitle("Revenue growth by state, normalized by population")
+```
+As concluded earlier, Virginia, Colorado, and Texas have the fastest growth in dollars per capita. California is trailing at #13. 
+
+### What's the relationship between Revenue and Growth?
+
+Note: Refer to the frequency polygon and density plots in the Univariate section to see the differences in distribution between revenue in 2014 and percentage growth.
+
+The relationship between revenue in 2014 and growth appears to be strongly correlated based on the Pearson's r value, 0.95 for 2014 revenue and growth in dollars.  
+
+```{r echo=FALSE, Revenue2014_Bivariate_Plots}
+ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
+    geom_point()
+
+cor.test(companies$revenue2014, companies$growth_dollar)
+
+ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(alpha = 1/2) +
+    scale_x_log10() +
+    scale_y_log10()
+
+```
+
+A highly correlated relationship also exists between revenue in 2013 and growth in dollars, with a Pearson's r correlation of 0.77. However this relationship is weaker than the relationship between revenue in 2014 and growth, which is expected since the dataset is focusing on fastest growing companies in 2014. Growth in 2014 is clearly tied to revenue in 2013 hence the relationship between growth and revenue in 2013 is expectedly high. 
+
+```{r echo=FALSE, Revenue2013_Bivariate_Plots}
+ggplot(data = companies, aes(x = revenue2013, 
+                             y = growth_dollar)) +
+    geom_point()
+
+ggplot(data = companies, aes(x = revenue2013, 
+                             y = growth_dollar)) +
+    geom_jitter(alpha = 1/2) +
+    scale_x_log10() +
+    scale_y_log10()
+
+cor.test(companies$revenue2013, companies$growth_dollar)
+
+ggplot(data = companies, aes(x = revenue2013, y = growth_percentage)) +
+    geom_jitter(alpha = 1/2) +
+    scale_x_log10() +
+    scale_y_log10() 
+```
+
+Growth measured in dollars and percentage by 2013 Revenue plots with a log10 transformation have a very unusual fan-shaped distribution. Constrasting with the 2014 Revenue plots which are more cone-shaped. This trend could be explained by the same trend marking why the revenue histogram appeared to be truncated on the left side. This fan-shaped is likely a result of the fact that companies with 2013 revenue less $1,000,000 were excluded from the list.   
+
+### Revenue and growth percentage 
+```{r echo=FALSE, Bivariate_Plots, warning=FALSE}
+ggplot(data = companies, aes(x = revenue2014, y = growth_percentage)) +
+    geom_point()
+
+ggplot(data = companies, aes(x = revenue2014/1000000, 
+                             y = growth_percentage)) +
+    geom_point() +
+    scale_x_continuous(limits = c(0, 1300), 
+                       aes(x = "Revenue (Millions)")) +
+    scale_y_continuous(limits = c(0, 15000), 
+                       aes(y = "Growth (percent)"))
+
+ggplot(data = companies, aes(x = revenue2014/1000000, 
+                             y = growth_percentage)) +
+    geom_jitter(alpha = 1/5) +
+    scale_x_continuous(limits = c(0, 500), 
+                       aes(x = "Revenue (Millions)")) +
+    scale_y_continuous(limits = c(0, 5000), 
+                       aes(y = "Growth (percent)")) + 
+    scale_x_log10()
+
+ggplot(data = companies, aes(x = revenue2014/1000000, 
+                             y = growth_percentage)) +
+    geom_jitter(alpha = 1/2) +
+    scale_x_continuous(limits = c(0, 100), 
+                       aes(x = "Revenue (Millions)")) +
+    scale_y_continuous(limits = c(0, 1000), 
+                       aes(y = "Growth (percent)")) + 
+    scale_x_log10()
+
+```
+
+
+
+```{r echo=FALSE, YearsOnList_Bivariate_Plots}
+ggplot(data = companies, aes(x = yrs_on_list, y = revenue2014)) +
+    geom_point()
+
+ggplot(data = companies, aes(x = yrs_on_list, y = revenue2014)) +
+    geom_jitter(alpha = 1/5) +
+    scale_y_continuous(limits = c(0, 500000000))
+
+cor.test(companies$yrs_on_list, companies$revenue2014)
+cor.test(companies$yrs_on_list, companies$revenue2013)
+```
+
+
+### Relationship between Industry and Growth
+
+```{r echo=FALSE, message = FALSE, warnings = FALSE, Industry_Growth_Bivariate_Plots}
+ggplot(data = companies, aes(x = industry, y = growth_dollar)) +
+    geom_jitter(alpha = 1/4) +
+    scale_y_continuous(limits = c(0, 150000000)) + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+ggplot(data = companies, aes(x = industry, y = growth_percentage)) +
+    geom_jitter(alpha = 1/4) +
+    scale_y_continuous(limits = c(0, 7500)) + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+ggplot(data = companies, aes(x = industry, y = growth_dollar)) +
+    geom_boxplot() +
+    scale_y_continuous(limits = c(0, 60000000)) + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+ggplot(data = companies, aes(x = industry, y = growth_percentage)) +
+    geom_boxplot() +
+    scale_y_continuous(limits = c(0, 1000)) + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+ggplot(data = companies, aes(x = industry, y = revenue2014)) +
+    geom_jitter(alpha = 1/4) +
+    scale_y_continuous(limits = c(0, 500000000)) + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+ggplot(data = companies, aes(x = industry, y = revenue2013)) +
+    geom_jitter(alpha = 1/4) +
+    scale_y_continuous(limits = c(0, 500000000)) + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+```
+
+### Relationship between workers and growth
+
+```{r echo=FALSE, message = FALSE, warnings = FALSE, Workers_Growth_Bivariate_Plots}
+ggplot(data = companies, aes(x = workers, y = growth_dollar)) +
+    geom_jitter(alpha = 1/3, color = 'steelblue') +
+    scale_x_continuous(limits = c(0, 250)) +
+    scale_y_continuous(limits = c(0, 50000000)) + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+ggplot(data = companies, aes(x = workers, y = growth_dollar)) +
+    geom_jitter(alpha = 1/3, color = 'steelblue') +
+    scale_x_continuous(limits = c(0, 250)) +
+    scale_y_continuous(limits = c(0, 50000000)) + 
+    geom_line(stat = 'summary', fun.y = median) + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+str(companies)
+
+cor.test(companies$workers, companies$growth_dollar)
+
+ggplot(data = companies, aes(x = workers, y = growth_percentage)) +
+    geom_jitter(alpha = 1/3, color = 'steelblue') +
+    scale_x_continuous(limits = c(0, 250)) +
+    scale_y_continuous(limits = c(0, 2000)) + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1))
+
+ggplot(data = companies, aes(x = workers, y = growth_percentage)) +
+    geom_jitter(alpha = 1/3, color = 'steelblue') +
+    scale_x_continuous(limits = c(0, 250)) +
+    scale_y_continuous(limits = c(0, 2000)) + 
+    geom_line(stat = 'summary', fun.y = median) +
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1))
+
+cor.test(companies$workers, companies$growth_percentage)
+
+```
+
+Relationship between workers and growth is quite weak. This makes sense as the number of workers isn't necessarily predictive of growth compared to revenue or even the product being produced.
+
+### Relationship between growth and years on list
+
+
+```{r echo=FALSE, message = FALSE, warnings = FALSE, Years_List_Bivariate_Plots}
+ggplot(data = companies, aes(x = yrs_on_list, y = growth_dollar)) +
+    geom_jitter()
+
+ggplot(data = companies, aes(x = yrs_on_list, 
+                             y = growth_dollar/1000000)) +
+    geom_jitter(alpha = 1/4) +
+    scale_y_continuous(limits = c(0, 250))
+
+ggplot(data = companies, aes(x = yrs_on_list, 
+                             y = growth_percentage)) +
+    geom_jitter(alpha = 1/4) +
+    scale_y_continuous(limits = c(0, 1000))
+
+```
+
+
+### Miscellaneous plots
+
+```{r echo=FALSE, message = FALSE, warnings = FALSE, Experiment_Bivariate_Plots}
+
+ggplot(data = companies, aes(x = revenue2014, 
+                             y = growth_dollar)) +
+    geom_jitter() +
+    geom_rug() 
+
+ggplot(data = companies, aes(x = revenue2014/1000000, 
+                             y = growth_dollar/1000000)) +
+    geom_jitter(alpha = 1/3, color = 'steelblue') +
+    geom_rug() +
+    scale_x_continuous(limits = c(0, 500)) +
+    scale_y_continuous(limits = c(0, 400))
+
+ggplot(data = companies, aes(x = revenue2014/1000000, 
+                             y = growth_dollar/1000000)) +
+    geom_jitter(alpha = 1/3, color = 'steelblue') +
+    geom_rug() +
+    scale_x_continuous(limits = c(0, 100)) +
+    scale_y_continuous(limits = c(0, 100))
+
+ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
+    geom_bin2d()
+
+ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
+    geom_density2d()
+
+ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
+    geom_step()
+ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
+    geom_step(stat = 'summary', fun.y = median)
+
+```
+
+### Growth in terms of state population 
+#### Growth in Dollars
+```{r echo=FALSE, message = FALSE, warnings = FALSE, State_Growth_Dollar_Bivariate_Plots}
+ggplot(data = state_growth, aes(x = state_population2014, 
+                                y = state_growth_dollar)) +
+    geom_point()
+
+ggplot(data = state_growth, aes(x = state_population2014, 
+                                y = state_growth_dollar)) +
+    geom_point() +
+    scale_x_continuous(limits = c(0, 10000000)) +
+    scale_y_continuous(limits = c(0, 5000000000))
+
+cor.test(state_growth$state_population2014, 
+         state_growth$state_growth_dollar)
+```
+
+Generally the trend appears to be that the higher the population, the greater the total state growth in dollars. This theory is supported by the highly Pearson r correlation between state population in 2014 and state growth dollar variables, 0.94.
+
+#### Growth per capita
+
+```{r echo=FALSE, message = FALSE, warnings = FALSE, State_Growth_Capita_Bivariate_Plots}
+ggplot(data = state_growth, aes(x = state_population2014, 
+                                y = growth_per_capita)) +
+    geom_point()
+
+ggplot(data = state_growth, aes(x = state_population2014, 
+                                y = growth_per_capita)) +
+    geom_point() +
+    scale_x_continuous(limits = c(0, 30000000)) +
+    scale_y_continuous(limits = c(0, 700))
+
+cor.test(state_growth$state_population2014, 
+         state_growth$growth_per_capita)
+```
+
+On the other hand, the correlation between state population and growth per capita didn't have as strong of a relationship, Pearson's r of 0.36. 
+
+### Relationship between Industry and Years on List
+
+```{r echo=FALSE, message = FALSE, warnings = FALSE, Industry_Years_Bivariate_Plots}
+ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
+    geom_boxplot() + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
+    geom_boxplot() +
+    scale_y_continuous(limits = c(0, 8)) + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+ggplot(data = companies, aes(x = industry, y = yrs_on_list)) +
+    geom_violin() +
+    scale_y_continuous(limits = c(0, 8)) + 
+    theme(text = element_text(size=14),
+          axis.text.x = element_text(angle = 90, hjust = 1)) 
+```
+
+# Bivariate Analysis
+
+### Talk about some of the relationships you observed in this part of the investigation. How did the feature(s) of interest vary with other features in the dataset?
+
+There is a very strong relationship between 2014 revenue and growth. There is a weaker but still very strong relationship between 2013 revenue and growth.  
+
+The other features didn't seem to affect growth as much as revenue, trailing behind by a lot.
+
+It looks like there is some positive relationship between state population and growth per capita with a Pearson's r correlation of  0.36. However, the scatter plot of the two variables didn't look promising so I think analysis of state population and growth is a dead end. 
+
+### Did you observe any interesting relationships between the other features (not the main feature(s) of interest)?
+The relationship between workers and growth seems to suggest there is a very weak relationship. The plots don't follow a positive or negative relationship and the Pearson's r value, 0.22, suggest that there is a very slightly positive relationship but it is very weak. 
+
+Most companies have been on the fastest growing companies list less than 3 times. This suggest that there isn't much repeat of past growth performance, i.e. it is difficult to be the fastest growing company more than 7 times, which makes sense because fast growth is difficult to sustain. It is not clear whether the number of years a company has been on the list affects growth. Generally it looks like there isn't much of a trend here.  
+
+### What was the strongest relationship you found?
+The strongest relationship observed was between 2014 revenue and growth dollar (with r value of 0.95) closely followed by the relationship between 2014 state population and 2014 state total revenue (r value of 0.94).
+
+
+# Multivariate Plots Section
+
+```{r echo=FALSE, Multivariate_Revenue_Growth_Plots}
+
+ggplot(data = subset(companies, revenue2014 < 150000000),
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry)) +
+    scale_color_brewer(type = 'qual', palette="Set3")
+
+ggplot(data = companies, aes(x = revenue2014, 
+                             fill = growth_dollar)) +
+    geom_histogram(fill = 'steelblue', color = 'black') +
+    facet_wrap( ~ industry) +
+    scale_fill_brewer(type = 'qual') +
+    theme(axis.text.x = element_text(size = 8)) +
+    scale_x_log10()
+
+ggplot(data = companies, aes(x = revenue2014, 
+                             y = growth_dollar)) +
+    geom_jitter(color = 'steelblue', alpha = 1/3) +
+    facet_wrap( ~ industry) +
+    scale_fill_brewer(type = 'qual') +
+    theme(axis.text.x = element_text(size = 8)) +
+    scale_x_log10() +
+    scale_y_log10()
+
+```
+
+```{r echo=FALSE, Multivariate_Revenue_Growth_Outliers_Plots}
+ggplot(data = subset(companies, revenue2014 > 3000000000),
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_point(aes(color = industry))
+
+subset(companies, revenue2014 > 3000000000)
+
+```
+
+Industry has too many values (25 levels). I need to group the existing industries into overarching categories to plot using color. If not, the values will be too difficult to see on a scatterplot. 
+I grouped industries based on the [Global Industry Classification Standard],(http://en.wikipedia.org/wiki/Global_Industry_Classification_Standard) developed by MSCI and S&P. 
+```{r echo=FALSE, Multivariate_Recode_Industry_Plots}
+
+library(plyr)
+levels(companies$industry)
+companies$industry_categories <- revalue(companies$industry, c(
+    "Advertising & Marketing" = "Consumer Sector", 
+    "Business Products & Services" = "Industrials",
+    "Computer Hardware" = "Information Technology",          
+    "Construction" = "Industrials",
+    "Consumer Products & Services" = "Consumer Sector",
+    "Education" = "Consumer Sector",                   
+    "Energy" = "Energy",
+    "Engineering" = "Industrials",
+    "Environmental Services" = "Industrials",
+    "Financial Services" = "Financials",
+    "Food & Beverage" = "Consumer Sector",
+    "Government Services" = "Industrials",
+    "Health" = "Health Care",
+    "Human Resources" = "Industrials",
+    "Insurance" = "Financials",
+    "IT Services" = "Information Technology",
+    "Logistics & Transportation" = "Industrials",
+    "Manufacturing" = "Industrials",               
+    "Media" = "Consumer Sector",
+    "Real Estate" = "Financials",
+    "Retail" = "Consumer Sector",                      
+    "Security" = "Industrials",
+    "Software" = "Information Technology",
+    "Telecommunications" = "Telecommunication Services",          
+    "Travel & Hospitality" = "Consumer Sector"))
+
+ggplot(data = companies, aes(x = revenue2014, 
+                             fill = growth_dollar)) +
+    geom_histogram(fill = 'steelblue', color = 'black') +
+    facet_wrap( ~ industry_categories) +
+    scale_fill_brewer(type = 'qual') +
+    theme(axis.text.x = element_text(size = 8)) +
+    scale_x_log10()
+
+ggplot(data = companies, aes(x = revenue2014, 
+                             y = growth_dollar)) +
+    geom_jitter(color = 'steelblue', alpha = 1/3) +
+    facet_wrap( ~ industry_categories) +
+    scale_fill_brewer(type = 'qual') +
+    theme(axis.text.x = element_text(size = 8)) +
+    scale_x_log10() +
+    scale_y_log10()
+
+ggplot(data = subset(companies, revenue2014 < 150000000),
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_categories)) +
+    scale_color_brewer(type = 'qual', palette = "Paired")
+
+```
+
+### What trends emerge when the IT industry is compared to all other industries?
+Since I work in the IT/Software industry, I am curious about whether the IT Services category has different traits compared to the other industries. I decided to group all 6 other categories that were not IT into "Non-IT" category and plot variables to see if any trends emerged. 
+
+```{r echo=FALSE, Multivariate_Recode_IT_Plots}
+levels(companies$industry_categories)
+
+companies$industry_tech <- revalue(companies$industry_categories, c(
+    "Information Technology" = "IT",
+    "Consumer Sector" = "Non-IT",
+    "Industrials" = "Non-IT",    
+    "Energy" = "Non-IT",
+    "Financials" = "Non-IT",
+    "Health Care" = "Non-IT",
+    "Telecommunication Services" = "Non-IT"))
+
+library(dplyr)
+
+ggplot(data = sample_n(subset(companies, revenue2014 < 15000000), 1000),
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_tech )) +
+    scale_color_brewer(type = 'qual', palette = "Set1") +
+    geom_point(aes(color = industry_tech, size = yrs_on_list))
+
+ggplot(data = companies,
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_tech ), alpha = 1/3) +
+    scale_color_brewer(type = 'qual', palette = "Set1") +
+    scale_x_log10() +
+    scale_y_log10()  
+
+ggplot(data = subset(companies, revenue2014 < 2000000000),
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_tech)) +
+    scale_color_brewer(type = 'qual', palette = "Set1") +
+    geom_smooth(aes(color = industry_tech))
+
+
+ggplot(data = companies,
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_tech)) +
+    scale_color_brewer(type = 'qual', palette = "Set1") +
+    geom_smooth(aes(color = industry_tech)) +
+    xlab("Revenue (in $USD Millions)") +
+    ylab("Growth (in $USD Millions)") +
+    ggtitle("Growth by 2014 Revenue for IT versus non-IT companies") +
+    scale_x_log10() +
+    scale_y_log10()
+```
+
+
+Generally, growth for Non-IT companies exceeds growth for IT companies except when revenue is around $250 million. Positive relationship between revenue and growth.
+
+It turns out at the lower levels of revenue (revenue of $15 Million or less), there is not a noticeable difference in trends between the IT Services industry and all other industries. However, when evaluating almost the complete dataset of companies, that is revenue at $2 Billion or less which excludes a half a dozen outliers (which have over $2 Billion in revenue), IT Services industry category shows it lags behind in revenue and growth compared to companies in non-IT industry categories. The plots suggest IT Services category has a logarithmic growth that exceeds non-IT industries at around $250 Million in revenue but non-IT Services category exceeds the IT Services category after the $500 Million mark. 
+
+It makes sense that the top 6 highest revenue and growth companies excluded from the plot are companies not IT companies. Rather they in the industry categories of Energy, Health, Construction, and Real Estate. These industries typically require bigger capital investments with higher barriers of entry because they are offering expensive products and services. Logically, I conclude that they are likelier to produce higher revenue, and the U.S. spends a lot of money in energy, health care, real estate, and construction sectors. Also note the revenue doesn't equal profit. These industries could have high revenues with low profit margins precisely because of the infrastructure and capital expenses required to operate the company. 
+
+### How are the top 3 industry categories different from the other industries? 
+
+```{r echo=FALSE, Multivariate_Recode_Top3_Industries_Plots}
+# Calculating the top 3 industries based on number of companies
+# industry_ranks <- companies  %>%
+#     dplyr::group_by(industry_categories) %>%
+#     dplyr::summarise(count = n()) %>%
+#     dplyr::arrange(desc(count))
+# industry_ranks
+
+companies$industry_top3 <- revalue(companies$industry_categories, c(
+    "Information Technology" = "Top 3 Industry Category",
+    "Consumer Sector" = "Top 3 Industry Category",
+    "Industrials" = "Top 3 Industry Category",    
+    "Energy" = "Bottom 4 Industry Category",
+    "Financials" = "Bottom 4 Industry Category",
+    "Health Care" = "Bottom 4 Industry Category",
+    "Telecommunication Services" = "Bottom 4 Industry Category"))
+
+ggplot(data = companies, 
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_top3)) +
+    geom_smooth(aes(color = industry_top3)) +
+    scale_color_brewer(type = 'qual', palette = "Set1")
+
+```
+
+### What is the relationship of workers in the different industries 
+Let's take a look at the relationship among the variable workers, revenue, growth, and other factors that might shed light on growth of companies. 
+```{r echo=FALSE, Multivariate_Workers_Plots}
+
+summary(companies$workers)
+companies$workers_grouped <- cut(companies$workers, 
+    breaks = c(0, 25, 50, 125, 250, 2500, 10000, 20000, 35000))
+
+ggplot(data = subset(companies, !is.na(workers_grouped)), 
+       aes(x = workers_grouped, y = growth_dollar)) +
+    geom_violin(aes(color = industry_tech)) +
+    scale_color_brewer(type = 'qual', palette = "Set1") +
+    scale_y_log10() +
+    theme(axis.text.x = element_text(size = 12))
+
+cor.test(companies$workers, companies$growth_dollar)
+
+
+ggplot(data = subset(companies, !is.na(workers_grouped)), 
+       aes(x = workers_grouped, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_categories), alpha = 1) +
+    scale_color_brewer(type = 'qual', palette = "Set3") +
+    scale_y_log10() +
+    theme(axis.text.x = element_text(size = 12))
+    geom_line(aes(color = workers_grouped), 
+              stat = 'summary', fun.y = median)
+
+ggplot(data = companies, 
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = workers_grouped)) +
+    scale_color_brewer(type = 'qual') +
+    scale_x_log10() +
+    scale_y_log10() 
+
+ggplot(data = companies, 
+       aes(x = revenue2014, y = growth_percentage)) +
+    geom_jitter(aes(color = workers_grouped)) +
+    scale_color_brewer(type = 'qual') +
+    scale_x_log10() +
+    scale_y_log10() 
+
+companies$growth_per_worker <- 
+    companies$growth_dollar/companies$workers
+
+ggplot(data = companies, 
+       aes(x = revenue2014, y = growth_per_worker)) +
+    geom_point(aes(color = workers_grouped)) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual')
+```
+
+Companies that have lower number of employees also tend to have a lower amount of revenue and therefore lower growth in dollars (since growth is derived from revenue). There is a consistent trends of the companies with the greatest number of employees also having the highest revenue and growth. The second plot with revenue and percentage growth colored by workers shows that companies with fewer employees also have lower percentage growth. This conclusion dispels the theory I proposed earlier that smaller companies with fewer employees and lower revenue in dollars have greater percentage growth because every incremental revenue dollar accounts for a greater degree of growth. 
+
+Rather, the trend seems to point to the fact that companies with the greatest number of employees also tend to generate the most revenue and growth calculated in dollars and percentage. This conclusion is further supported by the scatter plot that shows the relationship between revenue and growth per worker. There is quite clear grouping of revenue and growth per worker based on the workers groups.   
+
+```{r echo=FALSE, Multivariate_State_Plots}
+
+companies_top_states <- filter(companies, 
+                               state_l == "California" | 
+                               state_l == "Texas" | 
+                               state_l == "New York" |
+                               state_l == "Florida" |
+                               state_l == "Virginia")
+
+companies_top_states_capita <- filter(companies, 
+                               state_l == "Colorado" |
+                               state_l == "Texas" |
+                               state_l == "Utah" |
+                               state_l == "Massachusetts" |
+                               state_l == "Virginia")
+
+ggplot(data = companies_top_states, 
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_boxplot(aes(color = state_l)) +
+    facet_wrap( ~state_l) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = 'Set1')
+
+ggplot(data = companies_top_states_capita, 
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_boxplot(aes(color = state_l)) +
+    facet_wrap( ~state_l) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = 'Set1')
+
+ggplot(data = companies_top_states, 
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_violin(aes(color = industry_tech)) +
+    facet_wrap(~ state_l) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = 'Set1')
+
+ggplot(data = companies_top_states_capita, 
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_violin(aes(color = industry_tech)) +
+    facet_wrap(~ state_l) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = 'Set1')
+
+ggplot(data = companies_top_states, 
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_categories), alpha = 1/2) +
+    facet_wrap(~ state_l) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = 'Dark2')
+
+
+ggplot(data = companies_top_states_capita, 
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_categories), alpha = 1/2) +
+    facet_wrap(~ state_l) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = 'Dark2')
+```
+
+### What effect does industry have on growth? 
+
+```{r echo=FALSE, Multivariate_Industry_Plots}
+
+ggplot(data = companies, 
+       aes(x = industry_categories, y = growth_dollar)) +
+    geom_violin(aes(color = industry_categories)) +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = 'Dark2') +
+    theme(axis.text.x = element_text(angle = 15, hjust = 1))
+
+ggplot(data = companies, 
+       aes(x = industry_categories, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_categories)) +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', palette = 'Dark2') +
+    theme(axis.text.x = element_text(angle = 15, hjust = 1))
+
+ggplot(data = companies, aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = workers_grouped)) +
+    facet_wrap( ~industry_categories) +
+    scale_color_brewer(type = 'qual', palette = 'Dark2') +
+    scale_x_log10() +
+    scale_y_log10()
+    
+```
+The effect of industry on revenue and growth colored by number of employees. The top 3 industries have the densest points so the sample size is greater. But there is no consistent pattern across industries when it comes to workers, i.e. no industry has particularly small numbers of employees for very large numbers. All industries have a range of employee numbers. However, employee numbers do support the previous findings that the categories of smaller numbers of employees tend to have lower income and lower growth.   
+
+# Multivariate Analysis
+This plot also supports previous conclusion that Healthcare, Energy, and to some degree Industrials and Financials industries exceed the other industries in the growth and revenue they achieved. There are companies in these industries in the upper right most corner, which the IT, Consumer Sector, and Telecommunication Services industries don't reach.  
+
+### Talk about some of the relationships you observed in this part of the investigation. Were there features that strengthened each other in terms of looking at your feature(s) of interest?
+Previous analysis showed there is a strong relationship between revenue and growth. Multivariate plots also showed that the industry matters: Healthcare, Energy, and Industrials achieve the highest degree of revenue and growth compared to IT, Consumer Sector, and Telecommunication Services industries. The Financials industry can be grouped with the higher revenue and growth group but it was represented as one of the outliers in the revenue versus growth plots.
+
+The greater the number of employees at a company, there more likely the company will have greater revenue and growth. 
+
+### Were there any interesting or surprising interactions between features?
+There is a positive relationship between revenue and growth which dispels the previous conclusion that smaller companies that may have less growth but it is represented in higher percentage growth. The same companies with the greatest revenue also had the high growth measured in dollars and percentage.  
+
+The multivariate plots suggest that the top states have different industries represented. I though California would stand out with more Information Technology companies and Texas would have more Energy companies. But these stereotypes don't seem to hold: the top states generally have a diverse range of industries which suggest the trend is that they have many fast growing companies in different sectors rather than companies specializing in one or two specific industries.   
+
+### OPTIONAL: Did you create any models with your dataset? Discuss the strengths and limitations of your model.
+
+```{r echo=FALSE, Linear_Model}
+library(memisc)
+m1 <- lm(I(growth_dollar) ~ I(revenue2014), data = companies)
+m2 <- update(m1, ~ . + workers)
+m3 <- update(m2, ~ . + industry)
+m4 <- update(m3, ~ . + state_l)
+mtable(m1, m2, m3, m4)
+```
+
+I built a linear model using the variables that my analysis highlighted had some effect on growth: revenue, industry, workers, state. The linear model appears to be relatively strong with an R-squared value of 0.9. The variables in this linear model account for about 90% of the variance in growth. Adding state to the linear model did not boost the R-squared value much which confirms that the state feature has little impact on the growth of a company. However, revenue is by far the greatest predictor of growth.  
+------
+
+# Final Plots and Summary
+
+### Plot One
+```{r echo=FALSE, Plot_One}
+library(gridExtra)
+hist.growth <- ggplot(data = companies, aes(x = growth_dollar)) +
+    geom_histogram(color = "black", fill = "steelblue", 
+                   binwidth = .05) +
+    scale_x_continuous(trans = "log10",  
+            breaks = c(1000000, 10000000, 100000000, 5000000000)) +
+    ggtitle("Number of Companies by Growth") +
+    xlab("Growth (in $USD Millions)") +
+    ylab("Number of Companies") 
+    
+
+hist.revenue <- ggplot(data = companies, aes(x = revenue2014)) +
+    geom_histogram(color = "black", fill = "steelblue", 
+                   binwidth = .05) +
+    scale_x_continuous(trans = "log10",  
+            breaks = c(1000000, 10000000, 100000000, 5000000000)) +
+    ggtitle("Number of Companies by Revenue") +
+    xlab("Revenue (in $USD Millions)") +
+    ylab("Number of Companies") 
+
+grid.arrange(hist.growth, hist.revenue, nrow = 1)
+```
+
+### Description One
+The distribution of growth and revenue appears to follow a normal distribution after performing a log transformation on both growth and revenue. Growth follows a more normal distribution than Revenue which appears to be truncated on the left side. This could be a result of the dataset containing only 5000 companies.  
+
+### Plot Two
+```{r echo=FALSE, Plot_Two}
+ggplot(data = subset(companies, revenue2014 < 2000000000),
+       aes(x = revenue2014/1000000, y = growth_dollar/1000000)) +
+    geom_jitter(aes(color = industry_tech)) +
+    scale_color_brewer(type = 'qual', palette = "Set1") +
+    geom_smooth(aes(color = industry_tech)) +
+    xlab("Revenue (in $USD Millions)") +
+    ylab("Growth (in $USD Millions)") +
+    ggtitle("Growth by 2014 Revenue for IT versus non-IT companies") +
+    scale_x_continuous(breaks = seq(from = 0, to = 2000, by = 250))
+
+```
+
+### Description Two
+Companies in non-IT-relatd industries experience greater revenue and growth than companies in the IT industries (including IT Services, software, and computer hardware). This trend is less prevalent in lower levels of revenue and growth where IT and non-IT-related companies are more competitive. In fact, IT industries exceed non-IT industries in growth by revenue at around $150-200 Million mark in terms of revenue and growth in dollars. 
+
+But at the highest levels of revenue, around $1.2-2 Billion, non-IT industires far outperform IT industries in terms of growth by revenue. This is likely due to capital-intensive and large-scale operations involved in healthcare, energy, and construction industries.
+
+
+### Plot Three
+```{r echo=FALSE, Plot_Three}
+ggplot(data = companies, 
+       aes(x = revenue2014, y = growth_per_worker)) +
+    geom_point(aes(color = workers_grouped)) +
+    scale_x_log10() +
+    scale_y_log10() +
+    scale_color_brewer(type = 'qual', name = "Number of \n Workers",
+                       labels = c("1 - 25", "26 - 50", "51 - 125",
+                         "126 - 250", "251 - 2500", "2501 - 1000",
+                         "1001 - 2000", "2001 - 3500")) +
+    xlab("Revenue (in $USD Millions)") +
+    ylab("Growth (in $USD Millions)") +
+    ggtitle("Growth (per worker) by Revenue")
+
+```
+
+### Description Three
+Calculating growth per worker is a better indicator of the efficiency of a company because it evens the playing field between large and small companies. The plot shows that companies with fewer employees tend to have more efficiency, that is, those companies generate less revenue but still achieve the highest strata of growth. In comparison, larger companies with more employees and greater revenue are generally achieving a lower level of growth. This trend is a continuum as there is some spread from left to right indicating some smaller companies with fewer employees are not as efficient as larger companies with greater number of employees. 
+
+------
+
+# Reflection
+
+The companies dataset contains information on the 5000 fastest growing private companies in the U.S. in 2014. I began my analysis with performing descriptive statistics to understand what the variables in the dataset mean and their distributions. 
+
+I started with the dominant question: what affects company growth? Since this dataset was about the fastest growing private companies, I was looking for variables that might shed light on what increases or decreases growth. I looked at different relationships between multiple features and eventually created a linear model using the variables revenue, industry, and workers which emerged as the most influential features that affect growth based on the plots and analysis of the dataset. 
+
+My conclusion is that revenue is the most robust feature in my dataset to predict growth. It accounts for almost 90% of the variance in growth. The industry and number of employees of a company also has an effect, albeit, a much smaller effect than revenue. 
+
+## Where did I run into difficulties in the analysis?
+The hardest part was understanding how different variables related to each other and how to tease apart their effect on growth. It was clear from the beginning that revenue has a direct effect on growth since growth is a calculation of the difference in revenue from the previous and current year. 
+
+However, I struggled to tease about how much other variables would affect growth and whether there was a meaningful relationship among other features, such as industry, state, workers, etc. 
+
+I also found adding the additional population data helpful in the beginning. However, once it became clear that the feature state played a less meaningful role compared to other features, I realized state population was a deadend.
+
+## Where did I find successes?
+I found a lot of interesting analysis when creating multivariate plots which helped clarify and drill into the relationship between revenue and growth. The plots that included industry and workers in the growth by revenue analysis offered more nuanced insight into what kinds of companies (for example, larger or smaller) in which industries had higher levels of growth. 
+
+I also spend a lot of time teasing apart the different perspectives on growth, for example growth measured in dollars, percentage, or by the number of workers, to understand the different facets on this feature. It helped to inform later analysis. 
+
+## How could the analysis be enriched in future work (e.g. additional data and analyses)?
+* More features to describe the companies. I would have liked to have the year the companies were founded as I wondered whether young companies experienced greater growth than older ones. The years on list feature was a small hint at the answer by far from robust enough to use in my analyses as a marker of company age.
+* Since the state population data was not a main focus, I didn't spend a lot of time aggregating data from the company dataset to calculate the state-by-state view. With more time, looking at the growth data from a state and even metro level would be interesting to see if certain states foster more growth because there are larger populations. Or perhaps certain metro areas are foster more growth in certain industries.  
+* Additional data on tax rates for different locales could set light on whether some areas in the U.S. foster more growth than others because the tax laws are more favorable to businesses. 
+* Since the dataset is looking at private companies, there is little public data about the assets, capital, debt, and other factors related to businesses. If this data were available, it could be interesting to evaluate my hypothesis that the larger companies also generate more revenue and growth because they are in capital-intensive industries. 
+* I would also like to test the linear model to predict which companies will have the greatest growth and determine how accurate my model is. As a result, I would also be able to test the assumptions I have made through my analyses and determine if conclusions based on the plots are accurate. 
+* Finally, it would be useful to  have the Inc. 5000 data from the last 5 years to compare with the 2014 dataset and see how the companies have changed over time. For example, are certain industries more popular in some states over time? Ideally, I would also like to have the metrics on the companies from my current dataset to see if their growth was also correlated with an increase in number of employees or moving offices from one state to another. 

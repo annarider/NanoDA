@@ -1003,17 +1003,14 @@ The multivariate plots suggest that the top states have different industries rep
 
 ```{r echo=FALSE, Linear_Model}
 library(memisc)
-m1 <- lm(I(log(revenue2014)) ~ I(industry), data = companies)
+m1 <- lm(I(growth_dollar) ~ I(revenue2014), data = companies)
 m2 <- update(m1, ~ . + workers)
-m3 <- update(m2, ~ . + state_l)
-m4 <- update(m3, ~ . + metro)
+m3 <- update(m2, ~ . + industry)
+m4 <- update(m3, ~ . + state_l)
 mtable(m1, m2, m3, m4)
 ```
 
-I built a linear model using the variables that my analysis highlighted had some effect on growth: industry, workers, state. I also added metro area as it further refines geographic location beyond state. The linear model appears to be very weak with an R-squared value of 0.211. The variables in this linear model account for about 20% of the variance in growth, which is very little. I didn't add many variable because I didn't want to overfit the model and make it appear to artificially predict growth. 
-
-Based on this finding and generally how difficult it is to predict growth, it is clear why large companies and whole industries exist to do these kinds of calculations and predictions. I suspect even if I did use all the variables in the dataset, it still might not account for 100% of the variance in growth because the features involved in predicting growth of a company are far more complex than the variables in my dataset.
-
+I built a linear model using the variables that my analysis highlighted had some effect on growth: revenue, industry, workers, state. The linear model appears to be relatively strong with an R-squared value of 0.9. The variables in this linear model account for about 90% of the variance in growth. Adding state to the linear model did not boost the R-squared value much which confirms that the state feature has little impact on the growth of a company. However, revenue is by far the greatest predictor of growth.  
 ------
 
 # Final Plots and Summary
@@ -1090,9 +1087,27 @@ Calculating growth per worker is a better indicator of the efficiency of a compa
 
 # Reflection
 
-The companies dataset contains information on the 5000 fastest growing private companies in the U.S. in 2014. 
+The companies dataset contains information on the 5000 fastest growing private companies in the U.S. in 2014. I began my analysis with performing descriptive statistics to understand what the variables in the dataset mean and their distributions. 
+
+I started with the dominant question: what affects company growth? Since this dataset was about the fastest growing private companies, I was looking for variables that might shed light on what increases or decreases growth. I looked at different relationships between multiple features and eventually created a linear model using the variables revenue, industry, and workers which emerged as the most influential features that affect growth based on the plots and analysis of the dataset. 
+
+My conclusion is that revenue is the most robust feature in my dataset to predict growth. It accounts for almost 90% of the variance in growth. The industry and number of employees of a company also has an effect, albeit, a much smaller effect than revenue. 
 
 ## Where did I run into difficulties in the analysis?
-The hardest part
-##Where did I find successes?
+The hardest part was understanding how different variables related to each other and how to tease apart their effect on growth. It was clear from the beginning that revenue has a direct effect on growth since growth is a calculation of the difference in revenue from the previous and current year. 
+
+However, I struggled to tease about how much other variables would affect growth and whether there was a meaningful relationship among other features, such as industry, state, workers, etc. 
+
+I also found adding the additional population data helpful in the beginning. However, once it became clear that the feature state played a less meaningful role compared to other features, I realized state population was a deadend.
+
+## Where did I find successes?
+I found a lot of interesting analysis when creating multivariate plots which helped clarify and drill into the relationship between revenue and growth. The plots that included industry and workers in the growth by revenue analysis offered more nuanced insight into what kinds of companies (for example, larger or smaller) in which industries had higher levels of growth. 
+
+I also spend a lot of time teasing apart the different perspectives on growth, for example growth measured in dollars, percentage, or by the number of workers, to understand the different facets on this feature. It helped to inform later analysis. 
+
 ##How could the analysis be enriched in future work (e.g. additional data and analyses)?
+* More features to describe the companies. I would have liked to have the year the companies were founded as I wondered whether young companies experienced greater growth than older ones. The years on list feature was a small hint at the answer by far from robust enough to use in my analyses as a marker of company age.
+* Since the state population data was not a main focus, I didn't spend a lot of time aggregating data from the company dataset to calculate the state-by-state view. With more time, looking at the growth data from a state and even metro level would be interesting to see if certain states foster more growth because there are larger populations. Or perhaps certain metro areas are foster more growth in certain industries.  
+* Additional data on tax rates for different locales could set light on whether some areas in the U.S. foster more growth than others because the tax laws are more favorable to businesses. 
+* Since the dataset is looking at private companies, there is little public data about the assets, capital, debt, and other factors related to businesses. If this data were available, it could be interesting to evaluate my hypothesis that the larger companies also generate more revenue and growth because they are in capital-intensive industries. 
+* I would also like to test the linear model to predict which companies will have the greatest growth and determine how accurate my model is. As a result, I would also be able to test the assumptions I have made through my analyses and determine if conclusions based on the plots are accurate. 
