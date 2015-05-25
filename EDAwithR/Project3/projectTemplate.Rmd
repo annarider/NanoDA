@@ -830,29 +830,40 @@ companies$workers_grouped <- cut(companies$workers,
 
 ggplot(data = subset(companies, !is.na(workers_grouped)), 
        aes(x = workers_grouped, y = growth_dollar)) +
-    geom_jitter(aes(color = industry_categories), alpha = 1/2) +
-    scale_color_brewer(type = 'qual', palette = "Set3") +
-    scale_x_log10()
-    geom_line(aes(color = workers_grouped), stat = 'summary', fun.y = median)
-
-ggplot(data = companies, 
-       aes(x = workers, y = growth_dollar)) +
-    geom_jitter(aes(color = industry_top3), alpha = 1/3) +
-    scale_color_brewer(type = 'qual', palette = "Set1") +
-    scale_x_log10() +
-    scale_y_log10() 
-
-ggplot(data = subset(companies, !is.na(workers_grouped)), 
-       aes(x = workers_grouped, y = growth_dollar)) +
     geom_violin(aes(color = industry_tech)) +
     scale_color_brewer(type = 'qual', palette = "Set1") +
     scale_y_log10() +
     theme(axis.text.x = element_text(size = 12))
 
 cor.test(companies$workers, companies$growth_dollar)
-    
+
+
+ggplot(data = subset(companies, !is.na(workers_grouped)), 
+       aes(x = workers_grouped, y = growth_dollar)) +
+    geom_jitter(aes(color = industry_categories), alpha = 1) +
+    scale_color_brewer(type = 'qual', palette = "Set3") +
+    scale_y_log10() +
+    theme(axis.text.x = element_text(size = 12))
+    geom_line(aes(color = workers_grouped), stat = 'summary', fun.y = median)
+
+ggplot(data = companies, 
+       aes(x = revenue2014, y = growth_dollar)) +
+    geom_jitter(aes(color = workers_grouped)) +
+    scale_color_brewer(type = 'qual', palette = "Paired") +
+    scale_x_log10() +
+    scale_y_log10() 
+
+ggplot(data = companies, 
+       aes(x = revenue2014, y = growth_percentage)) +
+    geom_jitter(aes(color = workers_grouped)) +
+    scale_color_brewer(type = 'qual', palette = "Paired") +
+    scale_x_log10() +
+    scale_y_log10() 
 ```
 
+Companies that have lower number of employees also tend to have a lower amount of revenue and therefore lower growth in dollars (since growth is derived from revenue). There is a consistent trends of the companies with the greatest number of employees also having the highest revenue and growth. The second plot with revenue and percentage growth colored by workers shows that companies with fewer employees also have lower percentage growth. This conclusion dispels the theory I proposed earlier that smaller companies with fewer employees and lower revenue in dollars have greater percentage growth because every incremental revenue dollar accounts for a greater degree of growth. 
+
+Rather, the trend seems to point to the fact that companies with the greatest number of employees also tend to generate the most revenue and growth calculated in dollars and percentage.
 
 # Multivariate Analysis
 
