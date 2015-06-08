@@ -10,3 +10,6 @@ auckland-sample.osm
 data/
 DataWranglingMongoDB/data
 dataset/
+enron_mail_20150507.tgz
+maildir/
+maildir 2/
