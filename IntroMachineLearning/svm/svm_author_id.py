@@ -27,9 +27,9 @@ features_train, features_test, labels_train, labels_test = preprocess()
 # 10.0, 100., 1000., and 10000.
 clf = SVC(C = 10000.0, kernel="rbf")
 
-# reduce size of training set to speed up svm 
-features_train = features_train[:len(features_train)/100] 
-labels_train = labels_train[:len(labels_train)/100] 
+### reduce size of training set to speed up svm 
+#features_train = features_train[:len(features_train)/100] 
+#labels_train = labels_train[:len(labels_train)/100] 
 ### timing to train algorithm
 t0 = time()
 clf.fit(features_train, labels_train)
@@ -69,4 +69,9 @@ testing time: 1.419 s
 training time: 0.139 s
 testing time: 1.189 s
 0.892491467577
+
+# rbf, C = 1000., with full dataset
+training time: 137.801 s
+testing time: 14.981 s
+0.990898748578
 '''
