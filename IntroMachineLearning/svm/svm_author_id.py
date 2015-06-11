@@ -28,8 +28,8 @@ features_train, features_test, labels_train, labels_test = preprocess()
 clf = SVC(C = 10000.0, kernel="rbf")
 
 ### reduce size of training set to speed up svm 
-features_train = features_train[:len(features_train)/100] 
-labels_train = labels_train[:len(labels_train)/100] 
+#features_train = features_train[:len(features_train)/100] 
+#labels_train = labels_train[:len(labels_train)/100] 
 ### timing to train algorithm
 t0 = time()
 clf.fit(features_train, labels_train)
@@ -49,9 +49,21 @@ print "testing time:", round(time()-t1, 3), "s"
 acc = accuracy_score(pred, labels_test)
 print acc
 
-print 'element (10, 26, 50) = ', pred[10], ', ', pred[26], ',', pred[50]
+#print 'element (10, 26, 50) = ', pred[10], ', ', pred[26], ',', pred[50]
+
+chris = 0
+sara = 0
+
+for e in pred: 
+    if e == 1: 
+        chris += 1 
+    elif e == 0:
+        sara += 1
+print 'Chris = ', chris
+print 'Sara = ', sara
 
 '''
+Answers to quiz questions
 # rbf, C = 10.0
 training time: 0.141 s
 testing time: 1.481 s
