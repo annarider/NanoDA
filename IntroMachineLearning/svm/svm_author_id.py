@@ -24,7 +24,8 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 #########################################################
 
-clf = SVC(kernel="rbf")
+# 10.0, 100., 1000., and 10000.
+clf = SVC(C = 10000.0, kernel="rbf")
 
 # reduce size of training set to speed up svm 
 features_train = features_train[:len(features_train)/100] 
@@ -48,4 +49,24 @@ print "testing time:", round(time()-t1, 3), "s"
 acc = accuracy_score(pred, labels_test)
 print acc
 
+'''
+# rbf, C = 10.0
+training time: 0.141 s
+testing time: 1.481 s
+0.616040955631
 
+# rbf, C = 100.0
+training time: 0.126 s
+testing time: 1.438 s
+0.616040955631
+
+# rbf, C = 10000.0
+training time: 0.148 s
+testing time: 1.419 s
+0.821387940842
+
+# rbf, C = 1000.
+training time: 0.139 s
+testing time: 1.189 s
+0.892491467577
+'''
