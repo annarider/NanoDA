@@ -84,8 +84,15 @@ training time: 0.139 s
 testing time: 1.189 s
 0.892491467577
 
-# rbf, C = 1000., with full dataset
+# rbf, C = 10000., with full dataset
 training time: 137.801 s
 testing time: 14.981 s
 0.990898748578
+
+# rbf, C = 10000., with full dataset, calc pred # Chris
+training time: 126.027 s
+testing time: 12.659 s
+0.990898748578
+Chris =  877
+Sara =  881
 '''
