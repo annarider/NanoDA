@@ -1,5 +1,6 @@
 from explore_enron_data import enron_data
 import os
+import re
 
 def audit_num_people():
 
@@ -40,6 +41,17 @@ def audit_wesley_colwell(feature):
         if key == 'COLWELL WESLEY': 
             print "email messages from Wesley Colwell to poi:", enron_data[key][feature]
 
+def audit_person_feature(person, feature):
+    for key in enron_data:
+        if key == person:
+            if enron_data[key][feature] != None:
+                print person, feature, ":", enron_data[key][feature]
+            else: 
+                print person, feature, ": None"
+        else: 
+            print "No", person, "in dataset"
+
+
 def see_features():
     # find all possible features for individuals
     for key in enron_data.keys():
@@ -52,4 +64,5 @@ if __name__ == '__main__':
     # count_names('poi_names.txt')
     # see_features()
     # audit_james_prentice('total_stock_value')
-    audit_wesley_colwell('from_this_person_to_poi')
+    # audit_wesley_colwell('from_this_person_to_poi')
+    audit_person_feature('SKILLING JEFFREY', 'exercised_stock_options')    
