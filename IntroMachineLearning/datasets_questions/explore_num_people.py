@@ -43,13 +43,23 @@ def audit_wesley_colwell(feature):
 
 def audit_person_feature(person, feature):
     for key in enron_data:
-        if key == person:
+        if( key[0:len(person)].lower() == person.lower() and
+            len(key) <= len(person) + 3):
             if enron_data[key][feature] != None:
+                
                 print person, feature, ":", enron_data[key][feature]
             else: 
                 print person, feature, ": None"
-        else: 
-            print "No", person, "in dataset"
+        # else: 
+            # print "No", person, "in dataset"
+
+def quantify_feature(feature):
+    num = 0
+    for key in enron_data:
+        if feature in enron_data[key]:
+            if enron_data[key][feature] != 'NaN':
+                num += 1
+    return num
 
 
 def see_features():
@@ -62,7 +72,13 @@ def see_features():
 if __name__ == '__main__':
     # audit_num_people()
     # count_names('poi_names.txt')
-    # see_features()
+    see_features()
     # audit_james_prentice('total_stock_value')
     # audit_wesley_colwell('from_this_person_to_poi')
-    audit_person_feature('SKILLING JEFFREY', 'exercised_stock_options')    
+    # audit_person_feature('SKILLING JEFFREY', 'exercised_stock_options')
+    # print 'Jeff Skilling:',  audit_person_feature('SKILLING JEFFREY', 'total_payments')
+    # print 'Ken Lay:', audit_person_feature('LAY KENNETH', 'total_payments')   
+    # print 'Andy Fastow:', audit_person_feature('FASTOW ANDREW', 'total_payments')
+    print 'num salary:', quantify_feature('salary')
+    print 'num email:', quantify_feature('email_address')
+
