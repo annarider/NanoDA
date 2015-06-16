@@ -61,6 +61,29 @@ def quantify_feature(feature):
                 num += 1
     return num
 
+def quantify_total_feature(feature):
+    num = 0
+    for key in enron_data:
+        if feature in enron_data[key]:
+            num += 1
+    return num
+
+def quantify_NaN_feature(feature):
+    num = 0
+    for key in enron_data:
+        if feature in enron_data[key]:
+            if enron_data[key][feature] == 'NaN':
+                num += 1
+    return num
+
+def quantify_poi_NaN_feature(feature1, feature2):
+    num = 0
+    for key in enron_data:
+        if feature1 in enron_data[key] and enron_data[key][feature1] == True:
+            if feature2 in enron_data[key]:
+                if enron_data[key][feature2] == 'NaN':
+                    num += 1
+    return num
 
 def see_features():
     # find all possible features for individuals
@@ -72,13 +95,18 @@ def see_features():
 if __name__ == '__main__':
     # audit_num_people()
     # count_names('poi_names.txt')
-    see_features()
+    # see_features()
     # audit_james_prentice('total_stock_value')
     # audit_wesley_colwell('from_this_person_to_poi')
     # audit_person_feature('SKILLING JEFFREY', 'exercised_stock_options')
     # print 'Jeff Skilling:',  audit_person_feature('SKILLING JEFFREY', 'total_payments')
     # print 'Ken Lay:', audit_person_feature('LAY KENNETH', 'total_payments')   
     # print 'Andy Fastow:', audit_person_feature('FASTOW ANDREW', 'total_payments')
-    print 'num salary:', quantify_feature('salary')
-    print 'num email:', quantify_feature('email_address')
-
+    # print 'num salary:', quantify_feature('salary')
+    # print 'num email:', quantify_feature('email_address')
+    # print 'total_payments:', quantify_NaN_feature('total_payments')
+    # print '% total payment NaN:', float(quantify_NaN_feature('total_payments'))/len(enron_data)
+    # print quantify_poi_NaN_feature('poi','total_payments')/float(len(enron_data))
+    # print len(enron_data) + 10, quantify_NaN_feature('total_payments') + 10
+    print quantify_total_feature('poi') + 10, len(enron_data)
+    print quantify_poi_NaN_feature('poi', 'total_payments') + 10
