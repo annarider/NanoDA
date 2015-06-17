@@ -6,3 +6,6 @@ http://stackoverflow.com/questions/3545331/how-can-i-get-dictionary-key-as-varia
 
 - Read in file to Python
 http://stackoverflow.com/questions/3925614/how-do-you-read-a-file-into-a-list-in-python
+
+- Import module in another directory
+http://stackoverflow.com/questions/279237/import-a-module-from-a-relative-path
