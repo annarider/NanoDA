@@ -6,6 +6,9 @@ matplotlib.use('agg')
 
 import matplotlib.pyplot as plt
 from studentRegression import studentReg
+
+import sys
+sys.path.append('../naive_bayes/')
 from class_vis import prettyPicture, output_image
 
 from ages_net_worths import ageNetWorthData
