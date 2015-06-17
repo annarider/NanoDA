@@ -64,7 +64,7 @@ def quantify_feature(feature):
 def quantify_total_feature(feature):
     num = 0
     for key in enron_data:
-        if feature in enron_data[key]:
+        if feature in enron_data[key] and enron_data[key][feature] == True:
             num += 1
     return num
 
