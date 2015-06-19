@@ -17,24 +17,24 @@ reg.fit(ages_train, net_worths_train)
 ### so you'll want to do something like net_worth = predict([27])[0]
 ### (not exact syntax, the point is that [0] at the end)
 km_net_worth = reg.predict([27])[0] ### fill in the line of code to get the right value
-print km
+#print km_net_worth
 
 ### get the slope
 ### again, you'll get a 2-D array, so stick the [0][0] at the end
-slope = 0. ### fill in the line of code to get the right value
+slope = reg.predict([27])[0] - reg.predict([26])[0] ### fill in the line of code to get the right value
+#print reg.predict([27])[0] - reg.predict([26])[0]
 
 ### get the intercept
 ### here you get a 1-D array, so stick [0] on the end to access
 ### the info we want
-intercept = 0. ### fill in the line of code to get the right value
-
+intercept = reg.predict([0])[0] ### fill in the line of code to get the right value
 
 ### get the score on test data
-test_score = 0. ### fill in the line of code to get the right value
+test_score = reg.score(ages_test, net_worths_test) ### fill in the line of code to get the right value
 
 
 ### get the score on the training data
-training_score = 0. ### fill in the line of code to get the right value
+training_score = reg.score(ages_train, net_worths_train) ### fill in the line of code to get the right value
 
 
 
