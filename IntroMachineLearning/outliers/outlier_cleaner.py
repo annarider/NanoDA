@@ -4,7 +4,7 @@
 def outlierCleaner(predictions, ages, net_worths):
     """
         clean away the 10% of points that have the largest
-        residual errors (different between the prediction
+        residual errors (difference between the prediction
         and the actual net worth)
 
         return a list of tuples named cleaned_data where 
