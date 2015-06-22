@@ -82,6 +82,10 @@ if len(cleaned_data) > 0:
     plt.xlabel("ages")
     plt.ylabel("net worths")
     plt.show()
+    print "cleaned train slope:", reg.coef_
+    score_test = reg.score(ages_test, net_worths_test)
+    print "cleaned test score:", score_test
+    
 
 
 else:
