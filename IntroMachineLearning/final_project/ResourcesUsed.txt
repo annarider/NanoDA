@@ -9,3 +9,34 @@ http://stackoverflow.com/questions/3925614/how-do-you-read-a-file-into-a-list-in
 
 - Import module in another directory
 http://stackoverflow.com/questions/279237/import-a-module-from-a-relative-path
+
+- Create tuple from list
+http://stackoverflow.com/questions/7313157/python-create-list-of-tuples-from-lists
+
+- Get nth element of a tuple
+http://stackoverflow.com/questions/15558278/how-to-get-nth-element-from-a-10-tuple-in-haskell
+
+- Determine type of object in Python
+http://stackoverflow.com/questions/2225038/determine-the-type-of-an-object
+
+- Import module from different directory using relative path
+http://stackoverflow.com/questions/279237/import-a-module-from-a-relative-path
+import sys
+sys.path.append( <path to dirFoo> )
+import Bar
+
+
+Numpy
+*******************************************
+- Combine two numpy arrays element wise
+http://stackoverflow.com/questions/17619415/how-do-i-combine-two-numpy-arrays-element-wise-in-python
+
+- Equivalent of zip in numpy
+http://stackoverflow.com/questions/12744778/what-is-the-equivalent-of-zip-in-pythons-numpy
+
+- Convert Numpy array into Python list
+http://stackoverflow.com/questions/1966207/converting-numpy-array-into-python-list-structure
+
+- Numpy function return first index in array
+http://stackoverflow.com/questions/432112/is-there-a-numpy-function-to-return-the-first-index-of-something-in-an-array
+
