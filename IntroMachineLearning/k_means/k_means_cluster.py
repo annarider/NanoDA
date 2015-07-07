@@ -66,10 +66,41 @@ def find_range_values_feature(feature):
             feature_list.append(feature_val)
     min_val = min(feature_list)
     max_val = max(feature_list)
-    return "min:", min_val, "max:", max_val                 
+    return min_val, max_val                 
 
-print find_range_values_feature("exercised_stock_options") 
-print find_range_values_feature("salary")
+#print find_range_values_feature("exercised_stock_options") 
+#print find_range_values_feature("salary")
+
+def feature_scaling(feature):
+    feature_list = []
+    for person in data_dict:
+        feature_val = data_dict[person][feature]
+        
+        if feature_val != 'NaN':
+            feature_list.append(feature_val)
+
+    return feature_list
+
+
+def feature_
+### Perform feature scaling using scikit learn MinMaxScaler
+from sklearn import preprocessing
+import numpy as np
+
+salary_list = feature_scaling("salary")
+salary_list_float = [[float(i)] for i in salary_list]
+
+#print salary_list_float
+salary_array = np.asarray(salary_list_float)
+
+min_max_salary_scaler = preprocessing.MinMaxScaler()
+train_salary_minmax = min_max_salary_scaler.fit_transform(salary_array)
+
+
+# salary $200,000
+test_salary_array = np.array([[200000]])
+test_salary_minmax = min_max_salary_scaler.transform(test_salary_array)
+print test_salary_minmax 
 
 
 ### in the "clustering with 3 features" part of the mini-project,
