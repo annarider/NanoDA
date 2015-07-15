@@ -25,6 +25,14 @@ import sys
 sys.path.append( <path to dirFoo> )
 import Bar
 
+- Join more than 2 Strings
+http://www.tutorialspoint.com/python/string_join.htm
+
+- Import library problem. Set environment variable PYTHONPATH
+http://stackoverflow.com/questions/14311601/importing-libraries-issue-importerror-no-module-named
+
+- Elegant Regex solution for replacing multiple strings
+http://stackoverflow.com/questions/6116978/python-replace-multiple-strings
 
 Numpy
 *******************************************
@@ -40,3 +48,10 @@ http://stackoverflow.com/questions/1966207/converting-numpy-array-into-python-li
 - Numpy function return first index in array
 http://stackoverflow.com/questions/432112/is-there-a-numpy-function-to-return-the-first-index-of-something-in-an-array
 
+NLTK
+********************************************
+- Stemmer Documentation
+http://www.nltk.org/howto/stem.html
+
+- Snowball Stemmer Documentation
+http://www.nltk.org/_modules/nltk/stem/snowball.html 

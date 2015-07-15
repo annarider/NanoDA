@@ -36,7 +36,8 @@ def parseOutText(f):
         indv_words = text_string.split()
         stemmer = SnowballStemmer("english")
         for word in indv_words:
-            words += stemmer.stem(word)
+            words += ''.join([stemmer.stem(word), ' '])            
+            #words.join([stemmer.stem(word), ' '])
 
 
 
