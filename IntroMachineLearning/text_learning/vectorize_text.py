@@ -86,4 +86,6 @@ print word_data[152]
 from sklearn.feature_extraction.text import TfidfVectorizer
 vectorizer = TfidfVectorizer(stop_words = "english")
 vectorizer.fit_transform(word_data)
-print "num different words:", len(vectorizer.get_feature_names())
+vocab_list = vectorizer.get_feature_names()
+print "num different words:", len(vocab_list)
+print vocab_list[34597]
