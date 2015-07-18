@@ -51,7 +51,9 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
             
             ### use str.replace() to remove any instances of the words
             replacements = {"sara": "", "shackleton": "", 
-                            "chris": "", "germani":""}
+                            "chris": "", "germani":"",
+                            "sshacklensf": "",
+                            "sshacklmsncom": ""}
             replacements = dict((re.escape(k), v) 
                               for k, v in replacements.iteritems())
             pattern = re.compile("|".join(replacements.keys()))
