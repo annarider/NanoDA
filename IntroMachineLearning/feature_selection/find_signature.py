@@ -51,7 +51,7 @@ print "accuracy:", accuracy
 
 
 for i, feature in enumerate(clf.feature_importances_):
-    if feature > 0.01:
+    if feature > 0.2:
         print "feature:", feature, "i:", i , bag_of_words[i]
 
 #print "signature word?", bag_of_words[33614]
