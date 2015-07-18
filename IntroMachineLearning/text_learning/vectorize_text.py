@@ -53,13 +53,18 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
             replacements = {"sara": "", "shackleton": "", 
                             "chris": "", "germani":"",
                             "sshacklensf": "",
-                            "sshacklmsncom": ""}
-            replacements = dict((re.escape(k), v) 
-                              for k, v in replacements.iteritems())
-            pattern = re.compile("|".join(replacements.keys()))
-            parsed_email_stripped_common_words = pattern.sub(
-                    lambda m: replacements[re.escape(m.group(0))], parsed_email)
-        
+                            "cgermannsf": ""}
+                            
+#                            
+#            replacements = dict((re.escape(k), v) 
+#                              for k, v in replacements.iteritems())
+#            pattern = re.compile("|".join(replacements.keys()))
+#            parsed_email_stripped_common_words = pattern.sub(
+#                    lambda m: replacements[re.escape(m.group(0))], parsed_email)
+                            
+            parsed_email_stripped_common_words = parsed_email
+            for word in replacements.keys():
+                parsed_email_stripped_common_words = parsed_email_stripped_common_words.replace(word, "")
 
             ### append the text to word_data
             word_data.append(parsed_email_stripped_common_words)
