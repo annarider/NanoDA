@@ -29,4 +29,39 @@ labels, features = targetFeatureSplit(data)
 
 ### it's all yours from here forward!  
 
+### create overfit decision tree classifier
+#from sklearn import tree
+#from sklearn.metrics import accuracy_score
+#
+#
+#clf = tree.DecisionTreeClassifier()
+#clf.fit(features, labels)
+#
+#prediction = clf.predict(features)
+#
+#accuracy = accuracy_score(prediction, labels)
+#
 
+#print accuracy
+
+### split features & labels into training and test sets
+from sklearn import cross_validation
+
+features_train, features_test, labels_train, labels_test = cross_validation.train_test_split(
+	features, labels, test_size = 0.3, random_state = 42)
+	
+
+### create not overfitted decision tree classifier
+from sklearn import tree
+from sklearn.metrics import accuracy_score
+
+
+clf = tree.DecisionTreeClassifier()
+clf.fit(features_train, labels_train)
+
+prediction = clf.predict(features_test)
+
+accuracy = accuracy_score(prediction, labels_test)
+
+
+print accuracy
