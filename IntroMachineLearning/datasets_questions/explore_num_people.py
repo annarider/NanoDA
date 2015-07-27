@@ -52,6 +52,23 @@ def audit_person_feature(person, feature):
                 print person, feature, ": None"
         # else: 
             # print "No", person, "in dataset"
+																
+				
+# Tells me, for every feature, the number of valid values. 
+# Subtract from 146 (total num of data points) to find number of missing values	
+											
+def quantify_all_features():
+    features = {}
+    
+    for person in enron_data:
+        for feature in enron_data[person]:
+            if enron_data[person][feature] != 'NaN':
+                if feature in features:
+                    features[feature] += 1
+                else: 
+                    features[feature] = 1
+        
+    return features
 
 def quantify_feature(feature):
     num = 0
@@ -93,7 +110,7 @@ def see_features():
         break
 
 if __name__ == '__main__':
-    # audit_num_people()
+     audit_num_people()
     # count_names('poi_names.txt')
     # see_features()
     # audit_james_prentice('total_stock_value')
@@ -108,5 +125,6 @@ if __name__ == '__main__':
     # print '% total payment NaN:', float(quantify_NaN_feature('total_payments'))/len(enron_data)
     # print quantify_poi_NaN_feature('poi','total_payments')/float(len(enron_data))
     # print len(enron_data) + 10, quantify_NaN_feature('total_payments') + 10
-    print quantify_total_feature('poi') + 10, len(enron_data)
-    print quantify_poi_NaN_feature('poi', 'total_payments') + 10
+#    print quantify_total_feature('poi') + 10, len(enron_data)
+#    print quantify_poi_NaN_feature('poi', 'total_payments') + 10
+     print quantify_all_features()

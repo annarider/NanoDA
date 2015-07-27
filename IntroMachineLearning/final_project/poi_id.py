@@ -15,6 +15,13 @@ features_list = ['poi','salary'] # You will need to use more features
 ### Load the dictionary containing the dataset
 data_dict = pickle.load(open("final_project_dataset.pkl", "r") )
 
+### Data Exploration
+#from pprint import PrettyPrinter
+#pp = PrettyPrinter(indent = 4)
+#pp.pprint(data_dict)
+
+print "num of data points", len(data_dict)
+
 ### Task 2: Remove outliers
 ### Task 3: Create new feature(s)
 ### Store to my_dataset for easy export below.
