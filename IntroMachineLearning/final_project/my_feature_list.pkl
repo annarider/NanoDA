@@ -3,4 +3,6 @@ S'poi'
 p1
 aS'salary'
 p2
+aS'bonus'
+p3
 a.
