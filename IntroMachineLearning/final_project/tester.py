@@ -42,6 +42,8 @@ def test_classifier(clf, dataset, feature_list, folds = 1000):
         for jj in test_idx:
             features_test.append( features[jj] )
             labels_test.append( labels[jj] )
+        print ("features_train:", len(features_train), "labels_train:", len(labels_train),
+                "features_test:", len(features_test), "labels_test:", len(labels_test))
         
         ### fit the classifier using training set, and test on test set
         clf.fit(features_train, labels_train)

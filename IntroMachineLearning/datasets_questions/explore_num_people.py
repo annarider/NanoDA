@@ -110,9 +110,9 @@ def see_features():
         break
 
 if __name__ == '__main__':
-     audit_num_people()
+#     audit_num_people()
     # count_names('poi_names.txt')
-    # see_features()
+     see_features()
     # audit_james_prentice('total_stock_value')
     # audit_wesley_colwell('from_this_person_to_poi')
     # audit_person_feature('SKILLING JEFFREY', 'exercised_stock_options')
