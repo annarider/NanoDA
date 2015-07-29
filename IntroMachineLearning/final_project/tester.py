@@ -12,6 +12,7 @@
 
 import pickle
 import sys
+import numpy as np
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 from sklearn.cross_validation import StratifiedShuffleSplit
@@ -23,40 +24,57 @@ PERF_FORMAT_STRING = "\
 Recall: {:>0.{display_precision}f}\tF1: {:>0.{display_precision}f}\tF2: {:>0.{display_precision}f}"
 RESULTS_FORMAT_STRING = "\tTotal predictions: {:4d}\tTrue positives: {:4d}\tFalse positives: {:4d}\tFalse negatives: {:4d}\tTrue negatives: {:4d}"
 
-def test_classifier(clf, dataset, feature_list, folds = 1000):
+def test_classifier(dataset, feature_list, folds = 1000):
     data = featureFormat(dataset, feature_list, sort_keys = True)
     labels, features = targetFeatureSplit(data)
-    cv = StratifiedShuffleSplit(labels, folds, random_state = 42)
-    true_negatives = 0
-    false_negatives = 0
-    true_positives = 0
-    false_positives = 0
+    # configure split of test_size and train_size
+    cv = StratifiedShuffleSplit(labels, folds, random_state = 42, 
+                                test_size = .2, train_size = .8)
+#    print cv
+
     for train_idx, test_idx in cv: 
-        features_train = []
-        features_test  = []
-        labels_train   = []
-        labels_test    = []
+        features_train      = []
+        features_test       = []
+        features_validation = []
+        labels_train        = []
+        labels_test         = []
+        labels_validation   = []
         for ii in train_idx:
             features_train.append( features[ii] )
             labels_train.append( labels[ii] )
         for jj in test_idx:
-            features_test.append( features[jj] )
-            labels_test.append( labels[jj] )
-        print ("features_train:", len(features_train), "labels_train:", len(labels_train),
-                "features_test:", len(features_test), "labels_test:", len(labels_test))
+            if jj % 2 == 0:
+                features_validation.append( features[jj] )
+                labels_validation.append( labels[jj] )
+            else: 
+                features_test.append( features[jj] )
+                labels_test.append( labels[jj] )
         
-        ### fit the classifier using training set, and test on test set
-        clf.fit(features_train, labels_train)
-        predictions = clf.predict(features_test)
-        for prediction, truth in zip(predictions, labels_test):
-            if prediction == 0 and truth == 0:
-                true_negatives += 1
-            elif prediction == 0 and truth == 1:
-                false_negatives += 1
-            elif prediction == 1 and truth == 0:
-                false_positives += 1
-            else:
-                true_positives += 1
+    return features_train, labels_train, features_test, labels_test, features_validation, labels_validation
+        
+def fit_and_test_classifier(clf, features_train, labels_train, features_test, labels_test):        
+    true_negatives = 0
+    false_negatives = 0
+    true_positives = 0
+    false_positives = 0
+    ### fit the classifier using training set, and test on test set
+    clf.fit(features_train, labels_train)
+    predictions = clf.predict(features_test)
+    for prediction, truth in zip(predictions, labels_test):
+        if prediction == 0 and truth == 0:
+            true_negatives += 1
+        elif prediction == 0 and truth == 1:
+            false_negatives += 1
+        elif prediction == 1 and truth == 0:
+            false_positives += 1
+        else:
+            true_positives += 1
+                
+                
+# Determine size of training & test sets
+#    
+#                
+                
     try:
         total_predictions = true_negatives + false_negatives + false_positives + true_positives
         accuracy = 1.0*(true_positives + true_negatives)/total_predictions
@@ -90,7 +108,13 @@ def main():
     ### load up student's classifier, dataset, and feature_list
     clf, dataset, feature_list = load_classifier_and_data()
     ### Run testing script
-    test_classifier(clf, dataset, feature_list)
+    features_train, labels_train, features_test, labels_test, features_validation, labels_validation = test_classifier(dataset, feature_list)
+    fit_and_test_classifier(clf, features_train, labels_train, features_test, labels_test)
+#    fit_and_test_classifier(clf, features_train, labels_train, features_validation, labels_validation)
+    print "features_train:", len(features_train), "labels_train:", len(labels_train)      
+    print "features_test:", len(features_test), "labels_test:", len(labels_test)
+#    print "features_validation:", len(features_validation), "labels_validation:", len(labels_validation)
+
 
 if __name__ == '__main__':
     main()
