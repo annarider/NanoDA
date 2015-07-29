@@ -48,9 +48,14 @@ def test_classifier(clf, dataset, feature_list, folds = 1000):
             else: 
                 features_test.append( features[jj] )
                 labels_test.append( labels[jj] )
-        
-    return clf, features_train, labels_train, features_test, labels_test, features_validation, labels_validation
-        
+                
+# Determine size of training & test sets      
+    fit_and_test_classifier(clf, features_train, labels_train, features_test, labels_test)
+    fit_and_test_classifier(clf, features_train, labels_train, features_validation, labels_validation)
+    print "features_train:", len(features_train), "labels_train:", len(labels_train)      
+    print "features_test:", len(features_test), "labels_test:", len(labels_test)
+    print "features_validation:", len(features_validation), "labels_validation:", len(labels_validation)
+    
 def fit_and_test_classifier(clf, features_train, labels_train, features_test, labels_test):        
     true_negatives = 0
     false_negatives = 0
@@ -69,10 +74,7 @@ def fit_and_test_classifier(clf, features_train, labels_train, features_test, la
         else:
             true_positives += 1
                 
-                
-# Determine size of training & test sets
-#    
-#                
+               
                 
     try:
         total_predictions = true_negatives + false_negatives + false_positives + true_positives
@@ -106,14 +108,7 @@ def load_classifier_and_data():
 def main():
     ### load up student's classifier, dataset, and feature_list
     clf, dataset, feature_list = load_classifier_and_data()
-    ### Run testing script
-    clf, features_train, labels_train, features_test, labels_test, features_validation, labels_validation = test_classifier(clf, dataset, feature_list)
-    fit_and_test_classifier(clf, features_train, labels_train, features_test, labels_test)
-    fit_and_test_classifier(clf, features_train, labels_train, features_validation, labels_validation)
-    print "features_train:", len(features_train), "labels_train:", len(labels_train)      
-    print "features_test:", len(features_test), "labels_test:", len(labels_test)
-    print "features_validation:", len(features_validation), "labels_validation:", len(labels_validation)
-
+    test_classifier(clf, dataset, feature_list)
 
 if __name__ == '__main__':
     main()
