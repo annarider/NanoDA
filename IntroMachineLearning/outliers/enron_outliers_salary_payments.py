@@ -8,8 +8,9 @@ from feature_format import featureFormat, targetFeatureSplit
 
 
 ### read in data dictionary, convert to numpy array
-data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r") ) 
-features = ["salary", "bonus"]
+data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r") )
+features = ["poi", "salary", "total_payments"]
+
 
 # remove TOTAL outlier
 data_dict.pop('TOTAL', 0)
@@ -19,16 +20,18 @@ outlier_salary = 0
 ### your code below
 
 for point in data:
-    salary = point[0]
-    bonus = point[1]
-    matplotlib.pyplot.scatter( salary, bonus )
+    color = 'r' if point[0] == 1 else 'g'
+    salary = point[1]
+    total_payments = point[2]
+    matplotlib.pyplot.scatter( salary, total_payments, color = color )
+    
 
     # find outlier person    
-    if salary > 2500000:
-        print "salary:", salary, "bonus:", bonus
+    if salary > 800000:
+        print "salary:", salary, "total_payments:", total_payments
         outlier_salary = salary
 
-# Find biggest outlier in data_dict
+# Find outlier in data_dict
 for key in data_dict: 
 #    print key
     if data_dict[key]['salary'] == outlier_salary:
@@ -36,14 +39,14 @@ for key in data_dict:
 
 # find 4 outliers in cleaner dataset
 for key in data: 
-    salary = key[0]
-    if salary > 600000:
+    salary = key[1]
+    if salary > 800000:
         for p in data_dict:
             if data_dict[p]['salary'] == salary:
                 print p
 
 matplotlib.pyplot.xlabel("salary")
-matplotlib.pyplot.ylabel("bonus")
+matplotlib.pyplot.ylabel("total_payments")
 matplotlib.pyplot.show()
 
 
