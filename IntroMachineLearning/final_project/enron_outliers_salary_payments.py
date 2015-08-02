@@ -9,7 +9,7 @@ from feature_format import featureFormat, targetFeatureSplit
 
 ### read in data dictionary, convert to numpy array
 data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r") )
-features = ["poi", "salary", "total_payments"]
+features = ["poi", "salary", "shared_receipt_with_poi"]
 
 
 # remove TOTAL outlier

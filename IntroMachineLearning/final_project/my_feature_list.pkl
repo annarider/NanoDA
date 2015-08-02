@@ -1,6 +1,16 @@
 (lp0
 S'poi'
 p1
-aS'bonus'
+aS'shared_receipt_with_poi'
 p2
+aS'loan_advances'
+p3
+aS'director_fees'
+p4
+aS'to_messages'
+p5
+aS'from_poi_to_this_person'
+p6
+aS'from_messages'
+p7
 a.
