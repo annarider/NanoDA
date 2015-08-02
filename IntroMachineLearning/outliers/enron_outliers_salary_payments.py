@@ -2,7 +2,7 @@
 
 import pickle
 import sys
-import matplotlib.pyplot
+import matplotlib.pyplot as plt
 sys.path.append("../tools/")
 from feature_format import featureFormat, targetFeatureSplit
 
@@ -20,10 +20,11 @@ outlier_salary = 0
 ### your code below
 
 for point in data:
-    color = 'r' if point[0] == 1 else 'g'
+    color = 'y' if point[0] == 1 else 'c'
     salary = point[1]
     total_payments = point[2]
-    matplotlib.pyplot.scatter( salary, total_payments, color = color )
+    plt.scatter( salary, total_payments, color = color)
+    
     
 
     # find outlier person    
@@ -45,8 +46,10 @@ for key in data:
             if data_dict[p]['salary'] == salary:
                 print p
 
-matplotlib.pyplot.xlabel("salary")
-matplotlib.pyplot.ylabel("total_payments")
-matplotlib.pyplot.show()
+plt.xlabel("salary")
+plt.ylabel("total_payments")
+plt.legend()
+plt.show()
+plt.savefig("outliers.pdf")
 
 

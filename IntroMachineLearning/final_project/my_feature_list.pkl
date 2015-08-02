@@ -1,8 +1,6 @@
 (lp0
 S'poi'
 p1
-aS'salary'
+aS'bonus'
 p2
-aS'total_payments'
-p3
 a.
