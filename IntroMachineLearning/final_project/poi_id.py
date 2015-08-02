@@ -12,7 +12,7 @@ from tester import test_classifier, dump_classifier_and_data
 ### features_list is a list of strings, each of which is a feature name.
 ### The first feature must be "poi".
 #features_list = ['poi', 'salary', 'total_payments']
-features_list = ['poi', 'shared_receipt_with_poi', 'loan_advances', 'director_fees','to_messages', 'from_poi_to_this_person', 'from_messages']
+features_list = ['poi', 'shared_receipt_with_poi', 'total_payments', 'restricted_stock_deferred', 'loan_advances', 'director_fees']
 
 ### Load the dictionary containing the dataset
 data_dict = pickle.load(open("final_project_dataset.pkl", "r") )
@@ -39,7 +39,7 @@ from sklearn import cross_validation
 features_train, features_test, labels_train, labels_test = cross_validation.train_test_split(
 	features, labels, test_size = 0.3, random_state = 42)
 
-kbest = SelectKBest(f_regression, k = 6)
+kbest = SelectKBest(f_regression, k = 8)
 find_kbest_features = kbest.fit(features_train, labels_train)
 kbest_features_transformed = kbest.fit_transform(features_train, labels_train)
 print kbest.get_support()
