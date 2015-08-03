@@ -12,7 +12,7 @@ from tester import test_classifier, dump_classifier_and_data
 ### features_list is a list of strings, each of which is a feature name.
 ### The first feature must be "poi".
 #features_list = ['poi', 'salary', 'total_payments']
-features_list = ['poi', 'shared_receipt_with_poi', 'total_payments', 'restricted_stock_deferred', 'loan_advances', 'director_fees']
+features_list = ['poi', 'total_payments', 'restricted_stock_deferred', 'director_fees']
 
 ### Load the dictionary containing the dataset
 data_dict = pickle.load(open("final_project_dataset.pkl", "r") )
