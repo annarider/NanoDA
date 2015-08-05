@@ -34,6 +34,12 @@ http://stackoverflow.com/questions/14311601/importing-libraries-issue-importerro
 - Elegant Regex solution for replacing multiple strings
 http://stackoverflow.com/questions/6116978/python-replace-multiple-strings
 
+- Find current directory
+http://stackoverflow.com/questions/2759323/how-can-i-list-the-contents-of-a-directory-in-python
+
+- String concatenation
+http://www.pythonforbeginners.com/concatenation/string-concatenation-and-formatting-in-python
+
 Numpy
 *******************************************
 - Combine two numpy arrays element wise
