@@ -8,44 +8,59 @@ import sys
 sys.path.append( "../tools/" )
 from parse_out_email_text import parseOutText
 
-"""
-    starter code to process the emails from Sara and Chris to extract
-    the features and get the documents ready for classification
+def process_email_data(use_cache = False):
+    if not use_cache:
+        from_to_data = []
+        word_data = []
+        
+        ### temp_counter helps you only look at the first 200 emails in the list
+        temp_counter = 0
+        
+        emails_directory = os.listdir("../final_project/emails_by_address")
+        for filename in emails_directory:
+            with open("../final_project/emails_by_address/" + filename, "r") as file_contents:
+                
+                for email_path in file_contents:
+                    temp_counter += 1
+                    if temp_counter: # < 500:
+                        path = os.path.join('../', email_path[:-1])
+            #            print filename            
+                        with open(path, "r") as email:
+                            parsed_email = parseOutText(email)
+                #            print parsed_email
+                            word_data.append(parsed_email)
+                            
+                            m = re.search('from_(.+?).txt', filename)
+                            if m:
+                                from_email_found = m.group(1)
+                                from_to_data.append((from_email_found, 'from'))
+                            else:
+                                m = re.search('to_(.+?).txt', filename)
+                                to_email_found = m.group(1)
+                                from_to_data.append((to_email_found, 'to'))
+        
+        with open('word_data.pkl', "w") as wd:
+            pickle.dump((word_data, from_to_data), wd, protocol = pickle.HIGHEST_PROTOCOL)
+            return (word_data, from_to_data)
+        print "all emails processed"
+    elif use_cache:
+        with open("word_data.pkl", "r") as wd:
+            return pickle.load(wd)
+            
+def vectorize_email_data(word_data):
+#    do TfIdf vectorization here
 
-    the list of all the emails from Sara are in the from_sara list
-    likewise for emails from Chris (from_chris)
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    vectorizer = TfidfVectorizer(stop_words = "english")
+    vectorizer.fit_transform(word_data)
+    vocab_list = vectorizer.get_feature_names()
+    return vectorizer.idf_
 
-    the actual documents are in the Enron email dataset, which
-    you downloaded/unpacked in Part 0 of the first mini-project
-
-    the data is stored in lists and packed away in pickle files at the end
-
-"""
-
-from_data = []
-word_data = []
-
-
-
-#%%
-
-### temp_counter helps you only look at the first 200 emails in the list
-temp_counter = 0
-
-import os
-emails_directory = os.listdir("../final_project/emails_by_address")
-for filename in emails_directory:
-    file_contents = open("../final_project/emails_by_address/" + filename, "r") 
+if __name__ == '__main__':
+    word_data, from_to_data = process_email_data(use_cache=False)
+    print vectorize_email_data(word_data)
     
-    for email_path in file_contents:
-        temp_counter += 1
-        if temp_counter < 50:
-            path = os.path.join('../', email_path[:-1])
-#            print os.getcwd()
-            print email_path
-            email = open(path, "r")
-            print email
-#%%
+    
 
 '''
 
@@ -104,15 +119,4 @@ pickle.dump( word_data, open("your_word_data.pkl", "w") )
 pickle.dump( from_data, open("your_email_authors.pkl", "w") )
 
 print word_data[152]
-
-
-
-### in Part 4, do TfIdf vectorization here
-
-from sklearn.feature_extraction.text import TfidfVectorizer
-vectorizer = TfidfVectorizer(stop_words = "english")
-vectorizer.fit_transform(word_data)
-vocab_list = vectorizer.get_feature_names()
-print "num different words:", len(vocab_list)
-print vocab_list[34597]
 '''
