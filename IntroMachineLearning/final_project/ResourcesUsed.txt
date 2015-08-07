@@ -38,6 +38,9 @@ http://stackoverflow.com/questions/6116978/python-replace-multiple-strings
 http://stackoverflow.com/questions/2759323/how-can-i-list-the-contents-of-a-directory-in-python
 http://stackoverflow.com/questions/5137497/find-current-directory-and-files-directory
 
+- Check if a file exists in a directory
+http://stackoverflow.com/questions/82831/check-whether-a-file-exists-using-python
+
 - String concatenation
 http://www.pythonforbeginners.com/concatenation/string-concatenation-and-formatting-in-python
 
