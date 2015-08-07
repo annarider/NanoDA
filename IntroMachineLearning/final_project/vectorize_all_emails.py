@@ -9,6 +9,7 @@ sys.path.append( "../tools/" )
 from parse_out_email_text import parseOutText
 
 CACHE_FILE_NAME = "word_data.pkl"
+TDIDF_MATRIX = "tdidf_matrix.pkl"
 
 def process_email_data(use_cache = False):
     if use_cache and os.path.isfile(CACHE_FILE_NAME):
@@ -27,7 +28,7 @@ def process_email_data(use_cache = False):
                 
                 for email_path in file_contents:
                     temp_counter += 1
-                    if temp_counter < 100:
+                    if temp_counter: # < 100:
                         path = os.path.join('../', email_path[:-1])
             #            print filename  
                         
@@ -53,17 +54,23 @@ def process_email_data(use_cache = False):
         print "all emails processed"
     
             
-def vectorize_email_data(word_data):
+def vectorize_email_data(word_data, use_cache = False):
 #    do TfIdf vectorization here
-
-    from sklearn.feature_extraction.text import TfidfVectorizer
-    vectorizer = TfidfVectorizer(stop_words = "english", use_idf = True)
-    term_document_matrix = vectorizer.fit_transform(word_data)
-    features = vectorizer.get_feature_names()
-    return term_document_matrix, features
+    if use_cache and os.path.isfile(TDIDF_MATRIX):
+        with open(TDIDF_MATRIX, "r") as tm:
+            return pickle.load(tm)
+    else: 
+        from sklearn.feature_extraction.text import TfidfVectorizer
+        vectorizer = TfidfVectorizer(stop_words = "english", use_idf = True)
+        term_document_matrix = vectorizer.fit_transform(word_data)
+#        features = vectorizer.get_feature_names()
+        with open(TDIDF_MATRIX, 'w') as tm:
+            pickle.dump(term_document_matrix, tm, protocol = pickle.HIGHEST_PROTOCOL)
+            print "term document matrix object saved to pickle"
+            return term_document_matrix
 
 if __name__ == '__main__':
     word_data, from_to_data = process_email_data(use_cache=False)
-    term_document_matrix, features =  vectorize_email_data(word_data)
+    term_document_matrix=  vectorize_email_data(word_data, use_cache=False)
     print term_document_matrix
     
