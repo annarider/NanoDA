@@ -8,8 +8,13 @@ import sys
 sys.path.append( "../tools/" )
 from parse_out_email_text import parseOutText
 
+CACHE_FILE_NAME = "word_data.pkl"
+
 def process_email_data(use_cache = False):
-    if not use_cache:
+    if use_cache and os.path.isfile(CACHE_FILE_NAME):
+        with open(CACHE_FILE_NAME, "r") as wd:
+            return pickle.load(wd)    
+    else:
         from_to_data = []
         word_data = []
         
@@ -24,28 +29,29 @@ def process_email_data(use_cache = False):
                     temp_counter += 1
                     if temp_counter: # < 500:
                         path = os.path.join('../', email_path[:-1])
-            #            print filename            
-                        with open(path, "r") as email:
-                            parsed_email = parseOutText(email)
-                #            print parsed_email
-                            word_data.append(parsed_email)
-                            
-                            m = re.search('from_(.+?).txt', filename)
-                            if m:
-                                from_email_found = m.group(1)
-                                from_to_data.append((from_email_found, 'from'))
-                            else:
-                                m = re.search('to_(.+?).txt', filename)
-                                to_email_found = m.group(1)
-                                from_to_data.append((to_email_found, 'to'))
+            #            print filename  
+                        
+                        # don't continue if the email doesn't exist 
+                        if os.path.isfile(path):                        
+                            with open(path, "r") as email:
+                                parsed_email = parseOutText(email)
+                    #            print parsed_email
+                                word_data.append(parsed_email)
+                                
+                                m = re.search('from_(.+?).txt', filename)
+                                if m:
+                                    from_email_found = m.group(1)
+                                    from_to_data.append((from_email_found, 'from'))
+                                else:
+                                    m = re.search('to_(.+?).txt', filename)
+                                    to_email_found = m.group(1)
+                                    from_to_data.append((to_email_found, 'to'))
         
-        with open('word_data.pkl', "w") as wd:
+        with open(CACHE_FILE_NAME, "w") as wd:
             pickle.dump((word_data, from_to_data), wd, protocol = pickle.HIGHEST_PROTOCOL)
             return (word_data, from_to_data)
         print "all emails processed"
-    elif use_cache:
-        with open("word_data.pkl", "r") as wd:
-            return pickle.load(wd)
+    
             
 def vectorize_email_data(word_data):
 #    do TfIdf vectorization here

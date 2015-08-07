@@ -62,3 +62,8 @@ http://www.nltk.org/howto/stem.html
 
 - Snowball Stemmer Documentation
 http://www.nltk.org/_modules/nltk/stem/snowball.html 
+
+Pickle
+********************************************
+- setting protocol
+https://docs.python.org/2/library/pickle.html
