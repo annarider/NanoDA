@@ -58,6 +58,11 @@ http://stackoverflow.com/questions/1966207/converting-numpy-array-into-python-li
 - Numpy function return first index in array
 http://stackoverflow.com/questions/432112/is-there-a-numpy-function-to-return-the-first-index-of-something-in-an-array
 
+SKLEARN
+*******************************************
+- Example of TdidfVectorizer
+http://scikit-learn.org/stable/auto_examples/text/document_clustering.html#example-text-document-clustering-py
+
 NLTK
 ********************************************
 - Stemmer Documentation

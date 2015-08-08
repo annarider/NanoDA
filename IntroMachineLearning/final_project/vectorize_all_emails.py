@@ -28,7 +28,8 @@ def process_email_data(use_cache = False):
                 
                 for email_path in file_contents:
                     temp_counter += 1
-                    if temp_counter: # < 100:
+                    print temp_counter, filename
+                    if temp_counter: # < 1000:
                         path = os.path.join('../', email_path[:-1])
             #            print filename  
                         
@@ -45,8 +46,9 @@ def process_email_data(use_cache = False):
                                     from_to_data.append((from_email_found, 'from'))
                                 else:
                                     m = re.search('to_(.+?).txt', filename)
-                                    to_email_found = m.group(1)
-                                    from_to_data.append((to_email_found, 'to'))
+                                    if m:
+                                        to_email_found = m.group(1)
+                                        from_to_data.append((to_email_found, 'to'))
         
         with open(CACHE_FILE_NAME, "w") as wd:
             pickle.dump((word_data, from_to_data), wd, protocol = pickle.HIGHEST_PROTOCOL)
