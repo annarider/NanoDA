@@ -72,7 +72,7 @@ cluster_centers = clf.cluster_centers_
 labels = clf.labels_
     
 with open(CACHE_KMEANS_FILE_NAME, "w") as kmc:
-    pickle.dump((pred, cluster_centers, labels), kmc, protocol = pickle.HIGHEST_PROTOCOL)
+    pickle.dump((pred, clf, cluster_centers, labels), kmc, protocol = pickle.HIGHEST_PROTOCOL)
     
 with open(CACHE_FROM_TO_FILE_NAME, "w") as fte:
     pickle.dump(from_to_data_subset, fte, protocol = pickle.HIGHEST_PROTOCOL)
