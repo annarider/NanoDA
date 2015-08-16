@@ -1,7 +1,7 @@
 import operator
 import pickle
 import numpy as np
-#from sklearn.cluster import KMeans
+from sklearn.cluster import KMeans
 
 KMEANS_FILE_NAME_PATH = "k-means_60clusters_subset.pkl"
 #FROM_TO_FILE_NAME_PATH = "from_to_kmeans_60clusters_subset.pkl"
@@ -14,7 +14,8 @@ N_CLUSTERS = 60
 #from_to_data = from_to_data_subset
 
 with open(KMEANS_FILE_NAME_PATH, 'r') as km:
-    pred, clf, cluster_centers, labels = pickle.load(km)
+    #pred, clf, cluster_centers, labels = pickle.load(km)
+    pred, cluster_centers, labels = pickle.load(km)
 #with open(FROM_TO_FILE_NAME_PATH, 'r') as ft:
 #    from_to_data = pickle.load(ft)
 with open(FINAL_PROJECT_DATASET, "r") as fpd:
@@ -25,10 +26,10 @@ with open(WORD_DATA_FILE_PATH, "r") as wd:
     word_data, from_to_data = pickle.load(wd)
     
 #forgot to pickle clf, so reconstruct it.
-#clf = KMeans(cluster_centers,n_clusters=cluster_centers.shape[0],init=cluster_centers)
+clf = KMeans(n_clusters=cluster_centers.shape[0],init=cluster_centers)
+clf.fit(cluster_centers)
 
-#use clf.predict(fullTfIdfMatrix) to get the cluster label of each email
-
+#get the cluster label of each email
 email_topic_clusters = clf.predict(term_document_matrix)
 
 ## calculate email & POI occurences
