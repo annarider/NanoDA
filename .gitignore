@@ -13,3 +13,6 @@ dataset/
 enron_mail_20150507.tgz
 maildir/
 maildir 2/
+*.xpkl
+*.pkl
+
