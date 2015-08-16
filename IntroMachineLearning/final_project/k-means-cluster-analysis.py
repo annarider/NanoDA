@@ -9,7 +9,7 @@ WORD_DATA_FILE_PATH = "word_data.pkl"
 FINAL_PROJECT_DATASET = "final_project_dataset.pkl"
 TFIDF_MATRIX_PATH = "tfidf_matrix.pkl"
 CLUSTER_RATIO_SUBSET_PERCENT = 0.2
-
+N_CLUSTERS = 60
 
 #from_to_data = from_to_data_subset
 
@@ -31,9 +31,11 @@ with open(WORD_DATA_FILE_PATH, "r") as wd:
 
 email_topic_clusters = clf.predict(term_document_matrix)
 
-#clusters_poi_count = np.zeros(60)
-clusters_poi_count = dict.fromkeys(range(0, 60))
-clusters_total_email_count = dict.fromkeys(range(0, 60))
+## calculate email & POI occurences
+clusters_poi_count = np.zeros(N_CLUSTERS)
+clusters_total_email_count = np.zeros(N_CLUSTERS)
+#clusters_poi_count = dict.fromkeys(range(0, N_CLUSTERS))
+#clusters_total_email_count = dict.fromkeys(range(0, N_CLUSTERS))
 
 # dict for checking if POI using email address 
 check_email_poi = dict([(final_project_dataset[person]['email_address'], final_project_dataset[person]['poi']) for person in final_project_dataset])
@@ -42,27 +44,19 @@ check_email_poi = dict([(final_project_dataset[person]['email_address'], final_p
 for i, cluster_num in enumerate(email_topic_clusters):
     email, _ = from_to_data[i]
     # count how many emails in each topic cluster
-    if clusters_total_email_count[cluster_num] is not None:
-        clusters_total_email_count[cluster_num] += 1
-    else:
-        clusters_total_email_count[cluster_num] = 1
+    clusters_total_email_count[cluster_num] += 1
     # count how many emails from pois in each topic cluster
     if email in check_email_poi and check_email_poi[email] == True:
-        if clusters_poi_count[cluster_num] is not None:
-            clusters_poi_count[cluster_num] += 1
-        else: 
-            clusters_poi_count[cluster_num] = 1 
-    
-                
-            
-                    
-clusters_poi_ratio = {}
-for c in clusters_poi_count:
-    if clusters_poi_count[c] is not None:
-        clusters_poi_ratio[c] = clusters_poi_count[c] / clusters_total_email_count[c]
+        clusters_poi_count[cluster_num] = 1 
+        
 
-clusters_poi_ratio_sorted = sorted(clusters_poi_ratio.items(), key=operator.itemgetter(1), reverse = True)               
-clusters_poi_ratio_top_sorted = clusters_poi_ratio_sorted[:int(len(clusters_poi_ratio_sorted) * CLUSTER_RATIO_SUBSET_PERCENT)]
+## calculate ratio of total email vs. POI occurences             
+clusters_poi_ratio = np.zeros(N_CLUSTERS)
+clusters_poi_ratio = [clusters_poi_count[c] / clusters_total_email_count[c] for c in clusters_poi_count]
+    
+
+#clusters_poi_ratio_sorted = sorted(clusters_poi_ratio.items(), key=operator.itemgetter(1), reverse = True)               
+#clusters_poi_ratio_top_sorted = clusters_poi_ratio_sorted[:int(len(clusters_poi_ratio_sorted) * CLUSTER_RATIO_SUBSET_PERCENT)]
 
 #the plan to make a feature:
 # identify the 5 clusters that have the most POI emails. Call these "suspicious clusters"
