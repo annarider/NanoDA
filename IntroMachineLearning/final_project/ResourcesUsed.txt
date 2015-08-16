@@ -44,6 +44,10 @@ http://stackoverflow.com/questions/82831/check-whether-a-file-exists-using-pytho
 - String concatenation
 http://www.pythonforbeginners.com/concatenation/string-concatenation-and-formatting-in-python
 
+- Sort dict values
+http://stackoverflow.com/questions/613183/sort-a-python-dictionary-by-value
+http://stackoverflow.com/questions/15371691/python-sorted-sorting-a-dictionary-by-value-desc-then-by-key-asc
+
 Numpy
 *******************************************
 - Combine two numpy arrays element wise
@@ -58,6 +62,18 @@ http://stackoverflow.com/questions/1966207/converting-numpy-array-into-python-li
 - Numpy function return first index in array
 http://stackoverflow.com/questions/432112/is-there-a-numpy-function-to-return-the-first-index-of-something-in-an-array
 
+<<<<<<< Updated upstream
+=======
+- Numpy value error
+http://stackoverflow.com/questions/21803256/error-setting-an-array-element-with-a-sequence-python-numpy
+http://stackoverflow.com/questions/13310347/numpy-valueerror-setting-an-array-element-with-a-sequence-this-message-may-app
+http://stackoverflow.com/questions/4674473/valueerror-setting-an-array-element-with-a-sequence
+
+SciPy
+*******************************************
+http://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.vstack.html#scipy.sparse.vstack
+
+>>>>>>> Stashed changes
 SKLEARN
 *******************************************
 - Example of TdidfVectorizer
@@ -75,3 +91,16 @@ Pickle
 ********************************************
 - setting protocol
 https://docs.python.org/2/library/pickle.html
+
+Matrix
+********************************************
+- m x n matrix
+http://math.stackexchange.com/questions/191711/how-many-rows-and-columns-are-in-an-m-x-n-matrix
+
+- Cast Sparse Matrix
+http://stackoverflow.com/questions/24924940/convert-list-and-list-of-lists-to-scipy-sparse-arrays
+http://stackoverflow.com/questions/7922487/how-to-transform-numpy-matrix-or-array-to-scipy-sparse-matrix
+
+- Create Dense Matrix from Sparse Matrix
+http://stackoverflow.com/questions/16505670/generating-a-dense-matrix-from-a-sparse-matrix-in-numpy-python
+

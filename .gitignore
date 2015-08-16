@@ -13,6 +13,11 @@ dataset/
 enron_mail_20150507.tgz
 maildir/
 maildir 2/
+<<<<<<< Updated upstream
 *.xpkl
 *.pkl
 
+=======
+*.pkl
+*.xpkl
+>>>>>>> Stashed changes

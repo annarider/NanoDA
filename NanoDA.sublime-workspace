@@ -4,8 +4,36 @@
 		"selected_items":
 		[
 			[
+				"order",
+				"orderInfo"
+			],
+			[
 				"ord",
+				"orderDetailInfo"
+			],
+			[
+				"or",
+				"orderInfo〔variable〕"
+			],
+			[
+				"cust",
+				"customerInfo〔variable〕"
+			],
+			[
+				"order_",
 				"order_detail_query"
+			],
+			[
+				"q",
+				"queryOrderDetail"
+			],
+			[
+				"cu",
+				"customerID〔variable〕"
+			],
+			[
+				"C",
+				"Customer_GoldenData_Record"
 			],
 			[
 				"Cust",
@@ -14,10 +42,6 @@
 			[
 				"cus",
 				"customer_query_key〔variable〕"
-			],
-			[
-				"cust",
-				"customer_query〔variable〕"
 			],
 			[
 				"a",
@@ -490,96 +514,46 @@
 			[
 				"inv",
 				"invalid_years"
-			],
-			[
-				"valid",
-				"valid_years"
-			],
-			[
-				"vali",
-				"valid_years"
-			],
-			[
-				"va",
-				"valid_years"
-			],
-			[
-				"start",
-				"start_pos"
-			],
-			[
-				"line",
-				"line_index"
-			],
-			[
-				"be",
-				"begin"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "IntroMachineLearning/feature_selection/studentCode.py",
+			"contents": "#import logging\nimport datetime\n\n#logging.basicConfig(level=logging.INFO)\n#logging.getLogger('suds.client').setLevel(logging.DEBUG)\nfrom suds.client import Client\nauthWSDL = 'http://54.85.135.37/semarchy/ws/1.0/data/PerfectCustomerData/0.0/PerfectCustomerData?wsdl'\n\nusername = 'semadmin'\npassword = 'semadmin'\nclient = Client(authWSDL, username = username, password = password)\n\ndef queryCustomer(name):\n    t0 = datetime.datetime.now()\n    print \"Start query time:\", t0.strftime(\"%A, %B %d, %Y %I:%M:%S.%f %p\")\n\n    customer_query_key = client.factory.create('SemQLFilterQueryType')\n    # StandardizedFullName = 'Caryl Grassi'\n    customer_query_key.SemQLCondition = 'StandardizedFullName = ' + \"'\" + name.upper() + \"'\"\n    customer_query = client.service.getCustomer_GoldenData_List(customer_query_key)\n    \n    if customer_query:\n        print customer_query\n        \n        # find the customer ID to retrieve orders\n        for i, attribute in enumerate(customer_query.Customer_GoldenData_Record[0]):\n            if attribute[0] == 'CustomerID':\n                customerID = customer_query.Customer_GoldenData_Record[0][i]\n                # print customerID\n                # find all orders based on customerID\n                order_query = queryOrder(customerID)\n                \n                if order_query:\n                    print order_query\n\n                    # find the orderIDs to retrieve ordersDetails\n                    for i, order in enumerate(order_query.Order_GoldenData_Record):\n                        orderNum = order[\"OrderID\"]\n                        order_detail_query = queryOrderDetail(orderNum) \n                        \n                        if order_detail_query:\n                            print order_detail_query\n                        else: \n                            \"No order details found\"\n                else: \n                    \"No orders found\"\n    else:\n        print \"No customer with that name found\"\n        \n    t1 = datetime.datetime.now()\n    # print \"End query time:\", t1.strftime(\"%A, %B %d, %Y %I:%M:%S.%f %p\")\n    # print \"Time taken to run query:\", (t1 - t0)\n    # return customer_query, order_query, order_detail_query\n\ndef queryOrder(customerID):\n    order_query_key = client.factory.create('SemQLFilterQueryType')\n    order_query_key.SemQLCondition = 'Customer.CustomerID = ' + str(customerID)\n    order_query = client.service.getOrder_GoldenData_List(order_query_key)\n    return order_query\n\ndef queryOrderDetail(orderNum):\n    order_detail_query_key = client.factory.create('SemQLFilterQueryType')\n    order_detail_query_key.SemQLCondition = 'FID_OrderNum = ' + \"'\" + str(orderNum) + \"'\" \n    order_detail_query = client.service.getOrderDetail_GoldenData_List(order_detail_query_key)\n    return order_detail_query\n\n\n# print queryCustomer('Caryl Grassi')\n\nqueryCustomer('Caryl Grassi')",
+			"file": "/Users/horsepower/Documents/temp/bose/bosegetcustomer.py",
+			"file_size": 2851,
+			"file_write_time": 130831091450000000,
 			"settings":
 			{
-				"buffer_size": 1984,
+				"buffer_size": 2860,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/horsepower/Documents/temp/soap.py",
+			"contents": "# -*- coding: utf-8 -*-\n\"\"\"\nInstructions:\n- pip install flask\n- replace getCustomerOrderOrderDetailData() with your method, which takes a string and returns a string (you can return HTML if you want)\n- run this Python script\n- open a browser and go to localhost:5000\n\"\"\"\n\nfrom flask import Flask, render_template, request, url_for\napp = Flask(__name__)\n\ndef getHTML(htmlToPrint):\n    pageHTML = (\"\"\"\n<html>\n    <head>\n        <title>Web Services demo</title>\n        <link rel=stylesheet type=text/css href=\"/static/webapp.css\">\n    </head>\n    <body>\n\n        <div id=\"mainContent\">\n            <div class=\"title\">\n                <div id=\"topBanner\" >\n                    <img src=\"/static/bose.png\" />\n                </div>\n                <h1>Web Services demo</h1>\n                <h2>Bose call center</2>\n            </div> \n            <div id=\"columnOne\">\n                \n                  <label for=\"yourname\">Enter a name:</label>\n                  <form method=\"post\" action=\"/\">\n                  <input type=\"text\" name=\"yourname\" /><br />\n                  <input type=\"submit\" />\n                </form>\n            </div>\n            <div class=\"title\">\n                <h2>Result</h2>\n            </div>\n            <pre> \"\"\" + htmlToPrint + \"\"\"</pre>\n            </div>\n        </div>\n    </body>\n</html>\n    \"\"\")\n    return pageHTML\n    \ndef getCustomerOrderOrderDetailData(name):\n    #import logging\n    import datetime\n    from suds.client import Client\n    authWSDL = 'http://54.85.135.37/semarchy/ws/1.0/data/PerfectCustomerData/0.0/PerfectCustomerData?wsdl'\n\n    username = 'semadmin'\n    password = 'semadmin'\n    client = Client(authWSDL, username = username, password = password)\n\n    t0 = datetime.datetime.now()\n    print \"Start query time:\", t0.strftime(\"%A, %B %d, %Y %I:%M:%S.%f %p\")\n\n    customerInfo = []\n    orderInfo = []\n    orderDetailInfo = []\n\n    customer_query_key = client.factory.create('SemQLFilterQueryType')\n    # StandardizedFullName = 'Caryl Grassi'\n    customer_query_key.SemQLCondition = 'StandardizedFullName = ' + \"'\" + name.upper() + \"'\"\n    customer_query = client.service.getCustomer_GoldenData_List(customer_query_key)\n    \n    if customer_query:\n        customerInfo.append(customer_query)\n        \n        # find the customer ID to retrieve orders\n        for i, attribute in enumerate(customer_query.Customer_GoldenData_Record[0]):\n            if attribute[0] == 'CustomerID':\n                customerID = customer_query.Customer_GoldenData_Record[0][i]\n                # print customerID\n                # find all orders based on customerID\n                def queryOrder(customerID):\n                    order_query_key = client.factory.create('SemQLFilterQueryType')\n                    order_query_key.SemQLCondition = 'Customer.CustomerID = ' + str(customerID)\n                    order_query = client.service.getOrder_GoldenData_List(order_query_key)\n                    return order_query\n\n                order_query = queryOrder(customerID)\n                \n                if order_query:\n                    orderInfo.append(order_query)\n\n                    # find the orderIDs to retrieve ordersDetails\n                    for i, order in enumerate(order_query.Order_GoldenData_Record):\n                        orderNum = order[\"OrderID\"]\n\n\n                        def queryOrderDetail(orderNum):\n                            order_detail_query_key = client.factory.create('SemQLFilterQueryType')\n                            order_detail_query_key.SemQLCondition = 'FID_OrderNum = ' + \"'\" + str(orderNum) + \"'\" \n                            order_detail_query = client.service.getOrderDetail_GoldenData_List(order_detail_query_key)\n                            return order_detail_query\n\n                        order_detail_query = queryOrderDetail(orderNum) \n                        \n                        if order_detail_query:\n                            orderDetailInfo.append(order_detail_query)\n                            \n                    if orderDetailInfo[0] != None: \n                        return str((customerInfo, orderInfo, orderDetailInfo))\n                    else: \n                        print \"No order details found\"\n                        return str((customerInfo, orderInfo))\n                else: \n                    print \"No orders found\"\n                    return str((customerInfo))\n    \n    else:\n        return \"No customer with that name found\"\n        \n    t1 = datetime.datetime.now()\n    # print \"End query time:\", t1.strftime(\"%A, %B %d, %Y %I:%M:%S.%f %p\")\n    # print \"Time taken to run query:\", (t1 - t0)\n    # return customer_query, order_query, order_detail_query\n\n\n\n\n@app.route('/', methods=['GET', 'POST'])\ndef retrieveGoldenRecord():\n    if request.method == 'POST':\n        name=request.form['yourname']\n        htmlToPrint = getCustomerOrderOrderDetailData(name)\n        return getHTML(htmlToPrint)\n    else:\n        return getHTML(\"(Enter a name above to see data)\")\n\nif __name__ == '__main__':\n    app.run(debug=True)\n",
+			"file": "/Users/horsepower/Documents/temp/bose/webapp.py",
+			"file_size": 5186,
+			"file_write_time": 130831258940000000,
 			"settings":
 			{
-				"buffer_size": 1037,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/horsepower/Documents/temp/soap2.py",
-			"settings":
-			{
-				"buffer_size": 1051,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/horsepower/Documents/temp/bosesoap.py",
-			"settings":
-			{
-				"buffer_size": 1167,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/horsepower/Documents/temp/bosegetcustomer.py",
-			"settings":
-			{
-				"buffer_size": 1502,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/horsepower/Documents/temp/webapp.py",
-			"settings":
-			{
-				"buffer_size": 3137,
+				"buffer_size": 5050,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Synnex Files/SYNNEX_Categories.txt",
+			"file": "/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Synnex Files/category_list.txt",
 			"settings":
 			{
-				"buffer_size": 51768,
-				"line_ending": "Windows"
+				"buffer_size": 86228,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/horsepower/Documents/temp/soap3.py",
+			"file": "/Users/horsepower/Documents/temp/bose/static/webapp.css",
 			"settings":
 			{
-				"buffer_size": 1528,
+				"buffer_size": 7133,
 				"line_ending": "Unix"
 			}
 		}
@@ -650,6 +624,20 @@
 	],
 	"file_history":
 	[
+		"/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Ingram_headers.txt",
+		"/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Synnex Files/flat_file_P&A_desc_template.txt",
+		"/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Synnex Files/368771.txt",
+		"/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/PRICE.TXT",
+		"/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Ingram_test_headers.txt",
+		"/Users/horsepower/Documents/temp/soap3.py",
+		"/Users/horsepower/Documents/temp/bose/webapp.py",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroMachineLearning/feature_selection/studentCode.py",
+		"/Users/horsepower/Documents/temp/soap.py",
+		"/Users/horsepower/Documents/temp/soap2.py",
+		"/Users/horsepower/Documents/temp/bosesoap.py",
+		"/Users/horsepower/Documents/temp/bosegetcustomer.py",
+		"/Users/horsepower/Documents/temp/webapp.py",
+		"/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Synnex Files/SYNNEX_Categories.txt",
 		"/Users/horsepower/Google Drive/Semarchy USA/Projects_US/AWS/semarchy-quick-config-backup20150505/index.jsp",
 		"/Users/horsepower/Google Drive/SQL script Library/Semarchy Demo/Repo.sql",
 		"/Users/horsepower/Google Drive/SQL script Library/Juniper/KillDIJob.sql",
@@ -763,21 +751,7 @@
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/exampleResearchArtcile.xml",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/authorsXML.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/authorsXML-SOLUTION.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/nytimes-SOLUTION.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/nytimes.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/example.csv",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/2013_Max_Loads.csv",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/popular-viewed-1.json",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/excel_csv.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/excel_csvSOLUTION.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/ERCOTReadingExcel.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/ERCOTReadingExcelSAMPLE.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/745090.csv",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/parsecsv.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/parsecsv_SOLUTION.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/release.json",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/artist.json",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/MusicBrainzOneDirection.py"
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/nytimes-SOLUTION.py"
 	],
 	"find":
 	{
@@ -797,6 +771,25 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"laptop",
+			"MSRP",
+			"'p67'",
+			"MSRP",
+			"'p67'",
+			"~",
+			",",
+			"~HDR~",
+			"hdr~",
+			"hdr",
+			"e+",
+			" ",
+			"MSRP",
+			"'p67'",
+			"MSRP",
+			"'p67'",
+			"pre",
+			"hello_world",
+			"annasMethod",
 			"olivier.pier",
 			"*",
 			";",
@@ -905,33 +898,24 @@
 			"data",
 			"Hour",
 			"hour",
-			"Hour",
-			"hour",
-			"value",
-			"print",
-			"input_file",
-			"input)file",
-			"input",
-			"line",
-			"key",
-			"False",
-			"predecessor",
-			"class",
-			"dataTDRight",
-			"virgin",
-			"__EVENTVALIDATION",
-			"/wEPDwUKLTI",
-			"/wEWjAkCoIj1ng0",
-			"__EVENTVALIDATION",
-			"input",
-			"__EVENTVALIDATION"
+			"Hour"
 		],
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": false,
+		"regex": true,
 		"replace_history":
 		[
+			"SuggestedPrice",
+			"PriceFormula",
+			"SuggestedPrice",
+			"PriceFormula ",
+			"\\n",
+			"_",
+			"ManufacturerPrice",
+			"PriceFormula",
+			"ManufacturerPrice",
+			"PriceFormula",
 			"olivier.pieri",
 			"* from ",
 			" where ORDER_ID = 'D18317375'; ",
@@ -970,24 +954,24 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "IntroMachineLearning/feature_selection/studentCode.py",
+					"file": "/Users/horsepower/Documents/temp/bose/bosegetcustomer.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1984,
+						"buffer_size": 2860,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								449,
-								449
+								2789,
+								405
 							]
 						],
 						"settings":
@@ -998,143 +982,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 120.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/Users/horsepower/Documents/temp/soap.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1037,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								51,
-								190
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/Users/horsepower/Documents/temp/soap2.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1051,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								1051
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 160.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/Users/horsepower/Documents/temp/bosesoap.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1167,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								1167
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 44.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "/Users/horsepower/Documents/temp/bosegetcustomer.py",
+					"buffer": 1,
+					"file": "/Users/horsepower/Documents/temp/bose/webapp.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1502,
+						"buffer_size": 5050,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								1502
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/Users/horsepower/Documents/temp/webapp.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3137,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								559,
-								559
+								552,
+								552
 							]
 						],
 						"settings":
@@ -1145,27 +1013,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 96.0,
+						"translation.y": 1348.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Synnex Files/SYNNEX_Categories.txt",
+					"buffer": 2,
+					"file": "/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Synnex Files/category_list.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 51768,
+						"buffer_size": 86228,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								312,
-								310
+								26486,
+								26486
 							]
 						],
 						"settings":
@@ -1173,41 +1041,40 @@
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1.0,
+						"translation.y": 14265.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "/Users/horsepower/Documents/temp/soap3.py",
+					"buffer": 3,
+					"file": "/Users/horsepower/Documents/temp/bose/static/webapp.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1528,
+						"buffer_size": 7133,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								77,
-								77
+								4860,
+								4860
 							]
 						],
 						"settings":
 						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -1246,7 +1113,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 366.0
+		"height": 208.0
 	},
 	"output.find_results":
 	{

@@ -39,12 +39,13 @@ for cluster_num in email_topic_clusters:
     else: 
         clusters_total_email_count[cluster_num] = clusters_total_email_count[cluster_num] + 1
 
+check_email_poi = dict([(final_project_dataset[person]['email_address'], final_project_dataset[person]['poi']) for person in final_project_dataset])
+
+
 # count how many emails from pois in each cluster
 for i, cluster_num in enumerate(email_topic_clusters):
     email, _ = from_to_data[i]
-    for person in final_project_dataset:
-        if final_project_dataset[person]['email_address'] == email:
-            if final_project_dataset[person]['poi'] == True:
+
                 if clusters_poi_count[cluster_num] is not None:
                     clusters_poi_count[cluster_num] += 1
                 else: 
