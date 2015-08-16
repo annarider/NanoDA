@@ -10,6 +10,7 @@ FINAL_PROJECT_DATASET = "final_project_dataset.pkl"
 TFIDF_MATRIX_PATH = "tfidf_matrix.pkl"
 CLUSTER_RATIO_SUBSET_PERCENT = 0.2
 N_CLUSTERS = 60
+TOP_N_CLUSTERS = 5
 
 #from_to_data = from_to_data_subset
 
@@ -48,16 +49,22 @@ for i, cluster_num in enumerate(email_topic_clusters):
     clusters_total_email_count[cluster_num] += 1
     # count how many emails from pois in each topic cluster
     if email in check_email_poi and check_email_poi[email] == True:
-        clusters_poi_count[cluster_num] = 1 
+        clusters_poi_count[cluster_num] += 1 
         
 
 ## calculate ratio of total email vs. POI occurences             
 clusters_poi_ratio = np.zeros(N_CLUSTERS)
-clusters_poi_ratio = [clusters_poi_count[c] / clusters_total_email_count[c] for c in clusters_poi_count]
-    
+for i, c in enumerate(clusters_poi_count):
+    clusters_poi_ratio[i] = clusters_poi_count[i] / clusters_total_email_count[i]
 
 #clusters_poi_ratio_sorted = sorted(clusters_poi_ratio.items(), key=operator.itemgetter(1), reverse = True)               
 #clusters_poi_ratio_top_sorted = clusters_poi_ratio_sorted[:int(len(clusters_poi_ratio_sorted) * CLUSTER_RATIO_SUBSET_PERCENT)]
+
+# sort by clusters ratio of POI/total email ascending
+clusters_poi_ratio_sorted = np.argsort(clusters_poi_ratio)
+# Find the top corresponding clusters, i.e. "suspicious clusters"
+clusters_poi_ratio_top_sorted = clusters_poi_ratio_sorted[-TOP_N_CLUSTERS:] 
+
 
 #the plan to make a feature:
 # identify the 5 clusters that have the most POI emails. Call these "suspicious clusters"
