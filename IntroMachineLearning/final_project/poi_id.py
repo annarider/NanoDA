@@ -7,12 +7,14 @@ sys.path.append("../tools/")
 from feature_format import featureFormat, targetFeatureSplit
 from tester import test_classifier, dump_classifier_and_data
 
+EMAIL_SUSPICIOUS_RATIO = "email_suspicious_ratio.pkl"
+NEW_FEATURE = "suspicious_email_ratio"
 
 ### Task 1: Select what features you'll use.
 ### features_list is a list of strings, each of which is a feature name.
 ### The first feature must be "poi".
 #features_list = ['poi', 'salary', 'total_payments']
-features_list = ['poi', 'total_payments', 'restricted_stock_deferred', 'director_fees']
+features_list = ['poi', 'total_payments', 'restricted_stock_deferred', 'director_fees'] #, NEW_FEATURE]
 
 ### Load the dictionary containing the dataset
 data_dict = pickle.load(open("final_project_dataset.pkl", "r") )
@@ -22,29 +24,38 @@ data_dict = pickle.load(open("final_project_dataset.pkl", "r") )
 
 ### Task 2: Remove outliers
 ### Task 3: Create new feature(s)
-### Store to my_dataset for easy export below.
+with open(EMAIL_SUSPICIOUS_RATIO, 'r') as esr:
+    email_suspicious_total_ratio = pickle.load(esr)
+
 my_dataset = data_dict
+### Store to my_dataset for easy export below.
+for person in my_dataset:
+    email = my_dataset[person]['email_address']
+    my_dataset[person][NEW_FEATURE] = email_suspicious_total_ratio[email]
+        
+        
+ 
 
 ### Extract features and labels from dataset for local testing
-features_list_kbest = ['poi', 'salary', 'deferral_payments', 'total_payments', 'loan_advances', 'bonus', 'restricted_stock_deferred', 'deferred_income', 'total_stock_value', 'expenses', 'exercised_stock_options', 'other', 'long_term_incentive', 'restricted_stock', 'director_fees','to_messages', 'from_poi_to_this_person', 'from_messages', 'from_this_person_to_poi', 'shared_receipt_with_poi']  # You will need to use more features
-#data = featureFormat(my_dataset, features_list, sort_keys = True)
-data = featureFormat(my_dataset, features_list_kbest, sort_keys = True)
+#features_list_kbest = ['poi', 'salary', 'deferral_payments', 'total_payments', 'loan_advances', 'bonus', 'restricted_stock_deferred', 'deferred_income', 'total_stock_value', 'expenses', 'exercised_stock_options', 'other', 'long_term_incentive', 'restricted_stock', 'director_fees','to_messages', 'from_poi_to_this_person', 'from_messages', 'from_this_person_to_poi', 'shared_receipt_with_poi']  # You will need to use more features
+data = featureFormat(my_dataset, features_list, sort_keys = True)
+#data = featureFormat(my_dataset, features_list_kbest, sort_keys = True)
 labels, features = targetFeatureSplit(data)
 
 
-# Run SelectKBest for feature selection
-from sklearn.feature_selection import SelectKBest, f_regression
-from sklearn import cross_validation
-
-features_train, features_test, labels_train, labels_test = cross_validation.train_test_split(
-	features, labels, test_size = 0.3, random_state = 42)
-
-kbest = SelectKBest(f_regression, k = 8)
-find_kbest_features = kbest.fit(features_train, labels_train)
-kbest_features_transformed = kbest.fit_transform(features_train, labels_train)
-print kbest.get_support()
-print find_kbest_features.scores_
-print find_kbest_features.pvalues_
+### Run SelectKBest for feature selection
+#from sklearn.feature_selection import SelectKBest, f_regression
+#from sklearn import cross_validation
+#
+#features_train, features_test, labels_train, labels_test = cross_validation.train_test_split(
+#	features, labels, test_size = 0.3, random_state = 42)
+#
+#kbest = SelectKBest(f_regression, k = 8)
+#find_kbest_features = kbest.fit(features_train, labels_train)
+#kbest_features_transformed = kbest.fit_transform(features_train, labels_train)
+#print kbest.get_support()
+#print find_kbest_features.scores_
+#print find_kbest_features.pvalues_
 
 ### Task 4: Try a varity of classifiers
 ### Please name your classifier clf for easy export below.
