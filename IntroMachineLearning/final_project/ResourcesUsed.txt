@@ -69,6 +69,9 @@ http://stackoverflow.com/questions/21803256/error-setting-an-array-element-with-
 http://stackoverflow.com/questions/13310347/numpy-valueerror-setting-an-array-element-with-a-sequence-this-message-may-app
 http://stackoverflow.com/questions/4674473/valueerror-setting-an-array-element-with-a-sequence
 
+- Numpy array sort by index
+http://docs.scipy.org/doc/numpy/reference/generated/numpy.argsort.html
+
 SciPy
 *******************************************
 http://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.vstack.html#scipy.sparse.vstack
