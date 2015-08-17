@@ -9,6 +9,7 @@ WORD_DATA_FILE_PATH = "word_data.pkl"
 FINAL_PROJECT_DATASET = "final_project_dataset.pkl"
 TFIDF_MATRIX_PATH = "tfidf_matrix.pkl"
 CACHE_EMAIL_TOPIC_CLUSTERS = "email_topic_clusters.pkl"
+CACHE_EMAIL_SUSPICIOUS_RATIO = "email_suspicious_ratio.pkl"
 CLUSTER_RATIO_SUBSET_PERCENT = 0.2
 N_CLUSTERS = 60
 TOP_N_CLUSTERS = 5
@@ -86,3 +87,7 @@ for email in email_total_count:
         email_suspicious_total_ratio[email] = email_suspicious_cluster_count[email] / email_total_count[email]
     else:
         email_suspicious_total_ratio[email] = 0        
+
+with open(CACHE_EMAIL_SUSPICIOUS_RATIO, "w") as esr:
+    pickle.dump(email_suspicious_total_ratio, esr, protocol = pickle.HIGHEST_PROTOCOL)
+
