@@ -132,3 +132,4 @@ http://stackoverflow.com/questions/7922487/how-to-transform-numpy-matrix-or-arra
 - Create Dense Matrix from Sparse Matrix
 http://stackoverflow.com/questions/16505670/generating-a-dense-matrix-from-a-sparse-matrix-in-numpy-python
 
+Help from Luke Allen. Thanks.
