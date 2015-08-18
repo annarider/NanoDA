@@ -14,7 +14,7 @@ NEW_FEATURE = "suspicious_email_ratio"
 ### features_list is a list of strings, each of which is a feature name.
 ### The first feature must be "poi".
 #features_list = ['poi', 'salary', 'total_payments']
-features_list = ['poi', 'total_payments', 'restricted_stock_deferred', 'director_fees'] #, NEW_FEATURE]
+features_list = ['poi', 'total_payments', 'bonus', 'restricted_stock_deferred', 'director_fees', NEW_FEATURE]
 
 ### Load the dictionary containing the dataset
 data_dict = pickle.load(open("final_project_dataset.pkl", "r") )
@@ -63,23 +63,26 @@ labels, features = targetFeatureSplit(data)
 ### you'll need to use Pipelines. For more info:
 ### http://scikit-learn.org/stable/modules/pipeline.html
 
-from sklearn.naive_bayes import GaussianNB
-clf = GaussianNB()    # Provided to give you a starting point. Try a varity of classifiers.
+#from sklearn.naive_bayes import GaussianNB
+#clf = GaussianNB()    # Provided to give you a starting point. Try a varity of classifiers.
 
-#from sklearn import tree
-#clf = tree.DecisionTreeClassifier()
+from sklearn import tree
+clf = tree.DecisionTreeClassifier(criterion='gini', min_samples_split = 2, 
+                                  min_samples_leaf=3, max_features=None)
 
 #from sklearn.neighbors import KNeighborsClassifier
 #clf = KNeighborsClassifier(n_neighbors = 10)
 
 #from sklearn.svm import SVC
-#clf = SVC(kernel="linear")
+#clf = SVC(C = 10.0, kernel="rbf", degree=4)
 
 ### Task 5: Tune your classifier to achieve better than .3 precision and recall 
 ### using our testing script.
 ### Because of the small size of the dataset, the script uses stratified
 ### shuffle split cross validation. For more info: 
 ### http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.StratifiedShuffleSplit.html
+
+#classProbs = clf.predict_proba(featureMatrix)
 
 #test_classifier(clf, my_dataset, features_list)
 test_classifier(clf, my_dataset, features_list)

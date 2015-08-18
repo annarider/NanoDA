@@ -20,4 +20,7 @@ maildir 2/
 =======
 *.pkl
 *.xpkl
->>>>>>> Stashed changes
+>>>>>> Stashed changes
+!my_classifier.pkl
+!my_dataset.pkl
+!my_feature_list.pkl

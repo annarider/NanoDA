@@ -85,12 +85,20 @@ http://scikit-learn.org/stable/auto_examples/text/document_clustering.html#examp
 - Naive Bayes docs
 http://scikit-learn.org/stable/modules/naive_bayes.html
 http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html#sklearn.naive_bayes.GaussianNB
-
+http://stackoverflow.com/questions/30896367/how-to-specify-the-prior-probability-for-scikit-learns-naive-bayes
+-- How to improve accuracy of NB
+http://stackoverflow.com/questions/3473612/ways-to-improve-the-accuracy-of-a-naive-bayes-classifier
 - Select KBest docs
 http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html#sklearn.feature_selection.SelectKBest
 
 - Kmeans docs
 http://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html
+
+- Ensemble Methods
+http://scikit-learn.org/stable/modules/ensemble.html
+
+- Decision Tree Classifier
+http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html
 
 NLTK
 ********************************************

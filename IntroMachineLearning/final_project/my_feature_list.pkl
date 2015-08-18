@@ -1,0 +1,14 @@
+(lp0
+S'poi'
+p1
+aS'total_payments'
+p2
+aS'bonus'
+p3
+aS'restricted_stock_deferred'
+p4
+aS'director_fees'
+p5
+aS'suspicious_email_ratio'
+p6
+a.
