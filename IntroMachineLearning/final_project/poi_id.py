@@ -68,7 +68,7 @@ labels, features = targetFeatureSplit(data)
 
 from sklearn import tree
 clf = tree.DecisionTreeClassifier(criterion='gini', min_samples_split = 2, 
-                                  min_samples_leaf=3, max_features=None)
+                                  min_samples_leaf=3, random_state=27)
 
 #from sklearn.neighbors import KNeighborsClassifier
 #clf = KNeighborsClassifier(n_neighbors = 10)

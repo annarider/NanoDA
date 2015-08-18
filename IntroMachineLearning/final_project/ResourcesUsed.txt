@@ -100,6 +100,13 @@ http://scikit-learn.org/stable/modules/ensemble.html
 - Decision Tree Classifier
 http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html
 
+- Parameter tuning
+http://machinelearningmastery.com/how-to-tune-algorithm-parameters-with-scikit-learn/
+http://stats.stackexchange.com/questions/91842/how-to-perform-parameters-tuning-for-machine-learning
+
+- Validation
+http://stackoverflow.com/questions/14117997/what-does-recall-mean-in-machine-learning
+
 NLTK
 ********************************************
 - Stemmer Documentation
