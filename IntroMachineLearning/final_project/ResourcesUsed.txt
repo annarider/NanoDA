@@ -82,6 +82,16 @@ SKLEARN
 - Example of TdidfVectorizer
 http://scikit-learn.org/stable/auto_examples/text/document_clustering.html#example-text-document-clustering-py
 
+- Naive Bayes docs
+http://scikit-learn.org/stable/modules/naive_bayes.html
+http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html#sklearn.naive_bayes.GaussianNB
+
+- Select KBest docs
+http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html#sklearn.feature_selection.SelectKBest
+
+- Kmeans docs
+http://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html
+
 NLTK
 ********************************************
 - Stemmer Documentation

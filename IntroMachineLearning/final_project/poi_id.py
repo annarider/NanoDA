@@ -66,6 +66,15 @@ labels, features = targetFeatureSplit(data)
 from sklearn.naive_bayes import GaussianNB
 clf = GaussianNB()    # Provided to give you a starting point. Try a varity of classifiers.
 
+#from sklearn import tree
+#clf = tree.DecisionTreeClassifier()
+
+#from sklearn.neighbors import KNeighborsClassifier
+#clf = KNeighborsClassifier(n_neighbors = 10)
+
+#from sklearn.svm import SVC
+#clf = SVC(kernel="linear")
+
 ### Task 5: Tune your classifier to achieve better than .3 precision and recall 
 ### using our testing script.
 ### Because of the small size of the dataset, the script uses stratified
