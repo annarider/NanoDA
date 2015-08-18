@@ -82,7 +82,6 @@ clf = tree.DecisionTreeClassifier(criterion='gini', min_samples_split = 2,
 ### shuffle split cross validation. For more info: 
 ### http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.StratifiedShuffleSplit.html
 
-#classProbs = clf.predict_proba(featureMatrix)
 
 #test_classifier(clf, my_dataset, features_list)
 test_classifier(clf, my_dataset, features_list)
