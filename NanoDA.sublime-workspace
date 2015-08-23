@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"back",
+				"background-color"
+			],
+			[
 				"order",
 				"orderInfo"
 			],
@@ -510,50 +514,24 @@
 			[
 				"inval",
 				"invalid_years"
-			],
-			[
-				"inv",
-				"invalid_years"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"contents": "#import logging\nimport datetime\n\n#logging.basicConfig(level=logging.INFO)\n#logging.getLogger('suds.client').setLevel(logging.DEBUG)\nfrom suds.client import Client\nauthWSDL = 'http://54.85.135.37/semarchy/ws/1.0/data/PerfectCustomerData/0.0/PerfectCustomerData?wsdl'\n\nusername = 'semadmin'\npassword = 'semadmin'\nclient = Client(authWSDL, username = username, password = password)\n\ndef queryCustomer(name):\n    t0 = datetime.datetime.now()\n    print \"Start query time:\", t0.strftime(\"%A, %B %d, %Y %I:%M:%S.%f %p\")\n\n    customer_query_key = client.factory.create('SemQLFilterQueryType')\n    # StandardizedFullName = 'Caryl Grassi'\n    customer_query_key.SemQLCondition = 'StandardizedFullName = ' + \"'\" + name.upper() + \"'\"\n    customer_query = client.service.getCustomer_GoldenData_List(customer_query_key)\n    \n    if customer_query:\n        print customer_query\n        \n        # find the customer ID to retrieve orders\n        for i, attribute in enumerate(customer_query.Customer_GoldenData_Record[0]):\n            if attribute[0] == 'CustomerID':\n                customerID = customer_query.Customer_GoldenData_Record[0][i]\n                # print customerID\n                # find all orders based on customerID\n                order_query = queryOrder(customerID)\n                \n                if order_query:\n                    print order_query\n\n                    # find the orderIDs to retrieve ordersDetails\n                    for i, order in enumerate(order_query.Order_GoldenData_Record):\n                        orderNum = order[\"OrderID\"]\n                        order_detail_query = queryOrderDetail(orderNum) \n                        \n                        if order_detail_query:\n                            print order_detail_query\n                        else: \n                            \"No order details found\"\n                else: \n                    \"No orders found\"\n    else:\n        print \"No customer with that name found\"\n        \n    t1 = datetime.datetime.now()\n    # print \"End query time:\", t1.strftime(\"%A, %B %d, %Y %I:%M:%S.%f %p\")\n    # print \"Time taken to run query:\", (t1 - t0)\n    # return customer_query, order_query, order_detail_query\n\ndef queryOrder(customerID):\n    order_query_key = client.factory.create('SemQLFilterQueryType')\n    order_query_key.SemQLCondition = 'Customer.CustomerID = ' + str(customerID)\n    order_query = client.service.getOrder_GoldenData_List(order_query_key)\n    return order_query\n\ndef queryOrderDetail(orderNum):\n    order_detail_query_key = client.factory.create('SemQLFilterQueryType')\n    order_detail_query_key.SemQLCondition = 'FID_OrderNum = ' + \"'\" + str(orderNum) + \"'\" \n    order_detail_query = client.service.getOrderDetail_GoldenData_List(order_detail_query_key)\n    return order_detail_query\n\n\n# print queryCustomer('Caryl Grassi')\n\nqueryCustomer('Caryl Grassi')",
-			"file": "/Users/horsepower/Documents/temp/bose/bosegetcustomer.py",
-			"file_size": 2851,
-			"file_write_time": 130831091450000000,
+			"file": "DataViz/HTMLandCSS/portfolio/toplist/index.html",
 			"settings":
 			{
-				"buffer_size": 2860,
+				"buffer_size": 1033,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "# -*- coding: utf-8 -*-\n\"\"\"\nInstructions:\n- pip install flask\n- replace getCustomerOrderOrderDetailData() with your method, which takes a string and returns a string (you can return HTML if you want)\n- run this Python script\n- open a browser and go to localhost:5000\n\"\"\"\n\nfrom flask import Flask, render_template, request, url_for\napp = Flask(__name__)\n\ndef getHTML(htmlToPrint):\n    pageHTML = (\"\"\"\n<html>\n    <head>\n        <title>Web Services demo</title>\n        <link rel=stylesheet type=text/css href=\"/static/webapp.css\">\n    </head>\n    <body>\n\n        <div id=\"mainContent\">\n            <div class=\"title\">\n                <div id=\"topBanner\" >\n                    <img src=\"/static/bose.png\" />\n                </div>\n                <h1>Web Services demo</h1>\n                <h2>Bose call center</2>\n            </div> \n            <div id=\"columnOne\">\n                \n                  <label for=\"yourname\">Enter a name:</label>\n                  <form method=\"post\" action=\"/\">\n                  <input type=\"text\" name=\"yourname\" /><br />\n                  <input type=\"submit\" />\n                </form>\n            </div>\n            <div class=\"title\">\n                <h2>Result</h2>\n            </div>\n            <pre> \"\"\" + htmlToPrint + \"\"\"</pre>\n            </div>\n        </div>\n    </body>\n</html>\n    \"\"\")\n    return pageHTML\n    \ndef getCustomerOrderOrderDetailData(name):\n    #import logging\n    import datetime\n    from suds.client import Client\n    authWSDL = 'http://54.85.135.37/semarchy/ws/1.0/data/PerfectCustomerData/0.0/PerfectCustomerData?wsdl'\n\n    username = 'semadmin'\n    password = 'semadmin'\n    client = Client(authWSDL, username = username, password = password)\n\n    t0 = datetime.datetime.now()\n    print \"Start query time:\", t0.strftime(\"%A, %B %d, %Y %I:%M:%S.%f %p\")\n\n    customerInfo = []\n    orderInfo = []\n    orderDetailInfo = []\n\n    customer_query_key = client.factory.create('SemQLFilterQueryType')\n    # StandardizedFullName = 'Caryl Grassi'\n    customer_query_key.SemQLCondition = 'StandardizedFullName = ' + \"'\" + name.upper() + \"'\"\n    customer_query = client.service.getCustomer_GoldenData_List(customer_query_key)\n    \n    if customer_query:\n        customerInfo.append(customer_query)\n        \n        # find the customer ID to retrieve orders\n        for i, attribute in enumerate(customer_query.Customer_GoldenData_Record[0]):\n            if attribute[0] == 'CustomerID':\n                customerID = customer_query.Customer_GoldenData_Record[0][i]\n                # print customerID\n                # find all orders based on customerID\n                def queryOrder(customerID):\n                    order_query_key = client.factory.create('SemQLFilterQueryType')\n                    order_query_key.SemQLCondition = 'Customer.CustomerID = ' + str(customerID)\n                    order_query = client.service.getOrder_GoldenData_List(order_query_key)\n                    return order_query\n\n                order_query = queryOrder(customerID)\n                \n                if order_query:\n                    orderInfo.append(order_query)\n\n                    # find the orderIDs to retrieve ordersDetails\n                    for i, order in enumerate(order_query.Order_GoldenData_Record):\n                        orderNum = order[\"OrderID\"]\n\n\n                        def queryOrderDetail(orderNum):\n                            order_detail_query_key = client.factory.create('SemQLFilterQueryType')\n                            order_detail_query_key.SemQLCondition = 'FID_OrderNum = ' + \"'\" + str(orderNum) + \"'\" \n                            order_detail_query = client.service.getOrderDetail_GoldenData_List(order_detail_query_key)\n                            return order_detail_query\n\n                        order_detail_query = queryOrderDetail(orderNum) \n                        \n                        if order_detail_query:\n                            orderDetailInfo.append(order_detail_query)\n                            \n                    if orderDetailInfo[0] != None: \n                        return str((customerInfo, orderInfo, orderDetailInfo))\n                    else: \n                        print \"No order details found\"\n                        return str((customerInfo, orderInfo))\n                else: \n                    print \"No orders found\"\n                    return str((customerInfo))\n    \n    else:\n        return \"No customer with that name found\"\n        \n    t1 = datetime.datetime.now()\n    # print \"End query time:\", t1.strftime(\"%A, %B %d, %Y %I:%M:%S.%f %p\")\n    # print \"Time taken to run query:\", (t1 - t0)\n    # return customer_query, order_query, order_detail_query\n\n\n\n\n@app.route('/', methods=['GET', 'POST'])\ndef retrieveGoldenRecord():\n    if request.method == 'POST':\n        name=request.form['yourname']\n        htmlToPrint = getCustomerOrderOrderDetailData(name)\n        return getHTML(htmlToPrint)\n    else:\n        return getHTML(\"(Enter a name above to see data)\")\n\nif __name__ == '__main__':\n    app.run(debug=True)\n",
-			"file": "/Users/horsepower/Documents/temp/bose/webapp.py",
-			"file_size": 5186,
-			"file_write_time": 130831258940000000,
+			"file": "DataViz/HTMLandCSS/portfolio/toplist/style.css",
 			"settings":
 			{
-				"buffer_size": 5050,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Synnex Files/category_list.txt",
-			"settings":
-			{
-				"buffer_size": 86228,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/horsepower/Documents/temp/bose/static/webapp.css",
-			"settings":
-			{
-				"buffer_size": 7133,
+				"buffer_size": 429,
 				"line_ending": "Unix"
 			}
 		}
@@ -616,21 +594,19 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroMachineLearning",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroMachineLearning/datasets_questions",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroMachineLearning/feature_selection",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroMachineLearning/naive_bayes",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroMachineLearning/regression"
 	],
 	"file_history":
 	[
+		"/Users/horsepower/Documents/temp/bose/bosegetcustomer.py",
+		"/Users/horsepower/Documents/temp/bose/webapp.py",
+		"/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Synnex Files/category_list.txt",
+		"/Users/horsepower/Documents/temp/bose/static/webapp.css",
 		"/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Ingram_headers.txt",
 		"/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Synnex Files/flat_file_P&A_desc_template.txt",
 		"/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Synnex Files/368771.txt",
 		"/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/PRICE.TXT",
 		"/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Ingram_test_headers.txt",
 		"/Users/horsepower/Documents/temp/soap3.py",
-		"/Users/horsepower/Documents/temp/bose/webapp.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroMachineLearning/feature_selection/studentCode.py",
 		"/Users/horsepower/Documents/temp/soap.py",
 		"/Users/horsepower/Documents/temp/soap2.py",
@@ -748,10 +724,7 @@
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/html_soup-SOLUTION.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/authorsINSRXML.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/authorsINSRXML-SOLUTION.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/exampleResearchArtcile.xml",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/authorsXML.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/authorsXML-SOLUTION.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/nytimes-SOLUTION.py"
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/exampleResearchArtcile.xml"
 	],
 	"find":
 	{
@@ -954,127 +927,64 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/Users/horsepower/Documents/temp/bose/bosegetcustomer.py",
+					"file": "DataViz/HTMLandCSS/portfolio/toplist/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2860,
+						"buffer_size": 1033,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2789,
-								405
+								0,
+								1033
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/Users/horsepower/Documents/temp/bose/webapp.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5050,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								552,
-								552
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1348.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Synnex Files/category_list.txt",
+					"buffer": 1,
+					"file": "DataViz/HTMLandCSS/portfolio/toplist/style.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 86228,
+						"buffer_size": 429,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								26486,
-								26486
+								0,
+								429
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 14265.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/Users/horsepower/Documents/temp/bose/static/webapp.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7133,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4860,
-								4860
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/CSS/CSS.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
