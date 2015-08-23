@@ -41,7 +41,7 @@ for key in data_dict:
 # find 4 outliers in cleaner dataset
 for key in data: 
     f1 = key[1]
-    if f1 > 800000:
+    if f1 > 8000000:
         for p in data_dict:
             if data_dict[p][features[1]] == f1:
                 print p
