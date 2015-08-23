@@ -48,6 +48,9 @@ http://www.pythonforbeginners.com/concatenation/string-concatenation-and-formatt
 http://stackoverflow.com/questions/613183/sort-a-python-dictionary-by-value
 http://stackoverflow.com/questions/15371691/python-sorted-sorting-a-dictionary-by-value-desc-then-by-key-asc
 
+- Write dict into JSON file
+http://stackoverflow.com/questions/7100125/storing-python-dictionaries
+
 Numpy
 *******************************************
 - Combine two numpy arrays element wise

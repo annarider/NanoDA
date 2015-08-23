@@ -2,12 +2,15 @@
 
 import sys
 import pickle
+import json
 sys.path.append("../tools/")
 
 from feature_format import featureFormat, targetFeatureSplit
 from tester import test_classifier, dump_classifier_and_data
 
-EMAIL_SUSPICIOUS_RATIO = "email_suspicious_ratio.pkl"
+#EMAIL_SUSPICIOUS_RATIO = "email_suspicious_ratio.pkl"
+EMAIL_SUSPICIOUS_RATIO_JSON = "email_suspicious_ratio.json"
+
 NEW_FEATURE = "suspicious_email_ratio"
 
 ### Task 1: Select what features you'll use.
@@ -24,8 +27,10 @@ data_dict = pickle.load(open("final_project_dataset.pkl", "r") )
 
 ### Task 2: Remove outliers
 ### Task 3: Create new feature(s)
-with open(EMAIL_SUSPICIOUS_RATIO, 'r') as esr:
-    email_suspicious_total_ratio = pickle.load(esr)
+#with open(EMAIL_SUSPICIOUS_RATIO, 'r') as esr:
+#    email_suspicious_total_ratio = pickle.load(esr)
+with open(EMAIL_SUSPICIOUS_RATIO_JSON, 'r') as esrj:
+    email_suspicious_total_ratio = json.load(esrj)
 
 my_dataset = data_dict
 ### Store to my_dataset for easy export below.

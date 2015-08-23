@@ -1,5 +1,6 @@
 import operator
 import pickle
+import json
 import numpy as np
 from sklearn.cluster import KMeans
 
@@ -10,6 +11,7 @@ FINAL_PROJECT_DATASET = "final_project_dataset.pkl"
 TFIDF_MATRIX_PATH = "tfidf_matrix.pkl"
 CACHE_EMAIL_TOPIC_CLUSTERS = "email_topic_clusters.pkl"
 CACHE_EMAIL_SUSPICIOUS_RATIO = "email_suspicious_ratio.pkl"
+CACHE_EMAIL_SUSPICIOUS_RATIO_JSON = "email_suspicious_ratio.json"
 CLUSTER_RATIO_SUBSET_PERCENT = 0.2
 N_CLUSTERS = 60
 TOP_N_CLUSTERS = 5
@@ -91,3 +93,5 @@ for email in email_total_count:
 with open(CACHE_EMAIL_SUSPICIOUS_RATIO, "w") as esr:
     pickle.dump(email_suspicious_total_ratio, esr, protocol = pickle.HIGHEST_PROTOCOL)
 
+with open(CACHE_EMAIL_SUSPICIOUS_RATIO_JSON, 'w') as esrj:
+    json.dump(email_suspicious_total_ratio, esrj)
