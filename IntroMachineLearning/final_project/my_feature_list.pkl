@@ -9,6 +9,4 @@ aS'restricted_stock_deferred'
 p4
 aS'director_fees'
 p5
-aS'suspicious_email_ratio'
-p6
 a.
