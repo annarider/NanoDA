@@ -60,27 +60,27 @@ def test_classifier(clf, dataset, feature_list, folds = 1000):
                 print "All predictions should take value 0 or 1."
                 print "Evaluating performance for processed predictions:"
                 break
-    try:
-        total_predictions = true_negatives + false_negatives + false_positives + true_positives
-        accuracy = 1.0*(true_positives + true_negatives)/total_predictions
-        precision = 1.0*true_positives/max(1,(true_positives+false_positives))
-        recall = 1.0*true_positives/max(1,(true_positives+false_negatives))
-        f1 = 2.0 * true_positives/max(1,(2*true_positives + false_positives+false_negatives))
-        f2 = (1+2.0*2.0) * precision*recall/max(1,(4*precision + recall))
-        print clf
-        print PERF_FORMAT_STRING.format(accuracy, precision, recall, f1, f2, display_precision = 5)
-        print RESULTS_FORMAT_STRING.format(total_predictions, true_positives, false_positives, false_negatives, true_negatives)
-        print ""
-        
-        predictions_train = clf.predict(features_train)
-        precision_train = precision_score(predictions_train, labels_train) 
-        recall_train = recall_score(recall_score)
-        
-        # precision and recall are scores for test data
-        # precision_train and recall_train are scores for training data
-        return (precision_train, recall_train, precision, recall)
-    except:
-        print "Got a divide by zero when trying out:", clf
+#    try:
+    total_predictions = true_negatives + false_negatives + false_positives + true_positives
+    accuracy = 1.0*(true_positives + true_negatives)/total_predictions
+    precision = 1.0*true_positives/max(1,(true_positives+false_positives))
+    recall = 1.0*true_positives/max(1,(true_positives+false_negatives))
+    f1 = 2.0 * true_positives/max(1,(2*true_positives + false_positives+false_negatives))
+    f2 = (1+2.0*2.0) * precision*recall/max(1,(4*precision + recall))
+    print clf
+    print PERF_FORMAT_STRING.format(accuracy, precision, recall, f1, f2, display_precision = 5)
+    print RESULTS_FORMAT_STRING.format(total_predictions, true_positives, false_positives, false_negatives, true_negatives)
+    print ""
+    
+    predictions_train = clf.predict(features_train)
+    precision_train = precision_score(predictions_train, labels_train) 
+    recall_train = recall_score(predictions_train, labels_train)
+    
+    # precision and recall are scores for test data
+    # precision_train and recall_train are scores for training data
+    return (precision_train, recall_train, precision, recall)
+#    except:
+#        print "Got a divide by zero when trying out:", clf
 
 CLF_PICKLE_FILENAME = "my_classifier.pkl"
 DATASET_PICKLE_FILENAME = "my_dataset.pkl"

@@ -45,10 +45,13 @@ features_list_kbest = ['poi', 'salary', 'deferral_payments', 'total_payments', '
 
 # plot scatterplot to see SelectKBest score v. precision & recall 
 import matplotlib.pyplot as plt
-precision_scores = []
-recall_scores = [] 
+precision_train_scores = []
+precision_test_scores = []
+recall_train_scores = []
+recall_test_scores = []
+kvalues = []
 
-for i in range(len(features_list_kbest)):
+for i in range(1,len(features_list_kbest)):
         
     ### Extract features and labels from dataset for local testing
     #data = featureFormat(my_dataset, features_list, sort_keys = True)
@@ -67,9 +70,16 @@ for i in range(len(features_list_kbest)):
     find_kbest_features = kbest.fit(features_train, labels_train)
     kbest_features_transformed = kbest.fit_transform(features_train, labels_train)
     print kbest.get_support()
+    kvalues.append(i)
     print find_kbest_features.scores_
     print find_kbest_features.pvalues_
-    
+    #get the names of the top-scoring features
+    score_featureName = zip(find_kbest_features.scores_,features_list_kbest[1:])
+    score_featureName.sort()
+    kbestFeatureNames = [n for (s,n) in score_featureName[:i]]
+    print i,"best:",kbestFeatureNames
+    #add in "poi"
+    kbestFeatureNames = [features_list_kbest[0]]+kbestFeatureNames
     ### Task 4: Try a varity of classifiers
     ### Please name your classifier clf for easy export below.
     ### Note that if you want to do PCA or other multi-stage operations,
@@ -97,11 +107,24 @@ for i in range(len(features_list_kbest)):
     
     
     #test_classifier(clf, my_dataset, features_list)
-    precision_train, recall_train, precision_test, recall_test = test_classifier(clf, my_dataset, features_list)
+    precision_train, recall_train, precision_test, recall_test = test_classifier(clf, my_dataset, kbestFeatureNames)
 
-    precision_scores.append((precision_train, precision_test))
-    recall_scores.append((recall_train, recall_test))
-    
+    precision_train_scores.append(precision_train)
+    precision_test_scores.append(precision_test)
+    recall_train_scores.append(recall_train)
+    recall_test_scores.append(recall_test)
+
+plt.figure()
+plt.plot(kvalues, precision_train_scores, "-", label="training precision")
+plt.plot(kvalues, precision_test_scores, "-", label="test precision")
+plt.plot(kvalues, recall_train_scores, "-", label="training recall")
+plt.plot(kvalues, recall_test_scores, "-", label="test recall")
+plt.xlabel("k-value")
+plt.ylabel("precision and recall scores")
+plt.legend()
+plt.show()
+plt.savefig("kvalue_precision_recall.pdf")
+   
 ### Dump your classifier, dataset, and features_list so 
 ### anyone can run/check your results.
 
