@@ -6,7 +6,7 @@ import json
 sys.path.append("../tools/")
 
 from feature_format import featureFormat, targetFeatureSplit
-from tester import test_classifier, dump_classifier_and_data
+from tester_plot import test_classifier, dump_classifier_and_data
 
 #EMAIL_SUSPICIOUS_RATIO = "email_suspicious_ratio.pkl"
 EMAIL_SUSPICIOUS_RATIO_JSON = "email_suspicious_ratio.json"
@@ -40,11 +40,17 @@ for person in my_dataset:
         
         
 ### Feature Selection, with learning curve to avoid overfitting
+features_list_kbest = ['poi', 'salary', 'deferral_payments', 'total_payments', 'loan_advances', 'bonus', 'restricted_stock_deferred', 'deferred_income', 'total_stock_value', 'expenses', 'exercised_stock_options', 'other', 'long_term_incentive', 'restricted_stock', 'director_fees', 'to_messages', 'from_poi_to_this_person', 'from_messages', 'from_this_person_to_poi', 'shared_receipt_with_poi']
+    #['poi', 'salary', 'deferral_payments', 'total_payments', 'loan_advances', 'bonus', 'restricted_stock_deferred', 'deferred_income', 'total_stock_value', 'expenses', 'exercised_stock_options', 'other', 'long_term_incentive', 'restricted_stock', 'director_fees','to_messages', 'from_poi_to_this_person', 'from_messages', 'from_this_person_to_poi', 'shared_receipt_with_poi']  # You will need to use more features
+
+# plot scatterplot to see SelectKBest score v. precision & recall 
+import matplotlib.pyplot as plt
+precision_scores = []
+recall_scores = [] 
 
 for i in range(len(features_list_kbest)):
-    
+        
     ### Extract features and labels from dataset for local testing
-    features_list_kbest = ['poi', 'salary', 'deferral_payments', 'total_payments', 'loan_advances', 'bonus', 'restricted_stock_deferred', 'deferred_income', 'total_stock_value', 'expenses', 'exercised_stock_options', 'other', 'long_term_incentive', 'restricted_stock', 'director_fees','to_messages', 'from_poi_to_this_person', 'from_messages', 'from_this_person_to_poi', 'shared_receipt_with_poi']  # You will need to use more features
     #data = featureFormat(my_dataset, features_list, sort_keys = True)
     data = featureFormat(my_dataset, features_list_kbest, sort_keys = True)
     labels, features = targetFeatureSplit(data)
@@ -91,7 +97,10 @@ for i in range(len(features_list_kbest)):
     
     
     #test_classifier(clf, my_dataset, features_list)
-    test_classifier(clf, my_dataset, features_list)
+    precision_train, recall_train, precision_test, recall_test = test_classifier(clf, my_dataset, features_list)
+
+    precision_scores.append((precision_train, precision_test))
+    recall_scores.append((recall_train, recall_test))
     
 ### Dump your classifier, dataset, and features_list so 
 ### anyone can run/check your results.
