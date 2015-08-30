@@ -38,10 +38,9 @@ for person in my_dataset:
     email = my_dataset[person]['email_address']
     my_dataset[person][NEW_FEATURE] = email_suspicious_total_ratio[email]
         
-#analyze_feature_selection(my_dataset)
+analyze_feature_selection(my_dataset)
 
-features_list_best = ['shared_receipt_with_poi', 'from_poi_to_this_person', 'loan_advances', 'suspicious_email_ratio', 'to_messages', 'director_fees', 'from_messages']
-
+features_list_best = ['poi', 'shared_receipt_with_poi', 'from_poi_to_this_person', 'loan_advances', 'suspicious_email_ratio', 'to_messages', 'total_payments', 'from_messages', 'director_fees', 'restricted_stock_deferred', 'deferral_payments', 'other', 'deferred_income', 'expenses', 'bonus']
 data = featureFormat(my_dataset, features_list_best, sort_keys = True)
 labels, features = targetFeatureSplit(data)
         
@@ -60,9 +59,10 @@ labels, features = targetFeatureSplit(data)
 #from sklearn.svm import SVC
 #clf = SVC(C = 10.0, kernel="rbf", degree=4)
 
-from sklearn import tree
-clf = tree.DecisionTreeClassifier(criterion='gini', min_samples_split = 2, 
-                                      min_samples_leaf=3, random_state=27)
+#from sklearn import tree
+#clf = tree.DecisionTreeClassifier(criterion='gini', min_samples_split = 2, 
+#                                      min_samples_leaf=3, random_state=27)
+#clf = tree.DecisionTreeClassifier()
 
 ### Task 5: Tune your classifier to achieve better than .3 precision and recall 
 ### using our testing script.
@@ -71,7 +71,7 @@ clf = tree.DecisionTreeClassifier(criterion='gini', min_samples_split = 2,
 ### http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.StratifiedShuffleSplit.html
 
 
-test_classifier(clf, my_dataset, features_list)
+test_classifier(clf, my_dataset, features_list_best)
            
 ### Dump your classifier, dataset, and features_list so 
 ### anyone can run/check your results.

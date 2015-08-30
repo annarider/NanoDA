@@ -29,7 +29,7 @@ def analyze_feature_selection(my_dataset):
         from sklearn import cross_validation
         
         features_train, features_test, labels_train, labels_test = cross_validation.train_test_split(
-        	features, labels, test_size = 0.3, random_state = 42)
+        	features, labels, test_size = 0.4, random_state = 42)
         
         kbest = SelectKBest(f_regression, k = i)
         find_kbest_features = kbest.fit(features_train, labels_train)
@@ -48,12 +48,10 @@ def analyze_feature_selection(my_dataset):
         kbestFeatureNames = [features_list_kbest[0]]+kbestFeatureNames
         
         from sklearn import tree
-#        clf = tree.DecisionTreeClassifier(criterion='gini', min_samples_split = 2, 
-#                                          min_samples_leaf=3, random_state=27)
+        clf = tree.DecisionTreeClassifier(criterion='gini', min_samples_split = 2, 
+                                          min_samples_leaf=3, random_state=27)
 #        clf = tree.DecisionTreeClassifier()
-        
-        from sklearn.naive_bayes import GaussianNB
-        clf = GaussianNB()         
+    
         precision_train, recall_train, precision_test, recall_test = test_classifier(clf, my_dataset, kbestFeatureNames)
     
         precision_train_scores.append(precision_train)
