@@ -135,4 +135,15 @@ http://stackoverflow.com/questions/7922487/how-to-transform-numpy-matrix-or-arra
 - Create Dense Matrix from Sparse Matrix
 http://stackoverflow.com/questions/16505670/generating-a-dense-matrix-from-a-sparse-matrix-in-numpy-python
 
+Spyder
+********************************************
+- Reset window layout
+https://groups.google.com/forum/#!topic/spyderlib/bCMQlTqSGFg
+
+Pyplot
+********************************************
+- Create line plot
+http://matplotlib.org/api/pyplot_api.html
+
+
 Help from Luke Allen. Thanks.
