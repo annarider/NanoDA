@@ -41,7 +41,7 @@ for person in my_dataset:
 #analyze_feature_selection(my_dataset)
 
 #features_list_best = ['poi', 'shared_receipt_with_poi', 'from_poi_to_this_person', 'suspicious_email_ratio', 'from_messages', 'director_fees']
-features_list_best = ['poi','from_this_person_to_poi', 'expenses', 'deferred_income', NEW_FEATURE]
+features_list_best = ['poi','from_this_person_to_poi', 'expenses', 'deferred_income']
 data = featureFormat(my_dataset, features_list_best, sort_keys = True)
 labels, features = targetFeatureSplit(data)
         
@@ -61,7 +61,7 @@ labels, features = targetFeatureSplit(data)
 #clf = SVC(C = 10.0, kernel="rbf", degree=4)
 
 from sklearn import tree
-clf = tree.DecisionTreeClassifier()
+#clf = tree.DecisionTreeClassifier()
 
 
 ### Task 5: Tune your classifier to achieve better than .3 precision and recall 
@@ -83,10 +83,10 @@ parameters = {'min_samples_split': [2, 3, 4],
 #
 #clf_grid_search = grid_search.GridSearchCV(clf, parameters, scoring=recall_scorer)
 #
-#clf = tree.DecisionTreeClassifier(criterion='gini',
-#            max_depth=None, max_features=None, min_density=None,
-#            min_samples_leaf=1, min_samples_split=2, random_state=None,
-#            splitter='best')
+clf = tree.DecisionTreeClassifier(criterion='gini',
+            max_depth=None, max_features=None, min_density=None,
+            min_samples_leaf=1, min_samples_split=2, random_state=None,
+            splitter='best')
 test_classifier(clf, my_dataset, features_list_best)
 #test_classifier(clf_grid_search, my_dataset, features_list_best)
            
