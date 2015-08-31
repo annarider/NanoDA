@@ -50,6 +50,6 @@ plt.xlabel(features[1])
 plt.ylabel(features[2])
 plt.legend()
 plt.show()
+#plt.savefig("outliers_with_total.pdf")
 plt.savefig("outliers.pdf")
-
 

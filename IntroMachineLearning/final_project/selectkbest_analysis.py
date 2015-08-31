@@ -4,11 +4,12 @@ from tester_plot import test_classifier
 import matplotlib.pyplot as plt
 
 NEW_FEATURE = "suspicious_email_ratio"
+SELECTKBEST_PLOT = "kvalue_precision_recall_no_newfeature.pdf"
 
 
 def analyze_feature_selection(my_dataset):
 ### Feature Selection, with learning curve to avoid overfitting
-    features_list_kbest = ['poi', 'salary', 'deferral_payments', 'total_payments', 'loan_advances', 'bonus', 'restricted_stock_deferred', 'deferred_income', 'total_stock_value', 'expenses', 'exercised_stock_options', 'other', 'long_term_incentive', 'restricted_stock', 'director_fees', 'to_messages', 'from_poi_to_this_person', 'from_messages', 'from_this_person_to_poi', 'shared_receipt_with_poi', NEW_FEATURE]
+    features_list_kbest = ['poi', 'salary', 'deferral_payments', 'total_payments', 'loan_advances', 'bonus', 'restricted_stock_deferred', 'deferred_income', 'total_stock_value', 'expenses', 'exercised_stock_options', 'other', 'long_term_incentive', 'restricted_stock', 'director_fees', 'to_messages', 'from_poi_to_this_person', 'from_messages', 'from_this_person_to_poi', 'shared_receipt_with_poi']#, NEW_FEATURE]
     precision_train_scores = []
     precision_test_scores = []
     recall_train_scores = []
@@ -74,4 +75,4 @@ def analyze_feature_selection(my_dataset):
     plt.ylabel("precision and recall scores")
     plt.legend(loc=7)
     plt.show()
-    plt.savefig("kvalue_precision_recall.pdf")
+    plt.savefig(SELECTKBEST_PLOT)
