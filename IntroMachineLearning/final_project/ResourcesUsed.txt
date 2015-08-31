@@ -110,6 +110,9 @@ http://stats.stackexchange.com/questions/91842/how-to-perform-parameters-tuning-
 - Validation
 http://stackoverflow.com/questions/14117997/what-does-recall-mean-in-machine-learning
 
+- Grid Search CV
+http://scikit-learn.org/stable/modules/generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV.fit
+
 NLTK
 ********************************************
 - Stemmer Documentation

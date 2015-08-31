@@ -59,10 +59,9 @@ labels, features = targetFeatureSplit(data)
 #from sklearn.svm import SVC
 #clf = SVC(C = 10.0, kernel="rbf", degree=4)
 
-#from sklearn import tree
-#clf = tree.DecisionTreeClassifier(criterion='gini', min_samples_split = 2, 
-#                                      min_samples_leaf=3, random_state=27)
-#clf = tree.DecisionTreeClassifier()
+from sklearn import tree
+clf = tree.DecisionTreeClassifier()
+
 
 ### Task 5: Tune your classifier to achieve better than .3 precision and recall 
 ### using our testing script.
@@ -70,8 +69,26 @@ labels, features = targetFeatureSplit(data)
 ### shuffle split cross validation. For more info: 
 ### http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.StratifiedShuffleSplit.html
 
+from sklearn import grid_search
+#from sklearn.metrics import make_scorer, recall_score
+#recall_scorer = make_scorer(recall_score, greater_is_better=True) 
 
-test_classifier(clf, my_dataset, features_list_best)
+parameters = {'min_samples_split': [10],
+                      'min_samples_leaf': [1],
+                      'max_depth': [None, 1, 2],
+                      'splitter' : ['best'],
+                      'criterion': ['gini', 'entropy'],
+                      'random_state': [42]
+}
+#
+clf_grid_search = grid_search.GridSearchCV(clf, parameters, scoring=recall_scorer)
+
+#clf = tree.DecisionTreeClassifier(compute_importances=None, criterion='entropy',
+#            max_depth=None, max_features=10, min_density=None,
+#            min_samples_leaf=1, min_samples_split=1, random_state=None,
+#            splitter='best')
+#test_classifier(clf, my_dataset, features_list_best)
+test_classifier(clf_grid_search, my_dataset, features_list_best)
            
 ### Dump your classifier, dataset, and features_list so 
 ### anyone can run/check your results.
