@@ -38,9 +38,9 @@ for person in my_dataset:
     email = my_dataset[person]['email_address']
     my_dataset[person][NEW_FEATURE] = email_suspicious_total_ratio[email]
         
-analyze_feature_selection(my_dataset)
+#analyze_feature_selection(my_dataset)
 
-features_list_best = ['poi', 'shared_receipt_with_poi', 'from_poi_to_this_person', 'loan_advances', 'suspicious_email_ratio', 'to_messages', 'total_payments', 'from_messages', 'director_fees', 'restricted_stock_deferred', 'deferral_payments', 'other', 'deferred_income', 'expenses', 'bonus']
+features_list_best = ['poi', 'total_stock_value', 'exercised_stock_options', 'expenses', 'salary']
 data = featureFormat(my_dataset, features_list_best, sort_keys = True)
 labels, features = targetFeatureSplit(data)
         
@@ -70,13 +70,13 @@ clf = tree.DecisionTreeClassifier()
 ### http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.StratifiedShuffleSplit.html
 
 from sklearn import grid_search
-#from sklearn.metrics import make_scorer, recall_score
-#recall_scorer = make_scorer(recall_score, greater_is_better=True) 
+from sklearn.metrics import make_scorer, recall_score
+recall_scorer = make_scorer(recall_score, greater_is_better=True) 
 
-parameters = {'min_samples_split': [10],
-                      'min_samples_leaf': [1],
-                      'max_depth': [None, 1, 2],
-                      'splitter' : ['best'],
+parameters = {'min_samples_split': [2, 5, 10],
+                      'min_samples_leaf': [1, 2],
+                      'max_depth': [None, 1],
+                      'splitter' : ['best', 'random'],
                       'criterion': ['gini', 'entropy'],
                       'random_state': [42]
 }
