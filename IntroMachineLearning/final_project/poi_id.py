@@ -40,7 +40,7 @@ for person in my_dataset:
         
 #analyze_feature_selection(my_dataset)
 
-features_list_best = ['poi', 'total_stock_value', 'exercised_stock_options', 'expenses', 'salary']
+features_list_best = ['poi', 'shared_receipt_with_poi', 'from_poi_to_this_person', 'suspicious_email_ratio', 'from_messages', 'director_fees']
 data = featureFormat(my_dataset, features_list_best, sort_keys = True)
 labels, features = targetFeatureSplit(data)
         
@@ -73,21 +73,21 @@ from sklearn import grid_search
 from sklearn.metrics import make_scorer, recall_score
 recall_scorer = make_scorer(recall_score, greater_is_better=True) 
 
-parameters = {'min_samples_split': [2, 3, 4],
-                      'min_samples_leaf': [1, 2],
-                      'max_depth': [None, 1],
-                      'splitter' : ['best', 'random'],
-                      'criterion': ['gini', 'entropy'],
-}
+#parameters = {'min_samples_split': [2, 3, 4],
+#                      'min_samples_leaf': [1, 2],
+#                      'max_depth': [None, 1],
+#                      'splitter' : ['best', 'random'],
+#                      'criterion': ['gini', 'entropy'],
+#}
 #
-clf_grid_search = grid_search.GridSearchCV(clf, parameters, scoring=recall_scorer)
+#clf_grid_search = grid_search.GridSearchCV(clf, parameters, scoring=recall_scorer)
 #
 #clf = tree.DecisionTreeClassifier(criterion='gini',
 #            max_depth=None, max_features=None, min_density=None,
 #            min_samples_leaf=1, min_samples_split=2, random_state=None,
 #            splitter='best')
-#test_classifier(clf, my_dataset, features_list_best)
-test_classifier(clf_grid_search, my_dataset, features_list_best)
+test_classifier(clf, my_dataset, features_list_best)
+#test_classifier(clf_grid_search, my_dataset, features_list_best)
            
 ### Dump your classifier, dataset, and features_list so 
 ### anyone can run/check your results.
