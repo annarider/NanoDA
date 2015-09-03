@@ -82,8 +82,6 @@ bio["education"] = {
     ]
 }
 
-// $("#main").append(bio.work["position"])
-// $("#main").append(bio.education.name)
 
 
 var education = {
@@ -93,6 +91,7 @@ var education = {
     "graduation": [2011, 2013]
 }
 
-if (document.getElementsByClassName("education-entry").length === 0) {
-    document.getElementById("education").style.display = "none";
-}
+
+
+$("#main").append(bio.work["position"])
+$("#main").append(bio.education.name)
