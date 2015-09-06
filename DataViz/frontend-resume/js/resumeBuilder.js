@@ -93,7 +93,7 @@ var education = {
 
 bio.skills = {
     "Media": ["Final Cut Pro", "Wordpress", "Photoshop"],
-    "SQL" : "Oracle",
+    "SQL" : "Oracle SQL",
     "AWS" : ["EC2", "RDS"]
 }
 
@@ -107,13 +107,17 @@ var bioSkillsLength = Object.keys(bio.skills).length
 if (bioSkillsLength > 0) {
 
     $("#header").append(HTMLskillsStart);
-    for (var i; bioSkillsLength < i; i++) {
-        for (var j; bioSkillsLength[i] < j; j++) {
-            var formattedSkill = HTMLskills.replace("%data%", bio.skills[i][j]);
-            console.log(bio.skills[i][j]);
-            $("#skills").append(formattedSkill);    
-        }
-        
+    for (skillsList in bio.skills) {
+        // console.log(bio.skills[skillsList]);
+        if (bio.skills[skillsList].constructor === Array) {
+            for (var skill in bio.skills[skillsList]) {
+                var formattedSkill = HTMLskills.replace("%data%", bio.skills[skillsList][skill]);
+                $("#skills").append(formattedSkill);    
+                
+            }
+        } else {
+            var formattedSkill = HTMLskills.replace("%data%", bio.skills[skillsList]);
+            $("#skills").append(formattedSkill); 
+        }   
     }
-    
 }
