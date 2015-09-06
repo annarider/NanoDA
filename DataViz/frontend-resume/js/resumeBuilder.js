@@ -32,9 +32,14 @@ var bio = {
 $("#main").append(bio.name)
 
 bio.work = {
-    "position": "Technical Writer",
+    "tech": {"position": "Technical Writer",
     "employer": "Semarchy",
     "city": "Menlo Park"
+    },
+    "journalism": {"position": "Journalist",
+    "employer": "Poynter",
+    "city": "St. Petersburg"
+    }
 }
 
 bio["education"] = {
@@ -103,6 +108,8 @@ $("#main").append(bio.education.name)
 
 console.log(bio);
 
+// append skills info to resume
+
 var bioSkillsLength = Object.keys(bio.skills).length
 if (bioSkillsLength > 0) {
 
@@ -120,4 +127,18 @@ if (bioSkillsLength > 0) {
             $("#skills").append(formattedSkill); 
         }   
     }
+}
+
+// append work/employer info
+
+var bioWorkLength = Object.keys(bio.work).length;
+if (bioWorkLength > 0) {
+    for (job in bio.work) {
+        $("#workExperience").append(HTMLworkStart);
+        var employer = HTMLworkEmployer.replace("%data%", bio.work[job]["employer"])
+        var position = HTMLworkTitle.replace("%data%", bio.work[job]["position"]);
+        var formattedEmployerPosition = employer + position
+        $(".work-entry:last").append(formattedEmployerPosition)
+    }
+    
 }
