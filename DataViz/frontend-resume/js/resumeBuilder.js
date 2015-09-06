@@ -91,7 +91,29 @@ var education = {
     "graduation": [2011, 2013]
 }
 
+bio.skills = {
+    "Media": ["Final Cut Pro", "Wordpress", "Photoshop"],
+    "SQL" : "Oracle",
+    "AWS" : ["EC2", "RDS"]
+}
 
 
 $("#main").append(bio.work["position"])
 $("#main").append(bio.education.name)
+
+console.log(bio);
+
+var bioSkillsLength = Object.keys(bio.skills).length
+if (bioSkillsLength > 0) {
+
+    $("#header").append(HTMLskillsStart);
+    for (var i; bioSkillsLength < i; i++) {
+        for (var j; bioSkillsLength[i] < j; j++) {
+            var formattedSkill = HTMLskills.replace("%data%", bio.skills[i][j]);
+            console.log(bio.skills[i][j]);
+            $("#skills").append(formattedSkill);    
+        }
+        
+    }
+    
+}
