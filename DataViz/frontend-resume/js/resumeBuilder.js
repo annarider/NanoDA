@@ -9,12 +9,12 @@ console.log(funThoughts)
 
 $("#main").append(funThoughts)
 */
-// var formattedName = HTMLheaderName.replace("%data%", "Anna")
+var formattedName = HTMLheaderName.replace("%data%", "Anna Li");
 
-// var formattedRole = HTMLheaderRole.replace("%data%", "Data Analyst")
+var formattedRole = HTMLheaderRole.replace("%data%", "Data Analyst");
 
-// $("#main").prepend(formattedRole)
-// $("#main").prepend(formattedName)
+$("#header").prepend(formattedRole);
+$("#header").prepend(formattedName);
 
 var bio = {
     "name": "Anna",
@@ -29,7 +29,7 @@ var bio = {
     "skills": ["talking", "cooking", "learning"]
 };
 
-$("#main").append(bio.name)
+// $("#main").append(bio.name)
 
 bio.work = {
     "tech": {"position": "Technical Writer",
@@ -40,7 +40,7 @@ bio.work = {
     "employer": "Poynter",
     "city": "St. Petersburg"
     }
-}
+};
 
 bio["education"] = {
     "schools": [
@@ -85,7 +85,7 @@ bio["education"] = {
             "dates": "Aug 2015"
         }
     ]
-}
+};
 
 
 
@@ -94,13 +94,19 @@ var education = {
     "school cities": ["Auckland", "Los Angeles", "Stanford"],
     "majors": ["Comm", "Journalism"],
     "graduation": [2011, 2013]
-}
+};
 
 bio.skills = {
     "Media": ["Final Cut Pro", "Wordpress", "Photoshop"],
     "SQL" : "Oracle SQL",
     "AWS" : ["EC2", "RDS"]
-}
+};
+
+projects = {
+    "projects": ["intro data science", "openstreetmaps", "top 5000 companies", 
+    "enron", "iMarch", "CS106A", "Android app"]
+};
+// console.log(bio.projects);
 
 
 $("#main").append(bio.work["position"])
@@ -110,7 +116,7 @@ console.log(bio);
 
 // append skills info to resume
 
-var bioSkillsLength = Object.keys(bio.skills).length
+var bioSkillsLength = Object.keys(bio.skills).length;
 if (bioSkillsLength > 0) {
 
     $("#header").append(HTMLskillsStart);
@@ -127,18 +133,52 @@ if (bioSkillsLength > 0) {
             $("#skills").append(formattedSkill); 
         }   
     }
-}
+};
 
 // append work/employer info
+var displayWork = function () {
+    var bioWorkLength = Object.keys(bio.work).length;
+    if (bioWorkLength > 0) {
+        for (job in bio.work) {
+            $("#workExperience").append(HTMLworkStart);
+            var employer = HTMLworkEmployer.replace("%data%", bio.work[job]["employer"]);
+            var position = HTMLworkTitle.replace("%data%", bio.work[job]["position"]);
+            var formattedEmployerPosition = employer + position;
+            $(".work-entry:last").append(formattedEmployerPosition);
 
-var bioWorkLength = Object.keys(bio.work).length;
-if (bioWorkLength > 0) {
-    for (job in bio.work) {
-        $("#workExperience").append(HTMLworkStart);
-        var employer = HTMLworkEmployer.replace("%data%", bio.work[job]["employer"])
-        var position = HTMLworkTitle.replace("%data%", bio.work[job]["position"]);
-        var formattedEmployerPosition = employer + position
-        $(".work-entry:last").append(formattedEmployerPosition)
+            var city = HTMLworkLocation.replace("%data%", bio.work[job]["city"]);
+            $(".work-entry:last").append(city);
+            
+        }       
     }
-    
-}
+};
+
+displayWork();
+
+// var inName = function(oldName) {
+//     var finalName = oldName;
+//     var space_index = finalName.indexOf(" ");
+//     finalName = finalName[0].toUpperCase() + finalName.slice(1, space_index).toLowerCase() + finalName.slice(space_index).toUpperCase();
+//     return finalName;
+// };
+var inName = function(oldName) {
+    var name = oldName.trim().split(' ');
+    name[1] = name[1].toUpperCase();
+    name[0] = name[0].slice(0,1).toUpperCase() + name[0].slice(1).toLowerCase();
+    var finalName = name[0] + ' ' + name[1];
+    return finalName;
+};
+
+console.log(inName("anna li"));
+$("#main").append(internationalizeButton);
+
+projects.display = function () {  
+    for (project in projects.projects) {
+        $('#projects').append(HTMLprojectStart);
+        console.log(project);
+        var formattedProject = HTMLprojectTitle.replace("%data%", projects.projects[project]);
+        console.log(formattedProject);
+        $('.projects-entry:last').append(formattedProject);
+    }
+
+};
