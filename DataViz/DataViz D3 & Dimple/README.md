@@ -32,3 +32,31 @@ https://developers.google.com/speed/docs/insights/v1/getting_started
 
 #### Scott Murray
 #### Cole Nussbaumer
+
+## Project Resources
+
+### Topojson
+Getting the topojson data files
+US States
+http://mapstarter.com/
+
+US Counties
+http://bl.ocks.org/mbostock/raw/4090846/us.json
+
+World
+http://bl.ocks.org/mbostock/raw/4090846/world-50m.json
+
+How to convert shapefiles into topojson
+http://stackoverflow.com/questions/16358472/svg-topojson-for-world-map-with-us-states
+
+Link to topojson
+https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.js
+
+### Maps colors
+
+Ordinal color scale
+https://github.com/mbostock/d3/wiki/Ordinal-Scales#categorical-colors
+
+### D3 Maps tutorial
+
+http://socialinnovationsimulation.com/2013/07/11/tutorial-making-maps-on-d3/

@@ -2,12 +2,13 @@
 <meta charset="utf-8">
 <style>
 .land {
-  fill: #222;
+  fill: steelblue;
 }
-.county-boundary {
-  fill: none;
-  stroke: #fff;
-  stroke-width: .5px;
+.state-area {
+  fill: steelblue;
+  stroke-width: 1px;
+  stroke: white;
+  cursor: pointer;
 }
 .state-boundary {
   fill: none;
@@ -15,8 +16,9 @@
 }
 </style>
 <body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.js"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
 <script>
 var width = 960,
     height = 500;
@@ -28,20 +30,31 @@ var path = d3.geo.path()
 var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
-d3.json("/mbostock/raw/4090846/us.json", function(error, us) {
+// d3.json("/data/us.json", function(error, us) {
+d3.json("/data/us-states.topojson", function(error, us) {
   if (error) throw error;
+  // svg.insert("path", ".graticule")
+  //     .datum(topojson.feature(us, us.objects.land))
+  //     .attr("class", "land")
+  //     .attr("d", path);
+  // svg.insert("path", ".graticule")
+  //     .datum(topojson.mesh(us, us.objects.counties, function(a, b) { return a !== b && !(a.id / 1000 ^ b.id / 1000); }))
+  //     .attr("class", "county-boundary")
+  //     .attr("d", path);
   svg.insert("path", ".graticule")
-      .datum(topojson.feature(us, us.objects.land))
-      .attr("class", "land")
-      .attr("d", path);
-  svg.insert("path", ".graticule")
-      .datum(topojson.mesh(us, us.objects.counties, function(a, b) { return a !== b && !(a.id / 1000 ^ b.id / 1000); }))
-      .attr("class", "county-boundary")
-      .attr("d", path);
-  svg.insert("path", ".graticule")
-      .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+      .datum(topojson.feature(us,us.objects.collection).features)
+      // .datum(topojson.feature(us, us.objects.collection, function(a, b) { return a !== b; }))
+      .enter()
+      .append("path")
       .attr("class", "state-boundary")
-      .attr("d", path);
+      .attr("d", path)
+      .on("click",clicked);
+// d3.json("/data/us.json", function(error, us) {
+//   if (error) throw error;
+//   svg.insert("path", ".graticule")
+//       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+//       .attr("class", "state-boundary")
+//       .attr("d", path);
 });
 d3.select(self.frameElement).style("height", height + "px");
 </script>
