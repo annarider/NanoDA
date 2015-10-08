@@ -42,6 +42,10 @@ http://mapstarter.com/
 
 US Counties
 http://bl.ocks.org/mbostock/raw/4090846/us.json
+Russia
+http://bl.ocks.org/KoGor/5685876
+Unemployment
+http://bl.ocks.org/mbostock/4060606
 
 World
 http://bl.ocks.org/mbostock/raw/4090846/world-50m.json
@@ -52,6 +56,9 @@ http://stackoverflow.com/questions/16358472/svg-topojson-for-world-map-with-us-s
 Link to topojson
 https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.js
 
+Topojson API docs
+https://github.com/mbostock/topojson/wiki/API-Reference
+
 ### Maps colors
 
 Ordinal color scale
@@ -59,4 +66,8 @@ https://github.com/mbostock/d3/wiki/Ordinal-Scales#categorical-colors
 
 ### D3 Maps tutorial
 
+Great step-by-step tutorial based on Mike Bostock's counties map
 http://socialinnovationsimulation.com/2013/07/11/tutorial-making-maps-on-d3/
+
+D3 GeoJSON map with states
+https://d3-geomap.github.io/map/choropleth/us-states/
