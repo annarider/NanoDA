@@ -71,3 +71,7 @@ http://socialinnovationsimulation.com/2013/07/11/tutorial-making-maps-on-d3/
 
 D3 GeoJSON map with states
 https://d3-geomap.github.io/map/choropleth/us-states/
+
+
+### Export CSV in R
+write.table(companies, file = "companies.csv", na = "", row.names = FALSE, quote = TRUE, sep = ",", eol = "\n", dec = ".")
