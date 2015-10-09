@@ -34,6 +34,9 @@ PageSpeed Insights is a tool that helps developers optimize their web pages by a
 
 https://developers.google.com/speed/docs/insights/v1/getting_started
 
+### D3 aggregate d3.nest()
+http://bl.ocks.org/phoebebright/raw/3176159/
+
 ## Dimple.js
 
 ### How to add a title to chart
