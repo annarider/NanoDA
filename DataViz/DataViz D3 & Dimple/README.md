@@ -4,6 +4,12 @@
 
 # Feedback 
 
+## First iteration
+
+### Person K
+- graph needs a title, pretty axis labels, and legend on the right
+- state names are cut off
+
 # Resources
 
 ## Javascript
@@ -17,7 +23,7 @@ http://stackoverflow.com/questions/18082/validate-decimal-numbers-in-javascript-
 #### Functions are first class objects in Javascript
 http://helephant.com/2008/08/19/functions-are-first-class-objects-in-javascript/
 
-##Tools
+## Tools
 #### JS lint
 helps validate JSON
  
@@ -27,6 +33,11 @@ PageSpeed Insights API.
 PageSpeed Insights is a tool that helps developers optimize their web pages by analyzing the pages and generating tailored suggestions to make the pages faster. You can use the PageSpeed Insights API to programmatically generate PageSpeed scores and suggestions.
 
 https://developers.google.com/speed/docs/insights/v1/getting_started
+
+## Dimple.js
+
+### How to add a title to chart
+http://stackoverflow.com/questions/25416063/title-for-charts-and-axes-in-dimple-js-charts
 
 ## Data Viz experts
 

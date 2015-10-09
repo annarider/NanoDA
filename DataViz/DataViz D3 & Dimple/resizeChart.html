@@ -1,0 +1,41 @@
+<html>
+<div id="chartContainer" style="height: 100%">
+    <script src="/lib/d3.v3.4.8.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+    <script type="text/javascript">
+        // In version 1.1.0 it's possible to initialise any size parameter with a
+        // % value as well as pixels
+        var svg = dimple.newSvg("#chartContainer", "100%", "100%");
+
+        // Decide whether to draw the button or the graph
+        if (window.opener !== null && window.opener !== undefined) {
+
+            // Set up a standard chart
+            var myChart;
+            d3.tsv("/data/example_data.tsv", function (data) {
+                myChart = new dimple.chart(svg, data);
+
+                // Fix the margins
+                myChart.setMargins("60px", "30px", "110px", "70px");
+
+                // Continue to set up a standard chart
+                myChart.addCategoryAxis("x", "Month").addOrderRule("Date");
+                myChart.addMeasureAxis("y", "Unit Sales");
+                myChart.addSeries("Channel", dimple.plot.bar);
+                // Set the legend using negative values to set the co-ordinate from the right
+                myChart.addLegend("-100px", "30px", "100px", "-70px");
+                myChart.draw();
+            });
+            // Add a method to draw the chart on resize of the window
+            window.onresize = function () {
+                // As of 1.1.0 the second parameter here allows you to draw
+                // without reprocessing data.  This saves a lot on performance
+                // when you know the data won't have changed.
+                myChart.draw(0, true);
+            };
+
+        }
+
+    </script>
+</div>
+</html>

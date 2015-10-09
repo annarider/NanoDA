@@ -14,13 +14,6 @@
       myChart.addSeries("industry_categories", dimple.plot.bar);
       // myChart.addLegend(200, 10, 680, 520, "right");
       myChart.addLegend("-100px", "30px", "100px", "-70px");
-      svg.append("text")
-         .attr("x", myChart._xPixels() + myChart._widthPixels() / 2)
-         .attr("y", myChart._yPixels() - 10)
-         .style("text-anchor", "middle")
-         .style("font-family", "sans-serif")
-         .style("font-weight", "bold")
-         .text("My brilliant chart about a and b");
       myChart.draw();
     });
   </script>
