@@ -12,7 +12,8 @@
       // myChart.setBounds(60, 45, 910, 815)
       // Fix the margins
       myChart.setMargins("60px", "30px", "110px", "70px");
-      myChart.addCategoryAxis("x", ["state_l"]);
+      var xAxis = myChart.addCategoryAxis("x", ["state_l"]);
+      xAxis.title = "State"
       myChart.addMeasureAxis("y", "growth_percentage");
 
       var mySeries = myChart.addSeries("industry_categories", dimple.plot.bar);
@@ -43,7 +44,7 @@
         }
       }
 
-      debugger;
+      // debugger;
       // Customize tooltip and data displayed
       mySeries.getTooltipText = function (e) {
         // debugger;
