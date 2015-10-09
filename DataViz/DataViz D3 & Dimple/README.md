@@ -17,11 +17,16 @@
 #### Check if array
 http://stackoverflow.com/questions/767486/how-do-you-check-if-a-variable-is-an-array-in-javascript
 
+#### Associative arrays
+http://blog.xkoder.com/2008/07/10/javascript-associative-arrays-demystified/
+
 #### Check if number
 http://stackoverflow.com/questions/18082/validate-decimal-numbers-in-javascript-isnumeric
 
 #### Functions are first class objects in Javascript
 http://helephant.com/2008/08/19/functions-are-first-class-objects-in-javascript/
+
+
 
 ## Tools
 #### JS lint
@@ -34,8 +39,12 @@ PageSpeed Insights is a tool that helps developers optimize their web pages by a
 
 https://developers.google.com/speed/docs/insights/v1/getting_started
 
+## D3
 ### D3 aggregate d3.nest()
 http://bl.ocks.org/phoebebright/raw/3176159/
+
+### D3 sum
+https://github.com/mbostock/d3/wiki/Arrays#nest_rollup
 
 ## Dimple.js
 

@@ -13,11 +13,11 @@
       // Fix the margins
       // myChart.setMargins("60px", "30px", "110px", "70px");
       myChart.setMargins("5%", "15%", "5%", "30%");
-      var xAxis = myChart.addCategoryAxis("x", ["state_l"]);
+      var xAxis = myChart.addCategoryAxis("x", ["State"]);
       xAxis.title = "State"
-      myChart.addMeasureAxis("y", "growth_percentage");
+      myChart.addMeasureAxis("y", "Growth (%) 2013-2014");
 
-      var mySeries = myChart.addSeries("industry_categories", dimple.plot.bar);
+      var mySeries = myChart.addSeries("Industry Categories", dimple.plot.bar);
       // var mySeries = myChart.addSeries("industry_categories", dimple.plot.bar);
       // myChart.addLegend(200, 10, 680, 520, "right");
       myChart.addLegend("-100px", "30px", "100px", "-70px");
@@ -32,9 +32,9 @@
          .text("5000 fastest growing private companies in U.S. by state and industry");
       
       var nested_data = d3.nest()
-                          .key(function(d) { return d.state_l; })
-                          .key(function(d) { return d.industry_categories; })
-                          .rollup(function(leaves) { return {"sum_dollars": d3.sum(leaves, function(d) {return parseFloat(d.growth_dollar);})} })
+                          .key(function(d) { return d["State"]; })
+                          .key(function(d) { return d["Industry Categories"]; })
+                          .rollup(function(leaves) { return {"sum_dollars": d3.sum(leaves, function(d) {return parseFloat(d["Growth ($) 2013-2014"]);})} })
                           .entries(csv_data);
       //convert array of arrays into dict of dicts
       var state_ind = new Object();
@@ -45,13 +45,24 @@
         }
       }
 
+      var state_abbrev = [];
+
+      csv_data.forEach(function(d){
+        // debugger;
+
+        state_abbrev.push ({
+          key: d["State"],
+          value: d["State (long)"]
+        });
+      });
+
       // debugger;
       // Customize tooltip and data displayed
       mySeries.getTooltipText = function (e) {
-        // debugger;
+        debugger;
         return [
         // "Industry: " + e.aggField[1],
-        // // ": " + e.aggField[1],
+        "State: " + state_abbrev[e.x],
         // "Growth($): " + e.aggField[2]
         "Growth($): " + Math.round(state_ind[e.x][e.aggField[0]])
         ];

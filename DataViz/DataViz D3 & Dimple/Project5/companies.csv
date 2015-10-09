@@ -1,4 +1,4 @@
-"row_num","id","rank","workers","company","url","state_l","state_s","city","metro","growth_percentage","revenue2014","industry","yrs_on_list","revenue2013","growth_dollar","industry_categories"
+"row_num","id","Rank","Workers","Company","url","State (long)","State","City","Metro","Growth (%) 2013-2014","Revenue ($) in 2014","Industry","Years on list","Revenue ($) in 2013","Growth ($) 2013-2014","Industry Categories"
 0,22890,"1",227,"Fuhu","fuhu","California","CA","El Segundo","Los Angeles",158956.9106,195640000,"Consumer Products & Services",2,122999.999976109,195517000.000024,"Consumer Sector"
 1,25747,"2",191,"Quest Nutrition","quest-nutrition","California","CA","El Segundo","Los Angeles",57347.9246,82640563,"Food & Beverage",1,143853.0000438,82496709.9999562,"Consumer Sector"
 2,25643,"3",145,"Reliant Asset Management","reliant-asset-management","Virginia","VA","Arlington","Washington DC",55460.1646,85076502,"Business Products & Services",1,153124.999921257,84923377.0000787,"Industrials"
