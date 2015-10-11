@@ -5,7 +5,7 @@
   <script type="text/javascript">
     // chart takes up 100% of screen/browser space
     var svg = dimple.newSvg("#chartContainer", "100%", "100%");
-    d3.csv("companies.csv", function (csv_data) {
+    d3.csv("companies_final.csv", function (csv_data) {
       
       // Initialize new dimple chart
       var myChart = new dimple.chart(svg, csv_data);
@@ -20,7 +20,7 @@
       var mySeries = myChart.addSeries("Industry Categories", dimple.plot.bar);
       // var mySeries = myChart.addSeries("industry_categories", dimple.plot.bar);
       // myChart.addLegend(200, 10, 680, 520, "right");
-      myChart.addLegend("-100px", "30px", "100px", "-70px");
+      myChart.addLegend("-15%", "15%", "10%", "30%", "right");
       
       // Add Title
       svg.append("text")
@@ -45,26 +45,51 @@
         }
       }
 
+      // dictionary for state abbreviations to state name
       var state_abbrev = new Object();
+      for (var i = 0; i < csv_data.length; i++) {
 
-      csv_data.forEach(function(d){
-        // debugger;
+          if (!state_abbrev.hasOwnProperty(csv_data[i]["State"])) {
+            state_abbrev[csv_data[i]["State"]] = csv_data[i]["State (long)"];
+        console.log(state_abbrev);    
+        }
+        // debugger; 
+      } 
+      
+      // abbreviate number in tooltip
+      function abbreviateNumber(value) {
+        if(isNaN(value)) return value;
 
-        state_abbrev.push ({
-          key: d["State"],
-          value: d["State (long)"]
-        });
-      });
+        if(value < 9999) {
+          return value;
+        }
 
-      // debugger;
+        if(value < 1000000) {
+          return Math.round(value/1000) + "K";
+        }
+        if( value < 10000000) {
+          return (value/1000000).toFixed(2) + "M";
+        }
+
+        if(value < 1000000000) {
+          return Math.round((value/1000000)) + "M";
+        }
+
+        if(value < 1000000000000) {
+          return Math.round((value/1000000000)) + "B";
+        }
+
+        return "1T+";
+      }
+      
       // Customize tooltip and data displayed
       mySeries.getTooltipText = function (e) {
-        debugger;
+
+        // debugger;
         return [
-        // "Industry: " + e.aggField[1],
         "State: " + state_abbrev[e.x],
-        // "Growth($): " + e.aggField[2]
-        "Growth($): " + Math.round(state_ind[e.x][e.aggField[0]])
+        "Growth(%): " + abbreviateNumber(e.y),
+        "Growth($): " + abbreviateNumber(Math.round(state_ind[e.x][e.aggField[0]]))
         ];
         };
 

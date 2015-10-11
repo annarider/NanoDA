@@ -17,8 +17,11 @@
 #### Check if array
 http://stackoverflow.com/questions/767486/how-do-you-check-if-a-variable-is-an-array-in-javascript
 
-#### Associative arrays
+#### Associative arrays - Javascript dict
 http://blog.xkoder.com/2008/07/10/javascript-associative-arrays-demystified/
+
+#### Check if key is in object
+http://stackoverflow.com/questions/455338/how-do-i-check-if-an-object-has-a-key-in-javascript
 
 #### Check if number
 http://stackoverflow.com/questions/18082/validate-decimal-numbers-in-javascript-isnumeric
@@ -26,7 +29,9 @@ http://stackoverflow.com/questions/18082/validate-decimal-numbers-in-javascript-
 #### Functions are first class objects in Javascript
 http://helephant.com/2008/08/19/functions-are-first-class-objects-in-javascript/
 
-
+#### How to abbreviate numbers in tooltip in Javascript
+(Not good - gives $0.854B)http://stackoverflow.com/questions/455338/how-do-i-check-if-an-object-has-a-key-in-javascript
+http://www.raymondcamden.com/2012/07/06/Simple-JavaScript-number-format-function-and-an-example-of-Jasmine
 
 ## Tools
 #### JS lint

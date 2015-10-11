@@ -4,7 +4,7 @@
   <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
   <script type="text/javascript">
     var svg = dimple.newSvg("#chartContainer", 960, 900);
-    d3.csv("/data/companies.csv", function (data) {
+    d3.csv("companies.csv", function (data) {
       var myChart = new dimple.chart(svg, data);
       myChart.setBounds(60, 45, 910, 815)
       myChart.addCategoryAxis("x", ["state_l"]);
