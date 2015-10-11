@@ -88,6 +88,7 @@
         // debugger;
         return [
         "State: " + state_abbrev[e.x],
+        "Industry Category: " + e.aggField[0],
         "Growth(%): " + abbreviateNumber(e.y),
         "Growth($): " + abbreviateNumber(Math.round(state_ind[e.x][e.aggField[0]]))
         ];
