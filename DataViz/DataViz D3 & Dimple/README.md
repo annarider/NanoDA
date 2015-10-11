@@ -82,6 +82,9 @@ https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.js
 Topojson API docs
 https://github.com/mbostock/topojson/wiki/API-Reference
 
+### States Hash abbreviation
+https://gist.github.com/mshafrir/2646763
+
 ### Maps colors
 
 Ordinal color scale
