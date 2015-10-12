@@ -11,7 +11,7 @@ My data visualization compares which states and districts in the U.S. have the g
 - I cleaned up the aesthetics of the chart (title, axes labels, etc.) based on feedback that the text was unclear and messy. I moved the legend to the right to make room for the title. The legend on the right also made it easier for the eye to interpret the different industries because they were listed vertically. 
 - I especially spent a lot of time configuring the tooltip because I received recurring feedback that the tooltip was confusing, didn't display data in a useful manner, or lacked data. I went through several iterations until I found the right balance of information to include. 
 - Based on feedback by Person4, I changed the left margin in the svg so that the y-axis label would not be cut off.  
-
+- Based on advice from Person4 and Person5 for how to fix the bug that caused an errant bar to appear during animation, I cleaned up the dataset by aggregating values.
 
 # Feedback 
 
@@ -78,6 +78,13 @@ If you want to get fancy, you could make it so when you click in the legend, the
 I don't understand the y axis values - I suspect your data is already in millions but you should check.
 
 I see this artifact in my browser against the the margin. Perhaps it is the y axis label. Margins??
+
+### Iteration 6:
+#### Person5:
+(Discussion forum feedback: https://discussions.udacity.com/t/project-feedback-bug-with-redrawing-chart/34740/5?u=annali)
+Dimple isn't designed to deal with this case where the axis change as well. I think the easiest thing to do is modify the source data. I noticed that the data is unaggregated but everything in the chart is aggregated. I would trying creating a dataset with a row for each State Industry combo including 0 values for industries that don't exist in a particular state. The update code you have now should handle that data gracefully.
+
+
 
 # Resources
 
