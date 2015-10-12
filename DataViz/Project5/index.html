@@ -111,7 +111,42 @@
            .style("font-size", "12px")
            .text("Click the legend boxes to show one industry");
 
-        // Get all the rectangles from our now orphaned legend
+        var height = dimple._parentHeight(svg.node()) / 16, width = dimple._parentWidth(svg.node()) / 16, color = new dimple.color("#D3D3D3");
+
+        svg.append("rect")
+                .attr("x", dimple._parentWidth(svg.node()) / 2 - width * 3)
+                .attr("y", dimple._parentHeight(svg.node()) - height * 3)
+                .attr("rx", 15).attr("ry", 15)
+                .attr("width", width).attr("height", height)
+                .classed("instruction", true)
+                .style("fill", color.fill).style("stroke", color.stroke);
+        
+        svg.selectAll("title_text")
+                .data(["Reset All"])
+                .enter().append("text")
+                .attr("x", dimple._parentWidth(svg.node()) / 2 - width * 3 + width * 0.5)
+                .attr("y", dimple._parentHeight(svg.node()) - height * 3 + height * 0.5)
+                .classed("instruction", true)
+                .style("text-anchor", "middle")
+                .style("font-family", "sans-serif")
+                .style("font-size", "12px").style("opacity", 0.7)
+                .text(function (d) { return d; });
+
+        svg.selectAll("rect, text, instruction")
+                .on("mouseenter", function () {
+                    svg.selectAll("instruction").style("fill", color.stroke)
+                })
+                .on("mouseleave", function () {
+                    svg.selectAll("instruction").style("fill", color.fill)
+                })
+                .style("cursor", "pointer")
+                .on("click", function () {
+                  myChart.data = csv_data;
+                  d3.selectAll("rect.dimple-legend").style("opacity", 0.8);
+                  myChart.draw(800);
+                });
+      
+        // Filter the data based on clicking the legend box
         myLegend.shapes.selectAll("rect")
           // Add a click event to each rectangle
           .on("click", function (e) {
