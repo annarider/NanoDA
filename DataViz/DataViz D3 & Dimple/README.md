@@ -55,6 +55,8 @@ The chart is better than before.
 
 ### Iteration 4
 #### Person1: 
+- In the tooltip, just "industry" is enough, not "industry category".
+- Make growth in one line, not two. Put the percentage growth in parens. 
 
 ### Future Development
 #### Person1: 
@@ -101,10 +103,19 @@ http://bl.ocks.org/phoebebright/raw/3176159/
 ### D3 sum
 https://github.com/mbostock/d3/wiki/Arrays#nest_rollup
 
+### Add class to D3 object - .classed()
+http://jaketrent.com/post/d3-class-operations/
+
+### Add rect with text in it
+http://bl.ocks.org/mbostock/7341714
+
 ## Dimple.js
 
 ### How to add a title to chart
 http://stackoverflow.com/questions/25416063/title-for-charts-and-axes-in-dimple-js-charts
+
+### How to make the legend interactive
+http://dimplejs.org/advanced_examples_viewer.html?id=advanced_interactive_legends
 
 ## Data Viz experts
 
