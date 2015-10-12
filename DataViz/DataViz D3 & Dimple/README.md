@@ -10,6 +10,7 @@ My data visualization compares which states and districts in the U.S. have the g
 - Another person gave me feedback that the reader should be able to filter on a specific industry. This feedback conveniently seems to solve the issue raised by the person who did not like stacked bar charts. Therefore, I made it possible to click on the legend boxes to filter the chart. This change adds a lot of interaction and animation to the chart; like the analogy of the mouth of the "martini" glass, readers can now dive into the data and explore trends interesting to them.
 - I cleaned up the aesthetics of the chart (title, axes labels, etc.) based on feedback that the text was unclear and messy. I moved the legend to the right to make room for the title. The legend on the right also made it easier for the eye to interpret the different industries because they were listed vertically. 
 - I especially spent a lot of time configuring the tooltip because I received recurring feedback that the tooltip was confusing, didn't display data in a useful manner, or lacked data. I went through several iterations until I found the right balance of information to include. 
+- Based on feedback by Person4, I changed the left margin in the svg so that the y-axis label would not be cut off.  
 
 
 # Feedback 
@@ -72,7 +73,11 @@ I like that the legend is on the right now. It's easier on my eyes to interpret 
 #### Person1: 
 If you want to get fancy, you could make it so when you click in the legend, the chart redraws and reorders based on only that industry. It's good. I like the chart.
 
+#### Person4: 
+(Discussion forum feedback: https://discussions.udacity.com/t/project-feedback-bug-with-redrawing-chart/34740/2?u=annali)
+I don't understand the y axis values - I suspect your data is already in millions but you should check.
 
+I see this artifact in my browser against the the margin. Perhaps it is the y axis label. Margins??
 
 # Resources
 

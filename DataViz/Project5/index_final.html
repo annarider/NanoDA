@@ -12,7 +12,7 @@
         // myChart.setBounds(60, 45, 910, 815)
         // Fix the margins
         // myChart.setMargins("60px", "30px", "110px", "70px");
-        myChart.setMargins("5%", "15%", "5%", "30%");
+        myChart.setMargins("10%", "15%", "5%", "30%");
         var xAxis = myChart.addCategoryAxis("x", ["State"]);
         xAxis.title = "State"
         myChart.addMeasureAxis("y", "Growth (%) 2013-2014");
@@ -143,7 +143,7 @@
                 .on("click", function () {
                   myChart.data = csv_data;
                   d3.selectAll("rect.dimple-legend").style("opacity", 0.8);
-                  myChart.draw(800);
+                  myChart.draw(99800);
                 });
       
         // Filter the data based on clicking the legend box
