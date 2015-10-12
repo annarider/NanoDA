@@ -110,30 +110,7 @@
            .style("font-family", "sans-serif")
            .style("font-size", "12px")
            .text("Click the legend boxes to show one industry");
-        
-        
-        var instruction = d3.select("text.instruction");
-        var button_xposition = instruction.off
-        var instruction_yposition = d3.transform(instruction.attr("transform")).translate[1];
-        var button = d3.selectAll("g")
-                       // .data(csv_data)
-                       // .enter()
-                       .append("g")
-                       .attr("transform", function(d, i) { return "translate(0," + i * instruction_yposition + ")"; });
-debugger;
-        button.append("rect")
-            .attr("width", instruction_xposition)
-            .attr("height", instruction_yposition);
 
-        button.append("text")
-            .attr("x", instruction_xposition)
-            .attr("y", instruction_yposition)
-            .attr("dy", ".35em")
-            .text("Reset All");
-      
-
-        // Get a unique list of Owner values to use when filtering
-        var filterValues = dimple.getUniqueValues(csv_data, "Industry Categories");
         // Get all the rectangles from our now orphaned legend
         myLegend.shapes.selectAll("rect")
           // Add a click event to each rectangle
@@ -148,7 +125,7 @@ debugger;
             // it there is no transition
             // first remove the chart objects and then redraw
             d3.selectAll("dimple-bar").style("opacity", 0);
-            debugger;
+            
             myChart.draw(800);
           });
 
