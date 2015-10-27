@@ -8,12 +8,46 @@
       // Initialize new dimple chart
       var myChart = new dimple.chart(svg, csv_data);
       myChart.setMargins("8%", "15%", "15%", "30%");
-      myChart.addCategoryAxis("x", ["Statistic"]);
+
+      // Add x Axis and axis label
+      var xAxis = myChart.addCategoryAxis("x", ["Statistic"]);
+      xAxis.title = "Baseball Statistic";
       var yAxis = myChart.addPctAxis("y", "Pct Statistical Value");
+      yAxis.title = "";
       yAxis.showGridlines = false;
       yAxis.hidden = true;
-      myChart.addSeries("Handedness", dimple.plot.bar);
+      var mySeries = myChart.addSeries("Handedness", dimple.plot.bar);
       var myLegend = myChart.addLegend("-15%", "15%", "5%", "30%", "right");
+      
+
+      // Customize tooltip and data displayed
+      mySeries.getTooltipText = function (e) {
+
+        console.log(e.aggField[0])
+
+        debugger;
+        return [
+        "Handedness: " + spellOutHandedness(e.aggField[0]),
+        "Proportion of players: " + "" + Math.round(e.height * 100) + "%"
+        ];
+      };
+
+      // abbreviate number in tooltip
+      function spellOutHandedness(abbrev) {
+
+        if(isNaN(abbrev)) return abbrev;
+
+        if(abbrev === 'L') {
+          return 'Left';
+        }
+
+        if(abbrev === 'R') {
+          return 'Right';
+        }
+        if(abbrev === 'B') {
+          return 'Both';
+        }      
+      }
       myChart.draw();
     });
   </script>

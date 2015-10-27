@@ -116,12 +116,13 @@ The bubble chart is still not an explanatory data visualization. You have replac
 - This dataset might be too difficult to perform this kind of analysis. Have you considered switching to a different dataset?
 
 ### Iteration 10:
-#### Person1:
+#### Person1: 
+Based on what you told me, this dataset has more potential for explanatory visualization. The chart is half finished. I can't tell what the different bar colors mean. You shouldn't use the percentage in y-axis; those are artificial. Add a tooltip that shows the statistics average
+
+#### Person3:
 Switching to a new data set was a good idea. Here's feedback: 
 - This chart has a better story behind it. 
 - You're missing fundamentals - title, legend, etc.
-- You shouldn't use the percentage in y-axis; those are artificial. 
-- Add a tooltip that shows the statistics average
 - x-axis should be called "baseball statistics" - it's clearer. 
 
 
