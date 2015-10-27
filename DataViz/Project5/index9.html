@@ -1,0 +1,69 @@
+<html>
+<div id="chartContainer">
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+  <script type="text/javascript">
+    // chart takes up 100% of screen/browser space
+    var svg = dimple.newSvg("#chartContainer", "100%", "100%");
+    d3.csv("companies4.csv", function (csv_data) {
+      // Initialize new dimple chart
+      var myChart = new dimple.chart(svg, csv_data);
+
+      myChart.setMargins("8%", "15%", "5%", "30%");
+
+      var xAxis = myChart.addCategoryAxis("x", ["Metro"]);
+      xAxis.title = "Metropolitan area";
+      var yAxis = myChart.addMeasureAxis("y", "Growth (%) 2013-2014");
+      var zAxis = myChart.addMeasureAxis("z", "Growth ($) 2013-2014");
+
+      var mySeries = myChart.addSeries("Metro", dimple.plot.bubble);
+      var myLegend = myChart.addLegend("-15%", "15%", "10%", "30%", "right");
+        
+      myChart.draw();
+
+      // Add Title
+      svg.append("text")
+         .attr("x", myChart._xPixels() + myChart._widthPixels() / 2)
+         .attr("y", myChart._yPixels() - 10)
+         .style("text-anchor", "middle")
+         .style("font-family", "sans-serif")
+         .style("font-weight", "bold")
+         .text("Highest growth metro areas and industries in California");
+
+      // This is a critical step.  By doing this we orphan the legend. This
+      // means it will not respond to graph updates.  Without this the legend
+      // will redraw when the chart refreshes removing the unchecked item and
+      // also dropping the events we define below.
+      myChart.legends = [];
+
+      // Instructions to click legend to filter industries
+      svg.append("text")
+         .attr("x", myChart._xPixels() )
+         .attr("y", myChart._yPixels() * 2 + myChart._heightPixels())
+         .classed("instruction", true)
+         .style("text-anchor", "left")
+         .style("font-family", "sans-serif")
+         .style("font-size", "12px")
+         .text("Click the legend boxes to show one industry");
+
+      // Filter the data based on clicking the legend box
+      myLegend.shapes.selectAll("rect")
+        // Add a click event to each rectangle
+        .on("click", function (e) {
+          // Filter the data
+          // Focus color on the legend item clicked
+          d3.selectAll("rect.dimple-legend").style("opacity", 0.2);
+          d3.select(this).style("opacity", 0.8);
+          // Passing a duration parameter makes the chart animate. Without
+          // it there is no transition
+          // first remove the chart objects and then redraw
+          d3.selectAll("dimple-bubble").style("opacity", 0);
+          
+          myChart.draw(800);
+        });
+
+      
+    });
+  </script>
+</div>
+</html>

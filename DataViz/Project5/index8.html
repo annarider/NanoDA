@@ -5,7 +5,7 @@
     <script type="text/javascript">
       // chart takes up 100% of screen/browser space
       var svg = dimple.newSvg("#chartContainer", "100%", "100%");
-      d3.csv("companies_final.csv", function (csv_data) {
+      d3.csv("companies4.csv", function (csv_data) {
         
         // Initialize new dimple chart
         var myChart = new dimple.chart(svg, csv_data);
@@ -13,11 +13,12 @@
         // Fix the margins
         // myChart.setMargins("60px", "30px", "110px", "70px");
         myChart.setMargins("8%", "15%", "5%", "30%");
-        var xAxis = myChart.addCategoryAxis("x", ["State"]);
-        xAxis.title = "State"
-        myChart.addMeasureAxis("y", "Growth (%) 2013-2014");
+        var xAxis = myChart.addCategoryAxis("x", ["Metro"]);
+        // xAxis.title = "State"
+        var yAxis = myChart.addMeasureAxis("y", "Growth (%) 2013-2014");
+        var zAxis = myChart.addMeasureAxis("z", "Growth ($) 2013-2014");
 
-        var mySeries = myChart.addSeries("Industry Categories", dimple.plot.bar);
+        var mySeries = myChart.addSeries("Metro", dimple.plot.bubble);
         // var mySeries = myChart.addSeries("industry_categories", dimple.plot.bar);
         // myChart.addLegend(200, 10, 680, 520, "right");
         var myLegend = myChart.addLegend("-15%", "15%", "10%", "30%", "right");
@@ -154,12 +155,18 @@
             // Focus color on the legend item clicked
             d3.selectAll("rect.dimple-legend").style("opacity", 0.2);
             d3.select(this).style("opacity", 0.8);
-            myChart.data = dimple.filterData(csv_data, "Industry Categories", e.key);
+            myChart.data = dimple.filterData(csv_data, "Industry", e.key);
+            myChart.setMargins("8%", "15%", "5%", "30%");
+            var mySeries = myChart.addSeries("Industry", dimple.plot.bar);
+            var xAxis = myChart.addCategoryAxis("x", ["Industry"]); 
+            xAxis.title = "Industry";
+            zAxis = 0;
+            
             
             // Passing a duration parameter makes the chart animate. Without
             // it there is no transition
             // first remove the chart objects and then redraw
-            d3.selectAll("dimple-bar").style("opacity", 0);
+            d3.selectAll("dimple-bubble").style("opacity", 0);
             
             myChart.draw(800);
           });

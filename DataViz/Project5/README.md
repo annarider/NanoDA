@@ -13,6 +13,10 @@ My data visualization compares which states and districts in the U.S. have the g
 - Based on feedback by Person4, I changed the left margin in the svg so that the y-axis label would not be cut off.  
 - Based on advice from Person4 and Person5 for how to fix the bug that caused an errant bar to appear during animation, I cleaned up the dataset by aggregating values.
 
+### Switching Project datasets
+I've decided I need to change datasets because the original company data is far too challenging for an explanatory data visualization.
+
+
 # Feedback 
 
 ### On paper chart
@@ -83,6 +87,42 @@ I see this artifact in my browser against the the margin. Perhaps it is the y ax
 #### Person5:
 (Discussion forum feedback: https://discussions.udacity.com/t/project-feedback-bug-with-redrawing-chart/34740/5?u=annali)
 Dimple isn't designed to deal with this case where the axis change as well. I think the easiest thing to do is modify the source data. I noticed that the data is unaggregated but everything in the chart is aggregated. I would trying creating a dataset with a row for each State Industry combo including 0 values for industries that don't exist in a particular state. The update code you have now should handle that data gracefully.
+
+
+### Feedback on Project submission (Iteration 7):
+#### Person6 (grader):
+ (Feedback on my project submission: https://review.udacity.com/#!/reviews/59563). 
+
+### Reflection after project submission
+My first submission for this data viz project didn't meet specs. The main problem was my visualization was exploratory, not explanatory. I spent a lot of time exploring my dataset to try to find relationships, trends, and patterns in the data. I even had a 1:1 coaching session with Carl on 2015-10-20 02:53 PDT. Unfortunately, his advice still wasn't very helpful. So I tried to answer the question: "If I want to live in California, what would be the best metro areas and industries in which to found a company?" Subsequently, I created a bubble chart to display my findings. 
+
+### Iteration 8 (index8.html):
+#### Person1: 
+The chart is really broken. Initially, I can see the new bubbles but if I click on the legend, it draws another x-axis and the bubbles disappear. When I click the Reset All button, it causes bars to be drawn. 
+
+#### Person3: 
+The bubble chart idea is an interesting new direction. I think your new question does focus your project more now. But the chart you showed me doesn't display any relationships or patterns.   
+
+
+### Iteration 9:
+#### Person1:
+The bubble chart is still not an explanatory data visualization. You have replaced state with city/metro in the x-axis but the data visualization still takes the form of your original visualization, i.e. it's still exploratory. Can you add information in paragraph form at the bottom of the chart to explain why you are showing these trends?
+
+#### Person3: 
+- Mmm...you are able to show me now that Los Angeles is the highest growth in percentage, but SF is higher in dollar growth. That's cool! 
+- The chart is still a bit exploratory because I don't know where to go from here with this...
+- What's the story behind this visualization? 
+- What's the relationships/trends you're showing? 
+- This dataset might be too difficult to perform this kind of analysis. Have you considered switching to a different dataset?
+
+### Iteration 10:
+#### Person1:
+Switching to a new data set was a good idea. Here's feedback: 
+- This chart has a better story behind it. 
+- You're missing fundamentals - title, legend, etc.
+- You shouldn't use the percentage in y-axis; those are artificial. 
+- Add a tooltip that shows the statistics average
+- x-axis should be called "baseball statistics" - it's clearer. 
 
 
 

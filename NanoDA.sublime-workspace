@@ -4,6 +4,166 @@
 		"selected_items":
 		[
 			[
+				"in",
+				"instruction"
+			],
+			[
+				"my",
+				"myChart"
+			],
+			[
+				"ind",
+				"industry"
+			],
+			[
+				"legen",
+				"legend"
+			],
+			[
+				"the",
+				"the"
+			],
+			[
+				"stat",
+				"state_abbrev"
+			],
+			[
+				"cs",
+				"csv_data"
+			],
+			[
+				"s",
+				"state_l"
+			],
+			[
+				"st",
+				"state_s"
+			],
+			[
+				"sum",
+				"sum_dollars"
+			],
+			[
+				"c",
+				"csv"
+			],
+			[
+				"sta",
+				"states"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"tot",
+				"totalBytes〔variable〕"
+			],
+			[
+				"total",
+				"totalBytes"
+			],
+			[
+				"parse",
+				"parseInt〔function〕"
+			],
+			[
+				"localiz",
+				"localizedRuleNamesArray〔variable〕"
+			],
+			[
+				"resul",
+				"results"
+			],
+			[
+				"pag",
+				"pageStats"
+			],
+			[
+				"re",
+				"reversedName"
+			],
+			[
+				"nam",
+				"namesArray〔variable〕"
+			],
+			[
+				"y",
+				"yIsNumeric"
+			],
+			[
+				"pro",
+				"projects"
+			],
+			[
+				"pr",
+				"projects"
+			],
+			[
+				"for",
+				"formattedProject〔variable〕"
+			],
+			[
+				"HTMLproj",
+				"HTMLprojectTitle〔variable〕"
+			],
+			[
+				"to",
+				"toUpperCase"
+			],
+			[
+				"inter",
+				"internationalizeButton〔variable〕"
+			],
+			[
+				"ci",
+				"city"
+			],
+			[
+				"HTMLwork",
+				"HTMLworkLocation〔variable〕"
+			],
+			[
+				"HTMLwor",
+				"HTMLworkStart〔variable〕"
+			],
+			[
+				"bi",
+				"bioWorkLength"
+			],
+			[
+				"sk",
+				"skill"
+			],
+			[
+				"skill",
+				"skillsList"
+			],
+			[
+				"ski",
+				"skillsList"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"l",
+				"log"
+			],
+			[
+				"co",
+				"console"
+			],
+			[
+				"S",
+				"Stanford"
+			],
+			[
+				"p",
+				"prepend〔function〕"
+			],
+			[
 				"back",
 				"background-color"
 			],
@@ -160,24 +320,12 @@
 				"classmethod〔class〕"
 			],
 			[
-				"p",
-				"pred"
-			],
-			[
-				"c",
-				"clf"
-			],
-			[
 				"list",
 				"list_offices〔function〕"
 			],
 			[
 				"offic",
 				"offices〔variable〕"
-			],
-			[
-				"l",
-				"list_amenities"
 			],
 			[
 				"uni",
@@ -256,10 +404,6 @@
 				"street_name"
 			],
 			[
-				"st",
-				"street"
-			],
-			[
 				"street",
 				"street_name"
 			],
@@ -312,10 +456,6 @@
 				"element"
 			],
 			[
-				"sta",
-				"start_pos〔variable〕"
-			],
-			[
 				"map",
 				"mapping〔argument〕"
 			],
@@ -334,10 +474,6 @@
 			[
 				"ele",
 				"element_dict〔variable〕"
-			],
-			[
-				"pro",
-				"problemchars〔variable〕"
 			],
 			[
 				"por",
@@ -372,169 +508,17 @@
 				"best_fit"
 			],
 			[
-				"in",
-				"intercept〔variable〕"
-			],
-			[
 				"norm",
 				"norm_precipi〔variable〕"
 			],
 			[
 				"nor",
 				"norm_precipi〔variable〕"
-			],
-			[
-				"preici",
-				"precipitation"
-			],
-			[
-				"plt",
-				"plt〔module〕"
-			],
-			[
-				"n",
-				"norm_entries"
-			],
-			[
-				"arr",
-				"array〔argument〕"
-			],
-			[
-				"result",
-				"results_summary"
-			],
-			[
-				"para",
-				"parameters〔variable〕"
-			],
-			[
-				"day",
-				"day_week"
-			],
-			[
-				"dum",
-				"dummy_rain〔variable〕"
-			],
-			[
-				"dat",
-				"dataframe〔argument〕"
-			],
-			[
-				"pre",
-				"prediction〔variable〕"
-			],
-			[
-				"dumm",
-				"dummy_units〔variable〕"
-			],
-			[
-				"turn",
-				"turnstile_weather"
-			],
-			[
-				"withou",
-				"without_rain"
-			],
-			[
-				"with",
-				"with_rain〔variable〕"
-			],
-			[
-				"wi",
-				"with_rain〔variable〕"
-			],
-			[
-				"Sh",
-				"Shapiro"
-			],
-			[
-				"fi",
-				"field〔variable〕"
-			],
-			[
-				"update",
-				"updated〔variable〕"
-			],
-			[
-				"class",
-				"classification"
-			],
-			[
-				"clas",
-				"classification〔variable〕"
-			],
-			[
-				"new",
-				"new_field〔variable〕"
-			],
-			[
-				"input",
-				"input_line〔argument〕"
-			],
-			[
-				"fiel",
-				"fields〔argument〕"
-			],
-			[
-				"proces",
-				"process_fields〔variable〕"
-			],
-			[
-				"check",
-				"check_valid_domain"
-			],
-			[
-				"ex",
-				"extract_year"
-			],
-			[
-				"write",
-				"writerow"
-			],
-			[
-				"writer_outpu",
-				"writer_output_bad"
-			],
-			[
-				"writer_out",
-				"writer_output_bad"
-			],
-			[
-				"wr",
-				"writer_output_good"
-			],
-			[
-				"output",
-				"output_bad"
-			],
-			[
-				"output_",
-				"output_good"
-			],
-			[
-				"inval",
-				"invalid_years"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "DataViz/HTMLandCSS/portfolio/toplist/index.html",
-			"settings":
-			{
-				"buffer_size": 1033,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "DataViz/HTMLandCSS/portfolio/toplist/style.css",
-			"settings":
-			{
-				"buffer_size": 429,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "Packages/Python/Python.sublime-build",
 	"build_system_choices":
@@ -594,9 +578,72 @@
 	},
 	"expanded_folders":
 	[
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/lesson1",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson2",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/Project5"
 	],
 	"file_history":
 	[
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/Project5/README.md",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/Project5/index_final.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/Project5/index5.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/Project5/index6.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/DataViz D3 & Dimple/README.md",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/Project5/index.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/Project5/companies.csv",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/Project5/index1.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/DataViz D3 & Dimple/Project5/companies.csv",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/DataViz D3 & Dimple/Project5/index.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/DataViz D3 & Dimple/Project5/mapstarter_states_map.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/DataViz D3 & Dimple/Project5/resizeChart.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/DataViz D3 & Dimple/Project5/states_hash.json",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/DataViz D3 & Dimple/Project5/data/us.json",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/Resources.txt",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/DataViz D3 & Dimple/simpleDimple.js",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/DataViz D3 & Dimple/resizeChart.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/DataViz D3 & Dimple/Project5/us_counties_map.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/DataViz D3 & Dimple/Project5/js/us.json",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/DataViz D3 & Dimple/Project5/mapindex.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/DataViz D3 & Dimple/Project5/data/unemployment.tsv",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/DataViz D3 & Dimple/basic_charts.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/lesson1/OlympicMedals.py",
+		"/Users/horsepower/Sites/yurtcooler/yurtCooler/yurtCooler.html",
+		"/Users/horsepower/Sites/yurtcooler/yurtCooler/graph-scroll.js",
+		"/Users/horsepower/Google Drive/Marketing Library/Internal/SeatDropFlyerLogos/Chipotle_Mexican_Grill_logo.svg",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/frontend-resume/js/helper.js",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/HTMLandCSS/portfolio/framework/bootstrap-prestructure.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/frontend-resume/index.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/frontend-resume/js/resumeBuilder.js",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/frontend-resume/js/RelationshipsQuiz.js",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/frontend-resume/js/AlphabetizeAstronautsQuiz.js",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/frontend-resume/js/PagespeedInsightsQuiz.js",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/frontend-resume/js/dot_vs_bracket_notation.js",
+		"/Users/horsepower/Library/Application Support/Sublime Text 3/Packages/User/node.sublime-build",
+		"/Users/horsepower/Library/Application Support/Sublime Text 3/Packages/User/JSC.sublime-build",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/readme.txt",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/frontend-nanodegree-resume/index.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/frontend-nanodegree-resume/js/resumeBuilder.js",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/frontend-nanodegree-resume/awesomeThoughts.html",
+		"/Users/horsepower/Google Drive/Semarchy USA/Projects_US/AWS/semarchy-quick-config-backup20150825/index.css",
+		"/Users/horsepower/Google Drive/Semarchy USA/Projects_US/AWS/semarchy-quick-config-backup20150825/index.jsp",
+		"/Users/horsepower/Google Drive/Semarchy USA/Projects_US/AWS/semarchy-quick-config-backup20150824/index.jsp",
+		"/Users/horsepower/Google Drive/Semarchy USA/Projects_US/AWS/semarchy-quick-config-backup20150824/tomcat-users-original.xml",
+		"/Users/horsepower/Google Drive/Semarchy USA/Projects_US/AWS/semarchy-quick-config-backup20150824/set_semadmin_pwd.sh",
+		"/Users/horsepower/Google Drive/Semarchy USA/Projects_US/AWS/semarchy-quick-config-backup20150824/set_connection_users.sh",
+		"/Users/horsepower/Google Drive/Semarchy USA/Projects_US/AWS/semarchy-quick-config-backup20150824/semarchy-original.xml",
+		"/Users/horsepower/Google Drive/Semarchy USA/Projects_US/AWS/semarchy-quick-config-backup20150824/set_connection_url.sh",
+		"/Users/horsepower/Google Drive/Semarchy USA/Projects_US/AWS/semarchy-quick-config-backup20150505/index.jsp",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/HTMLandCSS/portfolio/framework/bootstrap-prestructure_answer.html",
+		"/Users/horsepower/Google Drive/Projects_US/AWS/semarchy-quick-config-backup20150122/index.jsp",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/HTMLandCSS/portfolio/framework/css/bootstrap-theme.css",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/HTMLandCSS/portfolio/framework/css/bootstrap.css",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/HTMLandCSS/portfolio/framework/test2.html",
+		"/Users/horsepower/Google Drive/Projects_US/AWS/ROOT-backup20150122/RDSGuide.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/HTMLandCSS/portfolio/framework/test.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/HTMLandCSS/portfolio/framework/css/main.css",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/HTMLandCSS/portfolio/toplist/index.html",
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataViz/HTMLandCSS/portfolio/toplist/style.css",
 		"/Users/horsepower/Documents/temp/bose/bosegetcustomer.py",
 		"/Users/horsepower/Documents/temp/bose/webapp.py",
 		"/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Synnex Files/category_list.txt",
@@ -614,7 +661,6 @@
 		"/Users/horsepower/Documents/temp/bosegetcustomer.py",
 		"/Users/horsepower/Documents/temp/webapp.py",
 		"/Users/horsepower/Google Drive/Semarchy USA/Clients/Exxact/Synnex Files/SYNNEX_Categories.txt",
-		"/Users/horsepower/Google Drive/Semarchy USA/Projects_US/AWS/semarchy-quick-config-backup20150505/index.jsp",
 		"/Users/horsepower/Google Drive/SQL script Library/Semarchy Demo/Repo.sql",
 		"/Users/horsepower/Google Drive/SQL script Library/Juniper/KillDIJob.sql",
 		"/Users/horsepower/Google Drive/Semarchy USA/Projects_US/Demo Server/OpenID JDBCRealm Authorization.sql",
@@ -666,65 +712,7 @@
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson6/example2.osm",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson6/tags.py",
 		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson6/users.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson6/osm-iterative-parsing.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson6/example.osm",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson3/auditing-streetmap-example.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/cities-infobox-example.json",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/region-cities.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/mongo-same-operator.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/most-common-city-name.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/avg-population.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/most-common-city-name.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/mongo-push.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/mongo-unwind.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/mongo-match-project.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/mongo-use-group.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project1/Subway2Matplotlib-precipi-ridership.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project1/Subway2Matplotlib-compare-shapes.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project1/LinearRegressionOLS.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project1/ResourcesUsed.md",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project1/Subway2Matplotlib.py",
-		"/Users/horsepower/anaconda/lib/python2.7/site-packages/numpy/lib/function_base.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/MannWhitneyUtest.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/LinearRegressionGradientDescent.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/ResourcesUsed.md",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/LinearRegressionOLS.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson5/twitter-example.json",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p4/arachnid-update.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p5/mongo-use-group.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/IntroDataScience/Project/Subway2Matplotlib.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p4/insert.py",
-		"/Users/horsepower/Dropbox/Udacity/Tools/OracleSQL/ChangeSystemOracledatabase.txt",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p1/Analyze-Distinct-values.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p4/arachnid.json",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p4/arachnid-dbinsert.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p4/arachnid-processing-2nd-try.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3/audit-cities.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/patent.data",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3/FIXME-autos.csv",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3/autos-valid.csv",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3/validity.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3/autos-shortened.csv",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3/audit.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p3/autos.csv",
-		"/Users/horsepower/Dropbox/Udacity/Tools/chown - change file owner group",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/auditing-streetmap-example.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/split-data.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/data:FL-ATL.html",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/patent.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/airports.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/process.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/process-submitted.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/page_source.html",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/options.html",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/Project2/airports.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/carriers.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/exampleResearchArticle.xml",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/html_soup.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/html_soup-SOLUTION.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/authorsINSRXML.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/authorsINSRXML-SOLUTION.py",
-		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/p2/exampleResearchArtcile.xml"
+		"/Users/horsepower/Dropbox/Udacity/NanoDA/DataWranglingMongoDB/lesson6/osm-iterative-parsing.py"
 	],
 	"find":
 	{
@@ -744,6 +732,46 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"15",
+			"filter",
+			"instruction",
+			"selectAll",
+			"show",
+			"legends",
+			"features",
+			"call",
+			"axis",
+			"myAxis",
+			"le",
+			"x",
+			"dict",
+			"data",
+			"geodata",
+			"graticule",
+			"hover",
+			"json",
+			"california",
+			"unemployment",
+			"--",
+			"localizedRuleName",
+			"formattedResults",
+			"localizedRuleNames",
+			"projects",
+			"HTMLprojectStart",
+			"project",
+			"Project",
+			"project",
+			"projects",
+			"HTMLheaderName",
+			"display = 'none'",
+			"city",
+			"years",
+			"14 best",
+			"Click Configure",
+			"Click Configure ",
+			"dbSchemasComment",
+			"class=\"comments\"",
+			"tomcat7",
 			"laptop",
 			"MSRP",
 			"'p67'",
@@ -831,47 +859,7 @@
 			"Halsey Street",
 			"suburb",
 			"audit",
-			"ies",
-			"New North Rd",
-			"suburb",
-			"addr:suburb",
-			"postal",
-			"suburb",
-			":suburb",
-			"suburb",
-			"mt",
-			"albert",
-			"Hurstmere",
-			"Gillies Ave",
-			"Gillies",
-			"Balm St",
-			"addr:",
-			"directions",
-			"json",
-			"highway traffic_signals",
-			"chicago:building_id",
-			"attr",
-			"lat",
-			"hair",
-			"\"",
-			"match",
-			"osm_file = open(\"chicago.osm\", \"r\")",
-			"auditing",
-			"end",
-			"remove",
-			"drop",
-			"status",
-			"tweets",
-			"time_zone",
-			"features_df",
-			"ormalize_feat",
-			"summary()",
-			"summary",
-			"coefficient",
-			"data",
-			"Hour",
-			"hour",
-			"Hour"
+			"ies"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -879,6 +867,9 @@
 		"regex": true,
 		"replace_history":
 		[
+			"####",
+			"backgroundColor = 'black'",
+			"tomcat8",
 			"SuggestedPrice",
 			"PriceFormula",
 			"SuggestedPrice",
@@ -927,66 +918,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "DataViz/HTMLandCSS/portfolio/toplist/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1033,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								1033
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "DataViz/HTMLandCSS/portfolio/toplist/style.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 429,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								429
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1029,7 +962,7 @@
 	{
 		"height": 0.0
 	},
-	"pinned_build_system": "",
+	"pinned_build_system": "Packages/User/Node.sublime-build",
 	"project": "NanoDA.sublime-project",
 	"replace":
 	{
@@ -1044,7 +977,7 @@
 		[
 			[
 				"",
-				"DataWranglingMongoDB/Project2/aklMongoAddtlAnalysis.py"
+				"IntroDataScience/lesson1/OlympicMedals.py"
 			],
 			[
 				"sub",
