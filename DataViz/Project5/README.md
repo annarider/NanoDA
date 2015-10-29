@@ -6,6 +6,7 @@ My data visualization compares players who are right-handed, left-handed and amb
 - left-handed players on average tend to be the heaviest and they score the greatest number of home runs.
 
 # Design
+### Old visualization. See below for new design choices
 - Based on the dataset from Inc. 5000, I decided that a chart that showed the fastest growing companies in the U.S. would be most interesting. I chose a bar chart because it would be easy to compare growth across states taking advantage of the height of the bars as a visual encoding.
 - After creating a mock up of the chart on paper and getting initial feedback, I discovered that the chart was too simple - people wanted more information and interaction. 
 - Therefore I added industry segmentation to the data. Since the data is categorical, I chose distinct colors for different industries. Different hues show a clear distinction in the industry data, which is better than confusing viewers with a convergent or divergent color palette. Ordinarily, I would have kept all the bars the same color the course instructor emphasized that different colored bars in a bar chart do not encode any additional information and can even distract the reader. However, because I am encoding additional information about industry, the different colors are appropriate for the reader to be able to see the industry breakdown.
@@ -18,6 +19,12 @@ My data visualization compares players who are right-handed, left-handed and amb
 
 ### Switching Project datasets
 I've decided I need to change datasets because the original company data is far too challenging for an explanatory data visualization.
+
+### New design choices
+- Based on feedback, I removed the y-axis entirely because the percentages were not adding new useful information and was even distracting for one person. I also got rid of the gridlines in the chart because they also didn't add much information.
+- I chose a stacked bar chart because it is easy for users' eyes to understand 3 different variables in the data (baseball stat, handedness, average value of baseball stat). 
+- The tooltip was very important for ensuring readers understand the information being conveyed. The tooltip may look simple now but the simplicity actually took more work and effort than having a lot of information cluttering the tooltip. It used to contain a lot more information but I had to find ways to condense it to the most useful information while still containing the important facts.
+- The tooltip is also highly formatted to show units, spell out entire abbreviation, etc which didn't exist in the original data.  
 
 
 # Feedback 

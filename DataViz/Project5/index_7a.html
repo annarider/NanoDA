@@ -1,0 +1,171 @@
+<html>
+  <div id="chartContainer">
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+    <script type="text/javascript">
+      // chart takes up 100% of screen/browser space
+      var svg = dimple.newSvg("#chartContainer", "100%", "100%");
+      d3.csv("companies_final.csv", function (csv_data) {
+        
+        // Initialize new dimple chart
+        var myChart = new dimple.chart(svg, csv_data);
+        // myChart.setBounds(60, 45, 910, 815)
+        // Fix the margins
+        // myChart.setMargins("60px", "30px", "110px", "70px");
+        myChart.setMargins("8%", "15%", "5%", "30%");
+        var xAxis = myChart.addCategoryAxis("x", ["State"]);
+        xAxis.title = "State"
+        myChart.addMeasureAxis("y", "Growth (%) 2013-2014");
+
+        var mySeries = myChart.addSeries("Industry Categories", dimple.plot.bar);
+        // var mySeries = myChart.addSeries("industry_categories", dimple.plot.bar);
+        // myChart.addLegend(200, 10, 680, 520, "right");
+        var myLegend = myChart.addLegend("-15%", "15%", "10%", "30%", "right");
+        
+        // Add Title
+        svg.append("text")
+           .attr("x", myChart._xPixels() + myChart._widthPixels() / 2)
+           .attr("y", myChart._yPixels() - 10)
+           .style("text-anchor", "middle")
+           .style("font-family", "sans-serif")
+           .style("font-weight", "bold")
+           .text("5000 fastest growing private companies in U.S. by state and industry");
+        
+        var nested_data = d3.nest()
+                            .key(function(d) { return d["State"]; })
+                            .key(function(d) { return d["Industry Categories"]; })
+                            .rollup(function(leaves) { return {"sum_dollars": d3.sum(leaves, function(d) {return parseFloat(d["Growth ($) 2013-2014"]);})} })
+                            .entries(csv_data);
+        //convert array of arrays into dict of dicts
+        var state_ind = new Object();
+        for (var i = 0; i < nested_data.length; i++) {
+          state_ind[nested_data[i].key] = new Object()
+          for (var j = 0; j < nested_data[i].values.length; j++) {
+            state_ind[nested_data[i].key][nested_data[i].values[j].key] =  nested_data[i].values[j].values.sum_dollars
+          }
+        }
+
+        // dictionary for state abbreviations to state name
+        var state_abbrev = new Object();
+        for (var i = 0; i < csv_data.length; i++) {
+
+            if (!state_abbrev.hasOwnProperty(csv_data[i]["State"])) {
+              state_abbrev[csv_data[i]["State"]] = csv_data[i]["State (long)"];
+          // console.log(state_abbrev);    
+          }
+          // debugger; 
+        } 
+        
+        // abbreviate number in tooltip
+        function abbreviateNumber(value) {
+          if(isNaN(value)) return value;
+
+          if(value < 9999) {
+            return value;
+          }
+
+          if(value < 1000000) {
+            return Math.round(value/1000) + "K";
+          }
+          if( value < 10000000) {
+            return (value/1000000).toFixed(2) + "M";
+          }
+
+          if(value < 1000000000) {
+            return Math.round((value/1000000)) + "M";
+          }
+
+          if(value < 1000000000000) {
+            return Math.round((value/1000000000)) + "B";
+          }
+
+          return "1T+";
+        }
+        
+        // Customize tooltip and data displayed
+        mySeries.getTooltipText = function (e) {
+
+          // debugger;
+          return [
+          "State: " + state_abbrev[e.x],
+          "Industry: " + e.aggField[0],
+          "Growth: $" + abbreviateNumber(Math.round(state_ind[e.x][e.aggField[0]])) + " (" + abbreviateNumber(e.y) + "%)"
+          ];
+        };
+
+        myChart.draw();
+
+        // This is a critical step.  By doing this we orphan the legend. This
+        // means it will not respond to graph updates.  Without this the legend
+        // will redraw when the chart refreshes removing the unchecked item and
+        // also dropping the events we define below.
+        myChart.legends = [];
+
+        // Instructions to click legend to filter industries
+        svg.append("text")
+           .attr("x", myChart._xPixels() )
+           .attr("y", myChart._yPixels() * 2 + myChart._heightPixels())
+           .classed("instruction", true)
+           .style("text-anchor", "left")
+           .style("font-family", "sans-serif")
+           .style("font-size", "12px")
+           .text("Click the legend boxes to show one industry");
+
+        var height = dimple._parentHeight(svg.node()) / 16, width = dimple._parentWidth(svg.node()) / 16, color = new dimple.color("#D3D3D3");
+
+        svg.append("rect")
+                .attr("x", dimple._parentWidth(svg.node()) / 2 - width * 3)
+                .attr("y", dimple._parentHeight(svg.node()) - height * 3)
+                .attr("rx", 15).attr("ry", 15)
+                .attr("width", width).attr("height", height)
+                .classed("instruction", true)
+                .style("fill", color.fill).style("stroke", color.stroke);
+        
+        svg.selectAll("title_text")
+                .data(["Reset All"])
+                .enter().append("text")
+                .attr("x", dimple._parentWidth(svg.node()) / 2 - width * 3 + width * 0.5)
+                .attr("y", dimple._parentHeight(svg.node()) - height * 3 + height * 0.5)
+                .classed("instruction", true)
+                .style("text-anchor", "middle")
+                .style("font-family", "sans-serif")
+                .style("font-size", "12px").style("opacity", 0.7)
+                .text(function (d) { return d; });
+
+        svg.selectAll("rect, text, instruction")
+                .on("mouseenter", function () {
+                    svg.selectAll("instruction").style("fill", color.stroke)
+                })
+                .on("mouseleave", function () {
+                    svg.selectAll("instruction").style("fill", color.fill)
+                })
+                .style("cursor", "pointer")
+                .on("click", function () {
+                  myChart.data = csv_data;
+                  d3.selectAll("rect.dimple-legend").style("opacity", 0.8);
+                  myChart.draw(800);
+                });
+      
+        // Filter the data based on clicking the legend box
+        myLegend.shapes.selectAll("rect")
+          // Add a click event to each rectangle
+          .on("click", function (e) {
+            // Filter the data
+            // Focus color on the legend item clicked
+            d3.selectAll("rect.dimple-legend").style("opacity", 0.2);
+            d3.select(this).style("opacity", 0.8);
+            myChart.data = dimple.filterData(csv_data, "Industry Categories", e.key);
+            
+            // Passing a duration parameter makes the chart animate. Without
+            // it there is no transition
+            // first remove the chart objects and then redraw
+            d3.selectAll("dimple-bar").style("opacity", 0);
+            
+            myChart.draw(800);
+          });
+
+      });
+    </script>
+  </div>
+
+</html>
