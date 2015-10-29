@@ -12,7 +12,7 @@
       // Add x Axis and axis label
       var xAxis = myChart.addCategoryAxis("x", ["Statistic"]);
       xAxis.title = "Baseball Statistic";
-      var yAxis = myChart.addPctAxis("y", "Statistic Value");
+      var yAxis = myChart.addPctAxis("y", "Pct Statistical Value");
       yAxis.title = "";
       yAxis.showGridlines = false;
       yAxis.hidden = true;
@@ -23,16 +23,16 @@
       // Customize tooltip and data displayed
       mySeries.getTooltipText = function (e) {
 
-        // console.log(e.aggField[0])
+        console.log(e.aggField[0])
 
         // debugger;
         return [
-        // "Handedness: " + spellOutHandedness(e.aggField[0]),
-        "Average for " + spellOutHandednessAdj(e.aggField[0]) + " players: " + "" + Math.round(e.yValue * 1000) / 1000 + " " + spellOutHandednessStat(e.x)
+        "Handedness: " + spellOutHandedness(e.aggField[0]),
+        "Proportion of players: " + "" + Math.round(e.height * 100) + "%"
         ];
       };
 
-      // spell out handedness in tooltip for "Handedness"
+      // spell out handedness in tooltip
       function spellOutHandedness(abbrev) {
         if(abbrev === 'L') {
           return 'Left';
@@ -46,36 +46,6 @@
         }      
       }
 
-      // spell out handedness description of players in tooltip for "Average for..."
-      function spellOutHandednessAdj(abbrev) {
-        if(abbrev === 'L') {
-          return 'left-handed';
-        }
-
-        if(abbrev === 'R') {
-          return 'right-handed';
-        }
-        if(abbrev === 'B') {
-          return 'ambidextrous';
-        }      
-      }
-
-      // spell out baseball stat in tooltip
-      function spellOutHandednessStat(stat) {
-        if(stat === 'Height') {
-          return "in (6 ft)";
-        }
-
-        if(stat === 'Weight') {
-          return 'lb';
-        }
-        if(stat === 'Home Runs') {
-          return 'HRs';
-        }  
-        if(stat === 'Batting Average') {
-          return 'avg';
-        }    
-      }
 
       myChart.draw();
     });

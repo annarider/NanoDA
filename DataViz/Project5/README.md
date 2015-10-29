@@ -1,6 +1,9 @@
 # Summary 
 
-My data visualization compares which states and districts in the U.S. have the greatest amount of growth in terms of private companies. The stacked bar chart shows the percentage growth from 2013 to 2014 and segments the data by industries. The data comes from Inc. (http://www.inc.com/). This visualization is directed to people interested in founding a company and who want to know which industries in which states are growing the fastest. 
+My data visualization compares players who are right-handed, left-handed and ambidextrous on their baseball statistics (height, weight, home runs, and batting average). The main takeaways from the visualization are: 
+- all 3 groups are an average of 6 feet tall and left-handed and ambidextrous players have on average the same batting average
+- ambidextrous players on average are 8 lbs lighter than right-handed and left-handed players and they also score 10 and 20 home runs fewer respectively
+- left-handed players on average tend to be the heaviest and they score the greatest number of home runs.
 
 # Design
 - Based on the dataset from Inc. 5000, I decided that a chart that showed the fastest growing companies in the U.S. would be most interesting. I chose a bar chart because it would be easy to compare growth across states taking advantage of the height of the bars as a visual encoding.
@@ -125,7 +128,13 @@ Switching to a new data set was a good idea. Here's feedback:
 - You're missing fundamentals - title, legend, etc.
 - x-axis should be called "baseball statistics" - it's clearer. 
 
+### Iteration 11: 
+#### Person1:
+The relationship between the data in bars and tooltip doesn't make sense. The label for the tooltip "Proportion of players" is wrong. It should be "Average for this statistics" so instead of telling me 33% of left handed players make up the height stat (no surprise...), tell me what the left-handed players' average height actually is. 
 
+### Iteration 11: 
+#### Person3: 
+Add units to the tooltip. Tell me what 72 inches is. Is that tall short? what is it in feet?
 
 # Resources
 
