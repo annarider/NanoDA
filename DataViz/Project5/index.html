@@ -1,0 +1,84 @@
+<html>
+  <div id="chartContainer">
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+    <script type="text/javascript">
+      var svg = dimple.newSvg("#chartContainer", "100%", "100%");
+      d3.csv("baseball2.csv", function (csv_data) {
+        // Initialize new dimple chart
+        var myChart = new dimple.chart(svg, csv_data);
+        myChart.setMargins("8%", "15%", "15%", "30%");
+
+        // Add x Axis and axis label
+        var xAxis = myChart.addCategoryAxis("x", ["Statistic"]);
+        xAxis.title = "Baseball Statistic";
+        var yAxis = myChart.addPctAxis("y", "Statistic Value");
+        yAxis.title = "";
+        yAxis.showGridlines = false;
+        yAxis.hidden = true;
+        var mySeries = myChart.addSeries("Handedness", dimple.plot.bar);
+        var myLegend = myChart.addLegend("-15%", "15%", "5%", "30%", "right");
+        
+
+        // Customize tooltip and data displayed
+        mySeries.getTooltipText = function (e) {
+
+          // console.log(e.aggField[0])
+
+          // debugger;
+          return [
+          // "Handedness: " + spellOutHandedness(e.aggField[0]),
+          "Average for " + spellOutHandednessAdj(e.aggField[0]) + " players: " + "" + Math.round(e.yValue * 1000) / 1000 + " " + spellOutHandednessStat(e.x)
+          ];
+        };
+
+        // spell out handedness in tooltip for "Handedness"
+        function spellOutHandedness(abbrev) {
+          if(abbrev === 'L') {
+            return 'Left';
+          }
+
+          if(abbrev === 'R') {
+            return 'Right';
+          }
+          if(abbrev === 'B') {
+            return 'Both';
+          }      
+        }
+
+        // spell out handedness description of players in tooltip for "Average for..."
+        function spellOutHandednessAdj(abbrev) {
+          if(abbrev === 'L') {
+            return 'left-handed';
+          }
+
+          if(abbrev === 'R') {
+            return 'right-handed';
+          }
+          if(abbrev === 'B') {
+            return 'ambidextrous';
+          }      
+        }
+
+        // spell out baseball stat in tooltip
+        function spellOutHandednessStat(stat) {
+          if(stat === 'Height') {
+            return "in (6 ft)";
+          }
+
+          if(stat === 'Weight') {
+            return 'lb';
+          }
+          if(stat === 'Home Runs') {
+            return 'HRs';
+          }  
+          if(stat === 'Batting Average') {
+            return 'avg';
+          }    
+        }
+
+        myChart.draw();
+      });
+    </script>
+  </div>
+</html>
