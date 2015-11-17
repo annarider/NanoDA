@@ -5,80 +5,107 @@
     <script type="text/javascript">
       var svg = dimple.newSvg("#chartContainer", "100%", "100%");
       d3.csv("baseball4.csv", function (csv_data) {
-        // Initialize new dimple chart
-        var myChart = new dimple.chart(svg, csv_data);
-        myChart.setMargins("8%", "15%", "15%", "30%");
 
-        // Add x Axis and axis label
-        var xAxis = myChart.addCategoryAxis("x", ["Weight Bin", "Handedness"]);
-        xAxis.title = "Baseball Statistic";
-        xAxis.addOrderRule(["Light", "Medium", "Heavy"]);
-        var yAxis = myChart.addMeasureAxis("y", "Home Runs");
-        yAxis.title = "Average Home Runs";
-        yAxis.showGridlines = false;
-        yAxis.hidden = false;
-        var mySeries = myChart.addSeries("Handedness", dimple.plot.bar);
-        var myLegend = myChart.addLegend("-15%", "15%", "5%", "30%", "right");
-        
+        // List of baseball stats
+        var stats = ["Mean Home Runs", "Mean Batting Average"];
+        // Set the bounds for charts
+        var row = 0,
+            col = 0,
+            top = "8%",
+            left = "15%",
+            right = "15%",
+            bottom = "50%",
+            height = "100%",
+            totalWidth = "100%";
 
-        // Customize tooltip and data displayed
-        mySeries.getTooltipText = function (e) {
+        stats.forEach(function (stat) {
 
-          // console.log(e.aggField[0])
 
-          // debugger;
-          return [
-          // "Handedness: " + spellOutHandedness(e.aggField[0]),
-          "Average for " + spellOutHandednessAdj(e.aggField[0]) + " players: " + "" + Math.round(e.yValue * 1000) / 1000 + " " + spellOutHandednessStat(e.x)
-          ];
-        };
+          // Initialize new dimple chart
+          var myChart = new dimple.chart(svg, csv_data);
+          myChart.setMargins(left, top, right, bottom);
 
-        // spell out handedness in tooltip for "Handedness"
-        function spellOutHandedness(abbrev) {
-          if(abbrev === 'L') {
-            return 'Left';
+          // Add x Axis and axis label
+          var xAxis = myChart.addCategoryAxis("x", ["Weight Bin", "Handedness"]);
+          xAxis.title = "Player Weight Class";
+          xAxis.addOrderRule(["Light (<169 lb)", "Medium", "Heavy (>200lb)"]);
+          var yAxis = myChart.addMeasureAxis("y", stat);
+          yAxis.title = "Mean " + stat;
+          yAxis.showGridlines = false;
+          yAxis.hidden = false;
+          var mySeries = myChart.addSeries("Handedness", dimple.plot.bar);
+          if (stat === stats[0]) {
+            // Add Title
+            svg.append("text")
+               .attr("x", myChart._xPixels() + myChart._widthPixels() / 2)
+               .attr("y", myChart._yPixels() - 10)
+               .style("text-anchor", "middle")
+               .style("font-family", "sans-serif")
+               .style("font-weight", "bold")
+               .text("Left-handed baseball players bat better in every weight class");
+      
+            var myLegend = myChart.addLegend("-15%", "15%", "5%", "30%", "right");
+          } 
+          // // Customize tooltip and data displayed
+          // mySeries.getTooltipText = function (e) {
+
+          //   // console.log(e.aggField[0])
+
+          //   // debugger;
+          //   return [
+          //   // "Handedness: " + spellOutHandedness(e.aggField[0]),
+          //   "Average for " + spellOutHandednessAdj(e.aggField[0]) + " players: " + "" + Math.round(e.yValue * 1000) / 1000 + " " + spellOutHandednessStat(e.x)
+          //   ];
+          // };
+
+          // spell out handedness in tooltip for "Handedness"
+          function spellOutHandedness(abbrev) {
+            if(abbrev === 'L') {
+              return 'Left';
+            }
+
+            if(abbrev === 'R') {
+              return 'Right';
+            }
+            if(abbrev === 'B') {
+              return 'Both';
+            }      
           }
 
-          if(abbrev === 'R') {
-            return 'Right';
-          }
-          if(abbrev === 'B') {
-            return 'Both';
-          }      
-        }
+          // spell out handedness description of players in tooltip for "Average for..."
+          function spellOutHandednessAdj(abbrev) {
+            if(abbrev === 'L') {
+              return 'left-handed';
+            }
 
-        // spell out handedness description of players in tooltip for "Average for..."
-        function spellOutHandednessAdj(abbrev) {
-          if(abbrev === 'L') {
-            return 'left-handed';
-          }
-
-          if(abbrev === 'R') {
-            return 'right-handed';
-          }
-          if(abbrev === 'B') {
-            return 'ambidextrous';
-          }      
-        }
-
-        // spell out baseball stat in tooltip
-        function spellOutHandednessStat(stat) {
-          if(stat === 'Height') {
-            return "in (6 ft)";
+            if(abbrev === 'R') {
+              return 'right-handed';
+            }
+            if(abbrev === 'B') {
+              return 'ambidextrous';
+            }      
           }
 
-          if(stat === 'Weight') {
-            return 'lb';
-          }
-          if(stat === 'Home Runs') {
-            return 'HRs';
-          }  
-          if(stat === 'Batting Average') {
-            return 'avg';
-          }    
-        }
+          // spell out baseball stat in tooltip
+          function spellOutHandednessStat(stat) {
+            if(stat === 'Height') {
+              return "in (6 ft)";
+            }
 
-        myChart.draw();
+            if(stat === 'Weight') {
+              return 'lb';
+            }
+            if(stat === 'Home Runs') {
+              return 'HRs';
+            }  
+            if(stat === 'Batting Average') {
+              return 'avg';
+            }    
+          }
+          myChart.draw();
+          top = "58%",
+          bottom = "8%";
+        });
       });
     </script>
   </div>
