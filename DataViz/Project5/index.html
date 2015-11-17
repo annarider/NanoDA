@@ -4,18 +4,19 @@
     <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
     <script type="text/javascript">
       var svg = dimple.newSvg("#chartContainer", "100%", "100%");
-      d3.csv("baseball2.csv", function (csv_data) {
+      d3.csv("baseball4.csv", function (csv_data) {
         // Initialize new dimple chart
         var myChart = new dimple.chart(svg, csv_data);
         myChart.setMargins("8%", "15%", "15%", "30%");
 
         // Add x Axis and axis label
-        var xAxis = myChart.addCategoryAxis("x", ["Statistic"]);
+        var xAxis = myChart.addCategoryAxis("x", ["Weight Bin", "Handedness"]);
         xAxis.title = "Baseball Statistic";
-        var yAxis = myChart.addPctAxis("y", "Statistic Value");
-        yAxis.title = "";
+        xAxis.addOrderRule(["Light", "Medium", "Heavy"]);
+        var yAxis = myChart.addMeasureAxis("y", "Home Runs");
+        yAxis.title = "Average Home Runs";
         yAxis.showGridlines = false;
-        yAxis.hidden = true;
+        yAxis.hidden = false;
         var mySeries = myChart.addSeries("Handedness", dimple.plot.bar);
         var myLegend = myChart.addLegend("-15%", "15%", "5%", "30%", "right");
         
