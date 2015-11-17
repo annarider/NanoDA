@@ -30,7 +30,7 @@
           xAxis.title = "Player Weight Class";
           xAxis.addOrderRule(["Light (<169 lb)", "Medium", "Heavy (>200lb)"]);
           var yAxis = myChart.addMeasureAxis("y", stat);
-          yAxis.title = "Mean " + stat;
+          yAxis.title = stat;
           yAxis.showGridlines = false;
           yAxis.hidden = false;
           var mySeries = myChart.addSeries("Handedness", dimple.plot.bar);
@@ -45,66 +45,36 @@
                .text("Left-handed baseball players bat better in every weight class");
       
             var myLegend = myChart.addLegend("-15%", "15%", "5%", "30%", "right");
+
           } 
           // // Customize tooltip and data displayed
-          // mySeries.getTooltipText = function (e) {
+          mySeries.getTooltipText = function (e) {
 
-          //   // console.log(e.aggField[0])
+            // console.log(e.aggField[0])
 
-          //   // debugger;
-          //   return [
-          //   // "Handedness: " + spellOutHandedness(e.aggField[0]),
-          //   "Average for " + spellOutHandednessAdj(e.aggField[0]) + " players: " + "" + Math.round(e.yValue * 1000) / 1000 + " " + spellOutHandednessStat(e.x)
-          //   ];
-          // };
-
-          // spell out handedness in tooltip for "Handedness"
-          function spellOutHandedness(abbrev) {
-            if(abbrev === 'L') {
-              return 'Left';
-            }
-
-            if(abbrev === 'R') {
-              return 'Right';
-            }
-            if(abbrev === 'B') {
-              return 'Both';
-            }      
-          }
+            // debugger;
+            return [
+            stat + ": " + e.y.toFixed(3),
+            ];
+          };
 
           // spell out handedness description of players in tooltip for "Average for..."
           function spellOutHandednessAdj(abbrev) {
-            if(abbrev === 'L') {
+            if(abbrev === 'Left') {
               return 'left-handed';
             }
 
-            if(abbrev === 'R') {
+            if(abbrev === 'Right') {
               return 'right-handed';
             }
-            if(abbrev === 'B') {
+            if(abbrev === 'Both') {
               return 'ambidextrous';
             }      
           }
 
-          // spell out baseball stat in tooltip
-          function spellOutHandednessStat(stat) {
-            if(stat === 'Height') {
-              return "in (6 ft)";
-            }
-
-            if(stat === 'Weight') {
-              return 'lb';
-            }
-            if(stat === 'Home Runs') {
-              return 'HRs';
-            }  
-            if(stat === 'Batting Average') {
-              return 'avg';
-            }    
-          }
-          myChart.draw();
-          top = "58%",
-          bottom = "8%";
+        myChart.draw();
+        top = "58%",
+        bottom = "8%";
         });
       });
     </script>

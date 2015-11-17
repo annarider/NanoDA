@@ -1,34 +1,21 @@
 # Summary 
 
-My data visualization compares players who are right-handed, left-handed and ambidextrous on their baseball statistics (height, weight, home runs, and batting average). The main takeaways from the visualization are: 
-- all 3 groups are an average of 6 feet tall and left-handed and ambidextrous players have on average the same batting average
-- ambidextrous players on average are 8 lbs lighter than right-handed and left-handed players and they also score 10 and 20 home runs fewer respectively
-- left-handed players on average tend to be the heaviest and they score the greatest number of home runs.
+My data visualization demonstrates that left-handed baseball players are better hitters than right-handed and ambidextrous players based on the metrics of mean home runs and batting average. The visualization shows that left-handed players are better hitters. Players are grouped by weight to account for that fact that larger players hit more home runs.
 
 # Design
-### Old visualization. See below for new design choices
-- Based on the dataset from Inc. 5000, I decided that a chart that showed the fastest growing companies in the U.S. would be most interesting. I chose a bar chart because it would be easy to compare growth across states taking advantage of the height of the bars as a visual encoding.
-- After creating a mock up of the chart on paper and getting initial feedback, I discovered that the chart was too simple - people wanted more information and interaction. 
-- Therefore I added industry segmentation to the data. Since the data is categorical, I chose distinct colors for different industries. Different hues show a clear distinction in the industry data, which is better than confusing viewers with a convergent or divergent color palette. Ordinarily, I would have kept all the bars the same color the course instructor emphasized that different colored bars in a bar chart do not encode any additional information and can even distract the reader. However, because I am encoding additional information about industry, the different colors are appropriate for the reader to be able to see the industry breakdown.
-- A stacked bar chart was the most intuitive way to display the data. One person did not like the bar chart because it is hard to compare the height of bars for specific industries. I disagreed with this person's feedback because, while not perfect, the bar chart gave me a good way to compare across states using the height of the bar. Reading Stephen Few's article, "Data Visualization: Rules for Encoding Values in Graph", his advice for why bar charts are powerful resonated with me and seemed to be a good chart to chose for the story I want to communicate to readers: "Bars are visually the most weighty and dominant of the three objects that we commonly use to encode data in graphs". 
-- Another person gave me feedback that the reader should be able to filter on a specific industry. This feedback conveniently seems to solve the issue raised by the person who did not like stacked bar charts. Therefore, I made it possible to click on the legend boxes to filter the chart. This change adds a lot of interaction and animation to the chart; like the analogy of the mouth of the "martini" glass, readers can now dive into the data and explore trends interesting to them.
-- I cleaned up the aesthetics of the chart (title, axes labels, etc.) based on feedback that the text was unclear and messy. I moved the legend to the right to make room for the title. The legend on the right also made it easier for the eye to interpret the different industries because they were listed vertically. 
-- I especially spent a lot of time configuring the tooltip because I received recurring feedback that the tooltip was confusing, didn't display data in a useful manner, or lacked data. I went through several iterations until I found the right balance of information to include. 
-- Based on feedback by Person4, I changed the left margin in the svg so that the y-axis label would not be cut off.  
-- Based on advice from Person4 and Person5 for how to fix the bug that caused an errant bar to appear during animation, I cleaned up the dataset by aggregating values.
-
-### Switching Project datasets
-I've decided I need to change datasets because the original company data is far too challenging for an explanatory data visualization.
-
-### New design choices
-- Based on feedback, I removed the y-axis entirely because the percentages were not adding new useful information and was even distracting for one person. I also got rid of the gridlines in the chart because they also didn't add much information.
-- I chose a stacked bar chart because it is easy for users' eyes to understand 3 different variables in the data (baseball stat, handedness, average value of baseball stat). 
-- The tooltip was very important for ensuring readers understand the information being conveyed. The tooltip may look simple now but the simplicity actually took more work and effort than having a lot of information cluttering the tooltip. It used to contain a lot more information but I had to find ways to condense it to the most useful information while still containing the important facts.
-- The tooltip is also highly formatted to show units, spell out entire abbreviation, etc which didn't exist in the original data.  
+### Design choices
+- I chose a clustered bar chart because it is easy for the readers' eyes to discern the difference between the two independent (handedness and weight class) and two dependent variables (home run and batting average). Feedback from readers said that they did not like the stacked bar chart because it was difficult to compare the heights of each bar to determine which group performed better.
+- I divided players into weight classes: I labeled players "medium" if they were within 1 standard deviation of the mean, and "light" or "heavy" outside this range.
+- I did not show a bar for ambidextrous heavy players because there were only 4 of them, meaning statistical conclusions would be questionable.
+- Since handedness is categorical, I chose distinct colors for it. Different hues show a clear distinction in the handedness, which helps readers see categorical data better across groupings than with a convergent or divergent color palette. 
+- Reading Stephen Few's article, "Data Visualization: Rules for Encoding Values in Graph", his advice for why bar charts are powerful resonated with me and seemed to be a good chart to choose for the story I want to communicate to readers: "Bars are visually the most weighty and dominant of the three objects that we commonly use to encode data in graphs".
+- I cleaned up the aesthetics of the chart (title, axes labels, etc.) based on feedback that the text was unclear and messy. I moved the legend to the right to make room for the title. The legend on the right also made it easier for the eye to interpret the different industries because they were listed vertically.
+- Initially I had a very complex customized tooltip. However, I discovered that I could encode the same information using different colored bars (left-handed, right-handed, and ambidextrous players) so I removed that metric from the tooltip. I had also provided information about the breakdown of the weight class. But someone offered feedback that it was harder to read and having the information available more immediately is important. He suggested I add the weight information to the x-axis labels. I followed this advice and modified the x-axis labels to include the breakdown of weight class. 
 
 
 # Feedback 
 
+N.B. I have changed the data set for this project; however, I kept the feedback from my first visualization. 
 ### On paper chart
 
 ### Iteration 1
@@ -142,6 +129,22 @@ The relationship between the data in bars and tooltip doesn't make sense. The la
 ### Iteration 11: 
 #### Person3: 
 Add units to the tooltip. Tell me what 72 inches is. Is that tall short? what is it in feet?
+
+### Iteration 12: 
+#### Person7: 
+Feedback from reviewer/grader Andrew (https://review.udacity.com/#!/reviews/66357)
+Try binning
+Think about sample size 
+
+### Iteration 13: 
+#### Person1:
+Put the bounds of the weight bins
+Change L, R, B to Left, Right, Both
+Write "Mean" in front of the stat
+Maybe get rid of the heavy ambidextrous batters because they are too few
+
+#### Person2: 
+Add a title
 
 # Resources
 
